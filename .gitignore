@@ -1,0 +1,16 @@
+Dll/
+.vs/
+Deploy/
+bin/
+exchange/
+obj/
+tmp/
+artifacts/
+packages/
+node_modules/
+_ReSharper*/
+_NCrunch*/
+*.suo
+*.ncrunchsolution
+*.DotSettings.user
+npm-debug.log*

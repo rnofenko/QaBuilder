@@ -1,0 +1,259 @@
+﻿[
+  {
+    "name": "BAI SB Pulse Weekly",
+    "delimeter": "|",
+    "fields": [
+      { "name": "BANK_CODE" },
+      { "name": "CYCLE_TYPE" },
+      { "name": "STATE" },
+      { "name": "CYCLE_DT" },
+      {
+        "name": "NACH",
+        "type": "Float"
+      },
+      {
+        "name": "FBC",
+        "type": "Float"
+      },
+      {
+        "name": "NNC",
+        "type": "Float"
+      },
+      {
+        "name": "INC",
+        "type": "Float"
+      },
+      {
+        "name": "NAC",
+        "type": "Float"
+      },
+      {
+        "name": "SWP",
+        "type": "Float"
+      },
+      {
+        "name": "SWO",
+        "type": "Float"
+      },
+      {
+        "name": "BSV",
+        "type": "Float"
+      },
+      {
+        "name": "MMA",
+        "type": "Float"
+      },
+      {
+        "name": "RMA",
+        "type": "Float"
+      },
+      {
+        "name": "HMA",
+        "type": "Float"
+      },
+      {
+        "name": "BCD",
+        "type": "Float"
+      }
+    ]
+  },
+
+  {
+    "name": "BAI SB Pulse Monthly",
+    "delimeter": "|",
+    "fields": [
+      { "name": "BANK_CODE" },
+      { "name": "CYCLE_TYPE" },
+      { "name": "STATE" },
+      { "name": "CYCLE_DT" },
+      {
+        "name": "NACH",
+        "type": "Money"
+      },
+      {
+        "name": "FBC",
+        "type": "Money"
+      },
+      {
+        "name": "NNC",
+        "type": "Money"
+      },
+      {
+        "name": "INC",
+        "type": "Money"
+      },
+      {
+        "name": "NAC",
+        "type": "Money"
+      },
+      {
+        "name": "SWP",
+        "type": "Money"
+      },
+      {
+        "name": "SWO",
+        "type": "Money"
+      },
+      {
+        "name": "BSV",
+        "type": "Money"
+      },
+      {
+        "name": "MMA",
+        "type": "Money"
+      },
+      {
+        "name": "RMA",
+        "type": "Money"
+      },
+      {
+        "name": "HMA",
+        "type": "Money"
+      },
+      {
+        "name": "BCD",
+        "type": "Money"
+      },
+      {
+        "name": "TOTAL_CKG_ACCTS",
+        "type": "Int"
+      },
+      {
+        "name": "TOTAL_NACH_CKG_ACCTS",
+        "type": "Int"
+      },
+      {
+        "name": "TOTAL_NAC_CKG_ACCTS",
+        "type": "Int"
+      },
+      {
+        "name": "NEW_CKG_ACCTS",
+        "type": "Int"
+      },
+      {
+        "name": "NEW_NACH_CKG_ACCTS",
+        "type": "Int"
+      },
+      {
+        "name": "NEW_NAC_CKG_ACCTS",
+        "type": "Int"
+      },
+      {
+        "name": "CLOSED_CKG_ACCTS",
+        "type": "Int"
+      },
+      {
+        "name": "CLOSED_NACH_CKG_ACCTS",
+        "type": "Int"
+      },
+      {
+        "name": "CLOSED_NAC_CKG_ACCTS",
+        "type": "Int"
+      }
+    ]
+  },
+
+  {
+    "name": "ATM",
+    "rowsInHeader": 1,
+    "delimeter": ";",
+    "fields": [
+      {
+        "name": "DATE"
+      },
+      {
+        "name": "ATM"
+      },
+      {
+        "name": "CODOPE",
+        "type": "Int"
+      },
+      {
+        "name": "DESCRIPTION"
+      },
+      {
+        "name": "TOTAL"
+      },
+      {
+        "name": "NA"
+      }
+    ]
+  },
+
+  {
+    "name": "DPB",
+    "rowsInHeader": 0,
+    "delimeter": "|",
+    "fields": [
+      { "name": "No1" },
+      { "name": "No2" },
+      { "name": "No3" },
+      { "name": "No4" },
+      { "name": "No5" },
+      { "name": "No6" },
+      { "name": "No7" },
+      { "name": "No8" },
+      { "name": "No9" },
+      {
+        "name": "MONTH_END_BALANCE",
+        "type": "Float"
+      },
+      {
+        "name": "AVG_MONTHLY_BALANCE",
+        "type": "Float"
+      },
+      { "name": "No12" },
+      { "name": "No13" },
+      { "name": "No14" },
+      { "name": "No15" },
+      { "name": "No16" },
+      { "name": "No17" },
+      { "name": "No18" },
+      { "name": "No19" },
+      {
+        "name": "MONTHLY_INTEREST_PAID",
+        "type": "Float"
+      },
+      {
+        "name": "MONTHLY_INTEREST_CHARGED",
+        "type": "Float"
+      },
+      {
+        "name": "INTEREST_RATE",
+        "type": "Float"
+      },
+      { "name": "No23" },
+      { "name": "No24" },
+      { "name": "No25" },
+      { "name": "No26" },
+      { "name": "CD_TERM", "Type": "Int" },
+      { "name": "No28" },
+      { "name": "No29" },
+      { "name": "ORIGINAL_BALANCE", "Type": "Float" },
+      { "name": "No31" },
+      { "name": "No32" },
+      { "name": "No33" },
+      { "name": "No34" },
+      { "name": "No35" },
+      { "name": "No36" },
+      { "name": "No37" },
+      { "name": "No38" },
+      { "name": "No39" },
+      { "name": "No40" },
+      {
+        "name": "TOTAL_FEES",
+        "Type": "Float"
+      },
+      { "name": "No42" },
+      { "name": "No43" },
+      { "name": "No44" },
+      { "name": "No45" },
+      { "name": "No46" },
+      { "name": "No47" },
+      {
+        "name": "NUMBER_OF_TIMES_CD_RENEWED",
+        "Type": "Int"
+      }
+    ]
+  }
+]
