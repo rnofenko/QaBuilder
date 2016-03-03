@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Qa.BAI_DPB.Collectors;
+using Qa.BAI_DPB.Compare;
 using Qa.Core.Structure;
-using Qa.Sbpm.Collectors;
 
-namespace Qa.Sbpm.Compare
+namespace Qa.BaiDpb.Compare
 {
     public class Comparer
     {
@@ -21,46 +22,29 @@ namespace Qa.Sbpm.Compare
         {
             var reports = rawReports.OrderBy(x => x.Path).ToList();
             var first = reports.First();
-            var packet = new ComparePacket {Strucure = first.Structure, States = reports.SelectMany(x => x.SubReports.Keys).Distinct().ToList()};
+            var packet = new ComparePacket {Strucure = first.Structure};
             
             RawReport previous = null;
             foreach (var report in reports)
             {
-                packet.Reports.Add(compare(report, previous, packet.States));
+                packet.Reports.Add(compare(report, previous));
                 previous = report;
             }
 
             return packet;
         }
 
-        private CompareReport compare(RawReport current, RawReport previous, List<string> states)
+        private CompareReport compare(RawReport current, RawReport previous)
         {
             var fileName = Path.GetFileNameWithoutExtension(current.Path);
-            var result = new CompareReport();
-
-            foreach (var key in states)
-            {
-                var currentSub = current.GetSubReport(key);
-                var previousSub = previous?.GetSubReport(key);
-                var subResult = compare(currentSub, previousSub, key, fileName);
-                result.SubReports.Add(subResult);
-            }
-
-            foreach (var transformation in current.TransformedReports.Keys)
-            {
-                var report = compare(current.TransformedReports[transformation], previous?.TransformedReports[transformation], states);
-                result.TransformReports.Add(transformation, report);
-            }
-            
-            return result;
+            return compare(current, previous, fileName);
         }
 
-        private CompareSubReport compare(RawSubReport current, RawSubReport previous, string key, string fileName)
+        private CompareReport compare(RawReport current, RawReport previous, string fileName)
         {
-            var result = new CompareSubReport
+            var result = new CompareReport
             {
                 RowsCount = new CompareNumber(current.RowsCount, previous?.RowsCount),
-                State = key,
                 FileName = fileName
             };
 

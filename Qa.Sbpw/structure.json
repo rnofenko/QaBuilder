@@ -9,51 +9,51 @@
       { "name": "CYCLE_DT" },
       {
         "name": "NACH",
-        "type": "Float"
+        "type": "Double"
       },
       {
         "name": "FBC",
-        "type": "Float"
+        "type": "Double"
       },
       {
         "name": "NNC",
-        "type": "Float"
+        "type": "Double"
       },
       {
         "name": "INC",
-        "type": "Float"
+        "type": "Double"
       },
       {
         "name": "NAC",
-        "type": "Float"
+        "type": "Double"
       },
       {
         "name": "SWP",
-        "type": "Float"
+        "type": "Double"
       },
       {
         "name": "SWO",
-        "type": "Float"
+        "type": "Double"
       },
       {
         "name": "BSV",
-        "type": "Float"
+        "type": "Double"
       },
       {
         "name": "MMA",
-        "type": "Float"
+        "type": "Double"
       },
       {
         "name": "RMA",
-        "type": "Float"
+        "type": "Double"
       },
       {
         "name": "HMA",
-        "type": "Float"
+        "type": "Double"
       },
       {
         "name": "BCD",
-        "type": "Float"
+        "type": "Double"
       }
     ]
   }

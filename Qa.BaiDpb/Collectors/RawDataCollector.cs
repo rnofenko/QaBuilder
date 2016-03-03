@@ -6,7 +6,7 @@ using Qa.Core;
 using Qa.Core.Structure;
 using Qa.Core.System;
 
-namespace Qa.Sbpm.Collectors
+namespace Qa.BAI_DPB.Collectors
 {
     public class RawDataCollector
     {
@@ -44,8 +44,6 @@ namespace Qa.Sbpm.Collectors
             {
                 return report;
             }
-            
-            report.SubReportIndex = report.Fields.FindIndex(f => f.Name == QaSettings.Field.State);
 
             using (var  stream = new StreamReader(filepath))
             {
@@ -85,16 +83,15 @@ namespace Qa.Sbpm.Collectors
                 .Wl($"FieldsCount: {stats.FieldsCount}");
         }
 
-        private void processLine(string line, RawReport stats)
+        private void processLine(string line, RawReport report)
         {
-            var parts = line.Split(new[] { stats.Structure.Delimeter }, StringSplitOptions.None);
-            var subReport = stats.GetSubReport(parts);
-            subReport.RowsCount++;
+            var parts = line.Split(new[] { report.Structure.Delimeter }, StringSplitOptions.None);
+            report.RowsCount++;
 
             for (var i = 0; i < parts.Length; i++)
             {
-                var field = subReport.Fields[i];
-                var value = parts[i];
+                var field = report.Fields[i];
+                var value = parts[i].Replace(" .", "0");
                 if (field.Type == DType.Double)
                 {
                     if (value.IsNotEmpty())

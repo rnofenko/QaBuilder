@@ -104,6 +104,10 @@ namespace Qa.Core.Excel
             {
                 return Money(value, pos);
             }
+            if (type == DType.Double)
+            {
+                return Double(value, pos);
+            }
             if (type == DType.Int)
             {
                 return Integer(value, pos);
@@ -125,6 +129,14 @@ namespace Qa.Core.Excel
             var cell = getCell(pos);
             cell.Value = value;
             cell.Style.Numberformat.Format = "$#,##0;$(#,##0)";
+            return this;
+        }
+
+        public ExcelCursor Double(double value, Pos pos)
+        {
+            var cell = getCell(pos);
+            cell.Value = value;
+            cell.Style.Numberformat.Format = "#,##0.0;-#,##0.0";
             return this;
         }
 

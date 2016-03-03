@@ -53,7 +53,7 @@ namespace Qa.Core.Format
             }
             for (var i = 0; i < parts.Length; i++)
             {
-                if (_fields[i].Type == DType.Float)
+                if (_fields[i].Type == DType.Double)
                 {
                     var unparsed = parts[i];
                     var parsed = 0d;
