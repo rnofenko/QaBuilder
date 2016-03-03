@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using OfficeOpenXml;
+using Qa.Core.Excel;
 using Qa.Excel;
 using Qa.Sbpm.Compare;
 
@@ -32,19 +33,19 @@ namespace Qa.Sbpm.Excel
 
         private void printFieldNames(CompareSubReport report, ExcelCursor cursor)
         {
-            cursor.Value("Field");
+            cursor.Print("Field");
             foreach (var field in report.Fields)
             {
-                cursor.Down().Value(field.Title);
+                cursor.Down().Print(field.Title);
             }
         }
 
         private void printState(CompareSubReport report, ExcelCursor cursor)
         {
-            cursor.Value(report.State);
+            cursor.Print(report.State);
             foreach (var field in report.Fields)
             {
-                cursor.Down().Value(field.CurrentSum, field.Type);
+                cursor.Down().Print(field.CurrentSum, field.Type);
             }
         }
     }

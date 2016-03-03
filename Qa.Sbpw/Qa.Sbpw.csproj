@@ -61,7 +61,6 @@
     <Compile Include="Compare\CompareReport.cs" />
     <Compile Include="Compare\CompareSettings.cs" />
     <Compile Include="Compare\CompareSubReport.cs" />
-    <Compile Include="Excel\EpExporterToExcel.cs" />
     <Compile Include="Excel\InternalSheet.cs" />
     <Compile Include="Excel\Pos.cs" />
     <Compile Include="Program.cs" />

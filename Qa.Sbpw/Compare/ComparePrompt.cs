@@ -4,7 +4,6 @@ using Qa.Core.Structure;
 using Qa.Core.System;
 using Qa.Sbpm.Collectors;
 using Qa.Sbpm.Compare;
-using Qa.Sbpw.Excel;
 using Qa.System;
 
 namespace Qa.Sbpw.Compare
@@ -13,14 +12,12 @@ namespace Qa.Sbpw.Compare
     {
         private readonly CompareSettings _settings;
         private readonly FileFinder _fileFinder;
-        private readonly EpExporterToExcel _excelExporter;
         private readonly Comparer _comparer;
 
         public ComparePrompt(Settings settings)
         {
             _settings = new CompareSettings(settings);
             _fileFinder = new FileFinder();
-            _excelExporter = new EpExporterToExcel();
             _comparer = new Comparer();
         }
 
@@ -64,8 +61,7 @@ namespace Qa.Sbpw.Compare
             });
             
             var result = _comparer.Compare(statisticsByFiles);
-            _excelExporter.Export(result, _settings);
-
+            
             Lo.Wl().Wl("Comparing was finished.");
             if (!Fast.Qa)
             {

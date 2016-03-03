@@ -54,6 +54,7 @@
     <Compile Include="Combines\CombineSettings.cs" />
     <Compile Include="Combines\FileCombiner.cs" />
     <Compile Include="Excel\ExcelCursor.cs" />
+    <Compile Include="Excel\Pos.cs" />
     <Compile Include="Extensions\EnumerableExtension.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Fast.cs" />

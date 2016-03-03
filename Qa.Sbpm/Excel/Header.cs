@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using OfficeOpenXml.Style;
+using Qa.Core.Excel;
 using Qa.Core.System;
 using Qa.Excel;
 

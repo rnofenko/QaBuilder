@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using OfficeOpenXml;
-using Qa.Excel;
+using Qa.Core.Excel;
 using Qa.Sbpm.Compare;
 
 namespace Qa.Sbpm.Excel
@@ -32,7 +32,7 @@ namespace Qa.Sbpm.Excel
 
         private void printTotal(IList<CompareSubReport> reports, ExcelCursor cursor)
         {
-            var initRow = cursor.GetRow();
+            var initRow = cursor.Pos.Row;
             var isFirst = true;
             foreach (var file in reports)
             {
@@ -40,31 +40,28 @@ namespace Qa.Sbpm.Excel
 
                 if (isFirst)
                 {
-                    cursor.Value("", file.FileName)
+                    cursor.Print("", file.FileName)
                         .Down()
-                        .Value("Field", "Values");
+                        .Print("Field", "Values");
                 }
                 else
                 {
-                    cursor.Value(file.FileName).Merge(2)
+                    cursor.Print(file.FileName).Merge(2)
                         .Down()
-                        .Value("Values", "Change, %");
+                        .Print("Values", "Change, %");
                 }
                 
-                var startRow = cursor.GetRow();
+                var startRow = cursor.Pos.Row;
                 if (isFirst)
                 {
-                    foreach (var field in file.Fields)
-                    {
-                        cursor.Down().Value(field.Title);
-                    }
+                    cursor.Down().PrintDown(file.Fields.Select(x => x.Title));
                     cursor.NextColumn();
                 }
 
                 cursor.Row(startRow);
                 foreach (var field in file.Fields)
                 {
-                    cursor.Down().Value(field.CurrentSum, field.Type);
+                    cursor.Down().Print(field.CurrentSum, field.Type);
                 }
                 cursor.NextColumn();
 
@@ -97,9 +94,9 @@ namespace Qa.Sbpm.Excel
 
         private void printState(IList<CompareSubReport> reports, ExcelCursor cursor)
         {
-            cursor.Value("State:", reports.First().State).Down();
+            cursor.Print("State:", reports.First().State).Down();
 
-            var initRow = cursor.GetRow();
+            var initRow = cursor.Pos.Row;
             var isFirst = true;
             foreach (var report in reports)
             {
@@ -107,23 +104,23 @@ namespace Qa.Sbpm.Excel
 
                 if (isFirst)
                 {
-                    cursor.Value("", report.FileName)
+                    cursor.Print("", report.FileName)
                         .Down()
-                        .Value("Field", "Values");
+                        .Print("Field", "Values");
                 }
                 else
                 {
-                    cursor.Value(report.FileName).Merge(2)
+                    cursor.Print(report.FileName).Merge(2)
                         .Down()
-                        .Value("Values", "Change, %");
+                        .Print("Values", "Change, %");
                 }
                 
-                var startRow = cursor.GetRow();
+                var startRow = cursor.Pos.Row;
                 if (isFirst)
                 {
                     foreach (var field in report.Fields)
                     {
-                        cursor.Down().Value(field.Title);
+                        cursor.Down().Print(field.Title);
                     }
                     cursor.NextColumn();
                 }
@@ -131,7 +128,7 @@ namespace Qa.Sbpm.Excel
                 cursor.Row(startRow);
                 foreach (var field in report.Fields)
                 {
-                    cursor.Down().Value(field.CurrentSum, field.Type);
+                    cursor.Down().Print(field.CurrentSum, field.Type);
                 }
                 cursor.NextColumn();
 
