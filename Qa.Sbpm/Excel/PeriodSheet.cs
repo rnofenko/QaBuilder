@@ -32,17 +32,22 @@ namespace Qa.Sbpm.Excel
         private void printFieldNames(CompareSubReport report, ExcelCursor cursor)
         {
             cursor
-                .Print("Field")
                 .Down()
-                .PrintDown(report.Fields.Select(x => x.Title));
+                .TopLeftBorderCorner()
+                .PrintDown(report.Fields.Select(x => x.Title))
+                .Down(report.Fields.Count - 1)
+                .DrawBorder();
         }
 
         private void printState(CompareSubReport report, ExcelCursor cursor)
         {
             cursor
-                .Print(report.State)
+                .Print(report.State).BackgroundColor(QaColor.HeaderBackground).DrawBorder().Center()
                 .Down()
-                .PrintDown(report.Fields.Select(x => new TypedAmount {Amount = x.CurrentSum, Type = x.Type}));
+                .TopLeftBorderCorner()
+                .PrintDown(report.Fields.Select(x => new TypedAmount {Amount = x.CurrentSum, Type = x.Type}))
+                .Down(report.Fields.Count - 1)
+                .DrawBorder();
         }
     }
 }

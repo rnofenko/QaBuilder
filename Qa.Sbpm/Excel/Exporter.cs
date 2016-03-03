@@ -11,7 +11,7 @@ namespace Qa.Sbpm.Excel
     {
         public void Export(List<ComparePacket> packets, CompareSettings settings)
         {
-            var path = Path.Combine(settings.WorkingFolder, "comparing.xlsx");
+            var path = Path.Combine(settings.WorkingFolder, $"{packets.First().Strucure.Name}.xlsx");
             if (File.Exists(path))
             {
                 File.Delete(path);

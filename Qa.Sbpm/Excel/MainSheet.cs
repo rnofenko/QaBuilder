@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using OfficeOpenXml;
+using OfficeOpenXml.Style;
 using Qa.Core.Excel;
 using Qa.Core.Structure;
 using Qa.Sbpm.Compare;
@@ -34,62 +36,73 @@ namespace Qa.Sbpm.Excel
         {
             var first = reports.First();
             var initRow = cursor.Pos.Row;
+            var fieldsCount = first.Fields.Count;
 
             cursor
                 .TopLeftBorderCorner()
-                .Print("", first.FileName)
+                .Print("", first.FileName).BackgroundColor(QaColor.HeaderBackground, 2)
                 .Down()
-                .Print("Field", "Values")
+                .Print("", "Values").BackgroundColor(QaColor.HeaderBackground, 2)
                 .Down()
                 .PrintDown(first.Fields.Select(x => x.Title))
                 .Right()
                 .PrintDown(first.Fields.Select(x => new TypedAmount {Amount = x.CurrentSum, Type = x.Type}))
-                //.DrawBorder()
+                .Down(fieldsCount)
+                .DrawBorder(ExcelBorderStyle.Thick)
                 .Right();
 
             foreach (var report in reports.Skip(1))
             {
                 cursor.Row(initRow)
-                    .Print(report.FileName).Merge(2)
+                    .TopLeftBorderCorner()
+                    .Print(report.FileName).Merge(2).BackgroundColor(QaColor.HeaderBackground, 2)
                     .Down()
-                    .Print("Values", "Change")
+                    .Print("Values", "Change").BackgroundColor(QaColor.HeaderBackground, 2)
                     .Down()
                     .PrintDown(report.Fields.Select(x => new TypedAmount {Amount = x.CurrentSum, Type = x.Type}))
                     .Right()
                     .PrintDown(report.Fields.Select(x => new TypedAmount {Amount = x.Change, Type = DType.Percent}), StyleConditions.ChangePercent)
+                    .Down(fieldsCount)
+                    .DrawBorder(ExcelBorderStyle.Thick)
                     .Right();
             }
-
-            cursor.Down(first.Fields.Count);
         }
 
         private void printStates(IList<CompareSubReport> reports, ExcelCursor cursor)
         {
             var first = reports.First();
-            cursor.Print("State:", first.State).Down();
-
+            cursor
+                .Print(first.State)
+                .BackgroundColor(QaColor.HeaderBackground)
+                .Down();
+            var fieldsCount = first.Fields.Count - 1;
             var initRow = cursor.Pos.Row;
 
-            cursor.Print("", first.FileName)
+            cursor
+                .TopLeftBorderCorner()
+                .Print("", first.FileName).BackgroundColor(QaColor.HeaderBackground, 2)
                 .Down()
                 .PrintDown(first.Fields.Select(x => x.Title))
                 .Right()
                 .PrintDown(first.Fields.Select(x => new TypedAmount {Amount = x.CurrentSum, Type = x.Type}))
+                .Down(fieldsCount)
+                .DrawBorder(ExcelBorderStyle.Thick)
                 .Right();
 
             foreach (var report in reports.Skip(1))
             {
                 cursor
                     .Row(initRow)
-                    .Print(report.FileName).Merge(2)
+                    .TopLeftBorderCorner()
+                    .Print(report.FileName).Merge(2).BackgroundColor(QaColor.HeaderBackground)
                     .Down()
-                    .PrintDown(report.Fields.Select(x => new TypedAmount { Amount = x.CurrentSum, Type = x.Type }))
+                    .PrintDown(report.Fields.Select(x => new TypedAmount {Amount = x.CurrentSum, Type = x.Type}))
                     .Right()
                     .PrintDown(report.Fields.Select(x => new TypedAmount {Amount = x.Change, Type = DType.Percent}), StyleConditions.ChangePercent)
+                    .Down(fieldsCount)
+                    .DrawBorder(ExcelBorderStyle.Thick)
                     .Right();
             }
-
-            cursor.Down(first.Fields.Count);
         }
     }
 }

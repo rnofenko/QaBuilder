@@ -55,6 +55,7 @@
     <Compile Include="Combines\FileCombiner.cs" />
     <Compile Include="Excel\ExcelCursor.cs" />
     <Compile Include="Excel\Pos.cs" />
+    <Compile Include="Excel\QaColor.cs" />
     <Compile Include="Excel\StyleConditionArgs.cs" />
     <Compile Include="Excel\TypedAmount.cs" />
     <Compile Include="Extensions\EnumerableExtension.cs" />

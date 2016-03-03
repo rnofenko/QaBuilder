@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using Qa.Core.Structure;
-using Color = System.Drawing.Color;
 
 namespace Qa.Core.Excel
 {
@@ -150,7 +150,7 @@ namespace Qa.Core.Excel
         {
             var style = getCell(pos).Style;
             style.Fill.PatternType = ExcelFillStyle.Solid;
-            style.Fill.BackgroundColor.SetColor(Color.LightCoral);
+            style.Fill.BackgroundColor.SetColor(QaColor.Danger);
             return this;
         }
 
@@ -163,7 +163,7 @@ namespace Qa.Core.Excel
         {
             var style = getCell(pos).Style;
             style.Fill.PatternType = ExcelFillStyle.Solid;
-            style.Fill.BackgroundColor.SetColor(Color.Bisque);
+            style.Fill.BackgroundColor.SetColor(QaColor.Warning);
             return this;
         }
 
@@ -219,20 +219,45 @@ namespace Qa.Core.Excel
             return Sheet.Cells[pos.Row, pos.Column];
         }
 
-        public ExcelCursor DrawBorder()
+        public ExcelCursor DrawBorder(ExcelBorderStyle style = ExcelBorderStyle.Thin)
         {
-            if (_topLeftCorner == null)
-            {
-                return this;
-            }
-            var topLeft = _topLeftCorner.Value;
+            var topLeft = _topLeftCorner ?? _pos;
 
-            var range = Sheet.Cells[topLeft.Row, topLeft.Column, _pos.Row, _pos.Column];
-            range.Style.Border.Bottom.Style = ExcelBorderStyle.Thick;
-            range.Style.Border.Top.Style = ExcelBorderStyle.Thick;
-            range.Style.Border.Left.Style = ExcelBorderStyle.Thick;
-            range.Style.Border.Right.Style = ExcelBorderStyle.Thick;
+            var pos = new Pos {Column = topLeft.Column};//left
+            for (pos.Row = topLeft.Row; pos.Row <= _pos.Row; pos.Row++)
+            {
+                getCell(pos).Style.Border.Left.Style = style;
+            }
+            pos.Column = _pos.Column;//right
+            for (pos.Row = topLeft.Row; pos.Row <= _pos.Row; pos.Row++)
+            {
+                getCell(pos).Style.Border.Right.Style = style;
+            }
+            pos.Row = topLeft.Row;//top
+            for (pos.Column = topLeft.Column; pos.Column <= _pos.Column; pos.Column++)
+            {
+                getCell(pos).Style.Border.Top.Style = style;
+            }
+            pos.Row = _pos.Row;//bottom
+            for (pos.Column = topLeft.Column; pos.Column <= _pos.Column; pos.Column++)
+            {
+                getCell(pos).Style.Border.Bottom.Style = style;
+            }
             _topLeftCorner = null;
+            return this;
+        }
+
+        public ExcelCursor Center()
+        {
+            Cell.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            return this;
+        }
+
+        public ExcelCursor BackgroundColor(Color color, int cellsCount = 1)
+        {
+            var style = Sheet.Cells[Pos.Row, _pos.Column, Pos.Row, _pos.Column + cellsCount - 1].Style;
+            style.Fill.PatternType = ExcelFillStyle.Solid;
+            style.Fill.BackgroundColor.SetColor(color);
             return this;
         }
     }
