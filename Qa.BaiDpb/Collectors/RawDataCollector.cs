@@ -6,7 +6,7 @@ using Qa.Core;
 using Qa.Core.Structure;
 using Qa.Core.System;
 
-namespace Qa.BAI_DPB.Collectors
+namespace Qa.BaiDpb.Collectors
 {
     public class RawDataCollector
     {
@@ -59,7 +59,7 @@ namespace Qa.BAI_DPB.Collectors
                     processLine(line, report);
                     rows++;
                     
-                    if ((rows % 25000) == 0)
+                    if ((rows % 50000) == 0)
                     {
                         Lo.Wl($"Processed {rows}");
                     }

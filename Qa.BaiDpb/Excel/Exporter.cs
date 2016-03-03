@@ -3,16 +3,15 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using OfficeOpenXml;
-using Qa.BaiDpb.Excel;
-using Qa.BAI_DPB.Compare;
+using Qa.BaiDpb.Compare;
 
-namespace Qa.BAI_DPB.Excel
+namespace Qa.BaiDpb.Excel
 {
     public class Exporter
     {
         public void Export(List<ComparePacket> packets, CompareSettings settings)
         {
-            var path = Path.Combine(settings.WorkingFolder, $"{packets.First().Strucure.Name}.xlsx");
+            var path = Path.Combine(settings.WorkingFolder, $"{packets.First().Structure.Name}.xlsx");
             if (File.Exists(path))
             {
                 File.Delete(path);
@@ -32,7 +31,7 @@ namespace Qa.BAI_DPB.Excel
         
         private void fillPacket(ComparePacket packet, ExcelWorkbook book)
         {
-            var sheet = book.Worksheets.Add(packet.Strucure.Name);
+            var sheet = book.Worksheets.Add(packet.Structure.Name);
             new MainSheet().Print(packet, sheet);
         }
     }

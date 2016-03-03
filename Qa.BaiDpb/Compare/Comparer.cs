@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Qa.BAI_DPB.Collectors;
-using Qa.BAI_DPB.Compare;
+using Qa.BaiDpb.Collectors;
 using Qa.Core.Structure;
 
 namespace Qa.BaiDpb.Compare
@@ -22,7 +21,7 @@ namespace Qa.BaiDpb.Compare
         {
             var reports = rawReports.OrderBy(x => x.Path).ToList();
             var first = reports.First();
-            var packet = new ComparePacket {Strucure = first.Structure};
+            var packet = new ComparePacket {Structure = first.Structure};
             
             RawReport previous = null;
             foreach (var report in reports)

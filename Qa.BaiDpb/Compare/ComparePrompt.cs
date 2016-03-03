@@ -1,12 +1,12 @@
 ﻿using System;
 using Qa.BaiDpb.Compare;
-using Qa.BAI_DPB.Collectors;
-using Qa.BAI_DPB.Excel;
+using Qa.BaiDpb.Collectors;
+using Qa.BaiDpb.Excel;
 using Qa.Core.Structure;
 using Qa.Core.System;
 using Qa.System;
 
-namespace Qa.BAI_DPB.Compare
+namespace Qa.BaiDpb.Compare
 {
     public class ComparePrompt
     {

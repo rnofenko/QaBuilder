@@ -2,8 +2,7 @@
 using System.Linq;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
-using Qa.BAI_DPB.Compare;
-using Qa.BAI_DPB.Excel;
+using Qa.BaiDpb.Compare;
 using Qa.Core.Excel;
 using Qa.Core.Structure;
 
@@ -15,7 +14,7 @@ namespace Qa.BaiDpb.Excel
         {
             const int initColumn = 2;
             var cursor = new ExcelCursor(sheet);
-            new Header().Print(cursor, packet.Strucure.Name);
+            new Header().Print(cursor, packet.Structure.Name);
             
             cursor.Column(initColumn).Row(5);
             printTotal(packet.Reports, cursor);
