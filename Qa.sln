@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Qa.Core", "Qa.Core\Qa.Core.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Qa.Sbpw", "Qa.Sbpw\Qa.Sbpw.csproj", "{5C6DB849-FF33-4A24-B69C-8B62EF465100}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Qa.BAI_DPB", "Qa.BAI_DPB\Qa.BAI_DPB.csproj", "{EA785EEB-505B-4CD4-93D1-9CB51BB41CCC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{5C6DB849-FF33-4A24-B69C-8B62EF465100}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C6DB849-FF33-4A24-B69C-8B62EF465100}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C6DB849-FF33-4A24-B69C-8B62EF465100}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA785EEB-505B-4CD4-93D1-9CB51BB41CCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA785EEB-505B-4CD4-93D1-9CB51BB41CCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA785EEB-505B-4CD4-93D1-9CB51BB41CCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA785EEB-505B-4CD4-93D1-9CB51BB41CCC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
