@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using Qa.Compare;
 using Qa.Properties;
+using Color = System.Drawing.Color;
 
 namespace Qa.Excel
 {
@@ -25,49 +27,146 @@ namespace Qa.Excel
             {
                 foreach (var packet in packets)
                 {
-                    var sheet = package.Workbook.Worksheets.Add(packet.Strucure.Name);
-                    fill(packet, sheet);
+                    fillPacket(packet, package.Workbook);
                 }
                 package.Save();
             }
             Process.Start(path);
         }
 
-        private void putHeader(ExcelCursor cursor)
+        private void putHeader(ExcelCursor cursor, string reportName)
         {
             var logo = (Image)Resources.ResourceManager.GetObject("SantanderLogo");
             var logoCell = cursor.Sheet.Drawings.AddPicture("Logo", logo);
-            logoCell.SetPosition(0, 0, 0, 0);
+            logoCell.SetPosition(0, 5, 0, 0);
             logoCell.SetSize(160, 40);
 
-            for (var rowNumber = 1; rowNumber < 3; rowNumber++)
+            for (var rowNumber = 1; rowNumber < 4; rowNumber++)
             {
                 var row = cursor.Sheet.Row(rowNumber);
                 row.Style.Fill.PatternType = ExcelFillStyle.Solid;
                 row.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(255, 254, 28, 25));
             }
+            cursor.Sheet.Row(1).Height = 10;
+            cursor.Sheet.Row(3).Height = 10;
+
+
+            var cell = cursor.Row(2).Column(4).Cell;
+            cursor.Sheet.Cells[2, 4, 2, 8].Merge = true;
+            cell.Value = reportName;
+            cell.Style.Font.Size = 24;
+            cell.Style.Font.Color.SetColor(Color.White);
         }
 
-        private void fill(ComparePacket packet, ExcelWorksheet sheet)
+        private void fillPacket(ComparePacket packet, ExcelWorkbook book)
         {
-            var cursor = new ExcelCursor(sheet).SetColumn(2);
-            putHeader(cursor);
-            
-            var isFirst = true;
-            foreach (var file in packet.Files)
+            var sheet = book.Worksheets.Add(packet.Strucure.Name);
+            printMainSheet(packet, sheet);
+
+            foreach (var report in packet.Reports)
             {
-                cursor.Row(5);
+                sheet = book.Worksheets.Add(report.Summary.FileName);
+                printForOnePeriod(packet, report, sheet);
+            }
+        }
+
+        private void printForOnePeriod(ComparePacket packet, CompareReport report, ExcelWorksheet sheet)
+        {
+            const int initColumn = 2;
+            var cursor = new ExcelCursor(sheet);
+            putHeader(cursor, packet.Strucure.Name);
+
+            cursor.Column(initColumn).Row(5);
+            printSubReport(report.Summary, cursor);
+            cursor.Down(4);
+
+            foreach (var key in packet.AllKeys)
+            {
+                cursor.Column(initColumn);
+                printSubReport(report.GetSubReport(key), cursor);
+                cursor.Down(4);
+            }
+
+            sheet.Cells[sheet.Dimension.Address].AutoFitColumns();
+        }
+
+        private void printMainSheet(ComparePacket packet, ExcelWorksheet sheet)
+        {
+            const int initColumn = 2;
+            var cursor = new ExcelCursor(sheet);
+            putHeader(cursor, packet.Strucure.Name);
+
+            cursor.Column(initColumn).Row(5);
+            printSubReportsForMainSheet(packet.Reports.Select(x => x.Summary).ToList(), cursor);
+            cursor.Down(4);
+
+            foreach (var key in packet.AllKeys)
+            {
+                cursor.Column(initColumn);
+                printSubReportsForMainSheet(packet.Reports.Select(x => x.GetSubReport(key)).ToList(), cursor);
+                cursor.Down(4);
+            }
+
+            sheet.Cells[sheet.Dimension.Address].AutoFitColumns();
+        }
+
+        private void printSubReport(CompareSubReport report, ExcelCursor cursor)
+        {
+            cursor.Value(report.Key ?? "TOTAL").Down();
+
+            var initRow = cursor.GetRow();
+
+            cursor.Row(initRow);
+            cursor.Value(report.FileName).Merge(2).Down();
+            cursor.Value("Field", "Values", "Change, %");
+            cursor.Down();
+
+            var startRow = cursor.GetRow();
+            cursor.Row(startRow).Value(report.RowsCount.Current);
+            foreach (var field in report.Fields)
+            {
+                var column = cursor.GetColumn();
+                cursor.Down().Value(field.CurrentSum, field.Type);
+            }
+            cursor.NextColumn();
+
+            cursor.Row(startRow).Percent(report.RowsCount.Increase);
+            foreach (var field in report.Fields)
+            {
+                cursor.Down().Percent(field.Change);
+                if (Math.Abs(field.Change) > 0.35)
+                {
+                    cursor.SetAsDanger();
+                }
+                else if (Math.Abs(field.Change) > 0.20)
+                {
+                    cursor.SetAsWarning();
+                }
+            }
+
+            cursor.Sheet.Cells[cursor.Sheet.Dimension.Address].AutoFitColumns();
+        }
+
+        private void printSubReportsForMainSheet(IList<CompareSubReport> reports, ExcelCursor cursor)
+        {
+            var first = reports.First();
+            cursor.Value(first.Key ?? "TOTAL").Down();
+
+            var initRow = cursor.GetRow();
+            var isFirst = true;
+            foreach (var file in reports)
+            {
+                cursor.Row(initRow);
+                
                 if (isFirst)
                 {
-                    cursor
-                        .Value("", file.FileName)
+                    cursor.Value("", file.FileName)
                         .Down()
-                        .Value("", "Values");
+                        .Value("Field", "Values");
                 }
                 else
                 {
-                    cursor
-                        .Value(file.FileName)
+                    cursor.Value(file.FileName).Merge(2)
                         .Down()
                         .Value("Values", "Change, %");
                 }
@@ -90,7 +189,7 @@ namespace Qa.Excel
                     cursor.Down().Value(field.CurrentSum, field.Type);
                 }
                 cursor.NextColumn();
-                
+
                 if (!isFirst)
                 {
                     cursor.Row(startRow).Percent(file.RowsCount.Increase);
@@ -117,7 +216,7 @@ namespace Qa.Excel
                 cursor.NextColumn();
             }
 
-            sheet.Cells[sheet.Dimension.Address].AutoFitColumns();
+            cursor.Sheet.Cells[cursor.Sheet.Dimension.Address].AutoFitColumns();
         }
     }
 }

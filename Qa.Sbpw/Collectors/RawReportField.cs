@@ -1,12 +1,19 @@
+using Qa.Core.Structure;
 using Qa.Structure;
 
 namespace Qa.Collectors
 {
-    public class StatisticsField
+    public class RawReportField
     {
         public DType Type { get; set; }
 
-        public StatisticsField(FieldDescription field)
+        public RawReportField(FieldDescription field)
+        {
+            Type = field.Type;
+            Name = field.Name;
+        }
+
+        public RawReportField(RawReportField field)
         {
             Type = field.Type;
             Name = field.Name;

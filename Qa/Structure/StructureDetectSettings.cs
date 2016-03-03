@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using Qa.Structure;
 
-namespace Qa.System
+namespace Qa.Structure
 {
     public class StructureDetectSettings
     {

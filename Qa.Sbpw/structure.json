@@ -1,0 +1,60 @@
+﻿[
+  {
+    "name": "BAI SB Pulse Weekly",
+    "delimeter": "|",
+    "fields": [
+      { "name": "BANK_CODE" },
+      { "name": "CYCLE_TYPE" },
+      { "name": "STATE" },
+      { "name": "CYCLE_DT" },
+      {
+        "name": "NACH",
+        "type": "Float"
+      },
+      {
+        "name": "FBC",
+        "type": "Float"
+      },
+      {
+        "name": "NNC",
+        "type": "Float"
+      },
+      {
+        "name": "INC",
+        "type": "Float"
+      },
+      {
+        "name": "NAC",
+        "type": "Float"
+      },
+      {
+        "name": "SWP",
+        "type": "Float"
+      },
+      {
+        "name": "SWO",
+        "type": "Float"
+      },
+      {
+        "name": "BSV",
+        "type": "Float"
+      },
+      {
+        "name": "MMA",
+        "type": "Float"
+      },
+      {
+        "name": "RMA",
+        "type": "Float"
+      },
+      {
+        "name": "HMA",
+        "type": "Float"
+      },
+      {
+        "name": "BCD",
+        "type": "Float"
+      }
+    ]
+  }
+]

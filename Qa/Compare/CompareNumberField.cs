@@ -6,7 +6,7 @@ namespace Qa.Compare
 {
     public class CompareNumberField
     {
-        public CompareNumberField(StatisticsField current, StatisticsField previous)
+        public CompareNumberField(RawReportField current, RawReportField previous)
         {
             Name = current.Name;
             Type = current.Type;

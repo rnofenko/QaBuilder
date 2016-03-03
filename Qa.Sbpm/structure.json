@@ -1,0 +1,235 @@
+﻿[
+  {
+    "name": "BAI SB Pulse Monthly",
+    "delimeter": "|",
+    "fields": [
+      { "name": "BANK_CODE" },
+      { "name": "CYCLE_TYPE" },
+      { "name": "STATE" },
+      { "name": "CYCLE_DT" },
+      {
+        "name": "NACH",
+        "type": "Money",
+        "title": "Non-Analysis Checking"
+      },
+      {
+        "name": "FBC",
+        "type": "Money",
+        "title": "Free Business Checking"
+      },
+      {
+        "name": "NNC",
+        "type": "Money",
+        "title": "Non-Interest Non-Analysis Checking"
+      },
+      {
+        "name": "INC",
+        "type": "Money",
+        "title": "Interest Non Analysis Checking"
+      },
+      {
+        "name": "NAC",
+        "type": "Money",
+        "title": "Non-Interest Analysis Checking"
+      },
+      {
+        "name": "SWP",
+        "type": "Money",
+        "title": "Commercial Sweep (On Balance Sheet)"
+      },
+      {
+        "name": "SWO",
+        "type": "Money",
+        "title": "Commercial Sweep (Off Balance Sheet)"
+      },
+      {
+        "name": "BSV",
+        "type": "Money",
+        "title": "Business Savings"
+      },
+      {
+        "name": "MMA",
+        "type": "Money",
+        "title": "Money Market"
+      },
+      {
+        "name": "RMA",
+        "type": "Money",
+        "title": "Regular MMDA"
+      },
+      {
+        "name": "HMA",
+        "type": "Money",
+        "title": "High Rate MMDA"
+      },
+      {
+        "name": "BCD",
+        "type": "Money",
+        "title": "Business CDs"
+      },
+      {
+        "name": "TOTAL_CKG_ACCTS",
+        "type": "Int",
+        "title": "Total Checking Accounts"
+      },
+      {
+        "name": "TOTAL_NACH_CKG_ACCTS",
+        "type": "Int",
+        "title": "Total Non-Analysis Checking Accounts"
+      },
+      {
+        "name": "TOTAL_NAC_CKG_ACCTS",
+        "type": "Int",
+        "title": "Total Analysis Checking Accounts"
+      },
+      {
+        "name": "NEW_CKG_ACCTS",
+        "type": "Int",
+        "title": "New Checking Accounts"
+      },
+      {
+        "name": "NEW_NACH_CKG_ACCTS",
+        "type": "Int",
+        "title": "New Non-Analysis Checking Accounts"
+      },
+      {
+        "name": "NEW_NAC_CKG_ACCTS",
+        "type": "Int",
+        "title": "New Analysis Checking Accounts"
+      },
+      {
+        "name": "CLOSED_CKG_ACCTS",
+        "type": "Int",
+        "title": "Closed Checking Accounts"
+      },
+      {
+        "name": "CLOSED_NACH_CKG_ACCTS",
+        "type": "Int",
+        "title": "Closed Non-Analysis Checking Accounts"
+      },
+      {
+        "name": "CLOSED_NAC_CKG_ACCTS",
+        "type": "Int",
+        "title": "Closed Analysis Checking Accounts"
+      }
+    ],
+    "transformations": [
+      {
+        "name": "byState",
+        "fields": [
+          {
+            "name": "Total Balance",
+            "fields": [ "NACH", "NAC", "SWP", "SWO", "BSV", "MMA", "BCD" ]
+          },
+          { "name": "TOTAL_CKG_ACCTS" },
+          { "name": "NEW_CKG_ACCTS" },
+          { "name": "CLOSED_CKG_ACCTS" }
+        ]
+      }
+    ]
+  },
+
+  {
+    "name": "ATM",
+    "rowsInHeader": 1,
+    "delimeter": ";",
+    "fields": [
+      {
+        "name": "DATE"
+      },
+      {
+        "name": "ATM"
+      },
+      {
+        "name": "CODOPE",
+        "type": "Int"
+      },
+      {
+        "name": "DESCRIPTION"
+      },
+      {
+        "name": "TOTAL"
+      },
+      {
+        "name": "NA"
+      }
+    ]
+  },
+
+  {
+    "name": "DPB",
+    "rowsInHeader": 0,
+    "delimeter": "|",
+    "fields": [
+      { "name": "No1" },
+      { "name": "No2" },
+      { "name": "No3" },
+      { "name": "No4" },
+      { "name": "No5" },
+      { "name": "No6" },
+      { "name": "No7" },
+      { "name": "No8" },
+      { "name": "No9" },
+      {
+        "name": "MONTH_END_BALANCE",
+        "type": "Float"
+      },
+      {
+        "name": "AVG_MONTHLY_BALANCE",
+        "type": "Float"
+      },
+      { "name": "No12" },
+      { "name": "No13" },
+      { "name": "No14" },
+      { "name": "No15" },
+      { "name": "No16" },
+      { "name": "No17" },
+      { "name": "No18" },
+      { "name": "No19" },
+      {
+        "name": "MONTHLY_INTEREST_PAID",
+        "type": "Float"
+      },
+      {
+        "name": "MONTHLY_INTEREST_CHARGED",
+        "type": "Float"
+      },
+      {
+        "name": "INTEREST_RATE",
+        "type": "Float"
+      },
+      { "name": "No23" },
+      { "name": "No24" },
+      { "name": "No25" },
+      { "name": "No26" },
+      { "name": "CD_TERM", "Type": "Int" },
+      { "name": "No28" },
+      { "name": "No29" },
+      { "name": "ORIGINAL_BALANCE", "Type": "Float" },
+      { "name": "No31" },
+      { "name": "No32" },
+      { "name": "No33" },
+      { "name": "No34" },
+      { "name": "No35" },
+      { "name": "No36" },
+      { "name": "No37" },
+      { "name": "No38" },
+      { "name": "No39" },
+      { "name": "No40" },
+      {
+        "name": "TOTAL_FEES",
+        "Type": "Float"
+      },
+      { "name": "No42" },
+      { "name": "No43" },
+      { "name": "No44" },
+      { "name": "No45" },
+      { "name": "No46" },
+      { "name": "No47" },
+      {
+        "name": "NUMBER_OF_TIMES_CD_RENEWED",
+        "Type": "Int"
+      }
+    ]
+  }
+]

@@ -58,18 +58,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collectors\CollectionSettings.cs" />
+    <Compile Include="Collectors\RawSubReport.cs" />
     <Compile Include="Compare\CompareNumberField.cs" />
     <Compile Include="Compare\CompareNumber.cs" />
     <Compile Include="Compare\ComparePacket.cs" />
     <Compile Include="Compare\Comparer.cs" />
-    <Compile Include="Compare\CompareResult.cs" />
+    <Compile Include="Compare\CompareReport.cs" />
     <Compile Include="Compare\CompareSettings.cs" />
     <Compile Include="Compare\ComparePrompt.cs" />
-    <Compile Include="Collectors\StatisticsField.cs" />
+    <Compile Include="Collectors\RawReportField.cs" />
+    <Compile Include="Compare\CompareSubReport.cs" />
     <Compile Include="Excel\EpExporterToExcel.cs" />
     <Compile Include="Excel\ExcelCursor.cs" />
-    <Compile Include="Excel\ExcelExtension.cs" />
-    <Compile Include="Excel\OpenXmlExporterToExcel.cs" />
     <Compile Include="Excel\IExcelExporter.cs" />
     <Compile Include="Excel\InternalSheet.cs" />
     <Compile Include="Excel\Pos.cs" />
@@ -85,8 +85,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Structure\FieldDescription.cs" />
-    <Compile Include="Collectors\FileStatistics.cs" />
-    <Compile Include="Collectors\FileStatisticsCollector.cs" />
+    <Compile Include="Collectors\RawReport.cs" />
+    <Compile Include="Collectors\RawDataCollector.cs" />
     <Compile Include="Structure\FileStructure.cs" />
     <Compile Include="Format\FormatPrompt.cs" />
     <Compile Include="Format\Formatter.cs" />

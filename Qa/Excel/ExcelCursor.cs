@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Linq;
-using DocumentFormat.OpenXml.Wordprocessing;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using Qa.Structure;
@@ -32,12 +30,19 @@ namespace Qa.Excel
 
         public ExcelRange Cell => Sheet.Cells[_row, _column];
 
+        public ExcelCursor Merge(int count)
+        {
+            var range = Sheet.Cells[_row, _column, _row, _column + count - 1];
+            range.Merge = true;
+            range.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            return this;
+        }
+
         public ExcelCursor Value(params string[] values)
         {
-            var list = values.ToList();
-            for (var i = 0; i < list.Count; i++)
+            for (var i = 0; i < values.Length; i++)
             {
-                Sheet.Cells[_row, _column + i].Value = list[i];
+                Sheet.Cells[_row, _column + i].Value = values[i];
             }
             return this;
         }
@@ -65,7 +70,7 @@ namespace Qa.Excel
         public ExcelCursor Percent(double value)
         {
             Cell.Value = value;
-            Cell.Style.Numberformat.Format = "#,##0.00%;-#,##0.00%";
+            Cell.Style.Numberformat.Format = "#,##0%;-#,##0%";
             return this;
         }
 
@@ -101,15 +106,20 @@ namespace Qa.Excel
             return this;
         }
 
-        public ExcelCursor SetColumn(int columnPosition)
+        public ExcelCursor Column(int columnPosition)
         {
             _column = columnPosition;
             return this;
         }
 
-        public ExcelCursor Down()
+        public int GetColumn()
         {
-            _row++;
+            return _column;
+        }
+
+        public ExcelCursor Down(int count = 1)
+        {
+            _row += count;
             return this;
         }
     }

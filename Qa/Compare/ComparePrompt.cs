@@ -55,7 +55,7 @@ namespace Qa.Compare
             var files = _fileFinder.Find(_settings.WorkingFolder, _settings.FileMask);
             Lo.Wl().Wl($"Found {files.Count} files:");
 
-            var statisticsByFiles = new FileStatisticsCollector().Collect(files, new CollectionSettings
+            var statisticsByFiles = new RawDataCollector().Collect(files, new CollectionSettings
             {
                 FileStructures = _settings.FileStructures,
                 ShowError = _settings.ShowNotParsedFiles

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Qa.Extensions;
-using Qa.System;
 
 namespace Qa.Structure
 {

@@ -6,6 +6,8 @@ namespace Qa.Structure
     {
         public string Name { get; set; }
 
+        public string SubReportBy { get; set; }
+
         public int RowsInHeader { get; set; }
 
         public List<FieldDescription> Fields { get; set; }

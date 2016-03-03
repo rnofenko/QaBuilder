@@ -8,7 +8,7 @@ namespace Qa.Compare
 {
     public class Comparer
     {
-        public List<ComparePacket> Compare(List<FileStatistics> statistics)
+        public List<ComparePacket> Compare(List<RawReport> statistics)
         {
             var packets = statistics
                 .GroupBy(x => x.Structure.Name)
@@ -17,33 +17,54 @@ namespace Qa.Compare
             return packets;
         }
 
-        private ComparePacket compare(IEnumerable<FileStatistics> statistics)
+        private ComparePacket compare(IEnumerable<RawReport> rawReports)
         {
-            var files = statistics.OrderBy(x => x.Path).ToList();
-            var first = files.First();
-            var packet = new ComparePacket {Strucure = first.Structure};
-
-            FileStatistics previous = null;
-            foreach (var file in files)
+            var reports = rawReports.OrderBy(x => x.Path).ToList();
+            var first = reports.First();
+            var packet = new ComparePacket {Strucure = first.Structure, AllKeys = reports.SelectMany(x => x.SubReports.Keys).Distinct().ToList()};
+            
+            RawReport previous = null;
+            foreach (var report in reports)
             {
-                packet.Files.Add(compare(file, previous));
-                previous = file;
+                packet.Reports.Add(compare(report, previous, packet.AllKeys));
+                previous = report;
             }
 
             return packet;
         }
 
-        private CompareResult compare(FileStatistics current, FileStatistics previous)
+        private CompareReport compare(RawReport current, RawReport previous, List<string> allKeys)
         {
-            var result = new CompareResult
+            var fileName = Path.GetFileNameWithoutExtension(current.Path);
+            var result = new CompareReport
+            {
+                Summary = compare(current.Summary, previous?.Summary, null, fileName)
+            };
+
+            foreach (var key in allKeys)
+            {
+                var currentSub = current.GetSubReport(key);
+                var previousSub = previous?.GetSubReport(key);
+                var subResult = compare(currentSub, previousSub, key, fileName);
+                result.SubReports.Add(subResult);
+            }
+            
+            return result;
+        }
+
+        private CompareSubReport compare(RawSubReport current, RawSubReport previous, string key, string fileName)
+        {
+            var result = new CompareSubReport
             {
                 RowsCount = new CompareNumber(current.RowsCount, previous?.RowsCount),
-                FileName = Path.GetFileNameWithoutExtension(current.Path)
+                Key = key,
+                FileName = fileName
             };
+
             for (var i = 0; i < current.Fields.Count; i++)
             {
                 var fieldCurrent = current.Fields[i];
-                StatisticsField fieldPrev = null;
+                RawReportField fieldPrev = null;
                 if (previous != null)
                 {
                     fieldPrev = previous.Fields[i];

@@ -61,6 +61,7 @@
   {
     "name": "BAI SB Pulse Monthly",
     "delimeter": "|",
+    "subReportBy": "STATE",
     "fields": [
       { "name": "BANK_CODE" },
       { "name": "CYCLE_TYPE" },
