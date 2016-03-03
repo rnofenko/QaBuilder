@@ -61,12 +61,6 @@
     <Compile Include="Compare\CompareReport.cs" />
     <Compile Include="Compare\CompareSettings.cs" />
     <Compile Include="Compare\CompareSubReport.cs" />
-    <Compile Include="Excel\Exporter.cs" />
-    <Compile Include="Excel\Header.cs" />
-    <Compile Include="Excel\InternalSheet.cs" />
-    <Compile Include="Excel\MainSheet.cs" />
-    <Compile Include="Excel\PeriodSheet.cs" />
-    <Compile Include="Excel\Pos.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QaSettings.cs" />

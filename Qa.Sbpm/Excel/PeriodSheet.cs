@@ -1,8 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using OfficeOpenXml;
 using Qa.Core.Excel;
-using Qa.Excel;
 using Qa.Sbpm.Compare;
 
 namespace Qa.Sbpm.Excel
@@ -19,12 +17,12 @@ namespace Qa.Sbpm.Excel
             cursor.Column(initColumn).Row(initRow);
             printFieldNames(report.GetSubReport(QaSettings.National), cursor);
 
-            cursor.NextColumn().Row(initRow);
+            cursor.Right().Row(initRow);
             printState(report.GetSubReport(QaSettings.National), cursor);
 
-            foreach (var state in packet.States.Where(x=>x!=QaSettings.National))
+            foreach (var state in packet.States.Where(x => x != QaSettings.National))
             {
-                cursor.NextColumn().Row(initRow);
+                cursor.Right().Row(initRow);
                 printState(report.GetSubReport(state), cursor);
             }
 
@@ -33,20 +31,18 @@ namespace Qa.Sbpm.Excel
 
         private void printFieldNames(CompareSubReport report, ExcelCursor cursor)
         {
-            cursor.Print("Field");
-            foreach (var field in report.Fields)
-            {
-                cursor.Down().Print(field.Title);
-            }
+            cursor
+                .Print("Field")
+                .Down()
+                .PrintDown(report.Fields.Select(x => x.Title));
         }
 
         private void printState(CompareSubReport report, ExcelCursor cursor)
         {
-            cursor.Print(report.State);
-            foreach (var field in report.Fields)
-            {
-                cursor.Down().Print(field.CurrentSum, field.Type);
-            }
+            cursor
+                .Print(report.State)
+                .Down()
+                .PrintDown(report.Fields.Select(x => new TypedAmount {Amount = x.CurrentSum, Type = x.Type}));
         }
     }
 }

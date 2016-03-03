@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
-using Qa.Structure;
+using Qa.Core.Structure;
 using Color = System.Drawing.Color;
 
 namespace Qa.Core.Excel
@@ -13,6 +13,7 @@ namespace Qa.Core.Excel
         public ExcelWorksheet Sheet { get; }
 
         private Pos _pos;
+        private Pos? _topLeftCorner;
         public Pos Pos => _pos;
 
         public ExcelCursor(ExcelWorksheet sheet)
@@ -34,6 +35,12 @@ namespace Qa.Core.Excel
             var range = Sheet.Cells[Pos.Row, _pos.Column, Pos.Row, _pos.Column + count - 1];
             range.Merge = true;
             range.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            return this;
+        }
+
+        public ExcelCursor TopLeftBorderCorner()
+        {
+            _topLeftCorner = _pos;
             return this;
         }
 
@@ -65,8 +72,23 @@ namespace Qa.Core.Excel
             var pos = _pos.Clone();
             foreach (var value in values)
             {
-                Print(value, type, _pos);
-                _pos.Row++;
+                Print(value, type, pos);
+                pos.Row++;
+            }
+            return this;
+        }
+
+        public ExcelCursor PrintDown(IEnumerable<TypedAmount> values, Action<StyleConditionArgs> styleCondition = null)
+        {
+            var pos = _pos.Clone();
+            foreach (var value in values)
+            {
+                Print(value.Amount, value.Type, pos);
+                if (styleCondition != null)
+                {
+                    styleCondition(new StyleConditionArgs {Pos = pos, Amount = value.Amount, Type = value.Type, Cursor = this});
+                }
+                pos.Row++;
             }
             return this;
         }
@@ -86,6 +108,10 @@ namespace Qa.Core.Excel
             {
                 return Integer(value, pos);
             }
+            if (type == DType.Percent)
+            {
+                return Percent(value, pos);
+            }
             throw new InvalidOperationException($"Type {type} isn't supported.");
         }
 
@@ -96,7 +122,7 @@ namespace Qa.Core.Excel
 
         public ExcelCursor Money(double value, Pos pos)
         {
-            var cell = getCell(Pos);
+            var cell = getCell(pos);
             cell.Value = value;
             cell.Style.Numberformat.Format = "$#,##0;$(#,##0)";
             return this;
@@ -104,22 +130,40 @@ namespace Qa.Core.Excel
 
         public ExcelCursor Percent(double value)
         {
-            Cell.Value = value;
-            Cell.Style.Numberformat.Format = "#,##0%;-#,##0%";
+            return Percent(value, _pos);
+        }
+
+        public ExcelCursor Percent(double value, Pos pos)
+        {
+            var cell = getCell(pos);
+            cell.Value = value;
+            cell.Style.Numberformat.Format = "#,##0%;-#,##0%";
             return this;
         }
 
         public ExcelCursor SetAsDanger()
         {
-            Cell.Style.Fill.PatternType = ExcelFillStyle.Solid;
-            Cell.Style.Fill.BackgroundColor.SetColor(Color.LightCoral);
+            return SetAsDanger(_pos);
+        }
+
+        public ExcelCursor SetAsDanger(Pos pos)
+        {
+            var style = getCell(pos).Style;
+            style.Fill.PatternType = ExcelFillStyle.Solid;
+            style.Fill.BackgroundColor.SetColor(Color.LightCoral);
             return this;
         }
 
         public ExcelCursor SetAsWarning()
         {
-            Cell.Style.Fill.PatternType = ExcelFillStyle.Solid;
-            Cell.Style.Fill.BackgroundColor.SetColor(Color.Bisque);
+            return SetAsWarning(_pos);
+        }
+
+        public ExcelCursor SetAsWarning(Pos pos)
+        {
+            var style = getCell(pos).Style;
+            style.Fill.PatternType = ExcelFillStyle.Solid;
+            style.Fill.BackgroundColor.SetColor(Color.Bisque);
             return this;
         }
 
@@ -141,9 +185,9 @@ namespace Qa.Core.Excel
             return this;
         }
 
-        public ExcelCursor NextColumn()
+        public ExcelCursor Right(int count = 1)
         {
-            _pos.Column++;
+            _pos.Column += count;
             return this;
         }
 
@@ -173,6 +217,23 @@ namespace Qa.Core.Excel
         private ExcelRange getCell(Pos pos)
         {
             return Sheet.Cells[pos.Row, pos.Column];
+        }
+
+        public ExcelCursor DrawBorder()
+        {
+            if (_topLeftCorner == null)
+            {
+                return this;
+            }
+            var topLeft = _topLeftCorner.Value;
+
+            var range = Sheet.Cells[topLeft.Row, topLeft.Column, _pos.Row, _pos.Column];
+            range.Style.Border.Bottom.Style = ExcelBorderStyle.Thick;
+            range.Style.Border.Top.Style = ExcelBorderStyle.Thick;
+            range.Style.Border.Left.Style = ExcelBorderStyle.Thick;
+            range.Style.Border.Right.Style = ExcelBorderStyle.Thick;
+            _topLeftCorner = null;
+            return this;
         }
     }
 }

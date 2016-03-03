@@ -3,7 +3,6 @@ using System.IO;
 using System.Linq;
 using Qa.Core.Structure;
 using Qa.BAI_DPB.Collectors;
-using Qa.Structure;
 
 namespace Qa.BAI_DPB.Compare
 {

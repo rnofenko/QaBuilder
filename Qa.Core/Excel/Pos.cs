@@ -10,5 +10,10 @@
         {
             return new Pos {Row = Row, Column = Column};
         }
+
+        public override string ToString()
+        {
+            return $"r{Row} c{Column}";
+        }
     }
 }

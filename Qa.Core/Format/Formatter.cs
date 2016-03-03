@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using Qa.Core.Structure;
 using Qa.Core.System;
-using Qa.Structure;
 
 namespace Qa.Core.Format
 {

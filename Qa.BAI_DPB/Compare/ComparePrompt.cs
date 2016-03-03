@@ -1,6 +1,5 @@
 ﻿using System;
 using Qa.BAI_DPB.Collectors;
-using Qa.BAI_DPB.Excel;
 using Qa.Core.Structure;
 using Qa.Core.System;
 using Qa.System;
@@ -11,14 +10,14 @@ namespace Qa.BAI_DPB.Compare
     {
         private readonly CompareSettings _settings;
         private readonly FileFinder _fileFinder;
-        private readonly Exporter _excelExporter;
+        //private readonly Exporter _excelExporter;
         private readonly Comparer _comparer;
 
         public ComparePrompt(Settings settings)
         {
             _settings = new CompareSettings(settings);
             _fileFinder = new FileFinder();
-            _excelExporter = new Exporter();
+            //_excelExporter = new Exporter();
             _comparer = new Comparer();
         }
 
@@ -64,7 +63,7 @@ namespace Qa.BAI_DPB.Compare
             //new BaiDpbReportTransformer().Transform(rawReports);
             
             var result = _comparer.Compare(rawReports);
-            _excelExporter.Export(result, _settings);
+            //_excelExporter.Export(result, _settings);
 
             Lo.Wl().Wl("Comparing was finished.");
             if (!Fast.Qa)

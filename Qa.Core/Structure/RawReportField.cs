@@ -1,5 +1,3 @@
-using Qa.Structure;
-
 namespace Qa.Core.Structure
 {
     public class RawReportField

@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using OfficeOpenXml;
 using Qa.Core.Excel;
+using Qa.Core.Structure;
 using Qa.Sbpm.Compare;
 
 namespace Qa.Sbpm.Excel
@@ -22,7 +22,7 @@ namespace Qa.Sbpm.Excel
             foreach (var state in packet.States.Where(x => x != QaSettings.National))
             {
                 cursor.Column(initColumn);
-                printState(packet.GetTransformedSubReports(QaSettings.TransformByState, state), cursor);
+                printStates(packet.GetTransformedSubReports(QaSettings.TransformByState, state), cursor);
                 cursor.Down(2);
             }
             
@@ -32,131 +32,64 @@ namespace Qa.Sbpm.Excel
 
         private void printTotal(IList<CompareSubReport> reports, ExcelCursor cursor)
         {
+            var first = reports.First();
             var initRow = cursor.Pos.Row;
-            var isFirst = true;
-            foreach (var file in reports)
+
+            cursor
+                .TopLeftBorderCorner()
+                .Print("", first.FileName)
+                .Down()
+                .Print("Field", "Values")
+                .Down()
+                .PrintDown(first.Fields.Select(x => x.Title))
+                .Right()
+                .PrintDown(first.Fields.Select(x => new TypedAmount {Amount = x.CurrentSum, Type = x.Type}))
+                //.DrawBorder()
+                .Right();
+
+            foreach (var report in reports.Skip(1))
             {
-                cursor.Row(initRow);
-
-                if (isFirst)
-                {
-                    cursor.Print("", file.FileName)
-                        .Down()
-                        .Print("Field", "Values");
-                }
-                else
-                {
-                    cursor.Print(file.FileName).Merge(2)
-                        .Down()
-                        .Print("Values", "Change, %");
-                }
-                
-                var startRow = cursor.Pos.Row;
-                if (isFirst)
-                {
-                    cursor.Down().PrintDown(file.Fields.Select(x => x.Title));
-                    cursor.NextColumn();
-                }
-
-                cursor.Row(startRow);
-                foreach (var field in file.Fields)
-                {
-                    cursor.Down().Print(field.CurrentSum, field.Type);
-                }
-                cursor.NextColumn();
-
-                if (!isFirst)
-                {
-                    cursor.Row(startRow);
-                    foreach (var field in file.Fields)
-                    {
-                        cursor.Down().Percent(field.Change);
-                        if (Math.Abs(field.Change) > 0.35)
-                        {
-                            cursor.SetAsDanger();
-                        }
-                        else if (Math.Abs(field.Change) > 0.20)
-                        {
-                            cursor.SetAsWarning();
-                        }
-                    }
-                    cursor.NextColumn();
-                }
-
-                if (isFirst)
-                {
-                    isFirst = false;
-                }
-
-                cursor.NextColumn();
+                cursor.Row(initRow)
+                    .Print(report.FileName).Merge(2)
+                    .Down()
+                    .Print("Values", "Change")
+                    .Down()
+                    .PrintDown(report.Fields.Select(x => new TypedAmount {Amount = x.CurrentSum, Type = x.Type}))
+                    .Right()
+                    .PrintDown(report.Fields.Select(x => new TypedAmount {Amount = x.Change, Type = DType.Percent}), StyleConditions.ChangePercent)
+                    .Right();
             }
+
+            cursor.Down(first.Fields.Count);
         }
 
-        private void printState(IList<CompareSubReport> reports, ExcelCursor cursor)
+        private void printStates(IList<CompareSubReport> reports, ExcelCursor cursor)
         {
-            cursor.Print("State:", reports.First().State).Down();
+            var first = reports.First();
+            cursor.Print("State:", first.State).Down();
 
             var initRow = cursor.Pos.Row;
-            var isFirst = true;
-            foreach (var report in reports)
+
+            cursor.Print("", first.FileName)
+                .Down()
+                .PrintDown(first.Fields.Select(x => x.Title))
+                .Right()
+                .PrintDown(first.Fields.Select(x => new TypedAmount {Amount = x.CurrentSum, Type = x.Type}))
+                .Right();
+
+            foreach (var report in reports.Skip(1))
             {
-                cursor.Row(initRow);
-
-                if (isFirst)
-                {
-                    cursor.Print("", report.FileName)
-                        .Down()
-                        .Print("Field", "Values");
-                }
-                else
-                {
-                    cursor.Print(report.FileName).Merge(2)
-                        .Down()
-                        .Print("Values", "Change, %");
-                }
-                
-                var startRow = cursor.Pos.Row;
-                if (isFirst)
-                {
-                    foreach (var field in report.Fields)
-                    {
-                        cursor.Down().Print(field.Title);
-                    }
-                    cursor.NextColumn();
-                }
-
-                cursor.Row(startRow);
-                foreach (var field in report.Fields)
-                {
-                    cursor.Down().Print(field.CurrentSum, field.Type);
-                }
-                cursor.NextColumn();
-
-                if (!isFirst)
-                {
-                    cursor.Row(startRow);
-                    foreach (var field in report.Fields)
-                    {
-                        cursor.Down().Percent(field.Change);
-                        if (Math.Abs(field.Change) > 0.35)
-                        {
-                            cursor.SetAsDanger();
-                        }
-                        else if (Math.Abs(field.Change) > 0.20)
-                        {
-                            cursor.SetAsWarning();
-                        }
-                    }
-                    cursor.NextColumn();
-                }
-
-                if (isFirst)
-                {
-                    isFirst = false;
-                }
-
-                cursor.NextColumn();
+                cursor
+                    .Row(initRow)
+                    .Print(report.FileName).Merge(2)
+                    .Down()
+                    .PrintDown(report.Fields.Select(x => new TypedAmount { Amount = x.CurrentSum, Type = x.Type }))
+                    .Right()
+                    .PrintDown(report.Fields.Select(x => new TypedAmount {Amount = x.Change, Type = DType.Percent}), StyleConditions.ChangePercent)
+                    .Right();
             }
+
+            cursor.Down(first.Fields.Count);
         }
     }
 }

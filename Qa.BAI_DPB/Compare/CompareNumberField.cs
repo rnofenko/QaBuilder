@@ -1,6 +1,5 @@
 using System;
 using Qa.Core.Structure;
-using Qa.Structure;
 
 namespace Qa.BAI_DPB.Compare
 {

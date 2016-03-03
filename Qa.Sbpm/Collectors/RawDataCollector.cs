@@ -5,7 +5,6 @@ using System.Linq;
 using Qa.Core;
 using Qa.Core.Structure;
 using Qa.Core.System;
-using Qa.Structure;
 
 namespace Qa.Sbpm.Collectors
 {

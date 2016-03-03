@@ -1,13 +1,7 @@
 ﻿using System;
 using System.IO;
-using Qa.Core;
-using Qa.Core.Combines;
-using Qa.Core.Format;
 using Qa.Core.Structure;
 using Qa.Core.System;
-using Qa.Sbpm.Compare;
-using Qa.Sbpw.Compare;
-using Qa.System;
 
 namespace Qa.Sbpw
 {
@@ -32,7 +26,7 @@ namespace Qa.Sbpw
                     .Wl("2. Create QA report")
                     .Wl("3. Combine files")
                     .Wl("4. Set working folder");
-                if (Fast.Qa)
+                /*if (Fast.Qa)
                 {
                     new ComparePrompt(settings).Start();
                     break;
@@ -56,7 +50,7 @@ namespace Qa.Sbpw
                     {
                         setWorkingFolder(settings);
                     }
-                }
+                }*/
             }
         }
 

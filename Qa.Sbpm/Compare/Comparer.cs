@@ -3,7 +3,6 @@ using System.IO;
 using System.Linq;
 using Qa.Core.Structure;
 using Qa.Sbpm.Collectors;
-using Qa.Structure;
 
 namespace Qa.Sbpm.Compare
 {
