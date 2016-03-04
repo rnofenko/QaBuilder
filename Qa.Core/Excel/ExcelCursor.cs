@@ -94,7 +94,7 @@ namespace Qa.Core.Excel
             var pos = _pos.Clone();
             foreach (var value in values)
             {
-                Print(value, type, pos);
+                Print(new TypedValue(value, type), pos);
                 pos.Row++;
             }
             return this;
@@ -117,37 +117,32 @@ namespace Qa.Core.Excel
 
         public ExcelCursor Print(double value, DType type)
         {
-            return Print(value, type, _pos);
+            return Print(new TypedValue(value, type), _pos);
         }
 
         public ExcelCursor Print(TypedValue value, Pos pos)
         {
-            return Print(value.Value, value.Type, pos);
-        }
-
-        public ExcelCursor Print(object value, DType type, Pos pos)
-        {
-            if (type == DType.Money)
+            if (value.Type == DType.Money)
             {
-                return Money((double)value, pos);
+                return Money(value.Double(), pos);
             }
-            if (type == DType.Double)
+            if (value.Type == DType.Double)
             {
-                return Double((double)value, pos);
+                return Double(value.Double(), pos);
             }
-            if (type == DType.Int)
+            if (value.Type == DType.Int)
             {
-                return Integer((int)value, pos);
+                return Integer(value.Int(), pos);
             }
-            if (type == DType.Percent)
+            if (value.Type == DType.Percent)
             {
-                return Percent((double)value, pos);
+                return Percent(value.Double(), pos);
             }
-            if (type == DType.String)
+            if (value.Type == DType.String)
             {
-                return String((string)value, pos);
+                return String(value.String(), pos);
             }
-            throw new InvalidOperationException($"Type {type} isn't supported.");
+            throw new InvalidOperationException($"Type {value.Type} isn't supported.");
         }
 
         public ExcelCursor Money(double value)

@@ -1,3 +1,4 @@
+using System;
 using Qa.Core.Structure;
 
 namespace Qa.Core.Excel
@@ -40,6 +41,23 @@ namespace Qa.Core.Excel
         public double Double()
         {
             return (double)Value;
+        }
+
+        public string String()
+        {
+            return (string)Value;
+        }
+
+        public int Int()
+        {
+            try
+            {
+                return (int) Value;
+            }
+            catch
+            {
+                return Convert.ToInt32(Value);
+            }
         }
     }
 }
