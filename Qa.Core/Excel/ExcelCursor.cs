@@ -59,7 +59,7 @@ namespace Qa.Core.Excel
             foreach (var value in values)
             {
                 Print(value, pos);
-                pos.Row++;
+                pos.Column++;
             }
             return this;
         }
