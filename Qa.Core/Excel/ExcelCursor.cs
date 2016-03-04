@@ -120,11 +120,6 @@ namespace Qa.Core.Excel
             return Print(value, type, _pos);
         }
 
-        public ExcelCursor Print(TypedValue value)
-        {
-            return Print(value, _pos);
-        }
-
         public ExcelCursor Print(TypedValue value, Pos pos)
         {
             return Print(value.Value, value.Type, pos);

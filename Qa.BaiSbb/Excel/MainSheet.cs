@@ -19,14 +19,14 @@ namespace Qa.BaiSbb.Excel
             new Header().Print(cursor, packet.Structure.Name);
             
             cursor.Column(initColumn).Row(5);
-            PrintTotal(packet.Reports, cursor);
+            printTotal(packet.Reports, cursor);
             cursor.Down(2);
             
             sheet.Cells[sheet.Dimension.Address].AutoFitColumns();
             sheet.Column(1).Width = 3;
         }
 
-        private static void PrintTotal(IList<CompareReport> reports, ExcelCursor cursor)
+        private static void printTotal(IList<CompareReport> reports, ExcelCursor cursor)
         {
             var first = reports.First();
             var initRow = cursor.Pos.Row;
@@ -34,11 +34,11 @@ namespace Qa.BaiSbb.Excel
 
             cursor
                 .TopLeftBorderCorner()
-                .PrintAndCenter("", FormatDate(first.FileName)).BackgroundColor(QaColor.HeaderBackground, 2)
+                .PrintAndCenter("", formatDate(first.FileName)).BackgroundColor(QaColor.HeaderBackground, 2)
                 .Down()
                 .PrintAndCenter("", "Values").BackgroundColor(QaColor.HeaderBackground, 2)
                 .Down()
-                .Print(new TypedValue("Total Records"), new TypedValue(reports.First().RowsCount.Current, DType.Int))
+                .Print("Total Records", new TypedValue(reports.First().RowsCount.Current, DType.Int))
                 .Down()
                 .PrintDown(first.Fields.Select(x => x.Title))
                 .Right()
@@ -51,7 +51,7 @@ namespace Qa.BaiSbb.Excel
             {
                 cursor.Row(initRow)
                     .TopLeftBorderCorner()
-                    .Print(FormatDate(report.FileName)).Merge(2).BackgroundColor(QaColor.HeaderBackground, 2)
+                    .Print(formatDate(report.FileName)).Merge(2).BackgroundColor(QaColor.HeaderBackground, 2)
                     .Down()
                     .PrintAndCenter("Values", "Change").BackgroundColor(QaColor.HeaderBackground, 2)
                     .Down()
@@ -68,7 +68,7 @@ namespace Qa.BaiSbb.Excel
             }
         }
 
-        private static string FormatDate(string fileName)
+        private static string formatDate(string fileName)
         {
             var parts = fileName.Split('.');
             var parsedDate = DateTime.Parse($"{parts[3].Substring(4, 2)}/{parts[3].Substring(6, 2)}/{parts[3].Substring(0,4)}");

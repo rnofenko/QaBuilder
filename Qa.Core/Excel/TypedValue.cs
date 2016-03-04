@@ -32,6 +32,11 @@ namespace Qa.Core.Excel
             Type = type;
         }
 
+        public static implicit operator TypedValue(string value)
+        {
+            return new TypedValue(value);
+        }
+
         public double Double()
         {
             return (double)Value;
