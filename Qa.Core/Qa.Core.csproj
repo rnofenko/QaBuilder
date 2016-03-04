@@ -58,6 +58,7 @@
     <Compile Include="Excel\QaColor.cs" />
     <Compile Include="Excel\StyleConditionArgs.cs" />
     <Compile Include="Excel\TypedAmount.cs" />
+    <Compile Include="Extensions\DateExtention.cs" />
     <Compile Include="Extensions\EnumerableExtension.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Fast.cs" />

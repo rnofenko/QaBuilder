@@ -56,7 +56,7 @@ namespace Qa.BaiDpb.Compare
             var files = _fileFinder.Find(_settings.WorkingFolder, _settings.FileMask);
             Lo.Wl().Wl($"Found {files.Count} files:");
 
-            var rawReports = new RawDataCollector().Collect(files, new CollectionSettings
+            var rawReports = new RawDataCollector().CollectReports(files, new CollectionSettings
             {
                 FileStructures = _settings.FileStructures,
                 ShowError = _settings.ShowNotParsedFiles

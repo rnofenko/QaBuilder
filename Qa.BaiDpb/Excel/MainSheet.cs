@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using Qa.BaiDpb.Compare;
+using Qa.Core;
 using Qa.Core.Excel;
 using Qa.Core.Structure;
 
@@ -17,24 +19,24 @@ namespace Qa.BaiDpb.Excel
             new Header().Print(cursor, packet.Structure.Name);
             
             cursor.Column(initColumn).Row(5);
-            printTotal(packet.Reports, cursor);
+            PrintTotal(packet.Reports, cursor);
             cursor.Down(2);
             
             sheet.Cells[sheet.Dimension.Address].AutoFitColumns();
             sheet.Column(1).Width = 3;
         }
 
-        private void printTotal(IList<CompareReport> reports, ExcelCursor cursor)
+        private static void PrintTotal(IList<CompareReport> reports, ExcelCursor cursor)
         {
             var first = reports.First();
             var initRow = cursor.Pos.Row;
-            var fieldsCount = first.Fields.Count;
+            var fieldsCount = first.Fields.Count - 1;
 
             cursor
                 .TopLeftBorderCorner()
-                .Print("", first.FileName).BackgroundColor(QaColor.HeaderBackground, 2)
+                .PrintAndCenter("", FormatDate(first.FileName)).BackgroundColor(QaColor.HeaderBackground, 2)
                 .Down()
-                .Print("", "Values").BackgroundColor(QaColor.HeaderBackground, 2)
+                .PrintAndCenter("", "Values").BackgroundColor(QaColor.HeaderBackground, 2)
                 .Down()
                 .PrintDown(first.Fields.Select(x => x.Title))
                 .Right()
@@ -47,9 +49,9 @@ namespace Qa.BaiDpb.Excel
             {
                 cursor.Row(initRow)
                     .TopLeftBorderCorner()
-                    .Print(report.FileName).Merge(2).BackgroundColor(QaColor.HeaderBackground, 2)
+                    .Print(FormatDate(report.FileName)).Merge(2).BackgroundColor(QaColor.HeaderBackground, 2)
                     .Down()
-                    .Print("Values", "Change").BackgroundColor(QaColor.HeaderBackground, 2)
+                    .PrintAndCenter("Values", "Change").BackgroundColor(QaColor.HeaderBackground, 2)
                     .Down()
                     .PrintDown(report.Fields.Select(x => new TypedAmount {Amount = x.CurrentSum, Type = x.Type}))
                     .Right()
@@ -58,6 +60,14 @@ namespace Qa.BaiDpb.Excel
                     .DrawBorder(ExcelBorderStyle.Thick)
                     .Right();
             }
+        }
+
+        private static string FormatDate(string fileName)
+        {
+            var parts = fileName.Split('.');
+            var parsedDate = DateTime.Parse($"{parts[3].Substring(4, 2)}/{parts[3].Substring(6, 2)}/{parts[3].Substring(0,4)}");
+            var monthName = DateExtention.ToMonthName(parsedDate.Month);
+            return $"{monthName} {parsedDate.Year}";
         }
     }
 }

@@ -17,17 +17,17 @@ namespace Qa.BaiDpb.Collectors
             _structureDetector = new StructureDetector();
         }
 
-        public List<RawReport> Collect(IEnumerable<string> files, CollectionSettings settings)
+        public List<RawReport> CollectReports(IEnumerable<string> files, CollectionSettings settings)
         {
             var statisticsByFiles = files
-                .Select(x => new RawDataCollector().collect(x, settings))
+                .Select(x => new RawDataCollector().CollectReport(x, settings))
                 .Where(x => x.Error.IsEmpty())
                 .OrderBy(x => x.Structure.Name)
                 .ToList();
             return statisticsByFiles;
         }
 
-        private RawReport collect(string filepath, CollectionSettings settings)
+        private RawReport CollectReport(string filepath, CollectionSettings settings)
         {
             var detected = _structureDetector.Detect(filepath,
                 new StructureDetectSettings { FileStructures = settings.FileStructures });
@@ -56,7 +56,7 @@ namespace Qa.BaiDpb.Collectors
                 var rows=0;
                 while ((line = stream.ReadLine()) != null)
                 {
-                    processLine(line, report);
+                    ProcessLine(line, report);
                     rows++;
                     
                     if ((rows % 50000) == 0)
@@ -65,11 +65,11 @@ namespace Qa.BaiDpb.Collectors
                     }
                 }
             }
-            print(report, settings);
+            Print(report, settings);
             return report;
         }
         
-        private void print(RawReport stats, CollectionSettings settings)
+        private static void Print(RawReport stats, CollectionSettings settings)
         {
             if (stats.Error.IsEmpty() || !settings.ShowError)
             {
@@ -83,7 +83,7 @@ namespace Qa.BaiDpb.Collectors
                 .Wl($"FieldsCount: {stats.FieldsCount}");
         }
 
-        private void processLine(string line, RawReport report)
+        private static void ProcessLine(string line, RawReport report)
         {
             var parts = line.Split(new[] { report.Structure.Delimeter }, StringSplitOptions.None);
             report.RowsCount++;

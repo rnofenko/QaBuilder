@@ -22,14 +22,14 @@ namespace Qa.BaiDpb.Excel
             {
                 foreach (var packet in packets)
                 {
-                    fillPacket(packet, package.Workbook);
+                    FillPacket(packet, package.Workbook);
                 }
                 package.Save();
             }
             Process.Start(path);
         }
         
-        private void fillPacket(ComparePacket packet, ExcelWorkbook book)
+        private static void FillPacket(ComparePacket packet, ExcelWorkbook book)
         {
             var sheet = book.Worksheets.Add(packet.Structure.Name);
             new MainSheet().Print(packet, sheet);

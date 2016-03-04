@@ -52,7 +52,18 @@ namespace Qa.Core.Excel
             }
             return this;
         }
-        
+
+        public ExcelCursor PrintAndCenter(params string[] values)
+        {
+            for (var i = 0; i < values.Length; i++)
+            {
+                var range = Sheet.Cells[Pos.Row, _pos.Column + i];
+                range.Value = values[i];
+                range.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            }
+            return this;
+        }
+
         public ExcelCursor PrintDown(params string[] values)
         {
             for (var i = 0; i < values.Length; i++)
