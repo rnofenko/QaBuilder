@@ -45,7 +45,7 @@ namespace Qa.Sbpm.Excel
                 .Down()
                 .PrintDown(first.Fields.Select(x => x.Title))
                 .Right()
-                .PrintDown(first.Fields.Select(x => new TypedAmount {Amount = x.CurrentSum, Type = x.Type}))
+                .PrintDown(first.Fields.Select(x => new TypedValue(x.CurrentSum, x.Type)))
                 .Down(fieldsCount - 1)
                 .DrawBorder(ExcelBorderStyle.Thick)
                 .Right();
@@ -58,9 +58,9 @@ namespace Qa.Sbpm.Excel
                     .Down()
                     .Print("Values", "Change").BackgroundColor(QaColor.HeaderBackground, 2)
                     .Down()
-                    .PrintDown(report.Fields.Select(x => new TypedAmount {Amount = x.CurrentSum, Type = x.Type}))
+                    .PrintDown(report.Fields.Select(x => new TypedValue(x.CurrentSum, x.Type)))
                     .Right()
-                    .PrintDown(report.Fields.Select(x => new TypedAmount {Amount = x.Change, Type = DType.Percent}), StyleConditions.ChangePercent)
+                    .PrintDown(report.Fields.Select(x => new TypedValue(x.Change, DType.Percent)), StyleConditions.ChangePercent)
                     .Down(fieldsCount - 1)
                     .DrawBorder(ExcelBorderStyle.Thick)
                     .Right();
@@ -83,7 +83,7 @@ namespace Qa.Sbpm.Excel
                 .Down()
                 .PrintDown(first.Fields.Select(x => x.Title))
                 .Right()
-                .PrintDown(first.Fields.Select(x => new TypedAmount {Amount = x.CurrentSum, Type = x.Type}))
+                .PrintDown(first.Fields.Select(x => new TypedValue(x.CurrentSum, x.Type)))
                 .Down(fieldsCount)
                 .DrawBorder(ExcelBorderStyle.Thick)
                 .Right();
@@ -95,9 +95,9 @@ namespace Qa.Sbpm.Excel
                     .TopLeftBorderCorner()
                     .Print(report.FileName).Merge(2).BackgroundColor(QaColor.HeaderBackground)
                     .Down()
-                    .PrintDown(report.Fields.Select(x => new TypedAmount {Amount = x.CurrentSum, Type = x.Type}))
+                    .PrintDown(report.Fields.Select(x => new TypedValue(x.CurrentSum, x.Type)))
                     .Right()
-                    .PrintDown(report.Fields.Select(x => new TypedAmount {Amount = x.Change, Type = DType.Percent}), StyleConditions.ChangePercent)
+                    .PrintDown(report.Fields.Select(x => new TypedValue(x.Change, DType.Percent)), StyleConditions.ChangePercent)
                     .Down(fieldsCount)
                     .DrawBorder(ExcelBorderStyle.Thick)
                     .Right();

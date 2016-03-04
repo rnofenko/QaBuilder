@@ -53,6 +53,17 @@ namespace Qa.Core.Excel
             return this;
         }
 
+        public ExcelCursor Print(params TypedValue[] values)
+        {
+            var pos = _pos.Clone();
+            foreach (var value in values)
+            {
+                Print(value, pos);
+                pos.Row++;
+            }
+            return this;
+        }
+
         public ExcelCursor PrintAndCenter(params string[] values)
         {
             for (var i = 0; i < values.Length; i++)
@@ -89,15 +100,15 @@ namespace Qa.Core.Excel
             return this;
         }
 
-        public ExcelCursor PrintDown(IEnumerable<TypedAmount> values, Action<StyleConditionArgs> styleCondition = null)
+        public ExcelCursor PrintDown(IEnumerable<TypedValue> values, Action<StyleConditionArgs> styleCondition = null)
         {
             var pos = _pos.Clone();
             foreach (var value in values)
             {
-                Print(value.Amount, value.Type, pos);
+                Print(value, pos);
                 if (styleCondition != null)
                 {
-                    styleCondition(new StyleConditionArgs {Pos = pos, Amount = value.Amount, Type = value.Type, Cursor = this});
+                    styleCondition(new StyleConditionArgs {Pos = pos, Amount = value.Double(), Type = value.Type, Cursor = this});
                 }
                 pos.Row++;
             }
@@ -109,23 +120,37 @@ namespace Qa.Core.Excel
             return Print(value, type, _pos);
         }
 
-        public ExcelCursor Print(double value, DType type, Pos pos)
+        public ExcelCursor Print(TypedValue value)
+        {
+            return Print(value, _pos);
+        }
+
+        public ExcelCursor Print(TypedValue value, Pos pos)
+        {
+            return Print(value.Value, value.Type, pos);
+        }
+
+        public ExcelCursor Print(object value, DType type, Pos pos)
         {
             if (type == DType.Money)
             {
-                return Money(value, pos);
+                return Money((double)value, pos);
             }
             if (type == DType.Double)
             {
-                return Double(value, pos);
+                return Double((double)value, pos);
             }
             if (type == DType.Int)
             {
-                return Integer(value, pos);
+                return Integer((int)value, pos);
             }
             if (type == DType.Percent)
             {
-                return Percent(value, pos);
+                return Percent((double)value, pos);
+            }
+            if (type == DType.String)
+            {
+                return String((string)value, pos);
             }
             throw new InvalidOperationException($"Type {type} isn't supported.");
         }
@@ -140,6 +165,13 @@ namespace Qa.Core.Excel
             var cell = getCell(pos);
             cell.Value = value;
             cell.Style.Numberformat.Format = "$#,##0;$(#,##0)";
+            return this;
+        }
+
+        public ExcelCursor String(string value, Pos pos)
+        {
+            var cell = getCell(pos);
+            cell.Value = value;
             return this;
         }
 

@@ -6,6 +6,7 @@
         Double = 1,
         Int = 2,
         Money = 3,
-        Percent = 4
+        Percent = 4,
+        String = 5
     }
 }

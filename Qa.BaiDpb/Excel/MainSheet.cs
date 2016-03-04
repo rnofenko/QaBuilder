@@ -19,14 +19,14 @@ namespace Qa.BaiDpb.Excel
             new Header().Print(cursor, packet.Structure.Name);
             
             cursor.Column(initColumn).Row(5);
-            PrintTotal(packet.Reports, cursor);
+            printTotal(packet.Reports, cursor);
             cursor.Down(2);
             
             sheet.Cells[sheet.Dimension.Address].AutoFitColumns();
             sheet.Column(1).Width = 3;
         }
 
-        private static void PrintTotal(IList<CompareReport> reports, ExcelCursor cursor)
+        private static void printTotal(IList<CompareReport> reports, ExcelCursor cursor)
         {
             var first = reports.First();
             var initRow = cursor.Pos.Row;
@@ -34,13 +34,13 @@ namespace Qa.BaiDpb.Excel
 
             cursor
                 .TopLeftBorderCorner()
-                .PrintAndCenter("", FormatDate(first.FileName)).BackgroundColor(QaColor.HeaderBackground, 2)
+                .PrintAndCenter("", formatDate(first.FileName)).BackgroundColor(QaColor.HeaderBackground, 2)
                 .Down()
                 .PrintAndCenter("", "Values").BackgroundColor(QaColor.HeaderBackground, 2)
                 .Down()
                 .PrintDown(first.Fields.Select(x => x.Title))
                 .Right()
-                .PrintDown(first.Fields.Select(x => new TypedAmount {Amount = x.CurrentSum, Type = x.Type}))
+                .PrintDown(first.Fields.Select(x => new TypedValue(x.CurrentSum, x.Type)))
                 .Down(fieldsCount)
                 .DrawBorder(ExcelBorderStyle.Thick)
                 .Right();
@@ -49,20 +49,20 @@ namespace Qa.BaiDpb.Excel
             {
                 cursor.Row(initRow)
                     .TopLeftBorderCorner()
-                    .Print(FormatDate(report.FileName)).Merge(2).BackgroundColor(QaColor.HeaderBackground, 2)
+                    .Print(formatDate(report.FileName)).Merge(2).BackgroundColor(QaColor.HeaderBackground, 2)
                     .Down()
                     .PrintAndCenter("Values", "Change").BackgroundColor(QaColor.HeaderBackground, 2)
                     .Down()
-                    .PrintDown(report.Fields.Select(x => new TypedAmount {Amount = x.CurrentSum, Type = x.Type}))
+                    .PrintDown(report.Fields.Select(x => new TypedValue(x.CurrentSum, x.Type)))
                     .Right()
-                    .PrintDown(report.Fields.Select(x => new TypedAmount {Amount = x.Change, Type = DType.Percent}), StyleConditions.ChangePercent)
+                    .PrintDown(report.Fields.Select(x => new TypedValue(x.Change, DType.Percent)), StyleConditions.ChangePercent)
                     .Down(fieldsCount)
                     .DrawBorder(ExcelBorderStyle.Thick)
                     .Right();
             }
         }
 
-        private static string FormatDate(string fileName)
+        private static string formatDate(string fileName)
         {
             var parts = fileName.Split('.');
             var parsedDate = DateTime.Parse($"{parts[3].Substring(4, 2)}/{parts[3].Substring(6, 2)}/{parts[3].Substring(0,4)}");
