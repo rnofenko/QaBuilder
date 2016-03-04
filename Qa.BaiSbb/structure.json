@@ -6,11 +6,15 @@
     "fields": [
       {
         "name": "ENTERPRISE_ID",
-        "title": "Interprise ID"
+        "title": "Interprise ID",
+        "type": "Int",
+        "calcUnique":  true
       },
       {
         "name": "BUSINESS_ID",
-        "title": "Busuness ID"
+        "title": "Busuness ID",
+        "type": "Int",
+        "calcUnique": true
       },
       {
         "name": "ACCOUNT_ID",
@@ -18,7 +22,9 @@
       },
       {
         "name": "PRODUCT_CODE",
-        "title": "Product Code"
+        "title": "Product Code",
+        "type": "Int",
+        "calcUnique": true
       },
       {
         "name": "PRODUCT_SUB_CODE",
@@ -30,7 +36,9 @@
       },
       {
         "name": "PRODUCT_TYPE",
-        "title": "Prodyct Type"
+        "title": "Prodyct Type",
+        "type": "Int",
+        "calcUnique": true
       },
       {
         "name": "MONTH_END_BALANCE",
@@ -48,15 +56,21 @@
       },
       {
         "name": "BRANCH_ID",
-        "title": "Branch ID"
+        "title": "Branch ID",
+        "type": "Int",
+        "calcUnique": true
       },
       {
         "name": "F_MANAGED",
-        "title": "Managed"
+        "title": "Managed",
+        "type": "Int",
+        "calcUnique": true
       },
       {
         "name": "ORIGINATION_CODE",
-        "title": "Origination Code"
+        "title": "Origination Code",
+        "type": "Int",
+        "calcUnique": true
       },
       {
         "name": "STATUS_CODE1",
@@ -78,23 +92,33 @@
       },
       {
         "name": "F_DEBIT_CARD",
-        "title": "Debit Card"
+        "title": "Debit Card",
+        "type": "Int",
+        "calcUnique": true
       },
       {
         "name": "F_ONLINE_BANKING",
-        "title": "Online Banking"
+        "title": "Online Banking",
+        "type": "Int",
+        "calcUnique": true
       },
       {
         "name": "F_ONLINE_BILLPAY",
-        "title": "Online Billpay"
+        "title": "Online Billpay",
+        "type": "Int",
+        "calcUnique": true
       },
       {
         "name": "F_ACH_ACCOUNT",
-        "title": "ACH Account"
+        "title": "ACH Account",
+        "type": "Int",
+        "calcUnique": true
       },
       {
         "name": "CD_TERM",
-        "title": "CD Term"
+        "title": "CD Term",
+        "type": "Int",
+        "calcUnique": true
       },
       {
         "name": "CD_MATURITY_DATE",
@@ -127,7 +151,9 @@
       },
       {
         "name": "HOUSEHOLD_ID",
-        "title": "Household ID"
+        "title": "Household ID",
+        "type": "Int",
+        "calcUnique": true
       },
       {
         "name": "GEOCODE",
@@ -139,7 +165,9 @@
       },
       {
         "name": "HOME_BRANCH_ID",
-        "title": "Home Branch ID"
+        "title": "Home Branch ID",
+        "type": "Int",
+        "calcUnique": true
       },
       {
         "name": "F_ATM",
@@ -155,11 +183,15 @@
       },
       {
         "name": "F_ACTIVE_CHECKING",
-        "title": "Active Checking"
+        "title": "Active Checking",
+        "type": "Int",
+        "calcUnique": true
       },
       {
         "name": "F_FEE",
-        "title": "Fee"
+        "title": "Fee",
+        "type": "Int",
+        "calcUnique": true
       },
       {
         "name": "TOTAL_FEES",
@@ -173,19 +205,27 @@
       },
       {
         "name": "ORIGINATION_CHANNEL",
-        "title": "Origination Channel"
+        "title": "Origination Channel",
+        "type": "Int",
+        "calcUnique": true
       },
       {
         "name": "F_MOBILE_BANKING",
-        "title": "Mobile Banking"
+        "title": "Mobile Banking",
+        "type": "Int",
+        "calcUnique": true
       },
       {
         "name": "F_REMOTE_DEPOSIT_CAPTURE",
-        "title": "Remote Deposit Capture"
+        "title": "Remote Deposit Capture",
+        "type": "Int",
+        "calcUnique": true
       },
       {
         "name": "F_PRIMARY_CHECKING",
-        "title": "Primary Checking"
+        "title": "Primary Checking",
+        "type": "Int",
+        "calcUnique": true
       }
     ]
   }
