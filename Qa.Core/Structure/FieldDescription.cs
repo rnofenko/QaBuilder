@@ -6,6 +6,8 @@ namespace Qa.Core.Structure
 
         public string Title { get; set; }
 
+        public bool CalcUnique { get; set; }
+
         public DType Type { get; set; }
     }
 }

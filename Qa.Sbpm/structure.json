@@ -5,7 +5,7 @@
     "fields": [
       { "name": "BANK_CODE" },
       { "name": "CYCLE_TYPE" },
-      { "name": "STATE" },
+      { "name": "STATE", "calcUnique": true },
       { "name": "CYCLE_DT" },
       {
         "name": "NACH",

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Qa.Core;
+using Qa.Core.Collectors;
 using Qa.Core.Structure;
 using Qa.Core.System;
 
@@ -11,10 +12,12 @@ namespace Qa.Sbpm.Collectors
     public class RawDataCollector
     {
         private readonly StructureDetector _structureDetector;
+        private readonly ValueParser _valueParser;
 
         public RawDataCollector()
         {
             _structureDetector = new StructureDetector();
+            _valueParser = new ValueParser();
         }
 
         public List<RawReport> Collect(IEnumerable<string> files, CollectionSettings settings)
@@ -90,33 +93,7 @@ namespace Qa.Sbpm.Collectors
             var parts = line.Split(new[] { stats.Structure.Delimeter }, StringSplitOptions.None);
             var subReport = stats.GetSubReport(parts);
             subReport.RowsCount++;
-
-            for (var i = 0; i < parts.Length; i++)
-            {
-                var field = subReport.Fields[i];
-                var value = parts[i];
-                if (field.Type == DType.Double)
-                {
-                    if (value.IsNotEmpty())
-                    {
-                        field.Sum += double.Parse(value);
-                    }
-                }
-                if (field.Type == DType.Money)
-                {
-                    if (value.IsNotEmpty())
-                    {
-                        field.Sum += double.Parse(value);
-                    }
-                }
-                else if (field.Type == DType.Int)
-                {
-                    if (value.IsNotEmpty())
-                    {
-                        field.Sum += double.Parse(value);
-                    }
-                }
-            }
+            _valueParser.Parse(parts, subReport.Fields);
         }
     }
 }
