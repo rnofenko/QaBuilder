@@ -55,7 +55,8 @@ namespace Qa.BaiSbb.Excel
                     .Down()
                     .PrintAndCenter("Values", "Change").BackgroundColor(QaColor.HeaderBackground, 2)
                     .Down()
-                    .Print(report.RowsCount.Current, new TypedValue((double)report.RowsCount.Previous/report.RowsCount.Current, DType.Percent))
+                    .Print(report.RowsCount.Current,
+                            new TypedValue(report.RowsCount.Current * 1.0 / report.RowsCount.Previous - 1, DType.Percent))
                     .Down()
                     .PrintDown(report.Fields.Select(x => new TypedValue(x.CurrentSum, x.Type)))
                     .Right()
