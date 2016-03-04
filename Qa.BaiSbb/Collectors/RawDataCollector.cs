@@ -59,7 +59,7 @@ namespace Qa.BaiSbb.Collectors
                     ProcessLine(line, report);
                     rows++;
                     
-                    if ((rows % 50000) == 0)
+                    if ((rows % 100000) == 0)
                     {
                         Lo.Wl($"Processed {rows}");
                     }

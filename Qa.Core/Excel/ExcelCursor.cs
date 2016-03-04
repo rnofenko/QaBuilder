@@ -137,7 +137,7 @@ namespace Qa.Core.Excel
             }
             if (type == DType.Int)
             {
-                return Integer((int)value, pos);
+                return Integer(Convert.ToInt32(value), pos);
             }
             if (type == DType.Percent)
             {
