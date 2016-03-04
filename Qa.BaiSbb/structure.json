@@ -1,28 +1,20 @@
 ﻿[
   {
-    "name": "BAI DPB",
+    "name": "BAI SBB",
     "rowsInHeader": 0,
     "delimeter": "|",
     "fields": [
       {
-        "name": "HOUSEHOLD_ID",
-        "title": "Household ID"
+        "name": "ENTERPRISE_ID",
+        "title": "Interprise ID"
       },
       {
-        "name": "CUSTOMER_ID",
-        "title": "Customer ID"
+        "name": "BUSINESS_ID",
+        "title": "Busuness ID"
       },
       {
         "name": "ACCOUNT_ID",
         "title": "Account ID"
-      },
-      {
-        "name": "GEOCODE",
-        "title": "Geocode"
-      },
-      {
-        "name": "ZIP_PLUS_FOUR",
-        "title": "ZIP Code"
       },
       {
         "name": "PRODUCT_CODE",
@@ -34,11 +26,11 @@
       },
       {
         "name": "STANDARD_REFERENCE",
-        "title": "Prodyct Standard Reference"
+        "title": "Product Standard Reference"
       },
       {
         "name": "PRODUCT_TYPE",
-        "title": "Product Type"
+        "title": "Prodyct Type"
       },
       {
         "name": "MONTH_END_BALANCE",
@@ -47,28 +39,20 @@
       },
       {
         "name": "AVG_MONTHLY_BALANCE",
-        "title": "Average Monthly Balance",
+        "title": "Average Nonthly Balance",
         "type": "Money"
       },
       {
         "name": "ACCOUNT_OPEN_DATE",
-        "title": "Account Open Date"
+        "title": ""
       },
       {
         "name": "BRANCH_ID",
         "title": "Branch ID"
       },
       {
-        "name": "HOME_BRANCH_ID",
-        "title": "Home Branch ID"
-      },
-      {
-        "name": "F_MANAGED_ACCOUNT",
-        "title": "Managed Account"
-      },
-      {
-        "name": "F_EMPLOYEE",
-        "title": "Employee"
+        "name": "F_MANAGED",
+        "title": "Managed"
       },
       {
         "name": "ORIGINATION_CODE",
@@ -93,10 +77,6 @@
         "type": "Money"
       },
       {
-        "name": "INTEREST_RATE",
-        "title": "Interest Rate"
-      },
-      {
         "name": "F_DEBIT_CARD",
         "title": "Debit Card"
       },
@@ -109,8 +89,8 @@
         "title": "Online Billpay"
       },
       {
-        "name": "F_DIRECT_DEPOSIT",
-        "title": "Direct Deposit"
+        "name": "F_ACH_ACCOUNT",
+        "title": "ACH Account"
       },
       {
         "name": "CD_TERM",
@@ -134,24 +114,32 @@
         "title": "Credit Maximum Line"
       },
       {
-        "name": "CUSTOMER_AGE",
-        "title": "Customer Age"
+        "name": "INTEREST_RATE",
+        "title": "Interest Rate"
       },
       {
-        "name": "CUSTOMER_APPENDED_AGE",
-        "title": "Customer Appended Age"
+        "name": "F_SBA",
+        "title": "SBA"
       },
       {
-        "name": "HOUSEHOLD_INCOME_TIER",
-        "title": "Household Income Tier"
+        "name": "F_OFF_BALANCE_SHEET_BALANCE",
+        "title": "Off-Balance Sheet Balance"
       },
       {
-        "name": "F_ACTIVE_CHEKING",
-        "title": "Active Checking"
+        "name": "HOUSEHOLD_ID",
+        "title": "Household ID"
       },
       {
-        "name": "F_ACH_DIRECT_DEPOSIT",
-        "title": "ACH Direct Deposit"
+        "name": "GEOCODE",
+        "title": "Geocode"
+      },
+      {
+        "name": "ZIP_PLUS_FOUR",
+        "title": "ZIP Code"
+      },
+      {
+        "name": "HOME_BRANCH_ID",
+        "title": "Home Branch ID"
       },
       {
         "name": "F_ATM",
@@ -159,11 +147,15 @@
       },
       {
         "name": "F_E-STATEMENT",
-        "title": "E-Statement"
+        "title": "E_Statement"
       },
       {
         "name": "F_CHECKS",
         "title": "Checks"
+      },
+      {
+        "name": "F_ACTIVE_CHECKING",
+        "title": "Active Checking"
       },
       {
         "name": "F_FEE",
@@ -175,12 +167,13 @@
         "type": "Money"
       },
       {
-        "name": "ORIGINATION_CHANNEL",
-        "title": "Origination Channel"
+        "name": "ACTUAL_ECR",
+        "title": "Actual ECR",
+        "type": "Money"
       },
       {
-        "name": "PSYCLE_NE_CODE",
-        "title": "Psycle NE Code"
+        "name": "ORIGINATION_CHANNEL",
+        "title": "Origination Channel"
       },
       {
         "name": "F_MOBILE_BANKING",
@@ -191,17 +184,8 @@
         "title": "Remote Deposit Capture"
       },
       {
-        "name": "F_PERSON-TO-PERSON_PAYMENT",
-        "title": "Person-to-person Payment"
-      },
-      {
-        "name": "F_PRIMARY_CHEKING",
+        "name": "F_PRIMARY_CHECKING",
         "title": "Primary Checking"
-      },
-      {
-        "name": "NUMBER_OF_TIMES_CD_RENEWED",
-        "title": "Number of times CD renewed",
-        "type": "Int"
       }
     ]
   }
