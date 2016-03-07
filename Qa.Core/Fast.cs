@@ -1,7 +1,6 @@
-﻿namespace Qa.System
+﻿namespace Qa.Core
 {
     public class Fast
     {
-        public static bool Qa = true;
     }
 }

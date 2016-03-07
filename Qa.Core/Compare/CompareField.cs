@@ -28,10 +28,7 @@ namespace Qa.Core.Compare
         {
             _description = current.Description;
             UniqueValues = unique;
-            if (Type == DType.Percent || Type == DType.Double || Type == DType.Money)
-            {
-                Number = new CompareNumber(current.Sum, previous?.Sum);
-            }
+            Number = new CompareNumber(current.Sum, previous?.Sum);
         }
 
         public TypedValue GetCurrent()
