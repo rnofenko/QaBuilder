@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Qa.Core.Structure;
 
 namespace Qa.Sbpm.Compare
@@ -19,10 +20,16 @@ namespace Qa.Sbpm.Compare
 
         public double Change { get; set; }
 
+        /// <summary>
+        /// Key - value, Value - number of occurs.
+        /// </summary>
+        public Dictionary<string, int> UniqueValues { get; set; }
+
         public CompareNumberField(RawReportField current, RawReportField previous)
         {
             _description = current.Description;
             CurrentSum = current.Sum;
+            UniqueValues = current.UniqueValues;
             if (previous != null)
             {
                 PreviousSum = previous.Sum;
