@@ -3,8 +3,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using OfficeOpenXml;
+using Qa.Bai.Sbp.Compare;
 using Qa.Sbpm.Compare;
-using Qa.Sbpm.Excel;
 
 namespace Qa.Bai.Sbp.Excel
 {

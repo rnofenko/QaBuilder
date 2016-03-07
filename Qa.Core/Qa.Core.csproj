@@ -63,6 +63,7 @@
     <Compile Include="Excel\Pos.cs" />
     <Compile Include="Excel\QaColor.cs" />
     <Compile Include="Excel\StyleConditionArgs.cs" />
+    <Compile Include="Excel\StyleConditions.cs" />
     <Compile Include="Excel\TypedValue.cs" />
     <Compile Include="Extensions\DateExtention.cs" />
     <Compile Include="Extensions\EnumerableExtension.cs" />

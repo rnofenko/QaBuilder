@@ -1,4 +1,4 @@
-﻿namespace Qa.Sbpm
+﻿namespace Qa.Bai.Sbp
 {
     public class QaSettings
     {

@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Qa.Bai.Sbp.Collectors;
 using Qa.Core.Compare;
 using Qa.Core.Structure;
 using Qa.Sbpm.Collectors;
+using Qa.Sbpm.Compare;
 
-namespace Qa.Sbpm.Compare
+namespace Qa.Bai.Sbp.Compare
 {
     public class Comparer
     {

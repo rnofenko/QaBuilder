@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Qa.Bai.Sbp.Collectors;
 using Qa.Core.Structure;
 using Qa.Core.Transforms;
-using Qa.Sbpm.Collectors;
 
-namespace Qa.Sbpm.Transforms
+namespace Qa.Bai.Sbp.Transforms
 {
-    public class SbpmReportTransformer
+    public class SbpReportTransformer
     {
         private readonly ReportTransformer _transformer;
 
-        public SbpmReportTransformer()
+        public SbpReportTransformer()
         {
             _transformer = new ReportTransformer();
         }

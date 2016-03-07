@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Qa.Sbpm.Compare
+namespace Qa.Bai.Sbp.Compare
 {
     public class CompareReport
     {

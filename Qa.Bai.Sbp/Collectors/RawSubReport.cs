@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Qa.Core.Structure;
 
-namespace Qa.Sbpm.Collectors
+namespace Qa.Bai.Sbp.Collectors
 {
     public class RawSubReport
     {

@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Qa.Core.Structure;
+using Qa.Sbpm.Collectors;
 
-namespace Qa.Sbpm.Collectors
+namespace Qa.Bai.Sbp.Collectors
 {
     public class RawReport
     {

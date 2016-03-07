@@ -59,11 +59,10 @@
     <Compile Include="Excel\Header.cs" />
     <Compile Include="Excel\MainSheet.cs" />
     <Compile Include="Excel\PeriodSheet.cs" />
-    <Compile Include="Excel\StyleConditions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Propmt.cs" />
     <Compile Include="QaSettings.cs" />
-    <Compile Include="Transforms\SbpmReportTransformer.cs" />
+    <Compile Include="Transforms\SbpReportTransformer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Qa.Core\Qa.Core.csproj">

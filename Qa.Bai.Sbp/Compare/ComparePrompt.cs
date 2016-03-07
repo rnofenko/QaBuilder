@@ -1,11 +1,11 @@
 ﻿using System;
 using Qa.Bai.Sbp.Collectors;
 using Qa.Bai.Sbp.Excel;
+using Qa.Bai.Sbp.Transforms;
 using Qa.Core.Structure;
 using Qa.Core.System;
 using Qa.Sbpm.Collectors;
 using Qa.Sbpm.Compare;
-using Qa.Sbpm.Transforms;
 using Qa.System;
 
 namespace Qa.Bai.Sbp.Compare
@@ -27,22 +27,8 @@ namespace Qa.Bai.Sbp.Compare
 
         public void Start()
         {
-            while (true)
-            {
-                Lo.NewPage("QA Reports");
-                showSettings(_settings);
-
-                Lo.Wl()
-                    .Wl("Select command:")
-                    .Wl("1. Create QA Report");
-
-                var key = Console.ReadKey().KeyChar;
-                if (key == '1')
-                {
-                    doReport();
-                    break;
-                }
-            }
+            Lo.NewPage("QA Reports");
+            doReport();
         }
 
         private void doReport()
@@ -56,20 +42,13 @@ namespace Qa.Bai.Sbp.Compare
                 ShowError = _settings.ShowNotParsedFiles
             });
 
-            new SbpmReportTransformer().Transform(rawReports);
+            new SbpReportTransformer().Transform(rawReports);
             
             var result = _comparer.Compare(rawReports);
             _excelExporter.Export(result, _settings);
 
             Lo.Wl().Wl("Comparing was finished.");
             Console.ReadKey();
-        }
-
-        private void showSettings(CompareSettings settings)
-        {
-            Lo.Wl().Wl("Current Settings:")
-                .Wl($"File mask      = {settings.FileMask}")
-                .Wl($"Working folder = {settings.WorkingFolder}");
         }
     }
 }

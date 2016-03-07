@@ -13,5 +13,10 @@ namespace Qa.Core.Structure
         public List<TransformStructure> Transformations { get; set; }
 
         public string Delimeter { get; set; }
+
+        public FileStructure()
+        {
+            Transformations = new List<TransformStructure>();
+        }
     }
 }
