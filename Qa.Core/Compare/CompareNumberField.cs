@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Qa.Core.Structure;
 
 namespace Qa.Core.Compares
@@ -12,10 +13,13 @@ namespace Qa.Core.Compares
 
         public string Title => _description.Title ?? _description.Name;
 
-        public CompareNumberField(RawReportField current, RawReportField previous)
+        public List<UniqueValue> UniqueValues { get; set; }
+
+        public CompareNumberField(RawReportField current, RawReportField previous, List<UniqueValue> unique)
             :base(current.Sum, previous?.Sum)
         {
             _description = current.Description;
+            UniqueValues = unique;
         }
     }
 }

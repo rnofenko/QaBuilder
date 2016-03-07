@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using Qa.BaiDpb.Collectors;
+using Qa.Core.Compare;
 using Qa.Core.Compares;
 using Qa.Core.Structure;
 
@@ -9,6 +10,13 @@ namespace Qa.BaiDpb.Compare
 {
     public class Comparer
     {
+        private readonly UniqueValuesComparer _uniqueValuesComparer;
+
+        public Comparer()
+        {
+            _uniqueValuesComparer = new UniqueValuesComparer();
+        }
+
         public List<ComparePacket> Compare(List<RawReport> statistics)
         {
             var packets = statistics
@@ -59,7 +67,8 @@ namespace Qa.BaiDpb.Compare
 
                 if (fieldCurrent.Type == DType.Double || fieldCurrent.Type == DType.Int || fieldCurrent.Type == DType.Money)
                 {
-                    result.Fields.Add(new CompareNumberField(fieldCurrent, fieldPrev));
+                    var unique = _uniqueValuesComparer.Compare(fieldCurrent.UniqueValues, fieldPrev?.UniqueValues);
+                    result.Fields.Add(new CompareNumberField(fieldCurrent, fieldPrev, unique));
                 }
             }
             return result;
