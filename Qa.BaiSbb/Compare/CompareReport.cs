@@ -1,5 +1,6 @@
 using System.Collections.Generic;
-using Qa.Core.Compares;
+using Qa.Core.Compare;
+using Qa.Core.Structure;
 
 namespace Qa.BaiSbb.Compare
 {
@@ -7,13 +8,18 @@ namespace Qa.BaiSbb.Compare
     {
         public CompareNumber RowsCount { get; set; }
 
-        public List<CompareNumberField> Fields { get; set; }
+        public List<CompareField> Numbers { get; set; }
+
+        public List<CompareField> UniqueFields { get; set; }
 
         public string FileName { get; set; }
 
+        public List<RawReportField> DictionaryFields { get; set; }
+
         public CompareReport()
         {
-            Fields = new List<CompareNumberField>();
+            Numbers = new List<CompareField>();
+            DictionaryFields = new List<RawReportField>();
         }
     }
 }

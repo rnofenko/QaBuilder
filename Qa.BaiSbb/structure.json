@@ -7,13 +7,13 @@
       {
         "name": "ENTERPRISE_ID",
         "title": "Interprise ID",
-        /*"type": "Int",*/
+        "type": "String",
         "calcUnique":  true
       },
       {
         "name": "BUSINESS_ID",
         "title": "Busuness ID",
-        /*"type": "Int",*/
+        "type": "String",
         "calcUnique": true
       },
       {
@@ -23,7 +23,7 @@
       {
         "name": "PRODUCT_CODE",
         "title": "Product Code",
-        /*"type": "Int",*/
+        "type": "String",
         "calcUnique": true
       },
       {

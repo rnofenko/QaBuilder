@@ -56,7 +56,7 @@
     <Compile Include="Combines\CombineSettings.cs" />
     <Compile Include="Combines\FileCombiner.cs" />
     <Compile Include="Compare\CompareNumber.cs" />
-    <Compile Include="Compare\CompareNumberField.cs" />
+    <Compile Include="Compare\CompareField.cs" />
     <Compile Include="Compare\UniqeValuesComparer.cs" />
     <Compile Include="Compare\UniqueValue.cs" />
     <Compile Include="Excel\ExcelCursor.cs" />

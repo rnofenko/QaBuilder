@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Qa.Core.Compares;
+using Qa.Core.Compare;
 
 namespace Qa.BaiDpb.Compare
 {
@@ -7,13 +7,13 @@ namespace Qa.BaiDpb.Compare
     {
         public CompareNumber RowsCount { get; set; }
 
-        public List<CompareNumberField> Fields { get; set; }
+        public List<CompareField> Fields { get; set; }
 
         public string FileName { get; set; }
 
         public CompareReport()
         {
-            Fields = new List<CompareNumberField>();
+            Fields = new List<CompareField>();
         }
     }
 }

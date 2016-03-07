@@ -30,8 +30,9 @@ namespace Qa.BaiSbb.Excel
         {
             var first = reports.First();
             var initRow = cursor.Pos.Row;
-            var fieldsCount = first.Fields.Count - 1;
-
+            var initColumn = cursor.Pos.Column;
+            var fieldsCount = first.Numbers.Count - 1;
+            
             cursor
                 .TopLeftBorderCorner()
                 .PrintAndCenter("", formatDate(first.FileName)).BackgroundColor(QaColor.HeaderBackground, 2)
@@ -40,12 +41,14 @@ namespace Qa.BaiSbb.Excel
                 .Down()
                 .Print("Total Records", reports.First().RowsCount.Current)
                 .Down()
-                .PrintDown(first.Fields.Select(x => x.Title))
+                .PrintDown(first.Numbers.Select(x => x.Title))
                 .Right()
-                .PrintDown(first.Fields.Select(x => new TypedValue(x.Current, x.Type)))
+                .PrintDown(first.Numbers.Select(x => x.GetCurrent()))
                 .Down(fieldsCount)
                 .DrawBorder(ExcelBorderStyle.Thick)
                 .Right();
+                //.Down(2)
+                //.PrintAndCenter("", first.Numbers.First().UniqueValues.First().Value).BackgroundColor(QaColor.HeaderBackground, 2)
 
             foreach (var report in reports.Skip(1))
             {
@@ -57,15 +60,32 @@ namespace Qa.BaiSbb.Excel
                     .Down()
                     .Print(report.RowsCount.Current, new TypedValue(report.RowsCount.Change, DType.Percent))
                     .Down()
-                    .PrintDown(report.Fields.Select(x => new TypedValue(x.Current, x.Type)))
+                    .PrintDown(report.Numbers.Select(x => x.GetCurrent()))
                     .Right()
-                    .PrintDown(report.Fields.Select(x => new TypedValue(x.Change, DType.Percent)), StyleConditions.ChangePercent)
+                    .PrintDown(report.Numbers.Select(x => x.GetChange()), StyleConditions.ChangePercent)
                     .Down(fieldsCount)
                     .DrawBorder(ExcelBorderStyle.Thick)
                     .Right();
             }
-        }
 
+            cursor.Down(3).Column(initColumn);
+            foreach (var report in reports)
+            {
+                foreach (var field in report.UniqueFields)
+                {
+                    var unique = field.UniqueValues.First();
+                    cursor
+                        .Row(initRow + fieldsCount)
+                        .Down()
+                        .Print(field.Title).Merge(2).BackgroundColor(QaColor.HeaderBackground, 2)
+                        .Down()
+                        .PrintAndCenter("Values", "Change").BackgroundColor(QaColor.HeaderBackground, 2)
+                        .Down()
+                        .PrintAndCenter(unique.Value);
+                }
+            }
+        }
+        
         private static string formatDate(string fileName)
         {
             var parts = fileName.Split('.');

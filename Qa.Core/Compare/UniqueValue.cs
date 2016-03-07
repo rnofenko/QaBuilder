@@ -1,4 +1,4 @@
-namespace Qa.Core.Compares
+namespace Qa.Core.Compare
 {
     public class UniqueValue
     {

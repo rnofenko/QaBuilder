@@ -2,7 +2,6 @@
 using System.IO;
 using System.Linq;
 using Qa.Core.Compare;
-using Qa.Core.Compares;
 using Qa.Core.Structure;
 using Qa.Sbpm.Collectors;
 
@@ -85,7 +84,7 @@ namespace Qa.Sbpm.Compare
                 if (fieldCurrent.Type == DType.Double || fieldCurrent.Type == DType.Int || fieldCurrent.Type == DType.Money)
                 {
                     var unique = _uniqueValuesComparer.Compare(fieldCurrent.UniqueValues, fieldPrev?.UniqueValues);
-                    result.Fields.Add(new CompareNumberField(fieldCurrent, fieldPrev, unique));
+                    result.Fields.Add(new CompareField(fieldCurrent, fieldPrev, unique));
                 }
             }
             return result;

@@ -6,7 +6,6 @@ using OfficeOpenXml.Style;
 using Qa.BaiDpb.Compare;
 using Qa.Core;
 using Qa.Core.Excel;
-using Qa.Core.Structure;
 
 namespace Qa.BaiDpb.Excel
 {
@@ -40,7 +39,7 @@ namespace Qa.BaiDpb.Excel
                 .Down()
                 .PrintDown(first.Fields.Select(x => x.Title))
                 .Right()
-                .PrintDown(first.Fields.Select(x => new TypedValue(x.Current, x.Type)))
+                .PrintDown(first.Fields.Select(x => new TypedValue(x.Number.Current, x.Type)))
                 .Down(fieldsCount)
                 .DrawBorder(ExcelBorderStyle.Thick)
                 .Right();
@@ -53,9 +52,9 @@ namespace Qa.BaiDpb.Excel
                     .Down()
                     .PrintAndCenter("Values", "Change").BackgroundColor(QaColor.HeaderBackground, 2)
                     .Down()
-                    .PrintDown(report.Fields.Select(x => new TypedValue(x.Current, x.Type)))
+                    .PrintDown(report.Fields.Select(x => x.GetCurrent()))
                     .Right()
-                    .PrintDown(report.Fields.Select(x => new TypedValue(x.Change, DType.Percent)), StyleConditions.ChangePercent)
+                    .PrintDown(report.Fields.Select(x => x.GetChange()), StyleConditions.ChangePercent)
                     .Down(fieldsCount)
                     .DrawBorder(ExcelBorderStyle.Thick)
                     .Right();

@@ -3,7 +3,6 @@ using System.Linq;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using Qa.Core.Excel;
-using Qa.Core.Structure;
 using Qa.Sbpm.Compare;
 
 namespace Qa.Sbpm.Excel
@@ -45,7 +44,7 @@ namespace Qa.Sbpm.Excel
                 .Down()
                 .PrintDown(first.Fields.Select(x => x.Title))
                 .Right()
-                .PrintDown(first.Fields.Select(x => new TypedValue(x.Current, x.Type)))
+                .PrintDown(first.Fields.Select(x => x.GetCurrent()))
                 .Down(fieldsCount - 1)
                 .DrawBorder(ExcelBorderStyle.Thick)
                 .Right();
@@ -58,9 +57,9 @@ namespace Qa.Sbpm.Excel
                     .Down()
                     .Print("Values", "Change").BackgroundColor(QaColor.HeaderBackground, 2)
                     .Down()
-                    .PrintDown(report.Fields.Select(x => new TypedValue(x.Current, x.Type)))
+                    .PrintDown(report.Fields.Select(x => x.GetCurrent()))
                     .Right()
-                    .PrintDown(report.Fields.Select(x => new TypedValue(x.Change, DType.Percent)), StyleConditions.ChangePercent)
+                    .PrintDown(report.Fields.Select(x => x.GetChange()), StyleConditions.ChangePercent)
                     .Down(fieldsCount - 1)
                     .DrawBorder(ExcelBorderStyle.Thick)
                     .Right();
@@ -83,7 +82,7 @@ namespace Qa.Sbpm.Excel
                 .Down()
                 .PrintDown(first.Fields.Select(x => x.Title))
                 .Right()
-                .PrintDown(first.Fields.Select(x => new TypedValue(x.Current, x.Type)))
+                .PrintDown(first.Fields.Select(x => x.GetCurrent()))
                 .Down(fieldsCount)
                 .DrawBorder(ExcelBorderStyle.Thick)
                 .Right();
@@ -95,9 +94,9 @@ namespace Qa.Sbpm.Excel
                     .TopLeftBorderCorner()
                     .Print(report.FileName).Merge(2).BackgroundColor(QaColor.HeaderBackground)
                     .Down()
-                    .PrintDown(report.Fields.Select(x => new TypedValue(x.Current, x.Type)))
+                    .PrintDown(report.Fields.Select(x => x.GetCurrent()))
                     .Right()
-                    .PrintDown(report.Fields.Select(x => new TypedValue(x.Change, DType.Percent)), StyleConditions.ChangePercent)
+                    .PrintDown(report.Fields.Select(x => x.GetChange()), StyleConditions.ChangePercent)
                     .Down(fieldsCount)
                     .DrawBorder(ExcelBorderStyle.Thick)
                     .Right();

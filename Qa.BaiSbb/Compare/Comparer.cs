@@ -3,7 +3,6 @@ using System.IO;
 using System.Linq;
 using Qa.BaiSbb.Collectors;
 using Qa.Core.Compare;
-using Qa.Core.Compares;
 using Qa.Core.Structure;
 
 namespace Qa.BaiSbb.Compare
@@ -68,7 +67,13 @@ namespace Qa.BaiSbb.Compare
                 if (fieldCurrent.Type == DType.Double || fieldCurrent.Type == DType.Int || fieldCurrent.Type == DType.Money)
                 {
                     var unique = _uniqueValuesComparer.Compare(fieldCurrent.UniqueValues, fieldPrev?.UniqueValues);
-                    result.Fields.Add(new CompareNumberField(fieldCurrent, fieldPrev, unique));
+                    result.Numbers.Add(new CompareField(fieldCurrent, fieldPrev, unique));
+                }
+
+                if (fieldCurrent.CalcUnique)
+                {
+                    var unique = _uniqueValuesComparer.Compare(fieldCurrent.UniqueValues, fieldPrev?.UniqueValues);
+                    result.UniqueFields.Add(new CompareField(fieldCurrent, unique));
                 }
             }
             return result;

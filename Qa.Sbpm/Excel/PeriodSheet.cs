@@ -45,7 +45,7 @@ namespace Qa.Sbpm.Excel
                 .Print(report.State).BackgroundColor(QaColor.HeaderBackground).DrawBorder().Center()
                 .Down()
                 .TopLeftBorderCorner()
-                .PrintDown(report.Fields.Select(x => new TypedValue(x.Current, x.Type)))
+                .PrintDown(report.Fields.Select(x => x.GetCurrent()))
                 .Down(report.Fields.Count - 1)
                 .DrawBorder();
         }
