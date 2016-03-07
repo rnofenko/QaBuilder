@@ -1,6 +1,6 @@
 using Qa.Core.Calculations;
 
-namespace Qa.BaiSbb.Compare
+namespace Qa.Core.Compares
 {
     public class CompareNumber
     {

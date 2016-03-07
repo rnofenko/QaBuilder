@@ -55,6 +55,8 @@
     <Compile Include="Combines\CombinePromt.cs" />
     <Compile Include="Combines\CombineSettings.cs" />
     <Compile Include="Combines\FileCombiner.cs" />
+    <Compile Include="Compares\CompareNumber.cs" />
+    <Compile Include="Compares\CompareNumberField.cs" />
     <Compile Include="Excel\ExcelCursor.cs" />
     <Compile Include="Excel\Pos.cs" />
     <Compile Include="Excel\QaColor.cs" />

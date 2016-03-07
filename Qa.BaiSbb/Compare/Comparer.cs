@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using Qa.BaiSbb.Collectors;
+using Qa.Core.Compares;
 using Qa.Core.Structure;
 
 namespace Qa.BaiSbb.Compare

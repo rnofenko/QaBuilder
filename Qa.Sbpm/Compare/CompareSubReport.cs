@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Qa.Core.Compares;
 
 namespace Qa.Sbpm.Compare
 {

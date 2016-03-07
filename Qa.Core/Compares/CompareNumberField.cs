@@ -1,6 +1,6 @@
 using Qa.Core.Structure;
 
-namespace Qa.BaiSbb.Compare
+namespace Qa.Core.Compares
 {
     public class CompareNumberField : CompareNumber
     {
