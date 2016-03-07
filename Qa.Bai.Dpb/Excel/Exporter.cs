@@ -3,9 +3,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using OfficeOpenXml;
-using Qa.BaiDpb.Compare;
+using Qa.Bai.Dpb.Compare;
 
-namespace Qa.BaiDpb.Excel
+namespace Qa.Bai.Dpb.Excel
 {
     public class Exporter
     {
@@ -22,14 +22,14 @@ namespace Qa.BaiDpb.Excel
             {
                 foreach (var packet in packets)
                 {
-                    FillPacket(packet, package.Workbook);
+                    fillPacket(packet, package.Workbook);
                 }
                 package.Save();
             }
             Process.Start(path);
         }
         
-        private static void FillPacket(ComparePacket packet, ExcelWorkbook book)
+        private static void fillPacket(ComparePacket packet, ExcelWorkbook book)
         {
             var sheet = book.Worksheets.Add(packet.Structure.Name);
             new MainSheet().Print(packet, sheet);

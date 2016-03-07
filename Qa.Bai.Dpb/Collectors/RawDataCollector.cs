@@ -7,7 +7,7 @@ using Qa.Core.Collectors;
 using Qa.Core.Structure;
 using Qa.Core.System;
 
-namespace Qa.BaiDpb.Collectors
+namespace Qa.Bai.Dpb.Collectors
 {
     public class RawDataCollector
     {

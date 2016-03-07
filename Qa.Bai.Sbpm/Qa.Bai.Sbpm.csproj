@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C53C32A8-57C8-410F-8D8E-4C04EA8EE105}</ProjectGuid>
+    <ProjectGuid>{F6A3DFCC-B03F-417B-AB06-F3423B97D0F2}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Qa.Bai.Sbpm</RootNamespace>

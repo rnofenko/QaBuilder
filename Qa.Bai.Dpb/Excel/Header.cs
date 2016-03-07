@@ -3,7 +3,7 @@ using OfficeOpenXml.Style;
 using Qa.Core.Excel;
 using Qa.Core.System;
 
-namespace Qa.BaiDpb.Excel
+namespace Qa.Bai.Dpb.Excel
 {
     public class Header
     {

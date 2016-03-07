@@ -2,7 +2,7 @@
 using System.Linq;
 using Qa.Core.Structure;
 
-namespace Qa.BaiDpb.Collectors
+namespace Qa.Bai.Dpb.Collectors
 {
     public class RawReport
     {

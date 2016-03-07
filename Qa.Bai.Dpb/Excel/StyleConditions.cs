@@ -1,7 +1,7 @@
 ﻿using System;
 using Qa.Core.Excel;
 
-namespace Qa.BaiDpb.Excel
+namespace Qa.Bai.Dpb.Excel
 {
     public class StyleConditions
     {

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
-using Qa.BaiDpb.Compare;
+using Qa.Bai.Dpb.Compare;
 using Qa.Core;
 using Qa.Core.Excel;
 
-namespace Qa.BaiDpb.Excel
+namespace Qa.Bai.Dpb.Excel
 {
     public class MainSheet
     {

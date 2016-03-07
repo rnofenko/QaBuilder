@@ -1,12 +1,12 @@
 ﻿using System;
 using System.IO;
-using Qa.BaiDpb.Compare;
+using Qa.Bai.Dpb.Compare;
 using Qa.Core.Combines;
 using Qa.Core.Format;
 using Qa.Core.Structure;
 using Qa.Core.System;
 
-namespace Qa.BaiDpb
+namespace Qa.Bai.Dpb
 {
     class Program
     {

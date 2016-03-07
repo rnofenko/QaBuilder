@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
-using Qa.BaiSbb.Compare;
+using Qa.Bai.Sbb.Compare;
 using Qa.Core;
 using Qa.Core.Excel;
 using Qa.Core.Structure;
 
-namespace Qa.BaiSbb.Excel
+namespace Qa.Bai.Sbb.Excel
 {
     public class MainSheet
     {

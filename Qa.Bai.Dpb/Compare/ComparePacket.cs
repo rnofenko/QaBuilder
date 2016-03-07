@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Qa.Core.Structure;
 
-namespace Qa.BaiDpb.Compare
+namespace Qa.Bai.Dpb.Compare
 {
     public class ComparePacket
     {

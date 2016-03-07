@@ -1,11 +1,11 @@
 ﻿using System;
-using Qa.BaiSbb.Collectors;
-using Qa.BaiSbb.Excel;
+using Qa.Bai.Sbb.Collectors;
+using Qa.Bai.Sbb.Excel;
 using Qa.Core.Structure;
 using Qa.Core.System;
 using Qa.System;
 
-namespace Qa.BaiSbb.Compare
+namespace Qa.Bai.Sbb.Compare
 {
     public class ComparePrompt
     {

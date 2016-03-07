@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Qa.BaiDpb.Collectors;
+using Qa.Bai.Dpb.Collectors;
 using Qa.Core.Compare;
 using Qa.Core.Structure;
 
-namespace Qa.BaiDpb.Compare
+namespace Qa.Bai.Dpb.Compare
 {
     public class Comparer
     {

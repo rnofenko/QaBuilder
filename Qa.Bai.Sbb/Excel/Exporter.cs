@@ -3,9 +3,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using OfficeOpenXml;
-using Qa.BaiSbb.Compare;
+using Qa.Bai.Sbb.Compare;
 
-namespace Qa.BaiSbb.Excel
+namespace Qa.Bai.Sbb.Excel
 {
     public class Exporter
     {

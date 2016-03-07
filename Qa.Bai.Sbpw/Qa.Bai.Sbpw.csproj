@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5C6DB849-FF33-4A24-B69C-8B62EF465100}</ProjectGuid>
+    <ProjectGuid>{E569F354-3F15-402B-9090-BE1D21C4C920}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Qa.Bai.Sbpw</RootNamespace>
