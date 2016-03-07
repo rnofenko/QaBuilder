@@ -52,13 +52,13 @@ namespace Qa.BaiSbb
                     }
                     else if (key == '4')
                     {
-                        SetWorkingFolder(settings);
+                        setWorkingFolder(settings);
                     }
                 }
             }
         }
 
-        private static void SetWorkingFolder(Settings settings)
+        private static void setWorkingFolder(Settings settings)
         {
             Lo.Wl().Wl($"Current folder is {settings.WorkingFolder}")
                 .W("Input new folder:");

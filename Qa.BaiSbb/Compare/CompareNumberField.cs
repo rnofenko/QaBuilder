@@ -1,9 +1,8 @@
-using System;
 using Qa.Core.Structure;
 
 namespace Qa.BaiSbb.Compare
 {
-    public class CompareNumberField
+    public class CompareNumberField : CompareNumber
     {
         private readonly FieldDescription _description;
 
@@ -13,35 +12,10 @@ namespace Qa.BaiSbb.Compare
 
         public string Title => _description.Title ?? _description.Name;
 
-        public double CurrentSum { get; set; }
-
-        public double PreviousSum { get; set; }
-
-        public double Change { get; set; }
-
         public CompareNumberField(RawReportField current, RawReportField previous)
+            :base(current.Sum, previous?.Sum)
         {
             _description = current.Description;
-            CurrentSum = current.Sum;
-            if (previous != null)
-            {
-                PreviousSum = previous.Sum;
-                if (Math.Abs(PreviousSum) > 0.0001d || Math.Abs(CurrentSum) > 0.0001d)
-                {
-                    if (Math.Abs(PreviousSum) < 0.0001d)
-                    {
-                        Change = 1;
-                    }
-                    else if (Math.Abs(CurrentSum) < 0.0001d)
-                    {
-                        Change = -1;
-                    }
-                    else
-                    {
-                        Change = Math.Round(CurrentSum/PreviousSum - 1, 4);
-                    }
-                }
-            }
         }
     }
 }

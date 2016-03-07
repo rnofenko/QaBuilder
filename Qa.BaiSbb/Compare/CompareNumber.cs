@@ -1,23 +1,23 @@
-using System;
+using Qa.Core.Calculations;
 
 namespace Qa.BaiSbb.Compare
 {
     public class CompareNumber
     {
-        public CompareNumber(int current, int? previous)
+        public CompareNumber(double current, double? previous)
         {
             Current = current;
             if (previous != null)
             {
                 Previous = previous.Value;
-                Increase = Math.Round(current * 1.0/Previous*100 - 100);
+                Change = Calculator.ChangeInPercent(current, Previous);
             }
         }
 
-        public int Previous { get; set; }
+        public double Previous { get; set; }
 
-        public int Current { get; set; }
+        public double Current { get; set; }
 
-        public double Increase { get; set; }
+        public double Change { get; set; }
     }
 }

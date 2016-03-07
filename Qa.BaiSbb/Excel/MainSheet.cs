@@ -42,7 +42,7 @@ namespace Qa.BaiSbb.Excel
                 .Down()
                 .PrintDown(first.Fields.Select(x => x.Title))
                 .Right()
-                .PrintDown(first.Fields.Select(x => new TypedValue(x.CurrentSum, x.Type)))
+                .PrintDown(first.Fields.Select(x => new TypedValue(x.Current, x.Type)))
                 .Down(fieldsCount)
                 .DrawBorder(ExcelBorderStyle.Thick)
                 .Right();
@@ -55,10 +55,9 @@ namespace Qa.BaiSbb.Excel
                     .Down()
                     .PrintAndCenter("Values", "Change").BackgroundColor(QaColor.HeaderBackground, 2)
                     .Down()
-                    .Print(report.RowsCount.Current,
-                            new TypedValue(report.RowsCount.Current * 1.0 / report.RowsCount.Previous - 1, DType.Percent))
+                    .Print(report.RowsCount.Current, new TypedValue(report.RowsCount.Change, DType.Percent))
                     .Down()
-                    .PrintDown(report.Fields.Select(x => new TypedValue(x.CurrentSum, x.Type)))
+                    .PrintDown(report.Fields.Select(x => new TypedValue(x.Current, x.Type)))
                     .Right()
                     .PrintDown(report.Fields.Select(x => new TypedValue(x.Change, DType.Percent)), StyleConditions.ChangePercent)
                     .Down(fieldsCount)

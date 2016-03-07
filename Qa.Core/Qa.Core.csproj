@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Calculations\Calculator.cs" />
     <Compile Include="Collectors\ValueParser.cs" />
     <Compile Include="Combines\CombinePromt.cs" />
     <Compile Include="Combines\CombineSettings.cs" />
