@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Qa.Core", "Qa.Core\Qa.Core.csproj", "{4DE5C331-B873-423D-80DD-8C946E41A538}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{4DE5C331-B873-423D-80DD-8C946E41A538}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Qa.Bai.Dpb", "Qa.Bai.Dpb\Qa.Bai.Dpb.csproj", "{95C4AD83-9C30-4BE8-BC1C-EB8CD62A786D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bai.Benchmark.Dp", "Bai.Benchmark.Dp\Bai.Benchmark.Dp.csproj", "{95C4AD83-9C30-4BE8-BC1C-EB8CD62A786D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Qa.Bai.Sbb", "Qa.Bai.Sbb\Qa.Bai.Sbb.csproj", "{5E3EE950-A70F-4143-936F-F090E075323A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bai.Benchmark.Sb", "Bai.Benchmark.Sb\Bai.Benchmark.Sb.csproj", "{5E3EE950-A70F-4143-936F-F090E075323A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Qa.Bai.Sbp", "Qa.Bai.Sbp\Qa.Bai.Sbp.csproj", "{A18DFC80-F1DD-4541-AB2E-E2B4839E48B6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bai.Pulse.Sb", "Bai.Pulse.Sb\Bai.Pulse.Sb.csproj", "{A18DFC80-F1DD-4541-AB2E-E2B4839E48B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Qa.Bai.Sbpm", "Qa.Bai.Sbpm\Qa.Bai.Sbpm.csproj", "{F6A3DFCC-B03F-417B-AB06-F3423B97D0F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bai.Pulse.Sb.Monthly", "Bai.Pulse.Sb.Monthly\Bai.Pulse.Sb.Monthly.csproj", "{F6A3DFCC-B03F-417B-AB06-F3423B97D0F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Qa.Bai.Sbpw", "Qa.Bai.Sbpw\Qa.Bai.Sbpw.csproj", "{E569F354-3F15-402B-9090-BE1D21C4C920}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bai.Pulse.Sb.Weekly", "Bai.Pulse.Sb.Weekly\Bai.Pulse.Sb.Weekly.csproj", "{E569F354-3F15-402B-9090-BE1D21C4C920}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,0 +1,30 @@
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Qa.Core.Compare
+{
+    public class UniqueValueList
+    {
+        public List<UniqueValue> Values { get; set; }
+
+        public void Add(UniqueValue value)
+        {
+            Values.Add(value);
+        }
+
+        public UniqueValueList()
+        {
+            Values = new List<UniqueValue>();
+        }
+
+        public double GetCurrent(string key)
+        {
+            var value = Values.FirstOrDefault(x => x.Value == key);
+            if (value == null)
+            {
+                return 0;
+            }
+            return value.Count.Current;
+        }
+    }
+}
