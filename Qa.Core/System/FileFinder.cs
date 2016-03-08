@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace Qa.System
+namespace Qa.Core.System
 {
     public class FileFinder
     {
@@ -10,6 +10,7 @@ namespace Qa.System
 
         public List<string> Find(string folder, string mask)
         {
+
             return Directory.GetFiles(folder, mask)
                 .Where(x => !_exceptions.Contains(Path.GetExtension(x)))
                 .OrderBy(x => x)
