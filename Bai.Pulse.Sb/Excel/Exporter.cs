@@ -5,6 +5,7 @@ using System.Linq;
 using OfficeOpenXml;
 using Qa.Bai.Sbp.Compare;
 using Qa.Bai.Sbp.Excel;
+using Qa.Core.System;
 using Qa.Sbpm.Compare;
 
 namespace Qa.Bai.Pulse.Sb.Excel
@@ -14,10 +15,7 @@ namespace Qa.Bai.Pulse.Sb.Excel
         public void Export(List<ComparePacket> packets, CompareSettings settings)
         {
             var path = Path.Combine(settings.WorkingFolder, $"{packets.First().Strucure.Name}.xlsx");
-            if (File.Exists(path))
-            {
-                File.Delete(path);
-            }
+            new PoliteDeleter().Delete(path);
 
             var file = new FileInfo(path);
             using (var package = new ExcelPackage(file))

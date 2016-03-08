@@ -84,6 +84,7 @@
     <Compile Include="Structure\DType.cs" />
     <Compile Include="Structure\FieldDescription.cs" />
     <Compile Include="Structure\FieldLink.cs" />
+    <Compile Include="Structure\FileInformation.cs" />
     <Compile Include="Structure\FileStructure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Structure\RawReportField.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="System\FileFinder.cs" />
     <Compile Include="System\Lo.cs" />
     <Compile Include="System\Logger.cs" />
+    <Compile Include="System\PoliteDeleter.cs" />
     <Compile Include="Transforms\ReportTransformer.cs" />
   </ItemGroup>
   <ItemGroup>

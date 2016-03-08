@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace Qa.System
+namespace Qa.Core.System
 {
     public class FileFinder
     {

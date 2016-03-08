@@ -3,10 +3,8 @@ using Qa.Bai.Benchmark.Sb.Collectors;
 using Qa.Bai.Benchmark.Sb.Excel;
 using Qa.Bai.Sbb.Collectors;
 using Qa.Bai.Sbb.Compare;
-using Qa.Bai.Sbb.Excel;
 using Qa.Core.Structure;
 using Qa.Core.System;
-using Qa.System;
 
 namespace Qa.Bai.Benchmark.Sb.Compare
 {

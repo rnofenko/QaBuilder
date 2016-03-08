@@ -1,6 +1,6 @@
 using Qa.Core.Compare;
 
-namespace Qa.Bai.Benchmark.Sb.Compare
+namespace Qa.Core.Structure
 {
     public class FileInformation
     {
