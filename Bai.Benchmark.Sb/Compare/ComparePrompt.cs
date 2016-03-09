@@ -1,8 +1,6 @@
 ﻿using System;
 using Qa.Bai.Benchmark.Sb.Collectors;
 using Qa.Bai.Benchmark.Sb.Excel;
-using Qa.Bai.Sbb.Collectors;
-using Qa.Bai.Sbb.Compare;
 using Qa.Core.Structure;
 using Qa.Core.System;
 

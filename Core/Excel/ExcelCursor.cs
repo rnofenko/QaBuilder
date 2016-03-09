@@ -13,13 +13,20 @@ namespace Qa.Core.Excel
         public ExcelWorksheet Sheet { get; }
 
         private Pos _pos;
-        private Pos? _topLeftCorner;
+        private readonly Queue<Pos> _topLeftCorners;
+        private readonly HeaderStyle _headerStyle;
         public Pos Pos => _pos;
 
         public ExcelCursor(ExcelWorksheet sheet)
         {
             Sheet = sheet;
+            _headerStyle = new HeaderStyle
+            {
+                BackgroundColor = QaColor.HeaderBackground,
+                HorizontalAlignment = ExcelHorizontalAlignment.Center
+            };
             _pos = new Pos();
+            _topLeftCorners = new Queue<Pos>();
         }
 
         public ExcelCursor Row(int rowPosition)
@@ -40,7 +47,7 @@ namespace Qa.Core.Excel
 
         public ExcelCursor TopLeftBorderCorner()
         {
-            _topLeftCorner = _pos;
+            _topLeftCorners.Enqueue(_pos);
             return this;
         }
 
@@ -53,6 +60,11 @@ namespace Qa.Core.Excel
                 pos.Column++;
             }
             return this;
+        }
+
+        public ExcelCursor Print(IEnumerable<string> values)
+        {
+            return Print(values.ToArray());
         }
 
         public ExcelCursor Print(IEnumerable<double> values)
@@ -77,13 +89,15 @@ namespace Qa.Core.Excel
             return this;
         }
 
-        public ExcelCursor PrintAndCenter(params string[] values)
+        public ExcelCursor Header(params string[] values)
         {
             for (var i = 0; i < values.Length; i++)
             {
                 var range = Sheet.Cells[Pos.Row, _pos.Column + i];
                 range.Value = values[i];
-                range.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                range.Style.HorizontalAlignment = _headerStyle.HorizontalAlignment;
+                range.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                range.Style.Fill.BackgroundColor.SetColor(_headerStyle.BackgroundColor);
             }
             return this;
         }
@@ -285,29 +299,42 @@ namespace Qa.Core.Excel
 
         public ExcelCursor DrawBorder(ExcelBorderStyle style = ExcelBorderStyle.Thin)
         {
-            var topLeft = _topLeftCorner ?? _pos;
+            var topLeft = _pos;
+            if (_topLeftCorners.Any())
+            {
+                topLeft = _topLeftCorners.Dequeue();
+            }
+            
+            return DrawBorder(topLeft, style);
+        }
 
-            var pos = new Pos {Column = topLeft.Column};//left
-            for (pos.Row = topLeft.Row; pos.Row <= _pos.Row; pos.Row++)
+        public ExcelCursor DrawBorder(Pos topLeft, ExcelBorderStyle style = ExcelBorderStyle.Thin)
+        {
+            return DrawBorder(topLeft, _pos, style);
+        }
+
+        public ExcelCursor DrawBorder(Pos topLeft, Pos bottomRight, ExcelBorderStyle style = ExcelBorderStyle.Thin)
+        {
+            var pos = new Pos { Column = topLeft.Column };//left
+            for (pos.Row = topLeft.Row; pos.Row <= bottomRight.Row; pos.Row++)
             {
                 getCell(pos).Style.Border.Left.Style = style;
             }
-            pos.Column = _pos.Column;//right
-            for (pos.Row = topLeft.Row; pos.Row <= _pos.Row; pos.Row++)
+            pos.Column = bottomRight.Column;//right
+            for (pos.Row = topLeft.Row; pos.Row <= bottomRight.Row; pos.Row++)
             {
                 getCell(pos).Style.Border.Right.Style = style;
             }
             pos.Row = topLeft.Row;//top
-            for (pos.Column = topLeft.Column; pos.Column <= _pos.Column; pos.Column++)
+            for (pos.Column = topLeft.Column; pos.Column <= bottomRight.Column; pos.Column++)
             {
                 getCell(pos).Style.Border.Top.Style = style;
             }
-            pos.Row = _pos.Row;//bottom
-            for (pos.Column = topLeft.Column; pos.Column <= _pos.Column; pos.Column++)
+            pos.Row = bottomRight.Row;//bottom
+            for (pos.Column = topLeft.Column; pos.Column <= bottomRight.Column; pos.Column++)
             {
                 getCell(pos).Style.Border.Bottom.Style = style;
             }
-            _topLeftCorner = null;
             return this;
         }
 
@@ -323,6 +350,11 @@ namespace Qa.Core.Excel
             style.Fill.PatternType = ExcelFillStyle.Solid;
             style.Fill.BackgroundColor.SetColor(color);
             return this;
+        }
+
+        public void DefineHeader(HeaderStyle style)
+        {
+            throw new NotImplementedException();
         }
     }
 }

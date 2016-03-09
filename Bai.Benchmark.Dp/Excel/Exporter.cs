@@ -3,8 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using OfficeOpenXml;
-using Qa.Bai.Dpb.Compare;
-using Qa.Bai.Dpb.Excel;
+using Qa.Bai.Benchmark.Dp.Compare;
 using Qa.Core.System;
 
 namespace Qa.Bai.Benchmark.Dp.Excel

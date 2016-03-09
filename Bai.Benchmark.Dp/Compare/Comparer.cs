@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Qa.Bai.Dpb.Collectors;
-using Qa.Bai.Dpb.Compare;
+using Qa.Bai.Benchmark.Dp.Collectors;
 using Qa.Core.Compare;
 using Qa.Core.Structure;
 

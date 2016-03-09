@@ -63,6 +63,7 @@
     <Compile Include="Compare\UniqueValue.cs" />
     <Compile Include="Compare\UniqueValueList.cs" />
     <Compile Include="Excel\ExcelCursor.cs" />
+    <Compile Include="Excel\HeaderStyle.cs" />
     <Compile Include="Excel\Pos.cs" />
     <Compile Include="Excel\QaColor.cs" />
     <Compile Include="Excel\StyleConditionArgs.cs" />

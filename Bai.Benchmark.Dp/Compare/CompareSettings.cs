@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Qa.Core.Structure;
 
-namespace Qa.Bai.Dpb.Compare
+namespace Qa.Bai.Benchmark.Dp.Compare
 {
     public class CompareSettings
     {

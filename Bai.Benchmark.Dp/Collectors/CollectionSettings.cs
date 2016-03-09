@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Qa.Core.Structure;
 
-namespace Qa.Bai.Dpb.Collectors
+namespace Qa.Bai.Benchmark.Dp.Collectors
 {
     public class CollectionSettings
     {

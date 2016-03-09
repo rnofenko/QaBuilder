@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
-using Qa.Bai.Benchmark.Dp.Excel;
-using Qa.Bai.Dpb.Compare;
+using Qa.Bai.Benchmark.Dp.Compare;
 using Qa.Core;
 using Qa.Core.Excel;
 
-namespace Qa.Bai.Dpb.Excel
+namespace Qa.Bai.Benchmark.Dp.Excel
 {
     public class MainSheet
     {
@@ -34,9 +33,9 @@ namespace Qa.Bai.Dpb.Excel
 
             cursor
                 .TopLeftBorderCorner()
-                .PrintAndCenter("", formatDate(first.FileName)).BackgroundColor(QaColor.HeaderBackground, 2)
+                .Header("", formatDate(first.FileName))
                 .Down()
-                .PrintAndCenter("", "Values").BackgroundColor(QaColor.HeaderBackground, 2)
+                .Header("", "Values")
                 .Down()
                 .PrintDown(first.Fields.Select(x => x.Title))
                 .Right()
@@ -49,9 +48,9 @@ namespace Qa.Bai.Dpb.Excel
             {
                 cursor.Row(initRow)
                     .TopLeftBorderCorner()
-                    .Print(formatDate(report.FileName)).Merge(2).BackgroundColor(QaColor.HeaderBackground, 2)
+                    .Header(formatDate(report.FileName)).Merge(2)
                     .Down()
-                    .PrintAndCenter("Values", "Change").BackgroundColor(QaColor.HeaderBackground, 2)
+                    .Header("Values", "Change")
                     .Down()
                     .PrintDown(report.Fields.Select(x => x.GetCurrent()))
                     .Right()

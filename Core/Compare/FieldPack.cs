@@ -22,7 +22,9 @@ namespace Qa.Core.Compare
         public List<CompareNumber> Numbers { get; set; }
 
         public bool IsNumber => Type == DType.Double || Type == DType.Int || Type == DType.Money || Type == DType.Percent;
-        
+
+        public string FileName { get; set; }
+
         public FieldPack(FieldDescription filDescription)
         {
             _description = filDescription;

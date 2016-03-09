@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Qa.Bai.Dpb.Collectors;
 using Qa.Core;
 using Qa.Core.Collectors;
 using Qa.Core.Structure;

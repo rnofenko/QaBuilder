@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using OfficeOpenXml;
 using Qa.Bai.Benchmark.Sb.Compare;
-using Qa.Bai.Sbb.Compare;
+using Qa.Core.System;
 
 namespace Qa.Bai.Benchmark.Sb.Excel
 {
@@ -13,11 +13,8 @@ namespace Qa.Bai.Benchmark.Sb.Excel
         public void Export(List<ComparePacket> packets, CompareSettings settings)
         {
             var path = Path.Combine(settings.WorkingFolder, $"{packets.First().Structure.Name}.xlsx");
-            if (File.Exists(path))
-            {
-                File.Delete(path);
-            }
-
+            new PoliteDeleter().Delete(path);
+            
             var file = new FileInfo(path);
             using (var package = new ExcelPackage(file))
             {

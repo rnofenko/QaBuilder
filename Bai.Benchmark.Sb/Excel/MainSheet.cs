@@ -3,7 +3,6 @@ using System.Linq;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using Qa.Bai.Benchmark.Sb.Compare;
-using Qa.Bai.Sbb.Excel;
 using Qa.Core;
 using Qa.Core.Excel;
 using Qa.Core.Structure;
@@ -35,11 +34,11 @@ namespace Qa.Bai.Benchmark.Sb.Excel
             
             cursor
                 .TopLeftBorderCorner()
-                .PrintAndCenter("", formatDate(first.FileName)).BackgroundColor(QaColor.HeaderBackground, 2)
+                .Header("", formatDate(first.FileName))
                 .Down()
-                .PrintAndCenter("", "Values").BackgroundColor(QaColor.HeaderBackground, 2)
+                .Header("", "Values")
                 .Down()
-                .Print("Total Records", packet.Reports.First().RowsCount.Current)
+                .Print("Total Records", new TypedValue(packet.Reports.First().RowsCount.Current, DType.Int))
                 .Down()
                 .PrintDown(first.Numbers.Select(x => x.Title))
                 .Right()
@@ -52,9 +51,9 @@ namespace Qa.Bai.Benchmark.Sb.Excel
             {
                 cursor.Row(initRow)
                     .TopLeftBorderCorner()
-                    .Print(formatDate(report.FileName)).Merge(2).BackgroundColor(QaColor.HeaderBackground, 2)
+                    .Header(formatDate(report.FileName)).Merge(2)
                     .Down()
-                    .PrintAndCenter("Values", "Change").BackgroundColor(QaColor.HeaderBackground, 2)
+                    .Header("Values", "Change")
                     .Down()
                     .Print(report.RowsCount.Current, new TypedValue(report.RowsCount.Change, DType.Percent))
                     .Down()
@@ -66,15 +65,50 @@ namespace Qa.Bai.Benchmark.Sb.Excel
                     .Right();
             }
 
-            foreach (var field in packet.UniqueCounts)
+            if (packet.UniqueCounts.Any())
             {
-                cursor.Down()
-                    .Print(field.Name).BackgroundColor(QaColor.HeaderBackground)
+                cursor
+                    .Column(initColumn)
+                    .Header("")
+                    .TopLeftBorderCorner()
                     .Right()
-                    .Print(field.Numbers.Select(x => x.Current))
-                    .Left();
-            }
+                    .Header(packet.Reports.Select(x => formatDate(x.FileName)).First())
+                    .Right();
 
+                foreach (var report in packet.Reports.Skip(1))
+                {
+                    cursor
+                        .Header(formatDate(report.FileName))
+                        .TopLeftBorderCorner()
+                        .Merge(2)
+                        .Right(2);
+                }
+
+                foreach (var field in packet.UniqueCounts)
+                {
+                    cursor
+                        .Column(initColumn)
+                        .Down()
+                        .Print(field.Title)
+                        .Right()
+                        .Print(field.Numbers.First().Current);
+
+                    foreach (var compareNumber in field.Numbers.Skip(1))
+                    {
+                        cursor
+                            .Right()
+                            .Integer(compareNumber.Current)
+                            .Right()
+                            .Percent(compareNumber.Change);
+
+                        if (field == packet.UniqueCounts.Last())
+                        {
+                            cursor.DrawBorder(ExcelBorderStyle.Thick);
+                        }
+                    }
+                }
+            }
+            
             foreach (var field in packet.UniqueFields)
             {
                 var set = field.UniqueValueSet;

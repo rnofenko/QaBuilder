@@ -6,9 +6,8 @@
     "fields": [
       {
         "name": "ENTERPRISE_ID",
-        "title": "Interprise ID",
-        "type": "String",
-        "selectUniqueValues": true
+        "title": "Enterprise ID",
+        "type": "String"
       },
       {
         "name": "BUSINESS_ID",
@@ -197,8 +196,7 @@
       },
       {
         "name": "F_MOBILE_BANKING",
-        "title": "Mobile Banking",
-        "selectUniqueValues": true
+        "title": "Mobile Banking"
       },
       {
         "name": "F_REMOTE_DEPOSIT_CAPTURE",
