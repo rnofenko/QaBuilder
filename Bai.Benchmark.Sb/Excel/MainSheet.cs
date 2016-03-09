@@ -68,6 +68,7 @@ namespace Qa.Bai.Benchmark.Sb.Excel
             if (packet.UniqueCounts.Any())
             {
                 cursor
+                    .Down(3)
                     .Column(initColumn)
                     .Header("")
                     .TopLeftBorderCorner()
@@ -108,21 +109,67 @@ namespace Qa.Bai.Benchmark.Sb.Excel
                     }
                 }
             }
-            
-            foreach (var field in packet.UniqueFields)
-            {
-                var set = field.UniqueValueSet;
-                cursor.Down(3).Column(initColumn)
-                    .Print(field.Name).BackgroundColor(QaColor.HeaderBackground)
-                    .Down();
 
-                foreach (var key in set.Keys)
+            if (packet.UniqueFields.Any())
+            {
+                foreach (var field in packet.UniqueFields)
                 {
-                    cursor.Print(key)
-                        .Right()
-                        .Print(set.Lists.Select(x => x.GetCurrent(key)))
-                        .Left()
+                    var set = field.UniqueValueSet;
+                    cursor.Down(3).Column(initColumn)
+                        .Header(field.Title)
+                        .TopLeftBorderCorner()
                         .Down();
+
+                    var startRow = cursor.Pos.Row;
+
+                    foreach (var key in set.Keys)
+                    {
+                        cursor
+                            .Print(key)
+                            .Right()
+                            .Integer(set.Lists[0].GetCurrent(key))
+                            .Left();
+                        if (key == set.Keys.Last())
+                        {
+                            cursor
+                                .DrawBorder(ExcelBorderStyle.Thick);
+                        }
+                        cursor.Down();
+                    }
+
+                    cursor
+                        .Row(startRow)
+                        .Column(initColumn)
+                        .Right();
+
+                    foreach (var key in set.Keys)
+                    {
+                        for (var i = 1; i < set.Lists.Count; i++)
+                        {
+                            cursor
+                                .Right()
+                                .TopLeftBorderCorner()
+                                .Integer(set.Lists[i].GetCurrent(key))
+                                .Right()
+                                .Percent(set.Lists[i].GetChange(key));
+
+                        }
+
+                        cursor
+                            .Left(set.Lists.Count + 2);
+
+                        if (key == set.Keys.Last())
+                        {
+                            cursor
+                                .DrawBorder(ExcelBorderStyle.Thick);
+                        }
+
+                        cursor
+                            .Down();
+
+                        
+                    }
+
                 }
             }
         }
