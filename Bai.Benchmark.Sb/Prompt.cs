@@ -1,18 +1,18 @@
 ﻿using System;
 using System.IO;
-using Qa.Bai.Benchmark.Dp.Compare;
+using Qa.Bai.Benchmark.Sb.Compare;
 using Qa.Core.Combines;
 using Qa.Core.Format;
 using Qa.Core.Structure;
 using Qa.Core.System;
 
-namespace Qa.Bai.Benchmark.Dp
+namespace Qa.Bai.Benchmark.Sb
 {
-    class Program
+    class Prompt
     {
         private static SettingsProvider _settingsProvider;
 
-        static void Main(string[] args)
+        public void Run()
         {
             _settingsProvider = new SettingsProvider();
             var settings = _settingsProvider.Load();
@@ -61,7 +61,7 @@ namespace Qa.Bai.Benchmark.Dp
             }
             else
             {
-                Lo.Wl("Inputted folder doesn't exist.");
+                Lo.Wl("Entered folder doesn't exist.");
             }
         }
     }
