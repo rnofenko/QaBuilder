@@ -61,7 +61,7 @@ namespace Qa.Bai.Pulse.Sb
             }
             else
             {
-                Lo.Wl("Inputted folder doesn't exist.");
+                Lo.Wl("Entered folder doesn't exist.");
             }
         }
     }

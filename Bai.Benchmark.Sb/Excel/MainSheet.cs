@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 using OfficeOpenXml;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Text;
 using OfficeOpenXml.Style;
 using Qa.Bai.Benchmark.Sb.Compare;
 using Qa.Core;
@@ -65,24 +67,33 @@ namespace Qa.Bai.Benchmark.Sb.Excel
                     .Right();
             }
 
+            cursor.Sheet.View.FreezePanes(7, packet.Reports.Count * 2 + 3);
+
             if (packet.UniqueCounts.Any())
             {
                 cursor
                     .Down(3)
                     .Column(initColumn)
-                    .Header("")
                     .TopLeftBorderCorner()
+                    .Header("")
                     .Right()
                     .Header(packet.Reports.Select(x => formatDate(x.FileName)).First())
+                    .Down()
+                    .Left()
+                    .Header("", "Values")
                     .Right();
 
                 foreach (var report in packet.Reports.Skip(1))
                 {
                     cursor
+                        .Up()
+                        .Right()
                         .Header(formatDate(report.FileName))
-                        .TopLeftBorderCorner()
                         .Merge(2)
-                        .Right(2);
+                        .TopLeftBorderCorner()
+                        .Down()
+                        .Header("Values", "Change")
+                        .Right();
                 }
 
                 foreach (var field in packet.UniqueCounts)
@@ -92,7 +103,7 @@ namespace Qa.Bai.Benchmark.Sb.Excel
                         .Down()
                         .Print(field.Title)
                         .Right()
-                        .Print(field.Numbers.First().Current);
+                        .Integer(field.Numbers.First().Current);
 
                     foreach (var compareNumber in field.Numbers.Skip(1))
                     {
@@ -100,12 +111,12 @@ namespace Qa.Bai.Benchmark.Sb.Excel
                             .Right()
                             .Integer(compareNumber.Current)
                             .Right()
-                            .Percent(compareNumber.Change);
+                            .Percent(compareNumber.Change, StyleConditions.ChangePercent);
+                    }
 
-                        if (field == packet.UniqueCounts.Last())
-                        {
-                            cursor.DrawBorder(ExcelBorderStyle.Thick);
-                        }
+                    if (field == packet.UniqueCounts.Last())
+                    {
+                        cursor.DrawBorder(ExcelBorderStyle.Thick);
                     }
                 }
             }
@@ -115,9 +126,10 @@ namespace Qa.Bai.Benchmark.Sb.Excel
                 foreach (var field in packet.UniqueFields)
                 {
                     var set = field.UniqueValueSet;
-                    cursor.Down(3).Column(initColumn)
+                    cursor.Down(3)
+                        .Column(initColumn)
                         .Header(field.Title)
-                        .TopLeftBorderCorner()
+                        //.TopLeftBorderCorner()
                         .Down();
 
                     var startRow = cursor.Pos.Row;
@@ -129,14 +141,16 @@ namespace Qa.Bai.Benchmark.Sb.Excel
                             .Right()
                             .Integer(set.Lists[0].GetCurrent(key))
                             .Left();
-                        if (key == set.Keys.Last())
-                        {
-                            cursor
-                                .DrawBorder(ExcelBorderStyle.Thick);
-                        }
+                        //if (key == set.Keys.Last())
+                        //{
+                        //    cursor
+                        //        .DrawBorder(ExcelBorderStyle.Thick);
+                        //}
                         cursor.Down();
                     }
 
+                    //cursor
+                    //    .DrawBorder(ExcelBorderStyle.Thick);
                     cursor
                         .Row(startRow)
                         .Column(initColumn)
@@ -148,26 +162,23 @@ namespace Qa.Bai.Benchmark.Sb.Excel
                         {
                             cursor
                                 .Right()
-                                .TopLeftBorderCorner()
+                                //.TopLeftBorderCorner()
                                 .Integer(set.Lists[i].GetCurrent(key))
                                 .Right()
-                                .Percent(set.Lists[i].GetChange(key));
-
+                                .Percent(set.Lists[i].GetChange(key), StyleConditions.ChangePercent);
                         }
 
                         cursor
                             .Left(set.Lists.Count + 2);
+                            
 
-                        if (key == set.Keys.Last())
-                        {
-                            cursor
-                                .DrawBorder(ExcelBorderStyle.Thick);
-                        }
+                        //if (key == set.Keys.Last())
+                        //{
+                        //    cursor
+                        //        .DrawBorder(ExcelBorderStyle.Thick);
+                        //}
 
-                        cursor
-                            .Down();
-
-                        
+                        cursor.Down();
                     }
 
                 }

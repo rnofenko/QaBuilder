@@ -200,16 +200,20 @@ namespace Qa.Core.Excel
             return this;
         }
 
-        public ExcelCursor Percent(double value)
+        public ExcelCursor Percent(double value, Action<StyleConditionArgs> styleCondition = null)
         {
-            return Percent(value, _pos);
+            return Percent(value, _pos, styleCondition);
         }
 
-        public ExcelCursor Percent(double value, Pos pos)
+        public ExcelCursor Percent(double value, Pos pos, Action<StyleConditionArgs> styleCondition = null)
         {
             var cell = getCell(pos);
             cell.Value = value;
             cell.Style.Numberformat.Format = "#,##0%;-#,##0%";
+            if (styleCondition != null)
+            {
+                styleCondition(new StyleConditionArgs { Pos = pos, Amount = value, Type = DType.Percent, Cursor = this });
+            }
             return this;
         }
 
@@ -283,6 +287,12 @@ namespace Qa.Core.Excel
         public ExcelCursor Down(int count = 1)
         {
             _pos.Row += count;
+            return this;
+        }
+
+        public ExcelCursor Up(int count = 1)
+        {
+            _pos.Row -= count;
             return this;
         }
 
