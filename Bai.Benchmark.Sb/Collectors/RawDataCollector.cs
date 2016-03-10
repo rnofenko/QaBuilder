@@ -32,7 +32,7 @@ namespace Qa.Bai.Benchmark.Sb.Collectors
 
         private RawReport collectReport(string filepath, CollectionSettings settings)
         {
-            Lo.Wl($"File: {filepath}");
+            Lo.Wl($"File: {Path.GetFileNameWithoutExtension(filepath)}");
             var detected = _structureDetector.Detect(filepath,
                 new StructureDetectSettings { FileStructures = settings.FileStructures });
 

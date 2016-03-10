@@ -32,6 +32,7 @@ namespace Qa.Bai.Benchmark.Dp.Collectors
 
         private RawReport collectReport(string filepath, CollectionSettings settings)
         {
+            Lo.Wl($"File: {Path.GetFileNameWithoutExtension(filepath)}");
             var detected = _structureDetector.Detect(filepath,
                 new StructureDetectSettings { FileStructures = settings.FileStructures });
 
@@ -62,7 +63,7 @@ namespace Qa.Bai.Benchmark.Dp.Collectors
                     processLine(line, report);
                     rows++;
                     
-                    if ((rows % 50000) == 0)
+                    if ((rows % 500000) == 0)
                     {
                         Lo.Wl($"Processed {rows}");
                     }

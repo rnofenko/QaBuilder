@@ -78,19 +78,19 @@
         "name": "F_MANAGED_ACCOUNT",
         "title": "Managed Account",
         "type": "String",
-        "countUniqueValues": true
+        "selectUniqueValues": true
       },
       {
         "name": "F_EMPLOYEE",
         "title": "Employee",
         "type": "String",
-        "countUniqueValues": true
+        "selectUniqueValues": true
       },
       {
         "name": "ORIGINATION_CODE",
         "title": "Origination Code",
         "type": "String",
-        "countUniqueValues": true
+        "countUniqueValues": false
       },
       {
         "name": "STATUS_CODE1",
@@ -216,7 +216,7 @@
         "name": "ORIGINATION_CHANNEL",
         "title": "Origination Channel",
         "type": "String",
-        "selectUniqueValues": true
+        "selectUniqueValues": false
       },
       {
         "name": "PSYCLE_NE_CODE",
@@ -226,25 +226,25 @@
         "name": "F_MOBILE_BANKING",
         "title": "Mobile Banking",
         "type": "String",
-        "selectUniqueValues": true
+        "selectUniqueValues": false
       },
       {
         "name": "F_REMOTE_DEPOSIT_CAPTURE",
         "title": "Remote Deposit Capture",
         "type": "String",
-        "selectUniqueValues": true
+        "selectUniqueValues": false
       },
       {
         "name": "F_PERSON-TO-PERSON_PAYMENT",
         "title": "Person-to-person Payment",
         "type": "String",
-        "selectUniqueValues": true
+        "selectUniqueValues": false
       },
       {
         "name": "F_PRIMARY_CHECKING",
         "title": "Primary Checking",
         "type": "String",
-        "selectUniqueValues": true
+        "selectUniqueValues": false
       },
       {
         "name": "NUMBER_OF_TIMES_CD_RENEWED",

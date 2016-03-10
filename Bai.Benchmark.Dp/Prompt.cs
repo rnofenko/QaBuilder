@@ -8,7 +8,7 @@ using Qa.Core.System;
 
 namespace Qa.Bai.Benchmark.Dp
 {
-    class Prompt
+    public class Prompt
     {
         private static SettingsProvider _settingsProvider;
 

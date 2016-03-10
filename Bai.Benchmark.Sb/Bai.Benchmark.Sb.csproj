@@ -60,6 +60,7 @@
     <Compile Include="Excel\Exporter.cs" />
     <Compile Include="Excel\Header.cs" />
     <Compile Include="Excel\MainSheet.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Prompt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
