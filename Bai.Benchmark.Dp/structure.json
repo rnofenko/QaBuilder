@@ -6,11 +6,15 @@
     "fields": [
       {
         "name": "HOUSEHOLD_ID",
-        "title": "Household ID"
+        "title": "Household ID",
+        "type": "String",
+        "countUniqueValues":  true
       },
       {
         "name": "CUSTOMER_ID",
-        "title": "Customer ID"
+        "title": "Customer ID",
+        "type": "String",
+        "countUniqueValues": true
       },
       {
         "name": "ACCOUNT_ID",
@@ -26,7 +30,9 @@
       },
       {
         "name": "PRODUCT_CODE",
-        "title": "Product Code"
+        "title": "Product Code",
+        "type": "String",
+        "selectUniqueValues": true
       },
       {
         "name": "PRODUCT_SUB_CODE",
@@ -38,7 +44,9 @@
       },
       {
         "name": "PRODUCT_TYPE",
-        "title": "Product Type"
+        "title": "Product Type",
+        "type": "String",
+        "selectUniqueValues": true
       },
       {
         "name": "MONTH_END_BALANCE",
@@ -56,23 +64,33 @@
       },
       {
         "name": "BRANCH_ID",
-        "title": "Branch ID"
+        "title": "Branch ID",
+        "type": "String",
+        "countUniqueValues": true
       },
       {
         "name": "HOME_BRANCH_ID",
-        "title": "Home Branch ID"
+        "title": "Home Branch ID",
+        "type": "String",
+        "countUniqueValues": true
       },
       {
         "name": "F_MANAGED_ACCOUNT",
-        "title": "Managed Account"
+        "title": "Managed Account",
+        "type": "String",
+        "countUniqueValues": true
       },
       {
         "name": "F_EMPLOYEE",
-        "title": "Employee"
+        "title": "Employee",
+        "type": "String",
+        "countUniqueValues": true
       },
       {
         "name": "ORIGINATION_CODE",
-        "title": "Origination Code"
+        "title": "Origination Code",
+        "type": "String",
+        "countUniqueValues": true
       },
       {
         "name": "STATUS_CODE1",
@@ -98,23 +116,33 @@
       },
       {
         "name": "F_DEBIT_CARD",
-        "title": "Debit Card"
+        "title": "Debit Card",
+        "type": "String",
+        "selectUniqueValues": true
       },
       {
         "name": "F_ONLINE_BANKING",
-        "title": "Online Banking"
+        "title": "Online Banking",
+        "type": "String",
+        "selectUniqueValues": true
       },
       {
         "name": "F_ONLINE_BILLPAY",
-        "title": "Online Billpay"
+        "title": "Online Billpay",
+        "type": "String",
+        "selectUniqueValues": true
       },
       {
         "name": "F_DIRECT_DEPOSIT",
-        "title": "Direct Deposit"
+        "title": "Direct Deposit",
+        "type": "String",
+        "selectUniqueValues": true
       },
       {
         "name": "CD_TERM",
-        "title": "CD Term"
+        "title": "CD Term",
+        "type": "String",
+        "selectUniqueValues": true
       },
       {
         "name": "CD_MATURITY_DATE",
@@ -135,7 +163,9 @@
       },
       {
         "name": "CUSTOMER_AGE",
-        "title": "Customer Age"
+        "title": "Customer Age",
+        "type": "String",
+        "selectUniqueValues": true
       },
       {
         "name": "CUSTOMER_APPENDED_AGE",
@@ -143,15 +173,21 @@
       },
       {
         "name": "HOUSEHOLD_INCOME_TIER",
-        "title": "Household Income Tier"
+        "title": "Household Income Tier",
+        "type": "String",
+        "selectUniqueValues": true
       },
       {
         "name": "F_ACTIVE_CHEKING",
-        "title": "Active Checking"
+        "title": "Active Checking",
+        "type": "String",
+        "selectUniqueValues": true
       },
       {
         "name": "F_ACH_DIRECT_DEPOSIT",
-        "title": "ACH Direct Deposit"
+        "title": "ACH Direct Deposit",
+        "type": "String",
+        "selectUniqueValues": true
       },
       {
         "name": "F_ATM",
@@ -167,7 +203,9 @@
       },
       {
         "name": "F_FEE",
-        "title": "Fee"
+        "title": "Fee",
+        "type": "String",
+        "selectUniqueValues": true
       },
       {
         "name": "TOTAL_FEES",
@@ -176,7 +214,9 @@
       },
       {
         "name": "ORIGINATION_CHANNEL",
-        "title": "Origination Channel"
+        "title": "Origination Channel",
+        "type": "String",
+        "selectUniqueValues": true
       },
       {
         "name": "PSYCLE_NE_CODE",
@@ -184,19 +224,27 @@
       },
       {
         "name": "F_MOBILE_BANKING",
-        "title": "Mobile Banking"
+        "title": "Mobile Banking",
+        "type": "String",
+        "selectUniqueValues": true
       },
       {
         "name": "F_REMOTE_DEPOSIT_CAPTURE",
-        "title": "Remote Deposit Capture"
+        "title": "Remote Deposit Capture",
+        "type": "String",
+        "selectUniqueValues": true
       },
       {
         "name": "F_PERSON-TO-PERSON_PAYMENT",
-        "title": "Person-to-person Payment"
+        "title": "Person-to-person Payment",
+        "type": "String",
+        "selectUniqueValues": true
       },
       {
-        "name": "F_PRIMARY_CHEKING",
-        "title": "Primary Checking"
+        "name": "F_PRIMARY_CHECKING",
+        "title": "Primary Checking",
+        "type": "String",
+        "selectUniqueValues": true
       },
       {
         "name": "NUMBER_OF_TIMES_CD_RENEWED",

@@ -36,6 +36,7 @@
       {
         "name": "PRODUCT_TYPE",
         "title": "Product Type",
+        "type": "String",
         "selectUniqueValues": true
       },
       {
@@ -55,6 +56,7 @@
       {
         "name": "BRANCH_ID",
         "title": "Branch ID",
+        "type": "String",
         "countUniqueValues": true
       },
       {
@@ -88,26 +90,31 @@
       {
         "name": "F_DEBIT_CARD",
         "title": "Debit Card",
+        "type": "String",
         "selectUniqueValues": true
       },
       {
         "name": "F_ONLINE_BANKING",
         "title": "Online Banking",
+        "type": "String",
         "selectUniqueValues": true
       },
       {
         "name": "F_ONLINE_BILLPAY",
         "title": "Online Billpay",
+        "type": "String",
         "selectUniqueValues": true
       },
       {
         "name": "F_ACH_ACCOUNT",
         "title": "ACH Account",
+        "type": "String",
         "selectUniqueValues": true
       },
       {
         "name": "CD_TERM",
         "title": "CD Term",
+        "type": "String",
         "selectUniqueValues": true
       },
       {

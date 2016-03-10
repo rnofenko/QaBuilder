@@ -9,6 +9,13 @@ namespace Qa.Bai.Benchmark.Dp.Compare
 {
     public class Comparer
     {
+        private readonly UniqueValuesComparer _uniqueValuesComparer;
+
+        public Comparer()
+        {
+            _uniqueValuesComparer = new UniqueValuesComparer();
+        }
+
         public List<ComparePacket> Compare(List<RawReport> statistics)
         {
             var packets = statistics
@@ -22,47 +29,67 @@ namespace Qa.Bai.Benchmark.Dp.Compare
         {
             var reports = rawReports.OrderBy(x => x.Path).ToList();
             var first = reports.First();
-            var packet = new ComparePacket {Structure = first.Structure};
-            
+
+            var fieldPacks = new List<FieldPack>();
+            for (var i = 0; i < first.Fields.Count; i++)
+            {
+                var rawFields = reports.Select(x => x.Fields[i]).ToList();
+                fieldPacks.Add(getFieldPack(rawFields));
+            }
+            var fileInformations = compareFiles(reports);
+
+            return new ComparePacket(fileInformations, fieldPacks, first.Structure);
+        }
+
+        private List<FileInformation> compareFiles(IList<RawReport> rawReports)
+        {
             RawReport previous = null;
-            foreach (var report in reports)
+            var reports = new List<FileInformation>();
+            foreach (var current in rawReports)
             {
-                packet.Reports.Add(compare(report, previous));
-                previous = report;
+                reports.Add(new FileInformation
+                {
+                    FileName = Path.GetFileNameWithoutExtension(current.Path),
+                    RowsCount = new CompareNumber(current.RowsCount, previous?.RowsCount)
+                });
+                previous = current;
             }
-
-            return packet;
+            return reports;
         }
 
-        private CompareReport compare(RawReport current, RawReport previous)
+        private FieldPack getFieldPack(IList<RawReportField> rawFields)
         {
-            var fileName = Path.GetFileNameWithoutExtension(current.Path);
-            return compare(current, previous, fileName);
+            var field = rawFields.First().Description;
+            var pack = new FieldPack(field);
+
+            if (field.SelectUniqueValues)
+            {
+                pack.UniqueValueSet = _uniqueValuesComparer.Compare(rawFields);
+            }
+
+            if (field.CountUniqueValues)
+            {
+                pack.Numbers = _uniqueValuesComparer.CompareCounts(rawFields);
+            }
+
+            if (field.Type == DType.Double || field.Type == DType.Int || field.Type == DType.Money)
+            {
+                pack.Numbers = compareNumbers(rawFields);
+            }
+
+            return pack;
         }
 
-        private CompareReport compare(RawReport current, RawReport previous, string fileName)
+        private List<CompareNumber> compareNumbers(IList<RawReportField> rawFields)
         {
-            var result = new CompareReport
+            RawReportField previous = null;
+            var numbers = new List<CompareNumber>();
+            foreach (var current in rawFields)
             {
-                RowsCount = new CompareNumber(current.RowsCount, previous?.RowsCount),
-                FileName = fileName
-            };
-
-            for (var i = 0; i < current.Fields.Count; i++)
-            {
-                var fieldCurrent = current.Fields[i];
-                RawReportField fieldPrev = null;
-                if (previous != null)
-                {
-                    fieldPrev = previous.Fields[i];
-                }
-
-                if (fieldCurrent.Type == DType.Double || fieldCurrent.Type == DType.Int || fieldCurrent.Type == DType.Money)
-                {
-                    result.Fields.Add(new CompareField(fieldCurrent, fieldPrev));
-                }
+                numbers.Add(new CompareNumber(current.Sum, previous?.Sum));
+                previous = current;
             }
-            return result;
+            return numbers;
         }
     }
 }

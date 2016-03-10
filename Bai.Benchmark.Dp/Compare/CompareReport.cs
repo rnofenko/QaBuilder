@@ -7,13 +7,13 @@ namespace Qa.Bai.Benchmark.Dp.Compare
     {
         public CompareNumber RowsCount { get; set; }
 
-        public List<CompareField> Fields { get; set; }
+        public List<CompareField> Numbers { get; set; }
 
         public string FileName { get; set; }
 
         public CompareReport()
         {
-            Fields = new List<CompareField>();
+            Numbers = new List<CompareField>();
         }
     }
 }

@@ -45,6 +45,15 @@ namespace Qa.Core.Excel
             return this;
         }
 
+        public ExcelCursor MergeDown(int count)
+        {
+            var range = Sheet.Cells[Pos.Row, _pos.Column, Pos.Row + count - 1, _pos.Column];
+            range.Merge = true;
+            range.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            range.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+            return this;
+        }
+
         public ExcelCursor TopLeftBorderCorner()
         {
             _topLeftCorners.Enqueue(_pos);

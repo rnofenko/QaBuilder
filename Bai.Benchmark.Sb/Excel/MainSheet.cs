@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Linq;
-using System.Net;
 using OfficeOpenXml;
-using OfficeOpenXml.FormulaParsing.Excel.Functions.Text;
 using OfficeOpenXml.Style;
 using Qa.Bai.Benchmark.Sb.Compare;
 using Qa.Core;
@@ -67,8 +65,9 @@ namespace Qa.Bai.Benchmark.Sb.Excel
                     .Right();
             }
 
-            cursor.Sheet.View.FreezePanes(7, packet.Reports.Count * 2 + 3);
+            cursor.Sheet.View.FreezePanes(4, packet.Reports.Count * 2 + 2);
 
+            #region UniqueCounts
             if (packet.UniqueCounts.Any())
             {
                 cursor
@@ -112,80 +111,107 @@ namespace Qa.Bai.Benchmark.Sb.Excel
                             .Integer(compareNumber.Current)
                             .Right()
                             .Percent(compareNumber.Change, StyleConditions.ChangePercent);
-                    }
 
-                    if (field == packet.UniqueCounts.Last())
-                    {
-                        cursor.DrawBorder(ExcelBorderStyle.Thick);
+                        if (field == packet.UniqueCounts.Last())
+                        {
+                            cursor.DrawBorder(ExcelBorderStyle.Thick);
+                        }
                     }
                 }
-            }
 
+                cursor.DrawBorder(ExcelBorderStyle.Thick);
+            } 
+            #endregion
+
+            #region UniqueFields
             if (packet.UniqueFields.Any())
             {
                 foreach (var field in packet.UniqueFields)
                 {
                     var set = field.UniqueValueSet;
-                    cursor.Down(3)
+                    cursor.Down(2)
                         .Column(initColumn)
                         .Header(field.Title)
-                        //.TopLeftBorderCorner()
+                        .TopLeftBorderCorner()
+                        .MergeDown(2)
+                        .Right()
+                        .Header(packet.Reports.Select(x => formatDate(x.FileName)).First())
+                        .Down()
+                        .Header("Values")
+                        .Left()
                         .Down();
 
                     var startRow = cursor.Pos.Row;
 
-                    foreach (var key in set.Keys)
+                    foreach (var key in set.Keys.OrderBy(x => x, new NumericComparer()))
                     {
                         cursor
                             .Print(key)
                             .Right()
-                            .Integer(set.Lists[0].GetCurrent(key))
-                            .Left();
-                        //if (key == set.Keys.Last())
-                        //{
-                        //    cursor
-                        //        .DrawBorder(ExcelBorderStyle.Thick);
-                        //}
-                        cursor.Down();
+                            .Integer(set.Lists[0].GetCurrent(key));
+                            
+
+                        if (key == set.Keys.OrderBy(x => x, new NumericComparer()).Last())
+                        {
+                            cursor
+                                .DrawBorder(ExcelBorderStyle.Thick);
+                        }
+
+                        cursor.Left()
+                            .Down();
                     }
 
-                    //cursor
-                    //    .DrawBorder(ExcelBorderStyle.Thick);
+                    cursor
+                        .Row(startRow)
+                        .Column(initColumn)
+                        .Up()
+                        .Right();
+
+                    foreach (var report in packet.Reports.Skip(1))
+                    {
+                        cursor
+                            .Up()
+                            .Right()
+                            .TopLeftBorderCorner()
+                            .Header(formatDate(report.FileName))
+                            .Merge(2)
+                            .Down()
+                            .Header("Values", "Change")
+                            .Right();
+                    }
+
                     cursor
                         .Row(startRow)
                         .Column(initColumn)
                         .Right();
 
-                    foreach (var key in set.Keys)
+                    foreach (var key in set.Keys.OrderBy(x => x, new NumericComparer()))
                     {
                         for (var i = 1; i < set.Lists.Count; i++)
                         {
                             cursor
                                 .Right()
-                                //.TopLeftBorderCorner()
                                 .Integer(set.Lists[i].GetCurrent(key))
                                 .Right()
                                 .Percent(set.Lists[i].GetChange(key), StyleConditions.ChangePercent);
+
+
+                            if (key == set.Keys.OrderBy(x => x, new NumericComparer()).Last())
+                            {
+                                cursor
+                                    .DrawBorder(ExcelBorderStyle.Thick);
+                            }
                         }
-
                         cursor
-                            .Left(set.Lists.Count + 2);
-                            
-
-                        //if (key == set.Keys.Last())
-                        //{
-                        //    cursor
-                        //        .DrawBorder(ExcelBorderStyle.Thick);
-                        //}
-
-                        cursor.Down();
+                            .Left(set.Lists.Count + 2)
+                            .Down();
                     }
-
                 }
-            }
+            } 
+            #endregion
         }
         
-        private string formatDate(string fileName)
+        private static string formatDate(string fileName)
         {
             var parts = fileName.Split('.');
             var parsedDate = DateTime.Parse($"{parts[3].Substring(4, 2)}/{parts[3].Substring(6, 2)}/{parts[3].Substring(0,4)}");
