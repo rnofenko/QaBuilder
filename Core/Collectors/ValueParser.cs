@@ -33,15 +33,22 @@ namespace Qa.Core.Collectors
                     }
                 }
 
-                if (field.SelectUniqueValues || field.CountUniqueValues)
+                if (field.SelectUniqueValues)
                 {
-                    if (!field.UniqueValues.ContainsKey(value))
+                    if (!field.SelectedUniqueValues.ContainsKey(value))
                     {
-                        field.UniqueValues.Add(value, 1);
+                        field.SelectedUniqueValues.Add(value, 1);
                     }
                     else
                     {
-                        field.UniqueValues[value]++;
+                        field.SelectedUniqueValues[value]++;
+                    }
+                }
+                else if (field.CountUniqueValues)
+                {
+                    if (!field.CountedUniqueValues.Contains(value))
+                    {
+                        field.CountedUniqueValues.Add(value);
                     }
                 }
             }

@@ -10,7 +10,6 @@ namespace Qa.Core.System
 
         public List<string> Find(string folder, string mask)
         {
-
             return Directory.GetFiles(folder, mask)
                 .Where(x => !_exceptions.Contains(Path.GetExtension(x)))
                 .OrderBy(x => x)

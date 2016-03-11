@@ -9,19 +9,20 @@ namespace Qa.Core.Structure
         public DType Type => Description.Type;
 
         public bool SelectUniqueValues => Description.SelectUniqueValues;
+        public Dictionary<string, int> SelectedUniqueValues { get; set; }
 
         public bool CountUniqueValues => Description.CountUniqueValues;
+        public List<string> CountedUniqueValues { get; set; }
 
         public string Name => Description.Name;
 
         public double Sum { get; set; }
-
-        public Dictionary<string, int> UniqueValues { get; set; }
-
+        
         public RawReportField(FieldDescription description)
         {
             Description = description;
-            UniqueValues = new Dictionary<string, int>();
+            SelectedUniqueValues = new Dictionary<string, int>();
+            CountedUniqueValues = new List<string>();
         }
 
         public RawReportField(string name, string title, DType type)

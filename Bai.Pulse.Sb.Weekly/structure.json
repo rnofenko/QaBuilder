@@ -78,6 +78,9 @@
           {
             "name": "Total Balance",
             "fields": [ "NACH", "NAC", "SWP", "SWO", "BSV", "MMA", "BCD" ]
+          },
+          {
+            "name": "BSV"
           }
         ]
       }

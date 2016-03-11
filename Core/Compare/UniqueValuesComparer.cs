@@ -12,7 +12,7 @@ namespace Qa.Core.Compare
             var set = new UniqueValueSet();
             foreach (var current in rawFields)
             {
-                set.Add(compare(current.UniqueValues, previous?.UniqueValues));
+                set.Add(compare(current.SelectedUniqueValues, previous?.SelectedUniqueValues));
                 previous = current;
             }
             set.Keys = set.Lists
@@ -29,7 +29,7 @@ namespace Qa.Core.Compare
             var set = new List<CompareNumber>();
             foreach (var current in rawFields)
             {
-                set.Add(new CompareNumber(current.UniqueValues.Count, previous?.UniqueValues.Count));
+                set.Add(new CompareNumber(current.CountedUniqueValues.Count, previous?.CountedUniqueValues.Count));
                 previous = current;
             }
             return set;
