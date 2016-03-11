@@ -12,7 +12,7 @@ namespace Qa.Core.Structure
         public Dictionary<string, int> SelectedUniqueValues { get; set; }
 
         public bool CountUniqueValues => Description.CountUniqueValues;
-        public List<string> CountedUniqueValues { get; set; }
+        public HashSet<string> CountedUniqueValues { get; set; }
 
         public string Name => Description.Name;
 
@@ -22,7 +22,7 @@ namespace Qa.Core.Structure
         {
             Description = description;
             SelectedUniqueValues = new Dictionary<string, int>();
-            CountedUniqueValues = new List<string>();
+            CountedUniqueValues = new HashSet<string>();
         }
 
         public RawReportField(string name, string title, DType type)
