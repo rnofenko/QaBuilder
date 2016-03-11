@@ -119,7 +119,9 @@ namespace Qa.Bai.Benchmark.Sb.Excel
                     }
                 }
 
-                cursor.DrawBorder(ExcelBorderStyle.Thick);
+                cursor
+                    .DrawBorder(ExcelBorderStyle.Thick)
+                    .Down();
             } 
             #endregion
 

@@ -23,22 +23,8 @@ namespace Qa.Bai.Benchmark.Dp.Compare
 
         public void Start()
         {
-            while (true)
-            {
-                Lo.NewPage("QA Reports");
-                showSettings(_settings);
-
-                Lo.Wl()
-                    .Wl("Select command:")
-                    .Wl("1. Create QA Report");
-
-                var key = Console.ReadKey().KeyChar;
-                if (key == '1')
-                {
-                    doReport();
-                    break;
-                }
-            }
+            Lo.NewPage("QA Reports");
+            doReport();
         }
 
         private void doReport()
@@ -51,19 +37,12 @@ namespace Qa.Bai.Benchmark.Dp.Compare
                 FileStructures = _settings.FileStructures,
                 ShowError = _settings.ShowNotParsedFiles
             });
-            
+
             var result = _comparer.Compare(rawReports);
             _excelExporter.Export(result, _settings);
 
             Lo.Wl().Wl("Comparing was finished.");
             Console.ReadKey();
-        }
-
-        private void showSettings(CompareSettings settings)
-        {
-            Lo.Wl().Wl("Current Settings:")
-                .Wl($"File mask      = {settings.FileMask}")
-                .Wl($"Working folder = {settings.WorkingFolder}");
         }
     }
 }

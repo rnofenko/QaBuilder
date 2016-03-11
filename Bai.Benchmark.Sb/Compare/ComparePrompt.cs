@@ -44,12 +44,5 @@ namespace Qa.Bai.Benchmark.Sb.Compare
             Lo.Wl().Wl("Comparing was finished.");
             Console.ReadKey();
         }
-
-        private void showSettings(CompareSettings settings)
-        {
-            Lo.Wl().Wl("Current Settings:")
-                .Wl($"File mask      = {settings.FileMask}")
-                .Wl($"Working folder = {settings.WorkingFolder}");
-        }
     }
 }

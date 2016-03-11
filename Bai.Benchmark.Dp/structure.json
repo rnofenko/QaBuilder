@@ -249,7 +249,8 @@
       {
         "name": "NUMBER_OF_TIMES_CD_RENEWED",
         "title": "Number of times CD renewed",
-        "type": "Int"
+        "type": "String",
+        "selectUniqueValues": false
       }
     ]
   }
