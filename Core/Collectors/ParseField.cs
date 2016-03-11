@@ -8,6 +8,8 @@ namespace Qa.Core.Collectors
         public ParseField(FieldDescription field)
         {
             Description = field;
+            CountedUniqueValues = new HashSet<string>();
+            SelectedUniqueValues = new Dictionary<string, int>();
         }
 
         public FieldDescription Description { get; set; }
