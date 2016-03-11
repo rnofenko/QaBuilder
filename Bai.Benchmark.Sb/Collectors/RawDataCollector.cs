@@ -12,12 +12,10 @@ namespace Qa.Bai.Benchmark.Sb.Collectors
     public class RawDataCollector
     {
         private readonly StructureDetector _structureDetector;
-        private readonly ValueParser _valueParser;
-
+        
         public RawDataCollector()
         {
             _structureDetector = new StructureDetector();
-            _valueParser = new ValueParser();
         }
 
         public List<RawReport> CollectReports(IEnumerable<string> files, CollectionSettings settings)
@@ -36,38 +34,41 @@ namespace Qa.Bai.Benchmark.Sb.Collectors
             var detected = _structureDetector.Detect(filepath,
                 new StructureDetectSettings { FileStructures = settings.FileStructures });
 
-            var report = new RawReport(detected.Structure.Fields)
+            var report = new RawReport
             {
                 Path = filepath,
                 Error = detected.Error,
                 Structure = detected.Structure,
                 FieldsCount = detected.FieldsCount
             };
-
             if (report.Error.IsNotEmpty())
             {
                 return report;
             }
-
-            using (var  stream = new StreamReader(filepath))
+            using (var valueParser = new ValueParser(detected.Structure.Fields))
             {
-                for (var i = 0; i < report.Structure.RowsInHeader; i++)
+                using (var stream = new StreamReader(filepath))
                 {
-                    stream.ReadLine();
-                }
-
-                string line;
-                var rows=0;
-                while ((line = stream.ReadLine()) != null)
-                {
-                    processLine(line, report);
-                    rows++;
-                    
-                    if ((rows % 250000) == 0)
+                    for (var i = 0; i < report.Structure.RowsInHeader; i++)
                     {
-                        Lo.Wl($"Processed {rows}");
+                        stream.ReadLine();
+                    }
+
+                    string line;
+                    while ((line = stream.ReadLine()) != null)
+                    {
+                        var parts = line.Split(new[] {report.Structure.Delimeter}, StringSplitOptions.None);
+                        parts = parts.Select(x => x.Replace(" .", "0")).ToArray();
+                        report.RowsCount++;
+                        valueParser.Parse(parts);
+
+                        if ((report.RowsCount%250000) == 0)
+                        {
+                            Lo.Wl($"Processed {report.RowsCount}");
+                        }
                     }
                 }
+                report.Fields = valueParser.Fields.Select(x => new RawReportField(x)).ToList();
             }
             print(report, settings);
             return report;
@@ -85,14 +86,6 @@ namespace Qa.Bai.Benchmark.Sb.Collectors
                 .Wl("ERROR      : " + stats.Error, stats.Error.IsNotEmpty())
                 .Wl($"Structure  : {stats.Structure?.Name}", stats.Structure != null)
                 .Wl($"FieldsCount: {stats.FieldsCount}");
-        }
-
-        private void processLine(string line, RawReport report)
-        {
-            var parts = line.Split(new[] { report.Structure.Delimeter }, StringSplitOptions.None);
-            parts = parts.Select(x => x.Replace(" .", "0")).ToArray();
-            report.RowsCount++;
-            _valueParser.Parse(parts, report.Fields);
         }
     }
 }

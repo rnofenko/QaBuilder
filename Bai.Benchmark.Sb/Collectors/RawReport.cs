@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Qa.Core.Structure;
 
 namespace Qa.Bai.Benchmark.Sb.Collectors
@@ -17,10 +16,5 @@ namespace Qa.Bai.Benchmark.Sb.Collectors
         public int RowsCount { get; set; }
 
         public List<RawReportField> Fields { get; set; }
-
-        public RawReport(IEnumerable<FieldDescription> fields)
-        {
-            Fields = fields.Select(x => new RawReportField(x)).ToList();
-        }
     }
 }

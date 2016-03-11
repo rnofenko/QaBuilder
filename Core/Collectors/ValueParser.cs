@@ -1,15 +1,28 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Qa.Core.Structure;
 
 namespace Qa.Core.Collectors
 {
-    public class ValueParser
+    public class ValueParser : IDisposable
     {
-        public void Parse(string[] parts, List<RawReportField> fields)
+        public List<ParseField> Fields { get; }
+
+        public int RowsCount { get; private set; }
+
+        public ValueParser(IEnumerable<FieldDescription> fields)
         {
+            Fields = fields.Select(x => new ParseField(x)).ToList();
+        }
+
+        public void Parse(string[] parts)
+        {
+            RowsCount++;
+
             for (var i = 0; i < parts.Length; i++)
             {
-                var field = fields[i];
+                var field = Fields[i];
                 var value = parts[i];
                 if (field.Type == DType.Double)
                 {
@@ -52,6 +65,11 @@ namespace Qa.Core.Collectors
                     }
                 }
             }
+        }
+
+        public void Dispose()
+        {
+            Fields.Clear();
         }
     }
 }

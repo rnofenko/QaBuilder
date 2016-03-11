@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Qa.Core.Collectors;
 
 namespace Qa.Core.Structure
 {
@@ -9,30 +10,32 @@ namespace Qa.Core.Structure
         public DType Type => Description.Type;
 
         public bool SelectUniqueValues => Description.SelectUniqueValues;
-        public Dictionary<string, int> SelectedUniqueValues { get; set; }
+        public Dictionary<string, int> SelectedUniqueValues { get; }
 
         public bool CountUniqueValues => Description.CountUniqueValues;
-        public HashSet<string> CountedUniqueValues { get; set; }
+        public int UniqueValuesCount { get; }
 
         public string Name => Description.Name;
 
-        public double Sum { get; set; }
+        public double Sum { get; }
         
-        public RawReportField(FieldDescription description)
+        public RawReportField(ParseField field)
         {
-            Description = description;
-            SelectedUniqueValues = new Dictionary<string, int>();
-            CountedUniqueValues = new HashSet<string>();
+            Description = field.Description;
+            SelectedUniqueValues = field.SelectedUniqueValues;
+            UniqueValuesCount = field.CountedUniqueValues.Count;
+            Sum = field.Sum;
         }
 
-        public RawReportField(string name, string title, DType type)
-            :this(new FieldDescription { Name = name, Type = type, Title = title })
+        public RawReportField(FieldDescription description, double sum)
         {
+            Description = description;
+            Sum  = sum;
         }
 
         public RawReportField Clone()
         {
-            var field = new RawReportField(Description) {Sum = Sum};
+            var field = new RawReportField(Description, Sum);
             return field;
         }
     }

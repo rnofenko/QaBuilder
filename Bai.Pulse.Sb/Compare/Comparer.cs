@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Qa.Bai.Sbp.Collectors;
+using Qa.Bai.Pulse.Sb.Collectors;
 using Qa.Bai.Sbp.Compare;
 using Qa.Core.Compare;
 using Qa.Core.Structure;

@@ -1,8 +1,8 @@
 ﻿using System;
 using Qa.Bai.Pulse.Sb.Collectors;
 using Qa.Bai.Pulse.Sb.Excel;
+using Qa.Bai.Pulse.Sb.Transforms;
 using Qa.Bai.Sbp.Compare;
-using Qa.Bai.Sbp.Transforms;
 using Qa.Core.Structure;
 using Qa.Core.System;
 using Qa.Sbpm.Collectors;

@@ -29,7 +29,7 @@ namespace Qa.Core.Compare
             var set = new List<CompareNumber>();
             foreach (var current in rawFields)
             {
-                set.Add(new CompareNumber(current.CountedUniqueValues.Count, previous?.CountedUniqueValues.Count));
+                set.Add(new CompareNumber(current.UniqueValuesCount, previous?.UniqueValuesCount));
                 previous = current;
             }
             return set;

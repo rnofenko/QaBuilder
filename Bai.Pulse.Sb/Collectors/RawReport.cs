@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Qa.Core.Structure;
-using Qa.Sbpm.Collectors;
 
-namespace Qa.Bai.Sbp.Collectors
+namespace Qa.Bai.Pulse.Sb.Collectors
 {
     public class RawReport
     {
@@ -14,8 +13,6 @@ namespace Qa.Bai.Sbp.Collectors
         public FileStructure Structure { get; set; }
 
         public int FieldsCount { get; set; }
-        
-        public int SubReportIndex { get; set; }
 
         public List<FieldDescription> Fields { get; set; }
 
@@ -30,16 +27,11 @@ namespace Qa.Bai.Sbp.Collectors
             TransformedReports = new Dictionary<string, RawReport>();
         }
 
-        public RawSubReport GetSubReport(string[] values)
-        {
-            return GetSubReport(values[SubReportIndex]);
-        }
-
         public RawSubReport GetSubReport(string state)
         {
             if (!SubReports.ContainsKey(state))
             {
-                SubReports.Add(state, new RawSubReport(Fields));
+                SubReports.Add(state, new RawSubReport());
             }
             return SubReports[state];
         }

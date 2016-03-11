@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Qa.Bai.Sbp;
-using Qa.Bai.Sbp.Collectors;
 using Qa.Core;
-using Qa.Core.Collectors;
 using Qa.Core.Structure;
 using Qa.Core.System;
 using Qa.Sbpm.Collectors;
@@ -15,12 +12,10 @@ namespace Qa.Bai.Pulse.Sb.Collectors
     public class RawDataCollector
     {
         private readonly StructureDetector _structureDetector;
-        private readonly ValueParser _valueParser;
-
+        
         public RawDataCollector()
         {
             _structureDetector = new StructureDetector();
-            _valueParser = new ValueParser();
         }
 
         public List<RawReport> Collect(IEnumerable<string> files, CollectionSettings settings)
@@ -45,34 +40,32 @@ namespace Qa.Bai.Pulse.Sb.Collectors
                 Structure = detected.Structure,
                 FieldsCount = detected.FieldsCount
             };
-
             if (report.Error.IsNotEmpty())
             {
                 return report;
             }
-            
-            report.SubReportIndex = report.Fields.FindIndex(f => f.Name == QaSettings.Field.State);
 
-            using (var  stream = new StreamReader(filepath))
+            using (var parserGroup = new ValueParserGroup(detected.Structure))
             {
-                for (var i = 0; i < report.Structure.RowsInHeader; i++)
+                using (var stream = new StreamReader(filepath))
                 {
-                    stream.ReadLine();
-                }
-
-                string line;
-                var rows=0;
-                while ((line = stream.ReadLine()) != null)
-                {
-                    processLine(line, report);
-                    rows++;
-                    
-                    if ((rows % 25000) == 0)
+                    for (var i = 0; i < report.Structure.RowsInHeader; i++)
                     {
-                        Lo.Wl($"Processed {rows}");
+                        stream.ReadLine();
+                    }
+
+                    string line;
+                    while ((line = stream.ReadLine()) != null)
+                    {
+                        parserGroup.Parse(line);                        
+                        if ((parserGroup.RowsCount % 25000) == 0)
+                        {
+                            Lo.Wl($"Processed {parserGroup.RowsCount}");
+                        }
                     }
                 }
-            }
+                report.SubReports = parserGroup.GetSubReports();
+            }            
             print(report, settings);
             return report;
         }
@@ -89,14 +82,6 @@ namespace Qa.Bai.Pulse.Sb.Collectors
                 .Wl("ERROR      : " + stats.Error, stats.Error.IsNotEmpty())
                 .Wl($"Structure  : {stats.Structure?.Name}", stats.Structure != null)
                 .Wl($"FieldsCount: {stats.FieldsCount}");
-        }
-
-        private void processLine(string line, RawReport stats)
-        {
-            var parts = line.Split(new[] { stats.Structure.Delimeter }, StringSplitOptions.None);
-            var subReport = stats.GetSubReport(parts);
-            subReport.RowsCount++;
-            _valueParser.Parse(parts, subReport.Fields);
         }
     }
 }

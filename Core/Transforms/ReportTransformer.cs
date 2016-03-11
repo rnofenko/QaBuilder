@@ -26,7 +26,8 @@ namespace Qa.Core.Transforms
         private RawReportField combineFields(FieldLink link, List<RawReportField> fields)
         {
             var selected = fields.Where(x => link.Fields.Contains(x.Name)).ToList();
-            var rawField = new RawReportField(link.Name, link.Name, selected.First().Type) { Sum = selected.Sum(x => x.Sum) };
+            var description = new FieldDescription {Name = link.Name, Title = link.Name, Type = selected.First().Type};
+            var rawField = new RawReportField(description, selected.Sum(x => x.Sum));
             return rawField;
         }
 
