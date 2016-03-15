@@ -60,7 +60,7 @@ namespace Qa.Novantas.SaleScape.Dr.Collectors
                     {
                         var parts = line.Split(new[] {report.Structure.Delimeter}, StringSplitOptions.None);
                         valueParser.Parse(parts);
-                        if ((valueParser.RowsCount%500000) == 0)
+                        if ((valueParser.RowsCount%1000000) == 0)
                         {
                             Lo.Wl($"Processed {valueParser.RowsCount}");
                         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using OfficeOpenXml;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Text;
 using OfficeOpenXml.Style;
 using Qa.Novantas.SaleScape.Dr.Compare;
 using Qa.Core;
@@ -57,8 +58,11 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
                     .Down()
                     .Header("Values", "Change")
                     .Down()
-                    .Print(new TypedValue(report.RowsCount.Current, DType.Money), new TypedValue(report.RowsCount.Change, DType.Percent))
+                    .Integer(report.RowsCount.Current)
+                    .Right()
+                    .Percent(report.RowsCount.Change, StyleConditions.ChangePercent)
                     .Down()
+                    .Left()
                     .PrintDown(report.Numbers.Select(x => x.GetCurrent().Double()), DType.Money)
                     .Right()
                     .PrintDown(report.Numbers.Select(x => x.GetChange()), StyleConditions.ChangePercent)
@@ -67,7 +71,7 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
                     .Right();
             }
 
-            cursor.Sheet.View.FreezePanes(4, 1);
+            cursor.Sheet.View.FreezePanes(4, 3);
 
             #region UniqueCounts
             if (packet.UniqueCounts.Any())

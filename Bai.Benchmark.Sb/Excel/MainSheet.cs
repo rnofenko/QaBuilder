@@ -65,7 +65,7 @@ namespace Qa.Bai.Benchmark.Sb.Excel
                     .Right();
             }
 
-            cursor.Sheet.View.FreezePanes(4, 1);
+            cursor.Sheet.View.FreezePanes(4, 3);
 
             #region UniqueCounts
             if (packet.UniqueCounts.Any())
