@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using OfficeOpenXml;
+using OfficeOpenXml.ConditionalFormatting;
 using OfficeOpenXml.Style;
 using Qa.Bai.Benchmark.Dp.Compare;
 using Qa.Core;
@@ -55,8 +56,11 @@ namespace Qa.Bai.Benchmark.Dp.Excel
                     .Down()
                     .Header("Values", "Change")
                     .Down()
-                    .Print(report.RowsCount.Current, new TypedValue(report.RowsCount.Change, DType.Percent))
+                    .Integer(report.RowsCount.Current)
+                    .Right()
+                    .Percent(report.RowsCount.Change, StyleConditions.ChangePercent)
                     .Down()
+                    .Left()
                     .PrintDown(report.Numbers.Select(x => x.GetCurrent()))
                     .Right()
                     .PrintDown(report.Numbers.Select(x => x.GetChange()), StyleConditions.ChangePercent)

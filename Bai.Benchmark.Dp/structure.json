@@ -142,7 +142,8 @@
         "name": "CD_TERM",
         "title": "CD Term",
         "type": "String",
-        "selectUniqueValues": true
+        "selectUniqueValues": true,
+        "sort": "numeric"
       },
       {
         "name": "CD_MATURITY_DATE",
@@ -165,7 +166,8 @@
         "name": "CUSTOMER_AGE",
         "title": "Customer Age",
         "type": "String",
-        "selectUniqueValues": true
+        "selectUniqueValues": true,
+        "sort": "numeric"
       },
       {
         "name": "CUSTOMER_APPENDED_AGE",
@@ -175,7 +177,8 @@
         "name": "HOUSEHOLD_INCOME_TIER",
         "title": "Household Income Tier",
         "type": "String",
-        "selectUniqueValues": true
+        "selectUniqueValues": true,
+        "sort": "numeric"
       },
       {
         "name": "F_ACTIVE_CHEKING",

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using OfficeOpenXml;
-using OfficeOpenXml.FormulaParsing.Excel.Functions.Text;
 using OfficeOpenXml.Style;
 using Qa.Novantas.SaleScape.Dr.Compare;
 using Qa.Core;

@@ -41,7 +41,9 @@ namespace Qa.Novantas.SaleScape.Dr.Compare
             var result = _comparer.Compare(rawReports);
             _excelExporter.Export(result, _settings);
 
+            Console.ForegroundColor = ConsoleColor.Green;
             Lo.Wl().Wl("Comparing was finished.");
+            Console.ResetColor();
             Console.ReadKey();
         }
     }

@@ -115,7 +115,8 @@
         "name": "CD_TERM",
         "title": "CD Term",
         "type": "String",
-        "selectUniqueValues": true
+        "selectUniqueValues": true,
+        "sort": "numeric"
       },
       {
         "name": "CD_MATURITY_DATE",

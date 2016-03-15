@@ -30,7 +30,9 @@ namespace Qa.Bai.Benchmark.Sb.Collectors
 
         private RawReport collectReport(string filepath, CollectionSettings settings)
         {
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Lo.Wl($"File: {Path.GetFileNameWithoutExtension(filepath)}");
+            Console.ResetColor();
             var detected = _structureDetector.Detect(filepath,
                 new StructureDetectSettings { FileStructures = settings.FileStructures });
 
