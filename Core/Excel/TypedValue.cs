@@ -58,7 +58,7 @@ namespace Qa.Core.Excel
             return (string)Value;
         }
 
-        public int Int()
+        public long Int()
         {
             try
             {
@@ -66,7 +66,7 @@ namespace Qa.Core.Excel
             }
             catch
             {
-                return Convert.ToInt32(Value);
+                return Convert.ToInt64(Value);
             }
         }
     }

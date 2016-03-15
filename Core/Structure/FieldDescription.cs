@@ -11,5 +11,7 @@ namespace Qa.Core.Structure
         public bool SelectUniqueValues { get; set; }
 
         public DType Type { get; set; }
+
+        public SortType Sort { get; set; }
     }
 }

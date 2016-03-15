@@ -15,7 +15,9 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
         {
             const int initColumn = 2;
             var cursor = new ExcelCursor(sheet);
-            new Header().Print(cursor, packet.Structure.Name);
+            var from = formatDate(packet.Reports.First().FileName);
+            var to = formatDate(packet.Reports.Last().FileName);
+            new Header().Print(cursor, $"{packet.Structure.Name} {from} - {to}");
             
             cursor.Column(initColumn).Row(5);
             print(packet, cursor);
@@ -55,9 +57,9 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
                     .Down()
                     .Header("Values", "Change")
                     .Down()
-                    .Print(report.RowsCount.Current, new TypedValue(report.RowsCount.Change, DType.Percent))
+                    .Print(new TypedValue(report.RowsCount.Current, DType.Money), new TypedValue(report.RowsCount.Change, DType.Percent))
                     .Down()
-                    .PrintDown(report.Numbers.Select(x => x.GetCurrent()))
+                    .PrintDown(report.Numbers.Select(x => x.GetCurrent().Double()), DType.Money)
                     .Right()
                     .PrintDown(report.Numbers.Select(x => x.GetChange()), StyleConditions.ChangePercent)
                     .Down(fieldsCount)
@@ -65,7 +67,7 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
                     .Right();
             }
 
-            cursor.Sheet.View.FreezePanes(4, packet.Reports.Count * 2 + 2);
+            cursor.Sheet.View.FreezePanes(4, 1);
 
             #region UniqueCounts
             if (packet.UniqueCounts.Any())
@@ -145,7 +147,7 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
 
                     var startRow = cursor.Pos.Row;
 
-                    foreach (var key in set.Keys.OrderBy(x => x, new NumericComparer()))
+                    foreach (var key in set.Keys)
                     {
                         cursor
                             .Print(key)
@@ -153,7 +155,7 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
                             .Integer(set.Lists[0].GetCurrent(key));
 
 
-                        if (key == set.Keys.OrderBy(x => x, new NumericComparer()).Last())
+                        if (key == set.Keys.Last())
                         {
                             cursor
                                 .DrawBorder(ExcelBorderStyle.Thick);
@@ -187,7 +189,7 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
                         .Column(initColumn)
                         .Right();
 
-                    foreach (var key in set.Keys.OrderBy(x => x, new NumericComparer()))
+                    foreach (var key in set.Keys)
                     {
                         for (var i = 1; i < set.Lists.Count; i++)
                         {
@@ -197,16 +199,16 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
                                 .Right()
                                 .Percent(set.Lists[i].GetChange(key), StyleConditions.ChangePercent);
 
-
-                            if (key == set.Keys.OrderBy(x => x, new NumericComparer()).Last())
+                            if (key == set.Keys.Last())
                             {
                                 cursor
                                     .DrawBorder(ExcelBorderStyle.Thick);
                             }
                         }
+
                         cursor
-                            .Left(set.Lists.Count + 2)
-                            .Down();
+                            .Down()
+                            .Left((packet.Reports.Count - 1) * 2);
                     }
                 }
             }
@@ -216,7 +218,7 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
         private static string formatDate(string fileName)
         {
             var parts = fileName.Split('_');
-            var parsedDate = DateTime.Parse($"01/{parts[1].Substring(4, 2)}/{parts[1].Substring(0,4)}");
+            var parsedDate = DateTime.Parse($"{parts[1].Substring(4, 2)}/01/{parts[1].Substring(0,4)}");
             var monthName = DateExtention.ToMonthName(parsedDate.Month);
             return $"{monthName} {parsedDate.Year}";
         }

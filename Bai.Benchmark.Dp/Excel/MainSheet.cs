@@ -65,7 +65,7 @@ namespace Qa.Bai.Benchmark.Dp.Excel
                     .Right();
             }
 
-            cursor.Sheet.View.FreezePanes(4, packet.Reports.Count * 2 + 2);
+            cursor.Sheet.View.FreezePanes(4, 1);
 
             #region UniqueCounts
             if (packet.UniqueCounts.Any())
@@ -145,7 +145,7 @@ namespace Qa.Bai.Benchmark.Dp.Excel
 
                     var startRow = cursor.Pos.Row;
 
-                    foreach (var key in set.Keys.OrderBy(x => x, new NumericComparer()))
+                    foreach (var key in set.Keys)
                     {
                         cursor
                             .Print(key)
@@ -153,7 +153,7 @@ namespace Qa.Bai.Benchmark.Dp.Excel
                             .Integer(set.Lists[0].GetCurrent(key));
 
 
-                        if (key == set.Keys.OrderBy(x => x, new NumericComparer()).Last())
+                        if (key == set.Keys.Last())
                         {
                             cursor
                                 .DrawBorder(ExcelBorderStyle.Thick);
@@ -187,7 +187,7 @@ namespace Qa.Bai.Benchmark.Dp.Excel
                         .Column(initColumn)
                         .Right();
 
-                    foreach (var key in set.Keys.OrderBy(x => x, new NumericComparer()))
+                    foreach (var key in set.Keys)
                     {
                         for (var i = 1; i < set.Lists.Count; i++)
                         {
@@ -198,7 +198,7 @@ namespace Qa.Bai.Benchmark.Dp.Excel
                                 .Percent(set.Lists[i].GetChange(key), StyleConditions.ChangePercent);
 
 
-                            if (key == set.Keys.OrderBy(x => x, new NumericComparer()).Last())
+                            if (key == set.Keys.Last())
                             {
                                 cursor
                                     .DrawBorder(ExcelBorderStyle.Thick);

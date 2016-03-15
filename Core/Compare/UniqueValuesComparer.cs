@@ -15,12 +15,28 @@ namespace Qa.Core.Compare
                 set.Add(compare(current.SelectedUniqueValues, previous?.SelectedUniqueValues));
                 previous = current;
             }
-            set.Keys = set.Lists
-                .SelectMany(x => x.Values.Select(l => l.Value))
-                .Distinct()
-                .OrderBy(x => x)
-                .ToList();
+            var sort = rawFields.First().Description.Sort;
+            fillKeys(set, sort);
+
             return set;
+        }
+
+        private void fillKeys(UniqueValueSet set, SortType sort)
+        {
+            var keys = set.Lists
+                .SelectMany(x => x.Values.Select(l => l.Value))
+                .Distinct();
+
+            if (sort == SortType.Numeric)
+            {
+                keys = keys.OrderBy(x => x, new NumericComparer());
+            }
+            else
+            {
+                keys = keys.OrderBy(x => x);
+            }
+
+            set.Keys = keys.ToList();
         }
 
         public List<CompareNumber> CompareCounts(IList<RawReportField> rawFields)

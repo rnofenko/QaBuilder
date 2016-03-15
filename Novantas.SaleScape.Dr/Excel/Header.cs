@@ -24,7 +24,7 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
 
 
             var cell = cursor.Row(2).Column(4).Cell;
-            cursor.Sheet.Cells[2, 4, 2, 8].Merge = true;
+            cursor.Sheet.Cells[2, 4, 2, 13].Merge = true;
             cell.Value = reportName;
             cell.Style.Font.Size = 24;
             cell.Style.Font.Color.SetColor(Color.White);

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 
 namespace Qa.Core
@@ -8,33 +7,31 @@ namespace Qa.Core
     {
         public int Compare(string s1, string s2)
         {
-            if (IsNumeric(s1) && IsNumeric(s2))
+            var value1 = parse(s1);
+            var value2 = parse(s2);
+            if (value1 == null && value2 == null)
             {
-                if (Convert.ToInt32(s1) > Convert.ToInt32(s2)) return 1;
-                if (Convert.ToInt32(s1) < Convert.ToInt32(s2)) return -1;
-                if (Convert.ToInt32(s1) == Convert.ToInt32(s2)) return 0;
+                return string.Compare(s1, s2, CultureInfo.InvariantCulture, CompareOptions.IgnoreCase);
             }
-
-            if (IsNumeric(s1) && !IsNumeric(s2))
-                return -1;
-
-            if (!IsNumeric(s1) && IsNumeric(s2))
+            if (value1 > value2)
+            {
                 return 1;
-
-            return string.Compare(s1, s2, CultureInfo.InvariantCulture, CompareOptions.IgnoreCase);
+            }
+            if (value1 < value2)
+            {
+                return -1;
+            }
+            return 0;
         }
 
-        public static bool IsNumeric(object value)
+        private int? parse(string str)
         {
-            try
+            int res;
+            if (int.TryParse(str, out res))
             {
-                var int32 = Convert.ToInt32(value.ToString());
-                return true;
+                return res;
             }
-            catch (FormatException)
-            {
-                return false;
-            }
+            return null;
         }
     }
 }

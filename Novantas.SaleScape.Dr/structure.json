@@ -34,7 +34,8 @@
       {
         "name": "HH_COST_CENTER",
         "title": "Household Cost Center",
-        "type": "Int"
+        "type": "String",
+        "countUniqueValues": true
       },
       {
         "name": "HH_SINCE_DATE",
@@ -78,7 +79,7 @@
       },
       {
         "name": "PROD_CODE1",
-        "title": "Procudt Code 1",
+        "title": "Product Code 1",
         "type": "String",
         "selectUniqueValues": true
       },
@@ -94,7 +95,8 @@
         "name": "TERM",
         "title": "CD Term",
         "type": "String",
-        "selectUniqueValues": true
+        "selectUniqueValues": true,
+        "sort": "numeric"
       },
       {
         "name": "BAL_EOM",
@@ -115,7 +117,7 @@
         "name": "INTEREST_RATE",
         "title": "Interest Rate",
         "type": "String",
-        "selectUniqueValues": true
+        "selectUniqueValues": false
       },
       {
         "name": "FEE_INC",

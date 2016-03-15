@@ -93,6 +93,7 @@
     <Compile Include="Structure\RawReportField.cs" />
     <Compile Include="Structure\Settings.cs" />
     <Compile Include="Structure\SettingsProvider.cs" />
+    <Compile Include="Structure\SortType.cs" />
     <Compile Include="Structure\StructureDetector.cs" />
     <Compile Include="Structure\StructureDetectResut.cs" />
     <Compile Include="Structure\StructureDetectSettings.cs" />
