@@ -75,7 +75,7 @@ namespace Qa.Bai.Pulse.Sb.Compare
                     fieldPrev = previous.Fields[i];
                 }
 
-                if (fieldCurrent.Type == DType.Double || fieldCurrent.Type == DType.Int || fieldCurrent.Type == DType.Money)
+                if (fieldCurrent.Type == DType.Number)
                 {
                     result.Fields.Add(new CompareField(fieldCurrent, fieldPrev));
                 }

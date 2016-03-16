@@ -12,6 +12,8 @@ namespace Qa.Core.Structure
 
         public DType Type { get; set; }
 
+        public FormatType Format { get; set; }
+
         public SortType Sort { get; set; }
     }
 }

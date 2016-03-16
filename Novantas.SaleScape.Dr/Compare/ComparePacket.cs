@@ -26,7 +26,7 @@ namespace Qa.Novantas.SaleScape.Dr.Compare
                 {
                     RowsCount = fileInformations[i].RowsCount,
                     FileName = fileInformations[i].FileName,
-                    Numbers = fieldPacks.Where(x => x.IsNumber).Select(x => x.GetNumberField(i)).ToList(),
+                    Numbers = fieldPacks.Where(x => x.Type == DType.Number).Select(x => x.GetNumberField(i)).ToList(),
                 };
                 Reports.Add(report);
             }

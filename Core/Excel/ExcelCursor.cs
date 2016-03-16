@@ -125,7 +125,7 @@ namespace Qa.Core.Excel
             return PrintDown(values.ToArray());
         }
 
-        public ExcelCursor PrintDown(IEnumerable<double> values, DType type)
+        public ExcelCursor PrintDown(IEnumerable<double> values, FormatType type)
         {
             var pos = _pos.Clone();
             foreach (var value in values)
@@ -151,28 +151,28 @@ namespace Qa.Core.Excel
             return this;
         }
 
-        public ExcelCursor Print(double value, DType type)
+        public ExcelCursor Print(double value, FormatType type)
         {
             return Print(new TypedValue(value, type), _pos);
         }
 
         public ExcelCursor Print(TypedValue value, Pos pos)
         {
-            if (value.Type == DType.Money)
+            if (value.Type == DType.Number)
             {
-                return Money(value.Double(), pos);
-            }
-            if (value.Type == DType.Double)
-            {
+                if (value.Format == FormatType.Money)
+                {
+                    return Money(value.Double(), pos);
+                }
+                if (value.Format == FormatType.Integer)
+                {
+                    return Integer(value.Int(), pos);
+                }
+                if (value.Format == FormatType.Percent)
+                {
+                    return Percent(value.NullableDouble(), pos);
+                }
                 return Double(value.Double(), pos);
-            }
-            if (value.Type == DType.Int)
-            {
-                return Integer(value.Int(), pos);
-            }
-            if (value.Type == DType.Percent)
-            {
-                return Percent(value.NullableDouble(), pos);
             }
             if (value.Type == DType.String)
             {
@@ -228,7 +228,7 @@ namespace Qa.Core.Excel
             }
             if (styleCondition != null)
             {
-                styleCondition(new StyleConditionArgs { Pos = pos, Value = new TypedValue(value, DType.Percent), Cursor = this });
+                styleCondition(new StyleConditionArgs { Pos = pos, Value = new TypedValue(value, FormatType.Percent), Cursor = this });
             }
             return this;
         }

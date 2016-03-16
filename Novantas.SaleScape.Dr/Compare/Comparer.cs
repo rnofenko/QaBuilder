@@ -72,7 +72,7 @@ namespace Qa.Novantas.SaleScape.Dr.Compare
                 pack.Numbers = _uniqueValuesComparer.CompareCounts(rawFields);
             }
 
-            if (field.Type == DType.Double || field.Type == DType.Int || field.Type == DType.Money)
+            if (field.Type == DType.Number)
             {
                 pack.Numbers = compareNumbers(rawFields);
             }

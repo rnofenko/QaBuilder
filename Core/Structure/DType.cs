@@ -3,10 +3,7 @@
     public enum DType
     {
         None = 0,
-        Double = 1,
-        Int = 2,
-        Money = 3,
-        Percent = 4,
-        String = 5
+        Number = 1,
+        String = 2
     }
 }

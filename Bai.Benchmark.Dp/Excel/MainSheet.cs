@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using OfficeOpenXml;
-using OfficeOpenXml.ConditionalFormatting;
 using OfficeOpenXml.Style;
 using Qa.Bai.Benchmark.Dp.Compare;
 using Qa.Core;
@@ -39,7 +38,7 @@ namespace Qa.Bai.Benchmark.Dp.Excel
                 .Down()
                 .Header("", "Values")
                 .Down()
-                .Print("Total Records", new TypedValue(packet.Reports.First().RowsCount.Current, DType.Int))
+                .Print("Total Records", new TypedValue(packet.Reports.First().RowsCount.Current, FormatType.Integer))
                 .Down()
                 .PrintDown(first.Numbers.Select(x => x.Title))
                 .Right()

@@ -13,7 +13,7 @@ namespace Qa.Core.Compare
 
         public string Title => _description.Title ?? _description.Name;
 
-        public CompareNumber Number { get; set; }
+        public CompareNumber Number { get; }
 
         public CompareField(RawReportField current)
         {
@@ -34,12 +34,12 @@ namespace Qa.Core.Compare
 
         public TypedValue GetCurrent()
         {
-            return new TypedValue(Number.Current, Type);
+            return new TypedValue(Number.Current, _description.Format);
         }
 
         public TypedValue GetChange()
         {
-            return new TypedValue(Number.Change, DType.Percent);
+            return new TypedValue(Number.Change, FormatType.Percent);
         }
     }
 }

@@ -24,28 +24,14 @@ namespace Qa.Core.Collectors
             {
                 var field = Fields[i];
                 var value = parts[i];
-                if (field.Type == DType.Double)
+                if (field.Type == DType.Number)
                 {
                     if (value.IsNotEmpty())
                     {
                         field.Sum += double.Parse(value);
                     }
                 }
-                if (field.Type == DType.Money)
-                {
-                    if (value.IsNotEmpty())
-                    {
-                        field.Sum += double.Parse(value);
-                    }
-                }
-                else if (field.Type == DType.Int)
-                {
-                    if (value.IsNotEmpty())
-                    {
-                        field.Sum += double.Parse(value);
-                    }
-                }
-
+                
                 if (field.SelectUniqueValues)
                 {
                     if (!field.SelectedUniqueValues.ContainsKey(value))

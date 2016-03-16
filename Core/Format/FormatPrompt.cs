@@ -3,7 +3,6 @@ using System.IO;
 using System.Linq;
 using Qa.Core.Structure;
 using Qa.Core.System;
-using Qa.System;
 
 namespace Qa.Core.Format
 {
@@ -69,10 +68,12 @@ namespace Qa.Core.Format
         private void askFormat(FormattingFile file)
         {
             file.DestinationPath = Path.Combine(_settings.WorkingFolder, Path.GetFileNameWithoutExtension(file.SourcePath) + "." + _settings.DestinationFileExtension);
+            var fromFileName = Path.GetFileName(file.SourcePath);
+            var intoFileName = Path.GetFileName(file.DestinationPath);
             Lo.Wl()
                 .Wl("Are sure that you want to format file")
-                .Wl($"  from   {file.SourcePath}")
-                .Wl($"  to     {file.DestinationPath}")
+                .Wl($"  from   {fromFileName}")
+                .Wl($"  to     {intoFileName}")
                 .Wl("Y(Yes) / Any key(No)");
             var key = Console.ReadKey();
             if (key.KeyChar.ToString().ToLower() == "y")

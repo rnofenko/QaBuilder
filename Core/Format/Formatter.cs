@@ -53,15 +53,23 @@ namespace Qa.Core.Format
             }
             for (var i = 0; i < parts.Length; i++)
             {
-                if (_fields[i].Type == DType.Double)
+                var field = _fields[i];
+                if (field.Type == DType.Number)
                 {
                     var unparsed = parts[i];
-                    var parsed = 0d;
-                    if (unparsed != ".")
+                    if (unparsed == ".")
                     {
-                        parsed = double.Parse(unparsed);
+                        unparsed = "0";
                     }
-                    parts[i] = $"{parsed:0.00}";
+                    var parsed = double.Parse(unparsed);
+                    if (field.Format == FormatType.Double || field.Format == FormatType.Money)
+                    {
+                        parts[i] = $"{parsed:0.00}";
+                    }
+                    else
+                    {
+                        parts[i] = $"{parsed:0}";
+                    }
                 }
             }
             return string.Join("|", parts);

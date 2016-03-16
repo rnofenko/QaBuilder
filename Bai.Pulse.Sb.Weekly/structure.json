@@ -12,62 +12,62 @@
       { "name": "CYCLE_DT" },
       {
         "name": "NACH",
-        "type": "Money",
+        "format": "Money",
         "title": "Non-Analysis Checking"
       },
       {
         "name": "FBC",
-        "type": "Money",
+        "format": "Money",
         "title": "Free Business Checking"
       },
       {
         "name": "NNC",
-        "type": "Money",
+        "format": "Money",
         "title": "Non-Interest Non-Analysis Checking"
       },
       {
         "name": "INC",
-        "type": "Money",
+        "format": "Money",
         "title": "Interest Non Analysis Checking"
       },
       {
         "name": "NAC",
-        "type": "Money",
+        "format": "Money",
         "title": "Non-Interest Analysis Checking"
       },
       {
         "name": "SWP",
-        "type": "Money",
+        "format": "Money",
         "title": "Commercial Sweep (On Balance Sheet)"
       },
       {
         "name": "SWO",
-        "type": "Money",
+        "format": "Money",
         "title": "Commercial Sweep (Off Balance Sheet)"
       },
       {
         "name": "BSV",
-        "type": "Money",
+        "format": "Money",
         "title": "Business Savings"
       },
       {
         "name": "MMA",
-        "type": "Money",
+        "format": "Money",
         "title": "Money Market"
       },
       {
         "name": "RMA",
-        "type": "Money",
+        "format": "Money",
         "title": "Regular MMDA"
       },
       {
         "name": "HMA",
-        "type": "Money",
+        "format": "Money",
         "title": "High Rate MMDA"
       },
       {
         "name": "BCD",
-        "type": "Money",
+        "format": "Money",
         "title": "Business CDs"
       }
     ],

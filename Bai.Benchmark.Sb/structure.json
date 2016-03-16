@@ -42,12 +42,12 @@
       {
         "name": "MONTH_END_BALANCE",
         "title": "Month End Balance",
-        "type": "Money"
+        "format": "Money"
       },
       {
         "name": "AVG_MONTHLY_BALANCE",
         "title": "Average Nonthly Balance",
-        "type": "Money"
+        "format": "Money"
       },
       {
         "name": "ACCOUNT_OPEN_DATE",
@@ -80,12 +80,12 @@
       {
         "name": "MONTHLY_INTEREST_PAID",
         "title": "Monthly Interest Paid",
-        "type": "Money"
+        "format": "Money"
       },
       {
         "name": "MONTHLY_INTEREST_CHARGED",
         "title": "Monthly Interest Charged",
-        "type": "Money"
+        "format": "Money"
       },
       {
         "name": "F_DEBIT_CARD",
@@ -129,7 +129,7 @@
       {
         "name": "ORIGINAL_BALANCE",
         "title": "Original Balance",
-        "type": "Money"
+        "format": "Money"
       },
       {
         "name": "CREDIT_MAXIMUM_LINE",
@@ -190,12 +190,12 @@
       {
         "name": "TOTAL_FEES",
         "title": "Total Fees",
-        "type": "Money"
+        "format": "Money"
       },
       {
         "name": "ACTUAL_ECR",
         "title": "Actual ECR",
-        "type": "Money"
+        "format": "Money"
       },
       {
         "name": "ORIGINATION_CHANNEL",

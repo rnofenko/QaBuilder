@@ -101,12 +101,12 @@
       {
         "name": "BAL_EOM",
         "title": "End of Month Balance",
-        "type": "Money"
+        "format": "Money"
       },
       {
         "name": "AVG_BAL",
         "title": "Average Monthly Balance",
-        "type": "Money"
+        "format": "Money"
       },
       {
         "name": "LINE_EOM",
@@ -122,7 +122,7 @@
       {
         "name": "FEE_INC",
         "title": "Fee Income",
-        "type": "Money"
+        "format": "Money"
       }
     ]
   }

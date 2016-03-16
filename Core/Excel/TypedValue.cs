@@ -7,6 +7,8 @@ namespace Qa.Core.Excel
     {
         public DType Type { get; set; }
 
+        public FormatType Format { get; set; }
+
         public object Value { get; set; }
 
         public TypedValue(string value)
@@ -18,19 +20,22 @@ namespace Qa.Core.Excel
         public TypedValue(double value)
         {
             Value = value;
-            Type = DType.Double;
+            Type = DType.Number;
+            Format = FormatType.Double;
         }
 
         public TypedValue(int value)
         {
             Value = value;
-            Type = DType.Int;
+            Type = DType.Number;
+            Format = FormatType.Integer;
         }
 
-        public TypedValue(double? value, DType type)
+        public TypedValue(double? value, FormatType formatType)
         {
             Value = value;
-            Type = type;
+            Type = DType.Number;
+            Format = formatType;
         }
 
         public static implicit operator TypedValue(string value)
