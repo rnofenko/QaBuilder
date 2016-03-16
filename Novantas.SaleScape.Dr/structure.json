@@ -6,19 +6,16 @@
     "fields": [
       {
         "name": "YEAR_MONTH",
-        "title": "Period",
-        "type": "String"
+        "title": "Period"
       },
       {
         "name": "CUST_ID",
         "title": "Customer ID",
-        "type": "String",
         "countUniqueValues": true
       },
       {
         "name": "CUST_COST_CENTER",
         "title": "Customer Cost Center",
-        "type": "String",
         "countUniqueValues": true
       },
       {
@@ -28,13 +25,11 @@
       {
         "name": "HH_ID",
         "title": "Household ID",
-        "type": "String",
         "countUniqueValues": true
       },
       {
         "name": "HH_COST_CENTER",
         "title": "Household Cost Center",
-        "type": "String",
         "countUniqueValues": true
       },
       {
@@ -44,19 +39,16 @@
       {
         "name": "ACCT_ID",
         "title": "Account ID",
-        "type": "String",
         "countUniqueValues": true
       },
       {
         "name": "ORIG_COST_CENTER",
         "title": "Original Cost Center",
-        "type": "String",
         "countUniqueValues": true
       },
       {
         "name": "ACCT_COST_CENTER",
         "title": "Account Cost Center",
-        "type": "String",
         "countUniqueValues": true
       },
       {
@@ -74,13 +66,11 @@
       {
         "name": "LOB",
         "title": "Line of Business",
-        "type": "String",
         "selectUniqueValues": true
       },
       {
         "name": "PROD_CODE1",
         "title": "Product Code 1",
-        "type": "String",
         "selectUniqueValues": true
       },
       {
@@ -94,7 +84,6 @@
       {
         "name": "TERM",
         "title": "CD Term",
-        "type": "String",
         "selectUniqueValues": true,
         "sort": "numeric"
       },
@@ -111,12 +100,11 @@
       {
         "name": "LINE_EOM",
         "title": "Line End of Month",
-        "type":  "Money"
+        "format": "Money"
       },
       {
         "name": "INTEREST_RATE",
         "title": "Interest Rate",
-        "type": "String",
         "selectUniqueValues": false
       },
       {
