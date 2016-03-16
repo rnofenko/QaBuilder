@@ -144,7 +144,7 @@ namespace Qa.Core.Excel
                 Print(value, pos);
                 if (styleCondition != null)
                 {
-                    styleCondition(new StyleConditionArgs {Pos = pos, Amount = value.Double(), Type = value.Type, Cursor = this});
+                    styleCondition(new StyleConditionArgs {Pos = pos, Value = value, Cursor = this});
                 }
                 pos.Row++;
             }
@@ -172,7 +172,7 @@ namespace Qa.Core.Excel
             }
             if (value.Type == DType.Percent)
             {
-                return Percent(value.Double(), pos);
+                return Percent(value.NullableDouble(), pos);
             }
             if (value.Type == DType.String)
             {
@@ -209,19 +209,26 @@ namespace Qa.Core.Excel
             return this;
         }
 
-        public ExcelCursor Percent(double value, Action<StyleConditionArgs> styleCondition = null)
+        public ExcelCursor Percent(double? value, Action<StyleConditionArgs> styleCondition = null)
         {
             return Percent(value, _pos, styleCondition);
         }
 
-        public ExcelCursor Percent(double value, Pos pos, Action<StyleConditionArgs> styleCondition = null)
+        public ExcelCursor Percent(double? value, Pos pos, Action<StyleConditionArgs> styleCondition = null)
         {
             var cell = getCell(pos);
-            cell.Value = value;
-            cell.Style.Numberformat.Format = "#,##0%;-#,##0%";
+            if (value == null)
+            {
+                cell.Value = "NA";
+            }
+            else
+            {
+                cell.Value = value;
+                cell.Style.Numberformat.Format = "#,##0%;-#,##0%";
+            }
             if (styleCondition != null)
             {
-                styleCondition(new StyleConditionArgs { Pos = pos, Amount = value, Type = DType.Percent, Cursor = this });
+                styleCondition(new StyleConditionArgs { Pos = pos, Value = new TypedValue(value, DType.Percent), Cursor = this });
             }
             return this;
         }
@@ -369,11 +376,6 @@ namespace Qa.Core.Excel
             style.Fill.PatternType = ExcelFillStyle.Solid;
             style.Fill.BackgroundColor.SetColor(color);
             return this;
-        }
-
-        public void DefineHeader(HeaderStyle style)
-        {
-            throw new NotImplementedException();
         }
     }
 }

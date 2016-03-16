@@ -1,6 +1,4 @@
-﻿using Qa.Core.Structure;
-
-namespace Qa.Core.Excel
+﻿namespace Qa.Core.Excel
 {
     public class StyleConditionArgs
     {
@@ -8,8 +6,6 @@ namespace Qa.Core.Excel
 
         public ExcelCursor Cursor { get; set; }
 
-        public DType Type { get; set; }
-
-        public double Amount { get; set; }
+        public TypedValue Value { get; set; }
     }
 }

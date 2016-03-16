@@ -18,6 +18,6 @@ namespace Qa.Core.Compare
 
         public double Current { get; set; }
 
-        public double Change { get; set; }
+        public double? Change { get; set; }
     }
 }

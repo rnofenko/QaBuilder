@@ -27,7 +27,7 @@ namespace Qa.Core.Compare
             return value.Count.Current;
         }
 
-        public double GetChange(string key)
+        public double? GetChange(string key)
         {
             var value = Values.FirstOrDefault(x => x.Value == key);
             if (value == null)

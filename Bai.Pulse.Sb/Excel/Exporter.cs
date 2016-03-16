@@ -3,8 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using OfficeOpenXml;
-using Qa.Bai.Sbp.Compare;
-using Qa.Bai.Sbp.Excel;
+using Qa.Bai.Pulse.Sb.Compare;
 using Qa.Core.System;
 using Qa.Sbpm.Compare;
 

@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
+using Qa.Bai.Sbp.Compare;
 using Qa.Core.Structure;
-using Qa.Sbpm.Compare;
 
-namespace Qa.Bai.Sbp.Compare
+namespace Qa.Bai.Pulse.Sb.Compare
 {
     public class ComparePacket
     {

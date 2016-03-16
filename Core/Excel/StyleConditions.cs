@@ -6,13 +6,21 @@ namespace Qa.Core.Excel
     {
         public static Action<StyleConditionArgs> ChangePercent = x =>
         {
-            if (Math.Abs(x.Amount) > 0.35)
+            if (x.Value.Value == null)
             {
                 x.Cursor.SetAsDanger(x.Pos);
             }
-            else if (Math.Abs(x.Amount) > 0.20)
+            else
             {
-                x.Cursor.SetAsWarning(x.Pos);
+                var value = Math.Abs(x.Value.Double());
+                if (value > 0.35)
+                {
+                    x.Cursor.SetAsDanger(x.Pos);
+                }
+                else if (value > 0.20)
+                {
+                    x.Cursor.SetAsWarning(x.Pos);
+                }
             }
         };
     }

@@ -1,11 +1,12 @@
 ﻿using System.Linq;
 using OfficeOpenXml;
+using Qa.Bai.Pulse.Sb.Compare;
+using Qa.Bai.Sbp;
 using Qa.Bai.Sbp.Compare;
+using Qa.Bai.Sbp.Excel;
 using Qa.Core.Excel;
-using Qa.Sbpm;
-using Qa.Sbpm.Compare;
 
-namespace Qa.Bai.Sbp.Excel
+namespace Qa.Bai.Pulse.Sb.Excel
 {
     public class PeriodSheet
     {

@@ -2,6 +2,7 @@
 using System.Linq;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
+using Qa.Bai.Pulse.Sb.Compare;
 using Qa.Bai.Sbp;
 using Qa.Bai.Sbp.Compare;
 using Qa.Bai.Sbp.Excel;
@@ -40,9 +41,9 @@ namespace Qa.Bai.Pulse.Sb.Excel
 
             cursor
                 .TopLeftBorderCorner()
-                .Print("", first.FileName).BackgroundColor(QaColor.HeaderBackground, 2)
+                .Header("", first.FileName)
                 .Down()
-                .Print("", "Values").BackgroundColor(QaColor.HeaderBackground, 2)
+                .Header("", "Values")
                 .Down()
                 .PrintDown(first.Fields.Select(x => x.Title))
                 .Right()
@@ -55,9 +56,9 @@ namespace Qa.Bai.Pulse.Sb.Excel
             {
                 cursor.Row(initRow)
                     .TopLeftBorderCorner()
-                    .Print(report.FileName).Merge(2).BackgroundColor(QaColor.HeaderBackground, 2)
+                    .Header(report.FileName).Merge(2)
                     .Down()
-                    .Print("Values", "Change").BackgroundColor(QaColor.HeaderBackground, 2)
+                    .Header("Values", "Change")
                     .Down()
                     .PrintDown(report.Fields.Select(x => x.GetCurrent()))
                     .Right()
@@ -80,7 +81,7 @@ namespace Qa.Bai.Pulse.Sb.Excel
 
             cursor
                 .TopLeftBorderCorner()
-                .Print("", first.FileName).BackgroundColor(QaColor.HeaderBackground, 2)
+                .Header("", first.FileName)
                 .Down()
                 .PrintDown(first.Fields.Select(x => x.Title))
                 .Right()
@@ -94,7 +95,7 @@ namespace Qa.Bai.Pulse.Sb.Excel
                 cursor
                     .Row(initRow)
                     .TopLeftBorderCorner()
-                    .Print(report.FileName).Merge(2).BackgroundColor(QaColor.HeaderBackground)
+                    .Header(report.FileName).Merge(2)
                     .Down()
                     .PrintDown(report.Fields.Select(x => x.GetCurrent()))
                     .Right()

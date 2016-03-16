@@ -31,7 +31,7 @@ namespace Qa.Bai.Pulse.Sb.Collectors
         {
             if (!SubReports.ContainsKey(state))
             {
-                SubReports.Add(state, new RawSubReport());
+                SubReports.Add(state, new RawSubReport {Fields = Fields.Select(x => new RawReportField(x, 0)).ToList()});
             }
             return SubReports[state];
         }

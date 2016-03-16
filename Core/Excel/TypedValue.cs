@@ -27,7 +27,7 @@ namespace Qa.Core.Excel
             Type = DType.Int;
         }
 
-        public TypedValue(double value, DType type)
+        public TypedValue(double? value, DType type)
         {
             Value = value;
             Type = type;
@@ -50,7 +50,16 @@ namespace Qa.Core.Excel
 
         public double Double()
         {
+            if (Value == null)
+            {
+                return 0;
+            }
             return (double)Value;
+        }
+
+        public double? NullableDouble()
+        {
+            return (double?)Value;
         }
 
         public string String()
@@ -68,6 +77,11 @@ namespace Qa.Core.Excel
             {
                 return Convert.ToInt64(Value);
             }
+        }
+
+        public override string ToString()
+        {
+            return $"{Type} - {Value}";
         }
     }
 }
