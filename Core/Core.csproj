@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Qa.Core</RootNamespace>
     <AssemblyName>Qa.Core</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,7 +36,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -76,7 +77,6 @@
     <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Fast.cs" />
     <Compile Include="Format\FormatPrompt.cs" />
-    <Compile Include="Format\FormatSettings.cs" />
     <Compile Include="Format\Formatter.cs" />
     <Compile Include="Format\FormattingFile.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -97,7 +97,6 @@
     <Compile Include="Structure\SortType.cs" />
     <Compile Include="Structure\StructureDetector.cs" />
     <Compile Include="Structure\StructureDetectResut.cs" />
-    <Compile Include="Structure\StructureDetectSettings.cs" />
     <Compile Include="Structure\StructureLoader.cs" />
     <Compile Include="Structure\TransformStructure.cs" />
     <Compile Include="System\CommonResources.cs" />

@@ -2,13 +2,13 @@
   {
     "name": "BAI DPB",
     "rowsInHeader": 0,
-    "delimeter": "|",
+    "sourceDelimeter": "|",
     "fields": [
       {
         "name": "HOUSEHOLD_ID",
         "title": "Household ID",
         "type": "String",
-        "countUniqueValues":  true
+        "countUniqueValues": true
       },
       {
         "name": "CUSTOMER_ID",

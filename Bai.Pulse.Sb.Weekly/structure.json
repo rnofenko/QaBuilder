@@ -1,7 +1,8 @@
 ﻿[
   {
     "name": "BAI SB Pulse Weekly",
-    "delimeter": "|",
+    "destinationDelimeter": "|",
+    "sourceDelimeter": ",",
     "fields": [
       { "name": "BANK_CODE" },
       { "name": "CYCLE_TYPE" },

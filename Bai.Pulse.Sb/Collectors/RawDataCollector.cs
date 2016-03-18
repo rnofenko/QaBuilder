@@ -29,8 +29,7 @@ namespace Qa.Bai.Pulse.Sb.Collectors
 
         private RawReport collect(string filepath, CollectionSettings settings)
         {
-            var detected = _structureDetector.Detect(filepath,
-                new StructureDetectSettings { FileStructures = settings.FileStructures });
+            var detected = _structureDetector.Detect(filepath, settings.FileStructures);
 
             var report = new RawReport(detected.Structure.Fields)
             {

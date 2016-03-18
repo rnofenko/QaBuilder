@@ -14,6 +14,8 @@ namespace Qa.Core.Structure
 
         public FormatType Format { get; set; }
 
+        public string DateFormat { get; set; }
+
         public SortType Sort { get; set; }
     }
 }

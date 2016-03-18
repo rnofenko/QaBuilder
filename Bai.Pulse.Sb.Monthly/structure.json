@@ -1,11 +1,15 @@
 ﻿[
   {
     "name": "BAI SB Pulse Monthly",
-    "delimeter": "|",
+    "destinationDelimeter": "|",
+    "sourceDelimeter": ",",
     "fields": [
       { "name": "BANK_CODE" },
       { "name": "CYCLE_TYPE" },
-      { "name": "STATE", "selectUniqueValues": true },
+      {
+        "name": "STATE",
+        "selectUniqueValues": true
+      },
       { "name": "CYCLE_DT" },
       {
         "name": "NACH",

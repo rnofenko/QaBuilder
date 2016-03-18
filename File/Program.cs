@@ -1,4 +1,4 @@
-﻿namespace Qa.Bai.Pulse.Sb.Weekly
+﻿namespace Qa.File
 {
     class Program
     {

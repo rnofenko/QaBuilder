@@ -8,15 +8,17 @@ namespace Qa.Core.Format
 {
     public class FormatPrompt
     {
+        private const string SOURCE_FILE_MASK = "*.csv";
+        private const string DESTINATION_FILE_EXTENSION = "txt";
         private readonly StructureDetector _structureDetector;
-        private readonly FormatSettings _settings;
         private readonly Formatter _formatter;
         private readonly FileFinder _fileFinder;
+        private readonly Settings _settings;
 
         public FormatPrompt(Settings settings)
         {
-            _settings = new FormatSettings(settings);
-            _formatter = new Formatter(_settings);
+            _settings = settings;
+            _formatter = new Formatter();
             _structureDetector = new StructureDetector();
             _fileFinder = new FileFinder();
         }
@@ -24,15 +26,14 @@ namespace Qa.Core.Format
         public void Start()
         {
             Lo.NewPage("Formatting files");
-            showSettings(_settings);
+            showSettings();
 
-            var files = _fileFinder.Find(_settings.WorkingFolder, _settings.SourceFileMask).ToList();
+            var files = _fileFinder.Find(_settings.WorkingFolder, SOURCE_FILE_MASK).ToList();
             Lo.Wl().Wl($"Found {files.Count} files:");
-
-            var detectSettings = new StructureDetectSettings { Delimeter = _settings.SourceDelimeter, FileStructures = _settings.FileStructures };
+            
             foreach (var filepath in files)
             {
-                var detected = _structureDetector.Detect(filepath, detectSettings);
+                var detected = _structureDetector.Detect(filepath, _settings.FileStructures);
                 if (detected.Error.IsNotEmpty())
                 {
                     Lo.Wl()
@@ -51,23 +52,20 @@ namespace Qa.Core.Format
             Console.ReadKey();
         }
         
-        private void showSettings(FormatSettings settings)
+        private void showSettings()
         {
             Lo.Wl()
                 .Wl("Source File Settings:")
-                .Wl($"Working folder        = {settings.WorkingFolder}")
-                .Wl($"Skip Rows Count       = {settings.SkipRows}")
-                .Wl($"File mask             = {settings.SourceFileMask}")
-                .Wl($"Delimeter             = {settings.SourceDelimeter}")
+                .Wl($"Working folder        = {_settings.WorkingFolder}")
+                .Wl($"File mask             = {SOURCE_FILE_MASK}")
                 .Wl()
                 .Wl("Destination File Settings:")
-                .Wl($"New File Extension    = {settings.DestinationFileExtension}")
-                .Wl($"New Delimeter         = {settings.DestinationDelimeter}");
+                .Wl($"New File Extension    = {DESTINATION_FILE_EXTENSION}");
         }
 
         private void askFormat(FormattingFile file)
         {
-            file.DestinationPath = Path.Combine(_settings.WorkingFolder, Path.GetFileNameWithoutExtension(file.SourcePath) + "." + _settings.DestinationFileExtension);
+            file.DestinationPath = Path.Combine(_settings.WorkingFolder, Path.GetFileNameWithoutExtension(file.SourcePath) + "." + DESTINATION_FILE_EXTENSION);
             var fromFileName = Path.GetFileName(file.SourcePath);
             var intoFileName = Path.GetFileName(file.DestinationPath);
             Lo.Wl()

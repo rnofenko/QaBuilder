@@ -33,8 +33,7 @@ namespace Qa.Bai.Benchmark.Sb.Collectors
             Console.ForegroundColor = ConsoleColor.Cyan;
             Lo.Wl($"File: {Path.GetFileNameWithoutExtension(filepath)}");
             Console.ResetColor();
-            var detected = _structureDetector.Detect(filepath,
-                new StructureDetectSettings { FileStructures = settings.FileStructures });
+            var detected = _structureDetector.Detect(filepath, settings.FileStructures);
 
             var report = new RawReport
             {
@@ -59,7 +58,7 @@ namespace Qa.Bai.Benchmark.Sb.Collectors
                     string line;
                     while ((line = stream.ReadLine()) != null)
                     {
-                        var parts = line.Split(new[] {report.Structure.Delimeter}, StringSplitOptions.None);
+                        var parts = line.Split(new[] {report.Structure.SourceDelimeter }, StringSplitOptions.None);
                         parts = parts.Select(x => x.Replace(" .", "0")).ToArray();
                         report.RowsCount++;
                         valueParser.Parse(parts);

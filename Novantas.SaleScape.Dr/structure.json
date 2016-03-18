@@ -2,7 +2,7 @@
   {
     "name": "Novantas SaleScape",
     "rowsInHeader": 1,
-    "delimeter": "|",
+    "sourceDelimeter": "|",
     "fields": [
       {
         "name": "YEAR_MONTH",

@@ -10,6 +10,8 @@ namespace Qa.Core.Combines
 
         public string WorkingFolder => _settings.WorkingFolder;
 
+        public int HeaderRowsCount { get; set; }
+
         public CombineSettings(Settings settings)
         {
             _settings = settings;

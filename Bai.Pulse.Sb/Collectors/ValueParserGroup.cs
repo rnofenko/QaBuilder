@@ -24,7 +24,7 @@ namespace Qa.Bai.Pulse.Sb.Collectors
 
         public void Parse(string line)
         {
-            var parts = line.Split(new[] { _structure.Delimeter }, StringSplitOptions.None);
+            var parts = line.Split(new[] { _structure.SourceDelimeter }, StringSplitOptions.None);
             var parser = getParser(parts[_subReportIndex]);
             parser.Parse(parts);
             RowsCount++;

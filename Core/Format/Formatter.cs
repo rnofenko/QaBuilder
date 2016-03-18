@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
+using System.Text.RegularExpressions;
 using Qa.Core.Structure;
 using Qa.Core.System;
 
@@ -9,29 +8,25 @@ namespace Qa.Core.Format
 {
     public class Formatter
     {
-        private readonly FormatSettings _settings;
-        private bool _removeQuotes;
         private List<FieldDescription> _fields;
+        private string _regexPattern;
+        private FormattingFile _file;
 
-        public Formatter(FormatSettings settings)
-        {
-            _settings = settings;
-        }
-        
         public void Format(FormattingFile file)
         {
+            _file = file;
             _fields = file.Structure.Fields;
+            _regexPattern = "((?<=\")[^\"]*(?=\"(" + file.SourceDelimeter + "|$)+)|(?<=" + file.SourceDelimeter + "|^)[^" + file.SourceDelimeter + "\"]*(?=" + file.SourceDelimeter + "|$))";
             var rowCount = 1;
             using (var reader = new StreamReader(file.SourcePath))
             {
                 using (var writer = new StreamWriter(file.DestinationPath))
                 {
-                    for (var i = 0; i < _settings.SkipRows; i++)
+                    for (var i = 0; i < file.Structure.RowsInHeader; i++)
                     {
                         reader.ReadLine();
                     }
                     var line = reader.ReadLine();
-                    analyzeLine(line);
                     writer.WriteLine(processLine(line));
 
                     while ((line = reader.ReadLine())!=null)
@@ -46,46 +41,33 @@ namespace Qa.Core.Format
 
         private string processLine(string line)
         {
-            var parts = line.Split(new[] { _settings.SourceDelimeter }, StringSplitOptions.None);
-            if (_removeQuotes)
+            var parts = new string[_fields.Count];
+            var result = Regex.Split(line, _regexPattern);
+            
+            for (var i = 0; i < _fields.Count; i++)
             {
-                parts = parts.Select(x => x.Substring(1, x.Length - 2)).ToArray();
-            }
-            for (var i = 0; i < parts.Length; i++)
-            {
+                var value = result[i*2 + 1];
                 var field = _fields[i];
                 if (field.Type == DType.Number)
                 {
-                    var unparsed = parts[i];
-                    if (unparsed == ".")
+                    if (value == ".")
                     {
-                        unparsed = "0";
+                        value = "0";
                     }
-                    var parsed = double.Parse(unparsed);
+                    var parsed = double.Parse(value);
                     if (field.Format == FormatType.Double || field.Format == FormatType.Money)
                     {
-                        parts[i] = $"{parsed:0.00}";
+                        value = $"{parsed:0.00}";
                     }
                     else
                     {
-                        parts[i] = $"{parsed:0}";
+                        value = $"{parsed:0}";
                     }
                 }
-            }
-            return string.Join("|", parts);
-        }
 
-        private void analyzeLine(string line)
-        {
-            var parts = line.Split(new[] { _settings.SourceDelimeter }, StringSplitOptions.None);
-            var allHaveQuotes = true;
-            foreach (var part in parts)
-            {
-                if (part.StartsWith("\"") && part.EndsWith("\"")) continue;
-                allHaveQuotes = false;
-                break;
+                parts[i] = value;
             }
-            _removeQuotes = allHaveQuotes;
+            return string.Join(_file.DestinationDelimeter, parts);
         }
     }
 }

@@ -2,7 +2,7 @@
   {
     "name": "BAI SBB",
     "rowsInHeader": 0,
-    "delimeter": "|",
+    "sourceDelimeter": "|",
     "fields": [
       {
         "name": "ENTERPRISE_ID",
