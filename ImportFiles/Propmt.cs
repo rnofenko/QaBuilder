@@ -1,9 +1,10 @@
 ﻿using System;
+using Qa.Core.Combines;
 using Qa.Core.Format;
 using Qa.Core.Structure;
 using Qa.Core.System;
 
-namespace Qa.File
+namespace Qa.ImportFiles
 {
     public class Propmt
     {
@@ -13,6 +14,7 @@ namespace Qa.File
         {
             _settingsProvider = new SettingsProvider();
             var settings = _settingsProvider.Load();
+            var combiner = new FileCombiner();
 
             while (true)
             {
@@ -23,7 +25,8 @@ namespace Qa.File
                     .Wl()
                     .Wl("Select command:")
                     .Wl("1. Format files")
-                    .Wl("2. Combine by transactions");
+                    .Wl("2. Combine by mask")
+                    .Wl("3. Add date");
                 var key = Console.ReadKey().KeyChar;
                 if (key == '1')
                 {
@@ -31,7 +34,15 @@ namespace Qa.File
                 }
                 if (key == '2')
                 {
-                    new TransactionCombiner().Combine(settings);
+                    Lo.W("Input mask:");
+                    var mask = Console.ReadLine();
+                    combiner.Combine(new CombineSettings(settings) { HeaderRowsCount = 1, FileMask = mask });
+                    Lo.Wl("Combine was finished.");
+                    Console.ReadLine();
+                }
+                if (key == '3')
+                {
+                    new DateAdder().Add(settings);
                 }
             }
         }

@@ -1,0 +1,47 @@
+﻿{
+  "structures": [
+    {
+      "name": "CD Interest Rates",
+      "rowsInHeader": 1,
+      "delimeter": ",",
+      "fields": [
+        { "name": "BRANCH_ID" },
+        { "name": "TYPE" },
+        { "name": "CONTRACT_ID" },
+        { "name": "INTEREST_RATE" },
+        { "name": "INTEREST_ACCRUED" },
+        { "name": "DATE" }
+      ]
+    },
+    {
+      "name": "CD Transactions",
+      "rowsInHeader": 1,
+      "delimeter": ",",
+      "fields": [
+        { "name": "BRANCH_ID" },
+        { "name": "TYPE" },
+        { "name": "CONTRACT_ID" },
+        {
+          "name": "DATE",
+          "dateFormat": "MM/dd/yyyy"
+        },
+        {
+          "name": "TRANSACTION_CODE",
+          "numberFormat": "Integer"
+        },
+        {
+          "name": "AMOUNT",
+          "numberFormat": "Money"
+        }
+      ]
+    }
+  ],
+  "formatSchemes": [
+    {
+      "name": "CD Transactions"
+    },
+    {
+      "name": "CD Interest Rates"
+    }
+  ]
+}

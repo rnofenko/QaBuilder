@@ -1,117 +1,119 @@
-﻿[
-  {
-    "name": "Novantas SaleScape",
-    "rowsInHeader": 1,
-    "sourceDelimeter": "|",
-    "fields": [
-      {
-        "name": "YEAR_MONTH",
-        "title": "Period"
-      },
-      {
-        "name": "CUST_ID",
-        "title": "Customer ID",
-        "countUniqueValues": true
-      },
-      {
-        "name": "CUST_COST_CENTER",
-        "title": "Customer Cost Center",
-        "countUniqueValues": true
-      },
-      {
-        "name": "CUST_SINCE_DATE",
-        "title": "Customer Since"
-      },
-      {
-        "name": "HH_ID",
-        "title": "Household ID",
-        "countUniqueValues": true
-      },
-      {
-        "name": "HH_COST_CENTER",
-        "title": "Household Cost Center",
-        "countUniqueValues": true
-      },
-      {
-        "name": "HH_SINCE_DATE",
-        "title": "Household Since"
-      },
-      {
-        "name": "ACCT_ID",
-        "title": "Account ID",
-        "countUniqueValues": true
-      },
-      {
-        "name": "ORIG_COST_CENTER",
-        "title": "Original Cost Center",
-        "countUniqueValues": true
-      },
-      {
-        "name": "ACCT_COST_CENTER",
-        "title": "Account Cost Center",
-        "countUniqueValues": true
-      },
-      {
-        "name": "ACCT_OPEN_DATE",
-        "title": "Account Open Date"
-      },
-      {
-        "name": "ACCT_CLOSE_DATE",
-        "title": "Account Close Date"
-      },
-      {
-        "name": "DATE_RENEWED",
-        "title": "Date Renewed"
-      },
-      {
-        "name": "LOB",
-        "title": "Line of Business",
-        "selectUniqueValues": true
-      },
-      {
-        "name": "PROD_CODE1",
-        "title": "Product Code 1",
-        "selectUniqueValues": true
-      },
-      {
-        "name": "PROD_CODE2",
-        "title": "Product Code 2"
-      },
-      {
-        "name": "PROD_CODE3",
-        "title": "Product Code 3"
-      },
-      {
-        "name": "TERM",
-        "title": "CD Term",
-        "selectUniqueValues": true,
-        "sort": "numeric"
-      },
-      {
-        "name": "BAL_EOM",
-        "title": "End of Month Balance",
-        "format": "Money"
-      },
-      {
-        "name": "AVG_BAL",
-        "title": "Average Monthly Balance",
-        "format": "Money"
-      },
-      {
-        "name": "LINE_EOM",
-        "title": "Line End of Month",
-        "format": "Money"
-      },
-      {
-        "name": "INTEREST_RATE",
-        "title": "Interest Rate",
-        "selectUniqueValues": false
-      },
-      {
-        "name": "FEE_INC",
-        "title": "Fee Income",
-        "format": "Money"
-      }
-    ]
-  }
-]
+﻿{
+  "structures": [
+    {
+      "name": "Novantas SaleScape",
+      "rowsInHeader": 1,
+      "delimeter": "|",
+      "fields": [
+        {
+          "name": "YEAR_MONTH",
+          "title": "Period"
+        },
+        {
+          "name": "CUST_ID",
+          "title": "Customer ID",
+          "countUniqueValues": true
+        },
+        {
+          "name": "CUST_COST_CENTER",
+          "title": "Customer Cost Center",
+          "countUniqueValues": true
+        },
+        {
+          "name": "CUST_SINCE_DATE",
+          "title": "Customer Since"
+        },
+        {
+          "name": "HH_ID",
+          "title": "Household ID",
+          "countUniqueValues": true
+        },
+        {
+          "name": "HH_COST_CENTER",
+          "title": "Household Cost Center",
+          "countUniqueValues": true
+        },
+        {
+          "name": "HH_SINCE_DATE",
+          "title": "Household Since"
+        },
+        {
+          "name": "ACCT_ID",
+          "title": "Account ID",
+          "countUniqueValues": true
+        },
+        {
+          "name": "ORIG_COST_CENTER",
+          "title": "Original Cost Center",
+          "countUniqueValues": true
+        },
+        {
+          "name": "ACCT_COST_CENTER",
+          "title": "Account Cost Center",
+          "countUniqueValues": true
+        },
+        {
+          "name": "ACCT_OPEN_DATE",
+          "title": "Account Open Date"
+        },
+        {
+          "name": "ACCT_CLOSE_DATE",
+          "title": "Account Close Date"
+        },
+        {
+          "name": "DATE_RENEWED",
+          "title": "Date Renewed"
+        },
+        {
+          "name": "LOB",
+          "title": "Line of Business",
+          "selectUniqueValues": true
+        },
+        {
+          "name": "PROD_CODE1",
+          "title": "Product Code 1",
+          "selectUniqueValues": true
+        },
+        {
+          "name": "PROD_CODE2",
+          "title": "Product Code 2"
+        },
+        {
+          "name": "PROD_CODE3",
+          "title": "Product Code 3"
+        },
+        {
+          "name": "TERM",
+          "title": "CD Term",
+          "selectUniqueValues": true,
+          "sort": "numeric"
+        },
+        {
+          "name": "BAL_EOM",
+          "title": "End of Month Balance",
+          "numberFormat": "Money"
+        },
+        {
+          "name": "AVG_BAL",
+          "title": "Average Monthly Balance",
+          "numberFormat": "Money"
+        },
+        {
+          "name": "LINE_EOM",
+          "title": "Line End of Month",
+          "numberFormat": "Money"
+        },
+        {
+          "name": "INTEREST_RATE",
+          "title": "Interest Rate",
+          "selectUniqueValues": false
+        },
+        {
+          "name": "FEE_INC",
+          "title": "Fee Income",
+          "numberFormat": "Money"
+        }
+      ]
+    }
+  ]
+}

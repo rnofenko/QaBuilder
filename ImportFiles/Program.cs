@@ -1,4 +1,4 @@
-﻿namespace Qa.File
+﻿namespace Qa.ImportFiles
 {
     class Program
     {

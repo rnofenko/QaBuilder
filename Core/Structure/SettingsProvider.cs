@@ -15,7 +15,7 @@ namespace Qa.Core.Structure
             var config = new Settings
             {
                 WorkingFolder = getWorkingFolder(),
-                FileStructures = new StructureLoader().Load(getBinFolder())
+                Project = new StructureLoader().Load(getBinFolder())
             };
 
             return config;
@@ -71,16 +71,6 @@ namespace Qa.Core.Structure
         private void set(string name, string value)
         {
             getSettings()[name].Value = value;
-        }
-
-        private string get(string name, string defaultValue)
-        {
-            var value = get(name);
-            if (value.IsEmpty())
-            {
-                return defaultValue;
-            }
-            return value;
         }
     }
 }

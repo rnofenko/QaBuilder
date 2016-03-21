@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bai.Pulse.Sb.Weekly", "Bai.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Novantas.SaleScape.Dr", "Novantas.SaleScape.Dr\Novantas.SaleScape.Dr.csproj", "{BF206B46-8AD2-4CF8-B6E7-2AF04084A113}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "File", "File\File.csproj", "{84A6DC05-4385-447F-86E8-D5DB473EA010}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImportFiles", "ImportFiles\ImportFiles.csproj", "{84A6DC05-4385-447F-86E8-D5DB473EA010}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

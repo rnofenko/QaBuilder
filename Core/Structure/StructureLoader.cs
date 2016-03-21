@@ -1,39 +1,56 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Newtonsoft.Json;
 
 namespace Qa.Core.Structure
 {
     public class StructureLoader
     {
-        public List<FileStructure> Load(string folder)
+        public ProjectStructure Load(string folder)
         {
             var path = Path.Combine(folder, "structure.json");
             if (!File.Exists(path))
             {
-                return new List<FileStructure>();
+                return new ProjectStructure();
             }
 
             var content = File.ReadAllText(path);
-            var structures = JsonConvert.DeserializeObject<List<FileStructure>>(content);
-            structures.ForEach(prepareForUse);
-            return structures;
+            var project = JsonConvert.DeserializeObject<ProjectStructure>(content);
+            project.Structures.ForEach(prepareForUse);
+            project.FormatSchemes.ForEach(x => prepareFormatScheme(x, project.Structures));
+            return project;
+        }
+
+        private void prepareFormatScheme(FormatStructure formatStructure, List<FileStructure> structures)
+        {
+            var structure = structures.FirstOrDefault(x => x.Name == formatStructure.Name);
+            if (structure == null)
+            {
+                return;
+            }
+            formatStructure.Destination = structure;
+            formatStructure.Delimeter = formatStructure.Delimeter ?? (structure.Delimeter ?? ",");
+            if (formatStructure.Fields.IsEmpty())
+            {
+                formatStructure.Fields = structure.Fields.Select(x=>new FormatFieldDescription(x)).ToList();
+            }
         }
 
         private void prepareForUse(FileStructure structure)
         {
             structure.Fields.ForEach(checkField);
-            if (structure.DestinationDelimeter.IsEmpty())
-            {
-                structure.DestinationDelimeter = structure.SourceDelimeter;
-            }
         }
 
         private void checkField(FieldDescription field)
         {
             if (field.Type == DType.None)
             {
-                if (field.Format == FormatType.None)
+                if (field.DateFormat.IsNotEmpty())
+                {
+                    field.Type = DType.Date;
+                }
+                else if (field.NumberFormat == NumberFormat.None)
                 {
                     field.Type = DType.String;
                 }
@@ -43,9 +60,9 @@ namespace Qa.Core.Structure
                 }
             }
 
-            if (field.Format == FormatType.None && field.Type == DType.Number)
+            if (field.NumberFormat == NumberFormat.None && field.Type == DType.Number)
             {
-                field.Format = FormatType.Double;
+                field.NumberFormat = NumberFormat.Double;
             }
         }
     }

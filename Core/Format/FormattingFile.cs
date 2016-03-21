@@ -1,4 +1,3 @@
-using OfficeOpenXml.FormulaParsing.LexicalAnalysis;
 using Qa.Core.Structure;
 
 namespace Qa.Core.Format
@@ -9,10 +8,6 @@ namespace Qa.Core.Format
 
         public string DestinationPath { get; set; }
 
-        public FileStructure Structure { get; set; }
-
-        public string SourceDelimeter => Structure.SourceDelimeter;
-
-        public string DestinationDelimeter => Structure.DestinationDelimeter;
+        public FormatStructure FormatStructure { get; set; }
     }
 }

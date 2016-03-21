@@ -38,7 +38,7 @@ namespace Qa.Bai.Benchmark.Dp.Excel
                 .Down()
                 .Header("", "Values")
                 .Down()
-                .Print("Total Records", new TypedValue(packet.Reports.First().RowsCount.Current, FormatType.Integer))
+                .Print("Total Records", new TypedValue(first.RowsCount.Current, NumberFormat.Integer))
                 .Down()
                 .PrintDown(first.Numbers.Select(x => x.Title))
                 .Right()

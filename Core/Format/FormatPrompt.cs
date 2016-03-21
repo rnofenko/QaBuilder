@@ -33,18 +33,10 @@ namespace Qa.Core.Format
             
             foreach (var filepath in files)
             {
-                var detected = _structureDetector.Detect(filepath, _settings.FileStructures);
-                if (detected.Error.IsNotEmpty())
+                var detected = _structureDetector.Detect(filepath, _settings.Project.FormatSchemes);
+                if (detected != null)
                 {
-                    Lo.Wl()
-                        .Wl(detected.FilePath)
-                        .Wl("ERROR      : " + detected.Error)
-                        .Wl($"Structure  : {detected.Structure?.Name}", detected.Structure != null)
-                        .Wl($"FieldsCount: {detected.FieldsCount}");
-                }
-                else
-                {
-                    askFormat(new FormattingFile {SourcePath = filepath, Structure = detected.Structure});
+                    askFormat(new FormattingFile {SourcePath = filepath, FormatStructure = detected});
                 }
             }
 

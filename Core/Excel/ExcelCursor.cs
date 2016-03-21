@@ -125,7 +125,7 @@ namespace Qa.Core.Excel
             return PrintDown(values.ToArray());
         }
 
-        public ExcelCursor PrintDown(IEnumerable<double> values, FormatType type)
+        public ExcelCursor PrintDown(IEnumerable<double> values, NumberFormat type)
         {
             var pos = _pos.Clone();
             foreach (var value in values)
@@ -151,7 +151,7 @@ namespace Qa.Core.Excel
             return this;
         }
 
-        public ExcelCursor Print(double value, FormatType type)
+        public ExcelCursor Print(double value, NumberFormat type)
         {
             return Print(new TypedValue(value, type), _pos);
         }
@@ -160,15 +160,15 @@ namespace Qa.Core.Excel
         {
             if (value.Type == DType.Number)
             {
-                if (value.Format == FormatType.Money)
+                if (value.Format == NumberFormat.Money)
                 {
                     return Money(value.Double(), pos);
                 }
-                if (value.Format == FormatType.Integer)
+                if (value.Format == NumberFormat.Integer)
                 {
                     return Integer(value.Int(), pos);
                 }
-                if (value.Format == FormatType.Percent)
+                if (value.Format == NumberFormat.Percent)
                 {
                     return Percent(value.NullableDouble(), pos);
                 }
@@ -228,7 +228,7 @@ namespace Qa.Core.Excel
             }
             if (styleCondition != null)
             {
-                styleCondition(new StyleConditionArgs { Pos = pos, Value = new TypedValue(value, FormatType.Percent), Cursor = this });
+                styleCondition(new StyleConditionArgs { Pos = pos, Value = new TypedValue(value, NumberFormat.Percent), Cursor = this });
             }
             return this;
         }

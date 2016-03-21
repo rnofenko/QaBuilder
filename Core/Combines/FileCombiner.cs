@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Text.RegularExpressions;
 using Qa.Core.System;
 
 namespace Qa.Core.Combines
@@ -58,7 +57,7 @@ namespace Qa.Core.Combines
                         {
                             for (var i = 0; i < headersRowCount; i++)
                             {
-                                outputStream.Write(stream.ReadLine());
+                                outputStream.WriteLine(stream.ReadLine());
                             }
                             isFirst = false;
                         }
@@ -69,18 +68,6 @@ namespace Qa.Core.Combines
                                 stream.ReadLine();
                             }
                         }
-                        
-                        var line = stream.ReadLine();
-                        while (line.IsNotEmpty())
-                        {
-                            
-                        }
-                        line = stream.ReadLine();
-                        var regex = "((?<=\")[^\"]*(?=\"(,|$)+)|(?<=,|^)[^,\"]*(?=,|$))";
-                        var result = Regex.Split(line, regex);
-                        line = stream.ReadLine();
-                        result = Regex.Split(line, regex);
-
                         var text = stream.ReadToEnd();
                         outputStream.Write(text);
                     }

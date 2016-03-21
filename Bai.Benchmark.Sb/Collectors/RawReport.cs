@@ -7,8 +7,6 @@ namespace Qa.Bai.Benchmark.Sb.Collectors
     {
         public string Path { get; set; }
 
-        public string Error { get; set; }
-
         public FileStructure Structure { get; set; }
 
         public int FieldsCount { get; set; }

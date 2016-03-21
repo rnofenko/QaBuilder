@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 using Qa.Core.Structure;
@@ -10,21 +11,23 @@ namespace Qa.Core.Format
     {
         private List<FieldDescription> _fields;
         private string _regexPattern;
-        private FormattingFile _file;
+        private string _destinationDelimeter;
 
         public void Format(FormattingFile file)
         {
-            _file = file;
-            _fields = file.Structure.Fields;
-            _regexPattern = "((?<=\")[^\"]*(?=\"(" + file.SourceDelimeter + "|$)+)|(?<=" + file.SourceDelimeter + "|^)[^" + file.SourceDelimeter + "\"]*(?=" + file.SourceDelimeter + "|$))";
+            _destinationDelimeter = file.FormatStructure.Destination.Delimeter;
+            var formatStructure = file.FormatStructure;
+            var delimeter = formatStructure.Delimeter;
+            _fields = file.FormatStructure.Destination.Fields;
+            _regexPattern = "((?<=\")[^\"]*(?=\"(" + delimeter + "|$)+)|(?<=" + delimeter + "|^)[^" + delimeter + "\"]*(?=" + delimeter + "|$))";
             var rowCount = 1;
             using (var reader = new StreamReader(file.SourcePath))
             {
                 using (var writer = new StreamWriter(file.DestinationPath))
                 {
-                    for (var i = 0; i < file.Structure.RowsInHeader; i++)
+                    for (var i = 0; i < formatStructure.RowsInHeader; i++)
                     {
-                        reader.ReadLine();
+                        writer.WriteLine(reader.ReadLine());
                     }
                     var line = reader.ReadLine();
                     writer.WriteLine(processLine(line));
@@ -55,7 +58,7 @@ namespace Qa.Core.Format
                         value = "0";
                     }
                     var parsed = double.Parse(value);
-                    if (field.Format == FormatType.Double || field.Format == FormatType.Money)
+                    if (field.NumberFormat == NumberFormat.Double || field.NumberFormat == NumberFormat.Money)
                     {
                         value = $"{parsed:0.00}";
                     }
@@ -64,10 +67,18 @@ namespace Qa.Core.Format
                         value = $"{parsed:0}";
                     }
                 }
+                else if (field.Type == DType.Date)
+                {
+                    if (field.DateFormat.IsNotEmpty())
+                    {
+                        var date = DateTime.Parse(value);
+                        value = date.ToString(field.DateFormat);
+                    }
+                }
 
                 parts[i] = value;
             }
-            return string.Join(_file.DestinationDelimeter, parts);
+            return string.Join(_destinationDelimeter, parts);
         }
     }
 }

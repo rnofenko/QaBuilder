@@ -34,12 +34,12 @@ namespace Qa.Core.Compare
 
         public TypedValue GetCurrent()
         {
-            return new TypedValue(Number.Current, _description.Format);
+            return new TypedValue(Number.Current, _description.NumberFormat);
         }
 
         public TypedValue GetChange()
         {
-            return new TypedValue(Number.Change, FormatType.Percent);
+            return new TypedValue(Number.Change, NumberFormat.Percent);
         }
     }
 }

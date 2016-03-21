@@ -7,7 +7,7 @@ namespace Qa.Core.Excel
     {
         public DType Type { get; set; }
 
-        public FormatType Format { get; set; }
+        public NumberFormat Format { get; set; }
 
         public object Value { get; set; }
 
@@ -21,17 +21,17 @@ namespace Qa.Core.Excel
         {
             Value = value;
             Type = DType.Number;
-            Format = FormatType.Double;
+            Format = NumberFormat.Double;
         }
 
         public TypedValue(int value)
         {
             Value = value;
             Type = DType.Number;
-            Format = FormatType.Integer;
+            Format = NumberFormat.Integer;
         }
 
-        public TypedValue(double? value, FormatType formatType)
+        public TypedValue(double? value, NumberFormat formatType)
         {
             Value = value;
             Type = DType.Number;

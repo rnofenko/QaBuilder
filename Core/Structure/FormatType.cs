@@ -1,6 +1,6 @@
 namespace Qa.Core.Structure
 {
-    public enum FormatType
+    public enum NumberFormat
     {
         None = 0,
         Double = 1,
