@@ -1,6 +1,4 @@
-﻿using Qa.Argus.Cd;
-
-namespace Argus.Cd
+﻿namespace Qa.Argus.Cd
 {
     class Program
     {

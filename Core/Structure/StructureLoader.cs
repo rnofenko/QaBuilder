@@ -77,6 +77,8 @@ namespace Qa.Core.Structure
                 }
                 field.Calculation.GroupByIndex = structure.Fields.FindIndex(x => x.Name == field.Calculation.GroupBy);
             }
+
+            field.Title = field.Title ?? field.Name;
         }
     }
 }

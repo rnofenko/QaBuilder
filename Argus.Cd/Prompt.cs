@@ -1,6 +1,5 @@
 ﻿using System;
 using Qa.Argus.Cd.Compare;
-using Qa.Bai.Benchmark.Sb.Compare;
 using Qa.Core.Format;
 using Qa.Core.Structure;
 using Qa.Core.System;

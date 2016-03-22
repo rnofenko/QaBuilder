@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Qa.Argus.Cd.Compare;
-using Qa.Bai.Benchmark.Sb.Collectors;
+using Qa.Argus.Cd.Collectors;
 using Qa.Core.Compare;
 using Qa.Core.Structure;
 
-namespace Qa.Bai.Benchmark.Sb.Compare
+namespace Qa.Argus.Cd.Compare
 {
     public class Comparer
     {

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Qa.Core.Compare;
 
-namespace Qa.Bai.Benchmark.Sb.Compare
+namespace Qa.Argus.Cd.Compare
 {
     public class CompareReport
     {

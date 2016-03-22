@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Qa.Bai.Benchmark.Sb.Collectors;
 using Qa.Core.Collectors;
 using Qa.Core.Structure;
 using Qa.Core.System;

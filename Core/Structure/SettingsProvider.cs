@@ -26,7 +26,7 @@ namespace Qa.Core.Structure
             var folder = get(WORKING_FOLDER);
             if (!Path.IsPathRooted(folder))
             {
-                folder = Path.Combine(getBinFolder(), folder);
+                folder = Path.GetFullPath(Path.Combine(getBinFolder(), folder));
             }
             return folder;
         }

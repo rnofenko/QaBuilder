@@ -1,0 +1,65 @@
+﻿{
+  "structures": [
+    {
+      "name": "Argus CD Appendix A",
+      "rowsInHeader": 1,
+      "delimeter": "|",
+      "fields": [
+        {
+          "name": "Account Identifier",
+          "countUniqueValues": true
+        },
+        {
+          "name": "Customer Identifier",
+          "countUniqueValues": true
+        },
+        {
+          "name": "Product Type",
+          "selectUniqueValues": true
+        },
+        { "name": "SubProduct Type" },
+        {
+          "name": "Account Status",
+          "countUniqueValues": true
+        },
+        { "name": "Open Date" },
+        {
+          "name": "Close Date", 
+          "type": "Date" },
+        { "name": "Term Start Date" },
+        { "name": "Term End Date" },
+        {
+          "name": "Month End Balance",
+          "numberFormat": "Money"
+        },
+        {
+          "name": "APY",
+          "numberFormat": "Double"
+        },
+        {
+          "name": "Interest Accrued",
+          "numberFormat": "Money"
+        },
+        { "name": "City" },
+        {
+          "name": "State",
+          "selectUniqueValues": true
+        },
+        { "name": "Zip Code" },
+        { "name": "Branch" },
+        { "name": "Origin Branch" },
+        { "name": "Origination Channel" },
+        { "name": "Close Reason Code" },
+        { "name": "Cycle Start Date" },
+        { "name": "Cycle End Date" },
+        { "name": "Cycle Balance" }
+      ]
+    }
+  ],
+  "formatSchemes": [
+    {
+      "name": "Argus CD Appendix A",
+      "delimeter": ","
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Qa.Core.Structure;
 
-namespace Qa.Bai.Benchmark.Sb.Collectors
+namespace Qa.Argus.Cd.Collectors
 {
     public class RawReport
     {

@@ -1,8 +1,6 @@
 ﻿using System;
 using Qa.Argus.Cd.Collectors;
 using Qa.Argus.Cd.Excel;
-using Qa.Bai.Benchmark.Sb.Collectors;
-using Qa.Bai.Benchmark.Sb.Compare;
 using Qa.Core.Structure;
 using Qa.Core.System;
 

@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using OfficeOpenXml;
 using Qa.Argus.Cd.Compare;
-using Qa.Bai.Benchmark.Sb.Compare;
 using Qa.Core.System;
 
 namespace Qa.Argus.Cd.Excel

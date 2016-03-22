@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Qa.Bai.Benchmark.Sb.Compare;
 using Qa.Core.Compare;
 using Qa.Core.Structure;
 

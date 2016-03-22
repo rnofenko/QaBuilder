@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Qa.Core.Structure;
 using Qa.Core.System;
@@ -25,10 +26,12 @@ namespace Qa.Core.Format
             {
                 using (var writer = new StreamWriter(file.DestinationPath))
                 {
-                    for (var i = 0; i < formatStructure.RowsInHeader; i++)
+                    for (var i = 0; i < (formatStructure.RowsInHeader ?? formatStructure.Destination.RowsInHeader); i++)
                     {
-                        writer.WriteLine(reader.ReadLine());
+                        reader.ReadLine();
                     }
+                    writer.WriteLine(string.Join(_destinationDelimeter, _fields.Select(x => x.Title)));
+
                     var line = reader.ReadLine();
                     writer.WriteLine(processLine(line));
 
@@ -45,11 +48,11 @@ namespace Qa.Core.Format
         private string processLine(string line)
         {
             var parts = new string[_fields.Count];
-            var result = Regex.Split(line, _regexPattern);
-            
+            var match = Regex.Match(line, _regexPattern);
+
             for (var i = 0; i < _fields.Count; i++)
             {
-                var value = result[i*2 + 1];
+                var value = match.Value;
                 var field = _fields[i];
                 if (field.Type == DType.Number)
                 {
@@ -69,14 +72,28 @@ namespace Qa.Core.Format
                 }
                 else if (field.Type == DType.Date)
                 {
+                    if (value == "31DEC9999")
+                    {
+                        value = "";
+                    }
+
                     if (field.DateFormat.IsNotEmpty())
                     {
                         var date = DateTime.Parse(value);
                         value = date.ToString(field.DateFormat);
                     }
                 }
+                else
+                {
+                    if (value == ".")
+                    {
+                        value = "";
+                    }
+                }
 
                 parts[i] = value;
+
+                match = match.NextMatch();
             }
             return string.Join(_destinationDelimeter, parts);
         }
