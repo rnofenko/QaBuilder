@@ -10,6 +10,7 @@ namespace Qa.Core.Collectors
             Description = field;
             CountedUniqueValues = new HashSet<string>();
             SelectedUniqueValues = new Dictionary<string, double>();
+            GroupedSum = new Dictionary<string, double>();
         }
 
         public FieldDescription Description { get; set; }

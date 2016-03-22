@@ -135,11 +135,6 @@
           "countUniqueValues": true
         },
         {
-          "name": "TRXN_TYPE",
-          "title": "Transaction Type",
-          "selectUniqueValues": true
-        },
-        {
           "name": "TRXN_COUNT",
           "title": "Transaction Count",
           "calculation": {

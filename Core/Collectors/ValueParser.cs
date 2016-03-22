@@ -31,13 +31,14 @@ namespace Qa.Core.Collectors
                         var parsed = double.Parse(value);                        
                         if (field.Description.Calculation.GroupByIndex >= 0)
                         {
-                            if (!field.GroupedSum.ContainsKey(value))
+                            var key = parts[field.Description.Calculation.GroupByIndex];
+                            if (!field.GroupedSum.ContainsKey(key))
                             {
-                                field.GroupedSum.Add(value, parsed);
+                                field.GroupedSum.Add(key, parsed);
                             }
                             else
                             {
-                                field.GroupedSum[value]+= parsed;
+                                field.GroupedSum[key] += parsed;
                             }
                         }
                         else
