@@ -8,13 +8,11 @@
         {
           "name": "HOUSEHOLD_ID",
           "title": "Household ID",
-          "type": "String",
           "countUniqueValues": true
         },
         {
           "name": "CUSTOMER_ID",
           "title": "Customer ID",
-          "type": "String",
           "countUniqueValues": true
         },
         {
@@ -32,7 +30,6 @@
         {
           "name": "PRODUCT_CODE",
           "title": "Product Code",
-          "type": "String",
           "selectUniqueValues": true
         },
         {
@@ -46,7 +43,6 @@
         {
           "name": "PRODUCT_TYPE",
           "title": "Product Type",
-          "type": "String",
           "selectUniqueValues": true
         },
         {
@@ -66,31 +62,26 @@
         {
           "name": "BRANCH_ID",
           "title": "Branch ID",
-          "type": "String",
           "countUniqueValues": true
         },
         {
           "name": "HOME_BRANCH_ID",
           "title": "Home Branch ID",
-          "type": "String",
           "countUniqueValues": true
         },
         {
           "name": "F_MANAGED_ACCOUNT",
           "title": "Managed Account",
-          "type": "String",
           "selectUniqueValues": true
         },
         {
           "name": "F_EMPLOYEE",
           "title": "Employee",
-          "type": "String",
           "selectUniqueValues": true
         },
         {
           "name": "ORIGINATION_CODE",
           "title": "Origination Code",
-          "type": "String",
           "countUniqueValues": false
         },
         {
@@ -118,31 +109,26 @@
         {
           "name": "F_DEBIT_CARD",
           "title": "Debit Card",
-          "type": "String",
           "selectUniqueValues": true
         },
         {
           "name": "F_ONLINE_BANKING",
           "title": "Online Banking",
-          "type": "String",
           "selectUniqueValues": true
         },
         {
           "name": "F_ONLINE_BILLPAY",
           "title": "Online Billpay",
-          "type": "String",
           "selectUniqueValues": true
         },
         {
           "name": "F_DIRECT_DEPOSIT",
           "title": "Direct Deposit",
-          "type": "String",
           "selectUniqueValues": true
         },
         {
           "name": "CD_TERM",
           "title": "CD Term",
-          "type": "String",
           "selectUniqueValues": true,
           "sort": "numeric"
         },
@@ -166,7 +152,6 @@
         {
           "name": "CUSTOMER_AGE",
           "title": "Customer Age",
-          "type": "String",
           "selectUniqueValues": true,
           "sort": "numeric"
         },
@@ -177,20 +162,17 @@
         {
           "name": "HOUSEHOLD_INCOME_TIER",
           "title": "Household Income Tier",
-          "type": "String",
           "selectUniqueValues": true,
           "sort": "numeric"
         },
         {
           "name": "F_ACTIVE_CHEKING",
           "title": "Active Checking",
-          "type": "String",
           "selectUniqueValues": true
         },
         {
           "name": "F_ACH_DIRECT_DEPOSIT",
           "title": "ACH Direct Deposit",
-          "type": "String",
           "selectUniqueValues": true
         },
         {
@@ -208,7 +190,6 @@
         {
           "name": "F_FEE",
           "title": "Fee",
-          "type": "String",
           "selectUniqueValues": true
         },
         {
@@ -219,7 +200,6 @@
         {
           "name": "ORIGINATION_CHANNEL",
           "title": "Origination Channel",
-          "type": "String",
           "selectUniqueValues": false
         },
         {
@@ -229,31 +209,26 @@
         {
           "name": "F_MOBILE_BANKING",
           "title": "Mobile Banking",
-          "type": "String",
           "selectUniqueValues": false
         },
         {
           "name": "F_REMOTE_DEPOSIT_CAPTURE",
           "title": "Remote Deposit Capture",
-          "type": "String",
           "selectUniqueValues": false
         },
         {
           "name": "F_PERSON-TO-PERSON_PAYMENT",
           "title": "Person-to-person Payment",
-          "type": "String",
           "selectUniqueValues": false
         },
         {
           "name": "F_PRIMARY_CHECKING",
           "title": "Primary Checking",
-          "type": "String",
           "selectUniqueValues": false
         },
         {
           "name": "NUMBER_OF_TIMES_CD_RENEWED",
           "title": "Number of times CD renewed",
-          "type": "String",
           "selectUniqueValues": false
         }
       ]

@@ -18,7 +18,7 @@ namespace Qa.Core.Structure
             var content = File.ReadAllText(path);
             var project = JsonConvert.DeserializeObject<ProjectStructure>(content);
             project.Structures.ForEach(prepareForUse);
-            project.FormatSchemes.ForEach(x => prepareFormatScheme(x, project.Structures));
+            project.FormatSchemes?.ForEach(x => prepareFormatScheme(x, project.Structures));
             return project;
         }
 
