@@ -1,9 +1,7 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using Qa.Argus.Cd.Compare;
-using Qa.Core;
 using Qa.Core.Excel;
 using Qa.Core.Structure;
 
@@ -33,7 +31,7 @@ namespace Qa.Argus.Cd.Excel
             
             cursor
                 .TopLeftBorderCorner()
-                .Header("", formatDate(first.FileName))
+                .Header("", first.FileName)
                 .Down()
                 .Header("", "Values")
                 .Down()
@@ -50,7 +48,7 @@ namespace Qa.Argus.Cd.Excel
             {
                 cursor.Row(initRow)
                     .TopLeftBorderCorner()
-                    .Header(formatDate(report.FileName)).Merge(2)
+                    .Header(report.FileName).Merge(2)
                     .Down()
                     .Header("Values", "Change")
                     .Down()
@@ -66,14 +64,6 @@ namespace Qa.Argus.Cd.Excel
                     .DrawBorder(ExcelBorderStyle.Thick)
                     .Right();
             }
-        }
-        
-        private static string formatDate(string fileName)
-        {
-            var parts = fileName.Split('.');
-            var parsedDate = DateTime.Parse($"{parts[3].Substring(4, 2)}/{parts[3].Substring(6, 2)}/{parts[3].Substring(0,4)}");
-            var monthName = DateExtention.ToMonthName(parsedDate.Month);
-            return $"{monthName} {parsedDate.Year}";
         }
     }
 }

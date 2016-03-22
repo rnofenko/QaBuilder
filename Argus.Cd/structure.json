@@ -14,8 +14,7 @@
           "countUniqueValues": true
         },
         {
-          "name": "Product Type",
-          "selectUniqueValues": true
+          "name": "Product Type"
         },
         { "name": "SubProduct Type" },
         {
@@ -30,7 +29,11 @@
         { "name": "Term End Date" },
         {
           "name": "Month End Balance",
-          "numberFormat": "Money"
+          "numberFormat": "Money",
+          "calculation": {
+            "type": "sum",
+            "groupBy": "Product Type"
+          }
         },
         {
           "name": "APY",
