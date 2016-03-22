@@ -9,11 +9,11 @@ namespace Qa.Bai.Benchmark.Sb.Compare
 {
     public class Comparer
     {
-        private readonly UniqueValuesComparer _uniqueValuesComparer;
+        private readonly ValuesComparer _valuesComparer;
 
         public Comparer()
         {
-            _uniqueValuesComparer = new UniqueValuesComparer();
+            _valuesComparer = new ValuesComparer();
         }
 
         public List<ComparePacket> Compare(List<RawReport> statistics)
@@ -60,36 +60,15 @@ namespace Qa.Bai.Benchmark.Sb.Compare
         private FieldPack getFieldPack(IList<RawReportField> rawFields)
         {
             var field = rawFields.First().Description;
-            var pack = new FieldPack(field);
-
-            if (field.SelectUniqueValues)
+            var pack = new FieldPack(field)
             {
-                pack.UniqueValueSet = _uniqueValuesComparer.Compare(rawFields);
-            }
-
-            if (field.CountUniqueValues)
-            {
-                pack.Numbers = _uniqueValuesComparer.CompareCounts(rawFields);
-            }
-
-            if (field.Type == DType.Number)
-            {
-                pack.Numbers = compareNumbers(rawFields);
-            }
+                UniqueValues = _valuesComparer.Compare(rawFields.Select(x => x.SelectedUniqueValues), field),
+                GroupedSumNumbers = _valuesComparer.Compare(rawFields.Select(x => x.GroupedSum), field),
+                UniqueValueCounts = _valuesComparer.Compare(rawFields.Select(x => x.UniqueValuesCount)),
+                SumNumbers = _valuesComparer.Compare(rawFields.Select(x => x.Sum))
+            };
 
             return pack;
-        }
-
-        private List<CompareNumber> compareNumbers(IList<RawReportField> rawFields)
-        {
-            RawReportField previous = null;
-            var numbers = new List<CompareNumber>();
-            foreach (var current in rawFields)
-            {
-                numbers.Add(new CompareNumber(current.Sum, previous?.Sum));
-                previous = current;
-            }
-            return numbers;
         }
     }
 }

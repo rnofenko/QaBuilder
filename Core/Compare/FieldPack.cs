@@ -17,21 +17,23 @@ namespace Qa.Core.Compare
 
         public bool CountUniqueValues => _description.CountUniqueValues;
 
-        public UniqueValueSet UniqueValueSet { get; set; }
-
-        public List<CompareNumber> Numbers { get; set; }
-
+        public GroupedValuesSet UniqueValues { get; set; }
+        public List<CompareNumber> UniqueValueCounts { get; set; }
+        
+        public List<CompareNumber> SumNumbers { get; set; }
+        public GroupedValuesSet GroupedSumNumbers { get; set; }
+        
         public string FileName { get; set; }
 
         public FieldPack(FieldDescription filDescription)
         {
             _description = filDescription;
-            Numbers =  new List<CompareNumber>();
+            SumNumbers =  new List<CompareNumber>();
         }
 
         public CompareField GetNumberField(int periodId)
         {
-            return new CompareField(_description, Numbers[periodId]);
+            return new CompareField(_description, SumNumbers[periodId]);
         }
     }
 }

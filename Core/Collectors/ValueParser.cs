@@ -28,7 +28,22 @@ namespace Qa.Core.Collectors
                 {
                     if (value.IsNotEmpty())
                     {
-                        field.Sum += double.Parse(value);
+                        var parsed = double.Parse(value);                        
+                        if (field.Description.Calculation.GroupByIndex >= 0)
+                        {
+                            if (!field.GroupedSum.ContainsKey(value))
+                            {
+                                field.GroupedSum.Add(value, parsed);
+                            }
+                            else
+                            {
+                                field.GroupedSum[value]+= parsed;
+                            }
+                        }
+                        else
+                        {
+                            field.Sum += parsed;
+                        }
                     }
                 }
                 

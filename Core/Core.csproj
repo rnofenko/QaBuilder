@@ -60,10 +60,10 @@
     <Compile Include="Compare\FieldPack.cs" />
     <Compile Include="Compare\CompareNumber.cs" />
     <Compile Include="Compare\CompareField.cs" />
-    <Compile Include="Compare\UniqueValuesComparer.cs" />
-    <Compile Include="Compare\UniqueValueSet.cs" />
+    <Compile Include="Compare\ValuesComparer.cs" />
+    <Compile Include="Compare\GroupedValuesSet.cs" />
     <Compile Include="Compare\UniqueValue.cs" />
-    <Compile Include="Compare\UniqueValueList.cs" />
+    <Compile Include="Compare\GroupedValuesList.cs" />
     <Compile Include="Excel\ExcelCursor.cs" />
     <Compile Include="Excel\HeaderStyle.cs" />
     <Compile Include="Excel\Pos.cs" />
@@ -84,6 +84,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Structure\CalculationDescription.cs" />
+    <Compile Include="Structure\CalculationType.cs" />
     <Compile Include="Structure\DType.cs" />
     <Compile Include="Structure\FieldDescription.cs" />
     <Compile Include="Structure\FieldLink.cs" />

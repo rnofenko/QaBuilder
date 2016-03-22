@@ -105,9 +105,9 @@ namespace Qa.Bai.Benchmark.Dp.Excel
                         .Down()
                         .Print(field.Title)
                         .Right()
-                        .Integer(field.Numbers.First().Current);
+                        .Integer(field.SumNumbers.First().Current);
 
-                    foreach (var compareNumber in field.Numbers.Skip(1))
+                    foreach (var compareNumber in field.SumNumbers.Skip(1))
                     {
                         cursor
                             .Right()
@@ -133,7 +133,7 @@ namespace Qa.Bai.Benchmark.Dp.Excel
             {
                 foreach (var field in packet.UniqueFields)
                 {
-                    var set = field.UniqueValueSet;
+                    var set = field.UniqueValues;
                     cursor.Down(2)
                         .Column(initColumn)
                         .Header(field.Title)

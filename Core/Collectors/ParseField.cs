@@ -9,7 +9,7 @@ namespace Qa.Core.Collectors
         {
             Description = field;
             CountedUniqueValues = new HashSet<string>();
-            SelectedUniqueValues = new Dictionary<string, int>();
+            SelectedUniqueValues = new Dictionary<string, double>();
         }
 
         public FieldDescription Description { get; set; }
@@ -17,9 +17,10 @@ namespace Qa.Core.Collectors
         public DType Type => Description.Type;
 
         public double Sum { get; set; }
+        public Dictionary<string, double> GroupedSum { get; set; }
 
         public bool SelectUniqueValues => Description.SelectUniqueValues;
-        public Dictionary<string, int> SelectedUniqueValues { get; set; }
+        public Dictionary<string, double> SelectedUniqueValues { get; set; }
 
         public bool CountUniqueValues => Description.CountUniqueValues;
         public HashSet<string> CountedUniqueValues { get; set; }

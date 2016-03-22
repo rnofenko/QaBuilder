@@ -39,10 +39,10 @@ namespace Qa.Core.Structure
 
         private void prepareForUse(FileStructure structure)
         {
-            structure.Fields.ForEach(checkField);
+            structure.Fields.ForEach(x=>checkField(x,structure));
         }
 
-        private void checkField(FieldDescription field)
+        private void checkField(FieldDescription field, FileStructure structure)
         {
             if (field.Type == DType.None)
             {
@@ -63,6 +63,19 @@ namespace Qa.Core.Structure
             if (field.NumberFormat == NumberFormat.None && field.Type == DType.Number)
             {
                 field.NumberFormat = NumberFormat.Double;
+            }
+
+            if (field.Type == DType.Number)
+            {
+                if (field.Calculation == null)
+                {
+                    field.Calculation = new CalculationDescription();
+                }
+                if (field.Calculation.Type == CalculationType.None)
+                {
+                    field.Calculation.Type = CalculationType.Sum;
+                }
+                field.Calculation.GroupByIndex = structure.Fields.FindIndex(x => x.Name == field.Calculation.GroupBy);
             }
         }
     }

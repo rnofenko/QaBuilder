@@ -1,7 +1,7 @@
 ﻿{
   "structures": [
     {
-      "name": "Novantas SaleScape",
+      "name": "Account Level Data",
       "rowsInHeader": 1,
       "delimeter": "|",
       "fields": [
@@ -112,6 +112,42 @@
           "name": "FEE_INC",
           "title": "Fee Income",
           "numberFormat": "Money"
+        }
+      ]
+    },
+    {
+      "name": "ATM Transactions",
+      "rowsInHeader": 1,
+      "delimeter": "|",
+      "fields": [
+        {
+          "name": "YEAR_MONTH",
+          "title": "Period"
+        },
+        {
+          "name": "ATM_ID",
+          "title": "ATM ID",
+          "countUniqueValues": true
+        },
+        {
+          "name": "TRXN_TYPE",
+          "title": "Transaction Type",
+          "countUniqueValues": true
+        },
+        {
+          "name": "TRXN_TYPE",
+          "title": "Transaction Type",
+          "selectUniqueValues": true
+        },
+        {
+          "name": "TRXN_COUNT",
+          "title": "Transaction Count",
+          "calculation": {
+            "type": "sum",
+            "groupBy": "TRXN_TYPE"
+          },
+          "sort": "numeric",
+          "numberFormat": "Integer"
         }
       ]
     }

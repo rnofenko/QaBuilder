@@ -18,6 +18,8 @@ namespace Qa.Core.Structure
 
         public SortType Sort { get; set; }
 
+        public CalculationDescription Calculation { get; set; }
+
         public override string ToString()
         {
             return $"{Name} {Type}";

@@ -10,9 +10,10 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
 {
     public class Exporter
     {
+        public const string OutputFileName = "Novantas SaleScape";
         public void Export(List<ComparePacket> packets, CompareSettings settings)
         {
-            var path = Path.Combine(settings.WorkingFolder, $"{packets.First().Structure.Name}.xlsx");
+            var path = Path.Combine(settings.WorkingFolder, $"{OutputFileName}.xlsx");
             new PoliteDeleter().Delete(path);
 
             var file = new FileInfo(path);

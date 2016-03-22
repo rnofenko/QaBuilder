@@ -107,9 +107,9 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
                         .Down()
                         .Print(field.Title)
                         .Right()
-                        .Integer(field.Numbers.First().Current);
+                        .Integer(field.UniqueValueCounts.First().Current);
 
-                    foreach (var compareNumber in field.Numbers.Skip(1))
+                    foreach (var compareNumber in field.SumNumbers.Skip(1))
                     {
                         cursor
                             .Right()
@@ -135,7 +135,7 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
             {
                 foreach (var field in packet.UniqueFields)
                 {
-                    var set = field.UniqueValueSet;
+                    var set = field.UniqueValues;
                     cursor.Down(2)
                         .Column(initColumn)
                         .Header(field.Title)
@@ -221,7 +221,15 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
         private static string formatDate(string fileName)
         {
             var parts = fileName.Split('_');
-            var parsedDate = DateTime.Parse($"{parts[1].Substring(4, 2)}/01/{parts[1].Substring(0,4)}");
+            var parsedDate = new DateTime();
+            if (parts.Length == 2)
+            {
+                parsedDate = DateTime.Parse($"{parts[1].Substring(4, 2)}/01/{parts[1].Substring(0, 4)}");
+            }
+            else
+            {
+                parsedDate = DateTime.Parse($"{parts[2].Substring(4, 2)}/01/{parts[2].Substring(0, 4)}");
+            }
             var monthName = DateExtention.ToMonthName(parsedDate.Month);
             return $"{monthName} {parsedDate.Year}";
         }
