@@ -15,6 +15,8 @@ namespace Qa.Novantas.SaleScape.Dr.Compare
 
         public List<FieldPack> UniqueCounts { get; set; }
 
+        public List<FieldPack> GroupedSums { get; set; }
+
         public ComparePacket(IList<FileInformation> fileInformations, List<FieldPack> fieldPacks, FileStructure structure)
         {
             Structure = structure;
@@ -31,8 +33,10 @@ namespace Qa.Novantas.SaleScape.Dr.Compare
                 Reports.Add(report);
             }
 
+            
             UniqueFields = fieldPacks.Where(x => x.SelectUniqueValues).ToList();
             UniqueCounts = fieldPacks.Where(x => x.CountUniqueValues).ToList();
+            GroupedSums = fieldPacks.Where(x => x.GroupedSumValues).ToList();
         }
     }
 }

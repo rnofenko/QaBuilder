@@ -131,18 +131,17 @@
         },
         {
           "name": "TRXN_TYPE",
-          "title": "Transaction Type",
-          "countUniqueValues": true
+          "title": "Trxn Type",
+          "selectUniqueValues": true
         },
         {
           "name": "TRXN_COUNT",
-          "title": "Transaction Count",
+          "title": "Trxn Count",
           "calculation": {
             "type": "sum",
             "groupBy": "TRXN_TYPE"
           },
-          "sort": "numeric",
-          "numberFormat": "Integer"
+          "sort": "numeric"          
         }
       ]
     }

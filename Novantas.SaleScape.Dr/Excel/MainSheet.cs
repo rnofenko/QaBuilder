@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using Qa.Novantas.SaleScape.Dr.Compare;
@@ -15,10 +16,10 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
         {
             const int initColumn = 2;
             var cursor = new ExcelCursor(sheet);
-            var from = formatDate(packet.Reports.First().FileName);
-            var to = formatDate(packet.Reports.Last().FileName);
-            new Header().Print(cursor, $"{packet.Structure.Name} {from} - {to}");
-            
+            //var from = formatDate(packet.Reports.First().FileName);
+            //var to = formatDate(packet.Reports.Last().FileName);
+            new Header().Print(cursor, $"{packet.Structure.Name}");/* {from} - {to}*/
+
             cursor.Column(initColumn).Row(5);
             print(packet, cursor);
             cursor.Down(2);
@@ -72,7 +73,30 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
 
             cursor.Sheet.View.FreezePanes(4, 3);
 
-            #region UniqueCounts
+            uniqueCounts(cursor, packet, initColumn);
+
+            uniqueFields(cursor, packet, initColumn);
+
+            
+        }
+
+        private static string formatDate(string fileName)
+        {
+            var parts = fileName.Split('_');
+
+            var parsedDate = DateTime.Parse(parts.Length == 2 
+                ? 
+                $"{parts[1].Substring(4, 2)}/01/{parts[1].Substring(0, 4)}" 
+                : 
+                $"{parts[2].Substring(4, 2)}/01/{parts[2].Substring(0, 4)}");
+
+            var monthName = DateExtention.ToMonthName(parsedDate.Month);
+
+            return $"{monthName} {parsedDate.Year}";
+        }
+
+        private static void uniqueCounts(ExcelCursor cursor, ComparePacket packet, int initColumn)
+        {
             if (packet.UniqueCounts.Any())
             {
                 cursor
@@ -128,9 +152,10 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
                     .DrawBorder(ExcelBorderStyle.Thick)
                     .Down();
             }
-            #endregion
+        }
 
-            #region UniqueFields
+        private static void uniqueFields(ExcelCursor cursor, ComparePacket packet, int initColumn)
+        {
             if (packet.UniqueFields.Any())
             {
                 foreach (var field in packet.UniqueFields)
@@ -211,27 +236,10 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
 
                         cursor
                             .Down()
-                            .Left((packet.Reports.Count - 1) * 2);
+                            .Left((packet.Reports.Count - 1)*2);
                     }
                 }
             }
-            #endregion
-        }
-
-        private static string formatDate(string fileName)
-        {
-            var parts = fileName.Split('_');
-            var parsedDate = new DateTime();
-            if (parts.Length == 2)
-            {
-                parsedDate = DateTime.Parse($"{parts[1].Substring(4, 2)}/01/{parts[1].Substring(0, 4)}");
-            }
-            else
-            {
-                parsedDate = DateTime.Parse($"{parts[2].Substring(4, 2)}/01/{parts[2].Substring(0, 4)}");
-            }
-            var monthName = DateExtention.ToMonthName(parsedDate.Month);
-            return $"{monthName} {parsedDate.Year}";
         }
     }
 }

@@ -17,11 +17,13 @@ namespace Qa.Core.Compare
 
         public bool CountUniqueValues => _description.CountUniqueValues;
 
+        public bool GroupedSumValues => _description.Calculation != null && _description.Calculation.IsGrouped();
+
         public GroupedValuesSet UniqueValues { get; set; }
         public List<CompareNumber> UniqueValueCounts { get; set; }
-        
-        public List<CompareNumber> SumNumbers { get; set; }
+
         public GroupedValuesSet GroupedSumNumbers { get; set; }
+        public List<CompareNumber> SumNumbers { get; set; }
         
         public string FileName { get; set; }
 
