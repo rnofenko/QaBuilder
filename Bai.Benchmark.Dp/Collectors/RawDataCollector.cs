@@ -68,7 +68,8 @@ namespace Qa.Bai.Benchmark.Dp.Collectors
                     }
                 }
 
-                report.Fields = valueParser.Fields.Select(x => new RawReportField(x)).ToList();
+                report.Fields = valueParser.GetResultFields();
+                report.RowsCount = valueParser.RowsCount;
             }
             
             return report;

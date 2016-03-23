@@ -4,5 +4,6 @@ namespace Qa.Core.Structure
     {
         None = 0,
         Sum = 1,
+        Average = 2
     }
 }

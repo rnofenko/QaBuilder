@@ -13,9 +13,7 @@
           "name": "Customer Identifier",
           "countUniqueValues": true
         },
-        {
-          "name": "Product Type"
-        },
+        { "name": "Product Type" },
         { "name": "SubProduct Type" },
         {
           "name": "Account Status",
@@ -23,21 +21,21 @@
         },
         { "name": "Open Date" },
         {
-          "name": "Close Date", 
-          "type": "Date" },
+          "name": "Close Date",
+          "type": "Date"
+        },
         { "name": "Term Start Date" },
         { "name": "Term End Date" },
         {
           "name": "Month End Balance",
-          "numberFormat": "Money",
-          "calculation": {
-            "type": "sum",
-            "groupBy": "Product Type"
-          }
+          "numberFormat": "Money"
         },
         {
           "name": "APY",
-          "numberFormat": "Double"
+          "numberFormat": "Rate",
+          "calculation": {
+            "type": "average"
+          }
         },
         {
           "name": "Interest Accrued",

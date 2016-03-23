@@ -166,11 +166,15 @@ namespace Qa.Core.Excel
                 }
                 if (value.Format == NumberFormat.Integer)
                 {
-                    return Integer(value.Int(), pos);
+                    return Integer(value.Double(), pos);
                 }
                 if (value.Format == NumberFormat.Percent)
                 {
                     return Percent(value.NullableDouble(), pos);
+                }
+                if (value.Format == NumberFormat.Rate)
+                {
+                    return Rate(value.Double(), pos);
                 }
                 return Double(value.Double(), pos);
             }
@@ -230,6 +234,14 @@ namespace Qa.Core.Excel
             {
                 styleCondition(new StyleConditionArgs { Pos = pos, Value = new TypedValue(value, NumberFormat.Percent), Cursor = this });
             }
+            return this;
+        }
+
+        public ExcelCursor Rate(double value, Pos pos)
+        {
+            var cell = getCell(pos);
+            cell.Value = value;
+            cell.Style.Numberformat.Format = "#,##0.0000;-#,##0.0000";
             return this;
         }
 

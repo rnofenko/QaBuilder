@@ -65,7 +65,7 @@ namespace Qa.Novantas.SaleScape.Dr.Collectors
                         }
                     }
                 }
-                report.Fields = valueParser.Fields.Select(x => new RawReportField(x)).ToList();
+                report.Fields = valueParser.GetResultFields();
                 report.RowsCount = valueParser.RowsCount;
             }
             return report;

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Qa.Bai.Sbp;
 using Qa.Core.Collectors;
 using Qa.Core.Structure;
@@ -55,7 +54,7 @@ namespace Qa.Bai.Pulse.Sb.Collectors
             {
                 reports.Add(pair.Key, new RawSubReport
                 {
-                    Fields = pair.Value.Fields.Select(x => new RawReportField(x)).ToList(),
+                    Fields = pair.Value.GetResultFields(),
                     RowsCount = pair.Value.RowsCount
                 });
             }

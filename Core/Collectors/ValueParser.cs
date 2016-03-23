@@ -7,22 +7,38 @@ namespace Qa.Core.Collectors
 {
     public class ValueParser : IDisposable
     {
-        public List<ParseField> Fields { get; }
+        private readonly List<ParseField> _fields;
 
         public int RowsCount { get; private set; }
 
         public ValueParser(IEnumerable<FieldDescription> fields)
         {
-            Fields = fields.Select(x => new ParseField(x)).ToList();
+            _fields = fields.Select(x => new ParseField(x)).ToList();
+        }
+
+        public List<RawReportField> GetResultFields()
+        {
+            _fields
+                .Where(x => x.Description.Calculation.Type == CalculationType.Average)
+                .ToList()
+                .ForEach(x =>
+                {
+                    x.Sum = x.Sum/RowsCount;
+                });
+
+            var resultFields = _fields.Select(x => new RawReportField(x)).ToList();
+
+            Dispose();
+
+            return resultFields;
         }
 
         public void Parse(string[] parts)
         {
             RowsCount++;
-
             for (var i = 0; i < parts.Length; i++)
             {
-                var field = Fields[i];
+                var field = _fields[i];
                 var value = parts[i];
                 if (field.Type == DType.Number)
                 {
@@ -71,7 +87,7 @@ namespace Qa.Core.Collectors
 
         public void Dispose()
         {
-            Fields.Clear();
+            _fields.Clear();
         }
     }
 }

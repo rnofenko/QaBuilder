@@ -1,4 +1,3 @@
-using System;
 using Qa.Core.Structure;
 
 namespace Qa.Core.Excel
@@ -70,18 +69,6 @@ namespace Qa.Core.Excel
         public string String()
         {
             return (string)Value;
-        }
-
-        public long Int()
-        {
-            try
-            {
-                return (int) Value;
-            }
-            catch
-            {
-                return Convert.ToInt64(Value);
-            }
         }
 
         public override string ToString()

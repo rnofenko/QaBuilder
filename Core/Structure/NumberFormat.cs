@@ -6,6 +6,7 @@ namespace Qa.Core.Structure
         Double = 1,
         Integer = 2,
         Money = 3,
-        Percent = 4
+        Percent = 4,
+        Rate = 5
     }
 }

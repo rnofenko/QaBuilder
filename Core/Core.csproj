@@ -94,7 +94,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Structure\FormatFieldDescription.cs" />
     <Compile Include="Structure\FormatStructure.cs" />
-    <Compile Include="Structure\FormatType.cs" />
+    <Compile Include="Structure\NumberFormat.cs" />
     <Compile Include="Structure\ProjectStructure.cs" />
     <Compile Include="Structure\RawReportField.cs" />
     <Compile Include="Structure\Settings.cs" />
