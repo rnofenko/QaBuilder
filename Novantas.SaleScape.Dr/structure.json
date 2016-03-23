@@ -131,18 +131,17 @@
         },
         {
           "name": "TRXN_TYPE",
-          "title": "Trxn Type"//,
-          //"selectUniqueValues": true
+          "title": "Trxn Type"
         },
         {
           "name": "TRXN_COUNT",
           "title": "Trxn Count",
-          "formatNumber": "Integer",
+          "numberFormat": "Integer",
           "calculation": {
             "type": "sum",
             "groupBy": "TRXN_TYPE"
           },
-          "sort": "numeric"          
+          "sort": "numeric"
         }
       ]
     }

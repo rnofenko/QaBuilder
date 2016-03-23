@@ -279,8 +279,7 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
                         .Down()
                         .Print(field.GroupedSumNumbers.Keys.First())
                         .Right()
-                        //.Integer(field.GroupedSumNumbers.)
-                        ;
+                        .Integer(field.GroupedSumNumbers.Lists.First().GetCurrent(field.GroupedSumNumbers.Keys.First()));
 
                     foreach (var compareNumber in field.SumNumbers.Skip(1))
                     {
