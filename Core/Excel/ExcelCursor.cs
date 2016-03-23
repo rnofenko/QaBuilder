@@ -335,6 +335,15 @@ namespace Qa.Core.Excel
             return Sheet.Cells[pos.Row, pos.Column];
         }
 
+        public ExcelCursor DrawBorder(ExcelBorderStyle style, bool condition)
+        {
+            if (condition)
+            {
+                return DrawBorder(style);
+            }
+            return this;
+        }
+
         public ExcelCursor DrawBorder(ExcelBorderStyle style = ExcelBorderStyle.Thin)
         {
             var topLeft = _pos;

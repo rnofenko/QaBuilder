@@ -84,6 +84,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Structure\BaseField.cs" />
     <Compile Include="Structure\CalculationDescription.cs" />
     <Compile Include="Structure\CalculationType.cs" />
     <Compile Include="Structure\DType.cs" />

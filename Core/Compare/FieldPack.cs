@@ -3,21 +3,17 @@ using Qa.Core.Structure;
 
 namespace Qa.Core.Compare
 {
-    public class FieldPack
+    public class FieldPack : BaseField
     {
-        private readonly FieldDescription _description;
+        public DType Type => Description.Type;
 
-        public DType Type => _description.Type;
+        public string Name => Description.Name;
+        
+        public bool SelectUniqueValues => Description.SelectUniqueValues;
 
-        public string Name => _description.Name;
+        public bool CountUniqueValues => Description.CountUniqueValues;
 
-        public string Title => _description.Title ?? _description.Name;
-
-        public bool SelectUniqueValues => _description.SelectUniqueValues;
-
-        public bool CountUniqueValues => _description.CountUniqueValues;
-
-        public bool GroupedSumValues => _description.Calculation.IsGrouped();
+        public bool IsGrouped => Description.Calculation.IsGrouped();
 
         public GroupedValuesSet UniqueValues { get; set; }
         public List<CompareNumber> UniqueValueCounts { get; set; }
@@ -27,15 +23,15 @@ namespace Qa.Core.Compare
         
         public string FileName { get; set; }
 
-        public FieldPack(FieldDescription filDescription)
+        public FieldPack(FieldDescription fieldDescription)
+            :base(fieldDescription)
         {
-            _description = filDescription;
             SumNumbers =  new List<CompareNumber>();
         }
 
         public CompareField GetNumberField(int periodId)
         {
-            return new CompareField(_description, SumNumbers[periodId]);
+            return new CompareField(Description, SumNumbers[periodId]);
         }
     }
 }
