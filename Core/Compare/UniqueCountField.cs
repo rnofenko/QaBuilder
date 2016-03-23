@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Qa.Core.Excel;
 using Qa.Core.Structure;
 
 namespace Qa.Core.Compare
@@ -12,6 +13,16 @@ namespace Qa.Core.Compare
         }
 
         public List<CompareNumber> Counts { get; set; }
+
+        public TypedValue GetCurrent(CompareReport report)
+        {
+            return Counts[report.Index].CurrentAsInteger;
+        }
+
+        public TypedValue GetChange(CompareReport report)
+        {
+            return Counts[report.Index].ChangeAsPercent;
+        }
 
         public static bool IsConvertable(FieldPack pack)
         {
