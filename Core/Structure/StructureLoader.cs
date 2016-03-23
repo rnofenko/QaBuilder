@@ -65,12 +65,13 @@ namespace Qa.Core.Structure
                 field.NumberFormat = NumberFormat.Double;
             }
 
+
+            if (field.Calculation == null)
+            {
+                field.Calculation = new CalculationDescription();
+            }
             if (field.Type == DType.Number)
             {
-                if (field.Calculation == null)
-                {
-                    field.Calculation = new CalculationDescription();
-                }
                 if (field.Calculation.Type == CalculationType.None)
                 {
                     field.Calculation.Type = CalculationType.Sum;

@@ -77,7 +77,8 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
 
             uniqueFields(cursor, packet, initColumn);
 
-            
+            groupedSums(cursor, packet, initColumn);
+
         }
 
         private static string formatDate(string fileName)
@@ -239,6 +240,66 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
                             .Left((packet.Reports.Count - 1)*2);
                     }
                 }
+            }
+        }
+
+        private static void groupedSums(ExcelCursor cursor, ComparePacket packet, int initColumn)
+        {
+            if (packet.GroupedSums.Any())
+            {
+                cursor
+                    .Down(3)
+                    .Column(initColumn)
+                    .TopLeftBorderCorner()
+                    .Header("")
+                    .Right()
+                    .Header(packet.Reports.Select(x => formatDate(x.FileName)).First())
+                    .Down()
+                    .Left()
+                    .Header("", "Values")
+                    .Right();
+
+                foreach (var report in packet.Reports.Skip(1))
+                {
+                    cursor
+                        .Up()
+                        .Right()
+                        .Header(formatDate(report.FileName))
+                        .Merge(2)
+                        .TopLeftBorderCorner()
+                        .Down()
+                        .Header("Values", "Change")
+                        .Right();
+                }
+
+                foreach (var field in packet.GroupedSums)
+                {
+                    cursor
+                        .Column(initColumn)
+                        .Down()
+                        .Print(field.GroupedSumNumbers.Keys.First())
+                        .Right()
+                        //.Integer(field.GroupedSumNumbers.)
+                        ;
+
+                    foreach (var compareNumber in field.SumNumbers.Skip(1))
+                    {
+                        cursor
+                            .Right()
+                            .Integer(compareNumber.Current)
+                            .Right()
+                            .Percent(compareNumber.Change, StyleConditions.ChangePercent);
+
+                        if (field == packet.GroupedSums.Last())
+                        {
+                            cursor.DrawBorder(ExcelBorderStyle.Thick);
+                        }
+                    }
+                }
+
+                cursor
+                    .DrawBorder(ExcelBorderStyle.Thick)
+                    .Down();
             }
         }
     }
