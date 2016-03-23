@@ -5,7 +5,6 @@ using System.Linq;
 using OfficeOpenXml;
 using Qa.Bai.Pulse.Sb.Compare;
 using Qa.Core.System;
-using Qa.Sbpm.Compare;
 
 namespace Qa.Bai.Pulse.Sb.Excel
 {

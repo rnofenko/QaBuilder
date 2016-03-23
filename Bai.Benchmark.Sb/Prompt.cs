@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using Qa.Bai.Benchmark.Sb.Compare;
 using Qa.Core.Combines;
 using Qa.Core.Format;
 using Qa.Core.Structure;

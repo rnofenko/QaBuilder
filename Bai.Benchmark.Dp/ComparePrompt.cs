@@ -1,15 +1,11 @@
 ﻿using System;
-using Qa.Bai.Pulse.Sb.Collectors;
-using Qa.Bai.Pulse.Sb.Excel;
-using Qa.Bai.Pulse.Sb.Transforms;
-using Qa.Bai.Sbp.Compare;
+using Qa.Bai.Benchmark.Dp.Excel;
+using Qa.Core.Collectors;
+using Qa.Core.Compare;
 using Qa.Core.Structure;
 using Qa.Core.System;
-using Qa.Sbpm.Collectors;
-using Qa.Sbpm.Compare;
-using Qa.System;
 
-namespace Qa.Bai.Pulse.Sb.Compare
+namespace Qa.Bai.Benchmark.Dp
 {
     public class ComparePrompt
     {
@@ -37,18 +33,14 @@ namespace Qa.Bai.Pulse.Sb.Compare
             var files = _fileFinder.Find(_settings.WorkingFolder, _settings.FileMask);
             Lo.Wl().Wl($"Found {files.Count} files:");
 
-            var rawReports = new RawDataCollector().Collect(files, new CollectionSettings
-            {
-                FileStructures = _settings.FileStructures,
-                ShowError = _settings.ShowNotParsedFiles
-            });
+            var rawReports = new RawDataCollector().CollectReports(files, _settings.FileStructures);
 
-            new SbpReportTransformer().Transform(rawReports);
-            
             var result = _comparer.Compare(rawReports);
             _excelExporter.Export(result, _settings);
 
+            Console.ForegroundColor = ConsoleColor.Green;
             Lo.Wl().Wl("Comparing was finished.");
+            Console.ResetColor();
             Console.ReadKey();
         }
     }

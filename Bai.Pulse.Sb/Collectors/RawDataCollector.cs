@@ -17,7 +17,7 @@ namespace Qa.Bai.Pulse.Sb.Collectors
             _structureDetector = new StructureDetector();
         }
 
-        public List<RawReport> Collect(IEnumerable<string> files, CollectionSettings settings)
+        public List<PulseRawReport> Collect(IEnumerable<string> files, CollectionSettings settings)
         {
             var statisticsByFiles = files
                 .Select(x => new RawDataCollector().collect(x, settings))
@@ -27,7 +27,7 @@ namespace Qa.Bai.Pulse.Sb.Collectors
             return statisticsByFiles;
         }
 
-        private RawReport collect(string filepath, CollectionSettings settings)
+        private PulseRawReport collect(string filepath, CollectionSettings settings)
         {
             var detected = _structureDetector.Detect(filepath, settings.FileStructures);
             if (detected == null)
@@ -35,7 +35,7 @@ namespace Qa.Bai.Pulse.Sb.Collectors
                 return null;
             }
 
-            var report = new RawReport(detected.Structure.Fields)
+            var report = new PulseRawReport(detected.Structure.Fields)
             {
                 Path = filepath,
                 Structure = detected.Structure,

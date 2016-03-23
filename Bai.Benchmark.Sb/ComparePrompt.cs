@@ -1,10 +1,11 @@
 ﻿using System;
-using Qa.Bai.Benchmark.Sb.Collectors;
 using Qa.Bai.Benchmark.Sb.Excel;
+using Qa.Core.Collectors;
+using Qa.Core.Compare;
 using Qa.Core.Structure;
 using Qa.Core.System;
 
-namespace Qa.Bai.Benchmark.Sb.Compare
+namespace Qa.Bai.Benchmark.Sb
 {
     public class ComparePrompt
     {
@@ -32,11 +33,7 @@ namespace Qa.Bai.Benchmark.Sb.Compare
             var files = _fileFinder.Find(_settings.WorkingFolder, _settings.FileMask);
             Lo.Wl().Wl($"Found {files.Count} files:");
 
-            var rawReports = new RawDataCollector().CollectReports(files, new CollectionSettings
-            {
-                FileStructures = _settings.FileStructures,
-                ShowError = _settings.ShowNotParsedFiles
-            });
+            var rawReports = new RawDataCollector().CollectReports(files, _settings.FileStructures);
             
             var result = _comparer.Compare(rawReports);
             _excelExporter.Export(result, _settings);

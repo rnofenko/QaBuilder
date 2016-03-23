@@ -2,7 +2,6 @@
 using System.Linq;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
-using Qa.Novantas.SaleScape.Dr.Compare;
 using Qa.Core;
 using Qa.Core.Compare;
 using Qa.Core.Excel;

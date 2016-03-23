@@ -1,4 +1,4 @@
-﻿namespace Qa.Bai.Sbp
+﻿namespace Qa.Bai.Pulse.Sb
 {
     public class QaSettings
     {

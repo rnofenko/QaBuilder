@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Qa.Bai.Sbp.Compare;
 using Qa.Core.Structure;
 
 namespace Qa.Bai.Pulse.Sb.Compare

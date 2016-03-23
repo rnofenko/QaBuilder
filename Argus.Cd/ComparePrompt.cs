@@ -1,10 +1,11 @@
 ﻿using System;
-using Qa.Novantas.SaleScape.Dr.Collectors;
-using Qa.Novantas.SaleScape.Dr.Excel;
+using Qa.Argus.Cd.Excel;
+using Qa.Core.Collectors;
+using Qa.Core.Compare;
 using Qa.Core.Structure;
 using Qa.Core.System;
 
-namespace Qa.Novantas.SaleScape.Dr.Compare
+namespace Qa.Argus.Cd
 {
     public class ComparePrompt
     {
@@ -32,12 +33,8 @@ namespace Qa.Novantas.SaleScape.Dr.Compare
             var files = _fileFinder.Find(_settings.WorkingFolder, _settings.FileMask);
             Lo.Wl().Wl($"Found {files.Count} files:");
 
-            var rawReports = new RawDataCollector().CollectReports(files, new CollectionSettings
-            {
-                FileStructures = _settings.FileStructures,
-                ShowError = _settings.ShowNotParsedFiles
-            });
-
+            var rawReports = new RawDataCollector().CollectReports(files, _settings.FileStructures);
+            
             var result = _comparer.Compare(rawReports);
             _excelExporter.Export(result, _settings);
 

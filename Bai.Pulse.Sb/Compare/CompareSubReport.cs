@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Qa.Core.Compare;
 
-namespace Qa.Bai.Sbp.Compare
+namespace Qa.Bai.Pulse.Sb.Compare
 {
     public class CompareSubReport
     {

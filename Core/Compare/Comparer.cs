@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Qa.Argus.Cd.Collectors;
-using Qa.Core.Compare;
+using Qa.Core.Collectors;
 using Qa.Core.Structure;
 
-namespace Qa.Argus.Cd.Compare
+namespace Qa.Core.Compare
 {
     public class Comparer
     {
@@ -16,7 +15,7 @@ namespace Qa.Argus.Cd.Compare
             _valuesComparer = new ValuesComparer();
         }
 
-        public List<ComparePacket> Compare(List<RawReport> statistics)
+        public List<ComparePacket> Compare(IEnumerable<RawReport> statistics)
         {
             var packets = statistics
                 .GroupBy(x => x.Structure.Name)
@@ -29,7 +28,7 @@ namespace Qa.Argus.Cd.Compare
         {
             var reports = rawReports.OrderBy(x => x.Path).ToList();
             var first = reports.First();
-            
+
             var fieldPacks = new List<FieldPack>();
             for (var i = 0; i < first.Fields.Count; i++)
             {
@@ -67,7 +66,7 @@ namespace Qa.Argus.Cd.Compare
                 UniqueValueCounts = _valuesComparer.Compare(rawFields.Select(x => x.UniqueValuesCount)),
                 SumNumbers = _valuesComparer.Compare(rawFields.Select(x => x.Sum))
             };
-
+            
             return pack;
         }
     }

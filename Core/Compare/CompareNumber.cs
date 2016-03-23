@@ -1,4 +1,6 @@
 using Qa.Core.Calculations;
+using Qa.Core.Excel;
+using Qa.Core.Structure;
 
 namespace Qa.Core.Compare
 {
@@ -17,6 +19,8 @@ namespace Qa.Core.Compare
         public double Previous { get; set; }
 
         public double Current { get; set; }
+
+        public TypedValue CurrentAsInteger => new TypedValue(Current, NumberFormat.Integer);
 
         public double? Change { get; set; }
     }

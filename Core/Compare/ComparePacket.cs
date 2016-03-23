@@ -27,7 +27,7 @@ namespace Qa.Core.Compare
                 {
                     RowsCount = fileInformations[i].RowsCount,
                     FileName = fileInformations[i].FileName,
-                    Numbers = fieldPacks.Where(x => x.Type == DType.Number).Select(x => x.GetNumberField(i)).ToList(),
+                    Numbers = fieldPacks.Where(x => x.Type == DType.Number && !x.IsGroupedSumField).Select(x => x.GetNumberField(i)).ToList(),
                 };
                 Reports.Add(report);
             }
@@ -43,7 +43,7 @@ namespace Qa.Core.Compare
                 .ToList();
 
             GroupedSums = fieldPacks
-                .Where(GroupedSumField.IsConvertable)
+                .Where(x => x.IsGroupedSumField)
                 .Select(x => new GroupedSumField(x))
                 .ToList();
         }

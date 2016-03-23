@@ -5,7 +5,6 @@ using OfficeOpenXml.Style;
 using Qa.Core;
 using Qa.Core.Compare;
 using Qa.Core.Excel;
-using Qa.Core.Structure;
 
 namespace Qa.Bai.Benchmark.Dp.Excel
 {
@@ -38,7 +37,7 @@ namespace Qa.Bai.Benchmark.Dp.Excel
                 .Down()
                 .Header("", "Values")
                 .Down()
-                .Print("Total Records", new TypedValue(first.RowsCount.Current, NumberFormat.Integer))
+                .Print("Total Records", first.RowsCount.CurrentAsInteger)
                 .Down()
                 .PrintDown(first.Numbers.Select(x => x.Title))
                 .Right()

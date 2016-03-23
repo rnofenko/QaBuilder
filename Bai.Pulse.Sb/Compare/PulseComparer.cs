@@ -2,15 +2,14 @@
 using System.IO;
 using System.Linq;
 using Qa.Bai.Pulse.Sb.Collectors;
-using Qa.Bai.Sbp.Compare;
 using Qa.Core.Compare;
 using Qa.Core.Structure;
 
 namespace Qa.Bai.Pulse.Sb.Compare
 {
-    public class Comparer
+    public class PulseComparer
     {
-        public List<PulseComparePacket> Compare(List<RawReport> statistics)
+        public List<PulseComparePacket> Compare(List<PulseRawReport> statistics)
         {
             var packets = statistics
                 .GroupBy(x => x.Structure.Name)
@@ -19,13 +18,13 @@ namespace Qa.Bai.Pulse.Sb.Compare
             return packets;
         }
 
-        private PulseComparePacket compare(IEnumerable<RawReport> rawReports)
+        private PulseComparePacket compare(IEnumerable<PulseRawReport> rawReports)
         {
             var reports = rawReports.OrderBy(x => x.Path).ToList();
             var first = reports.First();
             var packet = new PulseComparePacket {Strucure = first.Structure, States = reports.SelectMany(x => x.SubReports.Keys).Distinct().ToList()};
             
-            RawReport previous = null;
+            PulseRawReport previous = null;
             foreach (var report in reports)
             {
                 packet.Reports.Add(compare(report, previous, packet.States));
@@ -35,7 +34,7 @@ namespace Qa.Bai.Pulse.Sb.Compare
             return packet;
         }
 
-        private PulseCompareReport compare(RawReport current, RawReport previous, List<string> states)
+        private PulseCompareReport compare(PulseRawReport current, PulseRawReport previous, List<string> states)
         {
             var fileName = Path.GetFileNameWithoutExtension(current.Path);
             var result = new PulseCompareReport();

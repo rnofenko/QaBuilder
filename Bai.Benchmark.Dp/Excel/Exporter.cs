@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using OfficeOpenXml;
-using Qa.Bai.Benchmark.Dp.Compare;
 using Qa.Core.Compare;
 using Qa.Core.System;
 

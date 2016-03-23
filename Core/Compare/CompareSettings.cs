@@ -1,15 +1,13 @@
 ﻿using System.Collections.Generic;
 using Qa.Core.Structure;
 
-namespace Qa.Argus.Cd.Compare
+namespace Qa.Core.Compare
 {
     public class CompareSettings
     {
         private readonly Settings _settings;
 
         public string FileMask { get; set; }
-
-        public bool ShowNotParsedFiles { get; set; }
 
         public string WorkingFolder => _settings.WorkingFolder;
 

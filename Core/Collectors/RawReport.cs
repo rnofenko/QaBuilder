@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Qa.Core.Structure;
 
-namespace Qa.Bai.Benchmark.Sb.Collectors
+namespace Qa.Core.Collectors
 {
     public class RawReport
     {

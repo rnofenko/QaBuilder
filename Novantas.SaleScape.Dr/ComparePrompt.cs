@@ -1,23 +1,26 @@
 ﻿using System;
-using Qa.Argus.Cd.Collectors;
-using Qa.Argus.Cd.Excel;
+using Qa.Core.Collectors;
+using Qa.Core.Compare;
+using Qa.Core.Excel;
 using Qa.Core.Structure;
 using Qa.Core.System;
 
-namespace Qa.Argus.Cd.Compare
+namespace Qa.Novantas.SaleScape.Dr
 {
     public class ComparePrompt
     {
-        private readonly CompareSettings _settings;
+        private readonly IExporter _exporter;
+        private readonly CompareSettings _compareSettings;
         private readonly FileFinder _fileFinder;
-        private readonly Exporter _excelExporter;
         private readonly Comparer _comparer;
+        private readonly Settings _settings;
 
-        public ComparePrompt(Settings settings)
+        public ComparePrompt(Settings settings, IExporter exporter)
         {
-            _settings = new CompareSettings(settings);
+            _exporter = exporter;
+            _settings = settings;
+            _compareSettings = new CompareSettings(settings);
             _fileFinder = new FileFinder();
-            _excelExporter = new Exporter();
             _comparer = new Comparer();
         }
 
@@ -29,17 +32,13 @@ namespace Qa.Argus.Cd.Compare
 
         private void doReport()
         {
-            var files = _fileFinder.Find(_settings.WorkingFolder, _settings.FileMask);
+            var files = _fileFinder.Find(_compareSettings.WorkingFolder, _compareSettings.FileMask);
             Lo.Wl().Wl($"Found {files.Count} files:");
 
-            var rawReports = new RawDataCollector().CollectReports(files, new CollectionSettings
-            {
-                FileStructures = _settings.FileStructures,
-                ShowError = _settings.ShowNotParsedFiles
-            });
-            
+            var rawReports = new RawDataCollector().CollectReports(files, _compareSettings.FileStructures);
+
             var result = _comparer.Compare(rawReports);
-            _excelExporter.Export(result, _settings);
+            _exporter.Export(result, _settings);
 
             Console.ForegroundColor = ConsoleColor.Green;
             Lo.Wl().Wl("Comparing was finished.");

@@ -1,18 +1,18 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using OfficeOpenXml;
 using Qa.Core.Compare;
-using Qa.Novantas.SaleScape.Dr.Compare;
+using Qa.Core.Excel;
+using Qa.Core.Structure;
 using Qa.Core.System;
 
 namespace Qa.Novantas.SaleScape.Dr.Excel
 {
-    public class Exporter
+    public class Exporter : IExporter
     {
         public const string OutputFileName = "Novantas SaleScape";
-        public void Export(List<ComparePacket> packets, CompareSettings settings)
+        public void Export(List<ComparePacket> packets, Settings settings)
         {
             var path = Path.Combine(settings.WorkingFolder, $"{OutputFileName}.xlsx");
             new PoliteDeleter().Delete(path);

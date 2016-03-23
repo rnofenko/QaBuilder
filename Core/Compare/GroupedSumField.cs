@@ -17,10 +17,5 @@ namespace Qa.Core.Compare
         public List<GroupedValuesList> ValueLists { get; set; }
 
         public List<string> Keys { get; set; }
-
-        public static bool IsConvertable(FieldPack pack)
-        {
-            return pack.Description.Calculation.IsGrouped();
-        }
     }
 }

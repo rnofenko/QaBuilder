@@ -4,7 +4,7 @@ using Qa.Core.Structure;
 
 namespace Qa.Bai.Pulse.Sb.Collectors
 {
-    public class RawReport
+    public class PulseRawReport
     {
         public string Path { get; set; }
 
@@ -14,15 +14,15 @@ namespace Qa.Bai.Pulse.Sb.Collectors
 
         public List<FieldDescription> Fields { get; set; }
 
-        public Dictionary<string, RawReport> TransformedReports { get; set; }
+        public Dictionary<string, PulseRawReport> TransformedReports { get; set; }
         
         public Dictionary<string, RawSubReport> SubReports { get; set; }
 
-        public RawReport(IEnumerable<FieldDescription> fields)
+        public PulseRawReport(IEnumerable<FieldDescription> fields)
         {
             Fields = fields.ToList();
             SubReports = new Dictionary<string, RawSubReport>();
-            TransformedReports = new Dictionary<string, RawReport>();
+            TransformedReports = new Dictionary<string, PulseRawReport>();
         }
 
         public RawSubReport GetSubReport(string state)

@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Qa.Core.Collectors;
 using Qa.Core.Structure;
 using Qa.Core.System;
 
-namespace Qa.Novantas.SaleScape.Dr.Collectors
+namespace Qa.Core.Collectors
 {
     public class RawDataCollector
     {
@@ -17,22 +16,22 @@ namespace Qa.Novantas.SaleScape.Dr.Collectors
             _structureDetector = new StructureDetector();
         }
 
-        public List<RawReport> CollectReports(IEnumerable<string> files, CollectionSettings settings)
+        public List<RawReport> CollectReports(IEnumerable<string> files, List<FileStructure> structures)
         {
             var statisticsByFiles = files
-                .Select(x => new RawDataCollector().collectReport(x, settings))
+                .Select(x => new RawDataCollector().collectReport(x, structures))
                 .Where(x => x != null)
                 .OrderBy(x => x.Structure.Name)
                 .ToList();
             return statisticsByFiles;
         }
 
-        private RawReport collectReport(string filepath, CollectionSettings settings)
+        private RawReport collectReport(string filepath, List<FileStructure> structures)
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
             Lo.Wl($"File: {Path.GetFileNameWithoutExtension(filepath)}");
             Console.ResetColor();
-            var detected = _structureDetector.Detect(filepath, settings.FileStructures);
+            var detected = _structureDetector.Detect(filepath, structures);
             if (detected == null)
             {
                 return null;

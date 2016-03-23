@@ -36,7 +36,7 @@ namespace Qa.Bai.Pulse.Sb
                 }
                 else if (key == '2')
                 {
-                    new ComparePrompt(settings).Start();
+                    new PulseComparePrompt(settings).Start();
                 }
                 else if (key == '3')
                 {

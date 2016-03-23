@@ -47,17 +47,16 @@
   <ItemGroup>
     <Compile Include="Collectors\CollectionSettings.cs" />
     <Compile Include="Collectors\RawDataCollector.cs" />
-    <Compile Include="Collectors\RawReport.cs" />
+    <Compile Include="Collectors\PulseRawReport.cs" />
     <Compile Include="Collectors\RawSubReport.cs" />
     <Compile Include="Collectors\ValueParserGroup.cs" />
     <Compile Include="Compare\PulseComparePacket.cs" />
-    <Compile Include="Compare\ComparePrompt.cs" />
-    <Compile Include="Compare\Comparer.cs" />
-    <Compile Include="Compare\CompareReport.cs" />
+    <Compile Include="Compare\PulseComparePrompt.cs" />
+    <Compile Include="Compare\PulseComparer.cs" />
+    <Compile Include="Compare\PulseCompareReport.cs" />
     <Compile Include="Compare\CompareSettings.cs" />
     <Compile Include="Compare\CompareSubReport.cs" />
     <Compile Include="Excel\Exporter.cs" />
-    <Compile Include="Excel\Header.cs" />
     <Compile Include="Excel\MainSheet.cs" />
     <Compile Include="Excel\PeriodSheet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

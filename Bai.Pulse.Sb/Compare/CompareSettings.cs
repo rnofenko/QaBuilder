@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using Qa.Core;
 using Qa.Core.Structure;
 
-namespace Qa.Sbpm.Compare
+namespace Qa.Bai.Pulse.Sb.Compare
 {
     public class CompareSettings
     {

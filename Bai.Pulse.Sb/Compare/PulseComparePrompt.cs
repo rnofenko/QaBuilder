@@ -1,24 +1,26 @@
 ﻿using System;
-using Qa.Bai.Benchmark.Dp.Collectors;
-using Qa.Bai.Benchmark.Dp.Excel;
+using Qa.Bai.Pulse.Sb.Collectors;
+using Qa.Bai.Pulse.Sb.Excel;
+using Qa.Bai.Pulse.Sb.Transforms;
 using Qa.Core.Structure;
 using Qa.Core.System;
+using Qa.Sbpm.Collectors;
 
-namespace Qa.Bai.Benchmark.Dp.Compare
+namespace Qa.Bai.Pulse.Sb.Compare
 {
-    public class ComparePrompt
+    public class PulseComparePrompt
     {
         private readonly CompareSettings _settings;
         private readonly FileFinder _fileFinder;
         private readonly Exporter _excelExporter;
-        private readonly Comparer _comparer;
+        private readonly PulseComparer _pulseComparer;
 
-        public ComparePrompt(Settings settings)
+        public PulseComparePrompt(Settings settings)
         {
             _settings = new CompareSettings(settings);
             _fileFinder = new FileFinder();
             _excelExporter = new Exporter();
-            _comparer = new Comparer();
+            _pulseComparer = new PulseComparer();
         }
 
         public void Start()
@@ -32,18 +34,18 @@ namespace Qa.Bai.Benchmark.Dp.Compare
             var files = _fileFinder.Find(_settings.WorkingFolder, _settings.FileMask);
             Lo.Wl().Wl($"Found {files.Count} files:");
 
-            var rawReports = new RawDataCollector().CollectReports(files, new CollectionSettings
+            var rawReports = new RawDataCollector().Collect(files, new CollectionSettings
             {
                 FileStructures = _settings.FileStructures,
                 ShowError = _settings.ShowNotParsedFiles
             });
 
-            var result = _comparer.Compare(rawReports);
+            new SbpReportTransformer().Transform(rawReports);
+            
+            var result = _pulseComparer.Compare(rawReports);
             _excelExporter.Export(result, _settings);
 
-            Console.ForegroundColor = ConsoleColor.Green;
             Lo.Wl().Wl("Comparing was finished.");
-            Console.ResetColor();
             Console.ReadKey();
         }
     }

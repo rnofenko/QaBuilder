@@ -53,12 +53,16 @@
   <ItemGroup>
     <Compile Include="Calculations\Calculator.cs" />
     <Compile Include="Collectors\ParseField.cs" />
+    <Compile Include="Collectors\RawDataCollector.cs" />
+    <Compile Include="Collectors\RawReport.cs" />
     <Compile Include="Collectors\ValueParser.cs" />
     <Compile Include="Combines\CombinePromt.cs" />
     <Compile Include="Combines\CombineSettings.cs" />
     <Compile Include="Combines\FileCombiner.cs" />
     <Compile Include="Compare\ComparePacket.cs" />
+    <Compile Include="Compare\Comparer.cs" />
     <Compile Include="Compare\CompareReport.cs" />
+    <Compile Include="Compare\CompareSettings.cs" />
     <Compile Include="Compare\FieldPack.cs" />
     <Compile Include="Compare\CompareNumber.cs" />
     <Compile Include="Compare\CompareField.cs" />
@@ -70,7 +74,9 @@
     <Compile Include="Compare\UniqueValue.cs" />
     <Compile Include="Compare\GroupedValuesList.cs" />
     <Compile Include="Excel\ExcelCursor.cs" />
+    <Compile Include="Excel\Header.cs" />
     <Compile Include="Excel\HeaderStyle.cs" />
+    <Compile Include="Excel\IExporter.cs" />
     <Compile Include="Excel\Pos.cs" />
     <Compile Include="Excel\QaColor.cs" />
     <Compile Include="Excel\StyleConditionArgs.cs" />
