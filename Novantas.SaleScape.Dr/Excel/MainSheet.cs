@@ -71,11 +71,18 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
 
             cursor.Sheet.View.FreezePanes(4, 3);
 
-            uniqueCounts(cursor, packet);
-
-            uniqueFields(cursor, packet);
-
-            groupedSums(cursor, packet);
+            if (packet.UniqueCounts.Any())
+            {
+                uniqueCounts(cursor, packet);
+            }
+            if (packet.UniqueFields.Any())
+            {
+                uniqueFields(cursor, packet);
+            }
+            if (packet.GroupedSums.Any())
+            {
+                groupedSums(cursor, packet);
+            }
 
         }
 

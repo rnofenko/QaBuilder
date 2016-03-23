@@ -8,8 +8,8 @@ namespace Qa.Core.Compare
         public UniqueValuesField(FieldPack pack)
             : base(pack.Description)
         {
-            Keys = pack.GroupedSumNumbers.Keys;
-            ValueLists = pack.GroupedSumNumbers.Lists;
+            Keys = pack.UniqueValues.Keys;
+            ValueLists = pack.UniqueValues.Lists;
         }
 
         public List<GroupedValuesList> ValueLists { get; set; }
