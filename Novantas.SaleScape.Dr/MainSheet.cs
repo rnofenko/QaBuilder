@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using Qa.Core;
@@ -78,12 +79,13 @@ namespace Qa.Novantas.SaleScape.Dr
 
         private static string formatDate(string fileName)
         {
-            var parts = fileName.Split('_');
+            var rgx = new Regex(@"\d{6,}");
+            var mat = rgx.Match(fileName).ToString();
 
-            var parsedDate = DateTime.Parse(parts.Length == 2
-                ? $"{parts[1].Substring(4, 2)}/01/{parts[1].Substring(0, 4)}"
-                : $"{parts[2].Substring(4, 2)}/01/{parts[2].Substring(0, 4)}");
-
+            var parsedDate = DateTime.Parse(mat.Length < 8
+                ? $"{mat.Substring(4, 2)}/01/{mat.Substring(0, 4)}"
+                : $"{mat.Substring(4, 2)}/{mat.Substring(6, 2)}/{mat.Substring(0, 4)}");
+            
             var monthName = DateExtention.ToMonthName(parsedDate.Month);
 
             return $"{monthName} {parsedDate.Year}";
