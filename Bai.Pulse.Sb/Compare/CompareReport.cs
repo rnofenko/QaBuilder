@@ -1,18 +1,19 @@
 using System.Collections.Generic;
 using System.Linq;
+using Qa.Bai.Sbp.Compare;
 
-namespace Qa.Bai.Sbp.Compare
+namespace Qa.Bai.Pulse.Sb.Compare
 {
-    public class CompareReport
+    public class PulseCompareReport
     {
         public List<CompareSubReport> SubReports { get; set; }
 
-        public Dictionary<string, CompareReport> TransformReports { get; set; }
+        public Dictionary<string, PulseCompareReport> TransformReports { get; set; }
 
-        public CompareReport()
+        public PulseCompareReport()
         {
             SubReports = new List<CompareSubReport>();
-            TransformReports = new Dictionary<string, CompareReport>();
+            TransformReports = new Dictionary<string, PulseCompareReport>();
         }
 
         public CompareSubReport GetSubReport(string key)

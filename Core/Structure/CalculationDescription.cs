@@ -6,6 +6,8 @@ namespace Qa.Core.Structure
 
         public int GroupByIndex { get; set; }
 
+        public FieldDescription GroupByField { get; set; }
+
         public CalculationType Type { get; set; }
 
         public bool IsGrouped()

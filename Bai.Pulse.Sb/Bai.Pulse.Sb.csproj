@@ -50,7 +50,7 @@
     <Compile Include="Collectors\RawReport.cs" />
     <Compile Include="Collectors\RawSubReport.cs" />
     <Compile Include="Collectors\ValueParserGroup.cs" />
-    <Compile Include="Compare\ComparePacket.cs" />
+    <Compile Include="Compare\PulseComparePacket.cs" />
     <Compile Include="Compare\ComparePrompt.cs" />
     <Compile Include="Compare\Comparer.cs" />
     <Compile Include="Compare\CompareReport.cs" />

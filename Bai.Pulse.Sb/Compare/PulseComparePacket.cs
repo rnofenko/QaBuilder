@@ -5,17 +5,17 @@ using Qa.Core.Structure;
 
 namespace Qa.Bai.Pulse.Sb.Compare
 {
-    public class ComparePacket
+    public class PulseComparePacket
     {
         public FileStructure Strucure { get; set; }
 
-        public List<CompareReport> Reports { get; set; }
+        public List<PulseCompareReport> Reports { get; set; }
 
         public List<string> States { get; set; }
 
-        public ComparePacket()
+        public PulseComparePacket()
         {
-            Reports = new List<CompareReport>();
+            Reports = new List<PulseCompareReport>();
         }
 
         public List<CompareSubReport> GetTransformedSubReports(string transformation, string state)

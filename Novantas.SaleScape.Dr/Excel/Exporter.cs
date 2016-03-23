@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using OfficeOpenXml;
+using Qa.Core.Compare;
 using Qa.Novantas.SaleScape.Dr.Compare;
 using Qa.Core.System;
 

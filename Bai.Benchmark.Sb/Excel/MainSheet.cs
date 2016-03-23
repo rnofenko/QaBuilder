@@ -2,8 +2,8 @@
 using System.Linq;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
-using Qa.Bai.Benchmark.Sb.Compare;
 using Qa.Core;
+using Qa.Core.Compare;
 using Qa.Core.Excel;
 using Qa.Core.Structure;
 
@@ -105,9 +105,9 @@ namespace Qa.Bai.Benchmark.Sb.Excel
                         .Down()
                         .Print(field.Title)
                         .Right()
-                        .Integer(field.SumNumbers.First().Current);
+                        .Integer(field.Counts.First().Current);
 
-                    foreach (var compareNumber in field.SumNumbers.Skip(1))
+                    foreach (var compareNumber in field.Counts.Skip(1))
                     {
                         cursor
                             .Right()
@@ -133,7 +133,6 @@ namespace Qa.Bai.Benchmark.Sb.Excel
             {
                 foreach (var field in packet.UniqueFields)
                 {
-                    var set = field.UniqueValues;
                     cursor.Down(2)
                         .Column(initColumn)
                         .Header(field.Title)
@@ -148,15 +147,15 @@ namespace Qa.Bai.Benchmark.Sb.Excel
 
                     var startRow = cursor.Pos.Row;
 
-                    foreach (var key in set.Keys)
+                    foreach (var key in field.Keys)
                     {
                         cursor
                             .Print(key)
                             .Right()
-                            .Integer(set.Lists[0].GetCurrent(key));
+                            .Integer(field.ValueLists[0].GetCurrent(key));
                             
 
-                        if (key == set.Keys.Last())
+                        if (key == field.Keys.Last())
                         {
                             cursor
                                 .DrawBorder(ExcelBorderStyle.Thick);
@@ -190,25 +189,25 @@ namespace Qa.Bai.Benchmark.Sb.Excel
                         .Column(initColumn)
                         .Right();
 
-                    foreach (var key in set.Keys)
+                    foreach (var key in field.Keys)
                     {
-                        for (var i = 1; i < set.Lists.Count; i++)
+                        for (var i = 1; i < field.ValueLists.Count; i++)
                         {
                             cursor
                                 .Right()
-                                .Integer(set.Lists[i].GetCurrent(key))
+                                .Integer(field.ValueLists[i].GetCurrent(key))
                                 .Right()
-                                .Percent(set.Lists[i].GetChange(key), StyleConditions.ChangePercent);
+                                .Percent(field.ValueLists[i].GetChange(key), StyleConditions.ChangePercent);
 
 
-                            if (key == set.Keys.Last())
+                            if (key == field.Keys.Last())
                             {
                                 cursor
                                     .DrawBorder(ExcelBorderStyle.Thick);
                             }
                         }
                         cursor
-                            .Left(set.Lists.Count + 2)
+                            .Left(field.ValueLists.Count + 2)
                             .Down();
                     }
                 }

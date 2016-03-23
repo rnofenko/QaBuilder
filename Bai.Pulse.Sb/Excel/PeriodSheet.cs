@@ -10,7 +10,7 @@ namespace Qa.Bai.Pulse.Sb.Excel
 {
     public class PeriodSheet
     {
-        public void Print(ComparePacket packet, CompareReport report, ExcelWorksheet sheet)
+        public void Print(PulseComparePacket packet, PulseCompareReport report, ExcelWorksheet sheet)
         {
             const int initColumn = 2;
             const int initRow = 5;

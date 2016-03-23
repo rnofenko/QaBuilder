@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using Qa.Core.Compare;
 
-namespace Qa.Argus.Cd.Compare
+namespace Qa.Core.Compare
 {
     public class CompareReport
     {

@@ -2,6 +2,7 @@
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using Qa.Argus.Cd.Compare;
+using Qa.Core.Compare;
 using Qa.Core.Excel;
 using Qa.Core.Structure;
 

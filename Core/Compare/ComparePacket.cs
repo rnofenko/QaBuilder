@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
-using Qa.Core.Compare;
 using Qa.Core.Structure;
 
-namespace Qa.Novantas.SaleScape.Dr.Compare
+namespace Qa.Core.Compare
 {
     public class ComparePacket
     {
@@ -11,9 +10,9 @@ namespace Qa.Novantas.SaleScape.Dr.Compare
 
         public List<CompareReport> Reports { get; set; }
 
-        public List<FieldPack> UniqueFields { get; set; }
+        public List<UniqueValuesField> UniqueFields { get; set; }
 
-        public List<FieldPack> UniqueCounts { get; set; }
+        public List<UniqueCountField> UniqueCounts { get; set; }
 
         public List<GroupedSumField> GroupedSums { get; set; }
 
@@ -33,9 +32,16 @@ namespace Qa.Novantas.SaleScape.Dr.Compare
                 Reports.Add(report);
             }
 
-            
-            UniqueFields = fieldPacks.Where(x => x.SelectUniqueValues).ToList();
-            UniqueCounts = fieldPacks.Where(x => x.CountUniqueValues).ToList();
+            UniqueFields = fieldPacks
+                .Where(UniqueValuesField.IsConvertable)
+                .Select(x => new UniqueValuesField(x))
+                .ToList();
+
+            UniqueCounts = fieldPacks
+                .Where(UniqueCountField.IsConvertable)
+                .Select(x => new UniqueCountField(x))
+                .ToList();
+
             GroupedSums = fieldPacks
                 .Where(GroupedSumField.IsConvertable)
                 .Select(x => new GroupedSumField(x))

@@ -11,7 +11,7 @@ namespace Qa.Bai.Pulse.Sb.Excel
 {
     public class Exporter
     {
-        public void Export(List<ComparePacket> packets, CompareSettings settings)
+        public void Export(List<PulseComparePacket> packets, CompareSettings settings)
         {
             var path = Path.Combine(settings.WorkingFolder, $"{packets.First().Strucure.Name}.xlsx");
             new PoliteDeleter().Delete(path);
@@ -28,7 +28,7 @@ namespace Qa.Bai.Pulse.Sb.Excel
             Process.Start(path);
         }
         
-        private void fillPacket(ComparePacket packet, ExcelWorkbook book)
+        private void fillPacket(PulseComparePacket packet, ExcelWorkbook book)
         {
             var sheet = book.Worksheets.Add(packet.Strucure.Name);
             new MainSheet().Print(packet, sheet);

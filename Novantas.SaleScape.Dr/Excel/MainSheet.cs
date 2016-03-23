@@ -4,6 +4,7 @@ using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using Qa.Novantas.SaleScape.Dr.Compare;
 using Qa.Core;
+using Qa.Core.Compare;
 using Qa.Core.Excel;
 using Qa.Core.Structure;
 
@@ -133,9 +134,9 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
                     .Down()
                     .Print(field.Title)
                     .Right()
-                    .Integer(field.UniqueValueCounts.First().Current);
+                    .Integer(field.Counts.First().Current);
 
-                foreach (var compareNumber in field.UniqueValueCounts.Skip(1))
+                foreach (var compareNumber in field.Counts.Skip(1))
                 {
                     cursor
                         .Right()
@@ -155,7 +156,6 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
         {
             foreach (var field in packet.UniqueFields)
             {
-                var set = field.UniqueValues;
                 cursor.Down(2)
                     .Column(INIT_COLUMN)
                     .Header(field.Title)
@@ -170,21 +170,14 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
 
                 var startRow = cursor.Pos.Row;
 
-                foreach (var key in set.Keys)
+                foreach (var key in field.Keys)
                 {
                     cursor
                         .Print(key)
                         .Right()
-                        .Integer(set.Lists[0].GetCurrent(key));
-
-
-                    if (key == set.Keys.Last())
-                    {
-                        cursor
-                            .DrawBorder(ExcelBorderStyle.Thick);
-                    }
-
-                    cursor.Left()
+                        .Integer(field.ValueLists[0].GetCurrent(key))
+                        .DrawBorder(ExcelBorderStyle.Thick, key == field.Keys.Last())
+                        .Left()
                         .Down();
                 }
 
@@ -212,16 +205,16 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
                     .Column(INIT_COLUMN)
                     .Right();
 
-                foreach (var key in set.Keys)
+                foreach (var key in field.Keys)
                 {
-                    for (var i = 1; i < set.Lists.Count; i++)
+                    for (var i = 1; i < field.ValueLists.Count; i++)
                     {
                         cursor
                             .Right()
-                            .Integer(set.Lists[i].GetCurrent(key))
+                            .Integer(field.ValueLists[i].GetCurrent(key))
                             .Right()
-                            .Percent(set.Lists[i].GetChange(key), StyleConditions.ChangePercent)
-                            .DrawBorder(ExcelBorderStyle.Thick, key == set.Keys.Last());
+                            .Percent(field.ValueLists[i].GetChange(key), StyleConditions.ChangePercent)
+                            .DrawBorder(ExcelBorderStyle.Thick, key == field.Keys.Last());
                     }
 
                     cursor
@@ -235,10 +228,9 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
         {
             foreach (var field in packet.GroupedSums)
             {
-                var groupedFieldTitle = packet.Structure.Fields[field.Description.Calculation.GroupByIndex].Title;
                 cursor.Down(2)
                     .Column(INIT_COLUMN)
-                    .Header(groupedFieldTitle)
+                    .Header(field.GroupByField.Title)
                     .TopLeftBorderCorner()
                     .MergeDown(2)
                     .Right()

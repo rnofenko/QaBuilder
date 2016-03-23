@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using OfficeOpenXml;
 using Qa.Bai.Benchmark.Sb.Compare;
+using Qa.Core.Compare;
 using Qa.Core.System;
 
 namespace Qa.Bai.Benchmark.Sb.Excel

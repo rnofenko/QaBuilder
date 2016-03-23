@@ -12,7 +12,7 @@ namespace Qa.Bai.Pulse.Sb.Excel
 {
     public class MainSheet
     {
-        public void Print(ComparePacket packet, ExcelWorksheet sheet)
+        public void Print(PulseComparePacket packet, ExcelWorksheet sheet)
         {
             const int initColumn = 2;
             var cursor = new ExcelCursor(sheet);
