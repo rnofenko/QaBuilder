@@ -96,61 +96,59 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
 
         private static void uniqueCounts(ExcelCursor cursor, ComparePacket packet)
         {
-            if (packet.UniqueCounts.Any())
+            if (!packet.UniqueCounts.Any())
+            {
+                return;
+            }
+
+            cursor
+                .Down(3)
+                .Column(INIT_COLUMN)
+                .TopLeftBorderCorner()
+                .Header("")
+                .Right()
+                .Header(packet.Reports.Select(x => formatDate(x.FileName)).First())
+                .Down()
+                .Left()
+                .Header("", "Values")
+                .Right();
+
+            foreach (var report in packet.Reports.Skip(1))
             {
                 cursor
-                    .Down(3)
-                    .Column(INIT_COLUMN)
-                    .TopLeftBorderCorner()
-                    .Header("")
+                    .Up()
                     .Right()
-                    .Header(packet.Reports.Select(x => formatDate(x.FileName)).First())
+                    .Header(formatDate(report.FileName))
+                    .Merge(2)
+                    .TopLeftBorderCorner()
                     .Down()
-                    .Left()
-                    .Header("", "Values")
+                    .Header("Values", "Change")
                     .Right();
-
-                foreach (var report in packet.Reports.Skip(1))
-                {
-                    cursor
-                        .Up()
-                        .Right()
-                        .Header(formatDate(report.FileName))
-                        .Merge(2)
-                        .TopLeftBorderCorner()
-                        .Down()
-                        .Header("Values", "Change")
-                        .Right();
-                }
-
-                foreach (var field in packet.UniqueCounts)
-                {
-                    cursor
-                        .Column(INIT_COLUMN)
-                        .Down()
-                        .Print(field.Title)
-                        .Right()
-                        .Integer(field.UniqueValueCounts.First().Current);
-
-                    foreach (var compareNumber in field.SumNumbers.Skip(1))
-                    {
-                        cursor
-                            .Right()
-                            .Integer(compareNumber.Current)
-                            .Right()
-                            .Percent(compareNumber.Change, StyleConditions.ChangePercent);
-
-                        if (field == packet.UniqueCounts.Last())
-                        {
-                            cursor.DrawBorder(ExcelBorderStyle.Thick);
-                        }
-                    }
-                }
-
-                cursor
-                    .DrawBorder(ExcelBorderStyle.Thick)
-                    .Down();
             }
+
+            foreach (var field in packet.UniqueCounts)
+            {
+                cursor
+                    .Column(INIT_COLUMN)
+                    .Down()
+                    .Print(field.Title)
+                    .Right()
+                    .Integer(field.UniqueValueCounts.First().Current);
+
+                foreach (var compareNumber in field.UniqueValueCounts.Skip(1))
+                {
+                    cursor
+                        .Right()
+                        .Integer(compareNumber.Current)
+                        .Right()
+                        .Percent(compareNumber.Change, StyleConditions.ChangePercent)
+                        .DrawBorder(ExcelBorderStyle.Thick, field == packet.UniqueCounts.Last());
+                }
+            }
+
+            cursor
+                .DrawBorder(ExcelBorderStyle.Thick)
+                .Down();
         }
 
         private static void uniqueFields(ExcelCursor cursor, ComparePacket packet)
@@ -222,13 +220,8 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
                             .Right()
                             .Integer(set.Lists[i].GetCurrent(key))
                             .Right()
-                            .Percent(set.Lists[i].GetChange(key), StyleConditions.ChangePercent);
-
-                        if (key == set.Keys.Last())
-                        {
-                            cursor
-                                .DrawBorder(ExcelBorderStyle.Thick);
-                        }
+                            .Percent(set.Lists[i].GetChange(key), StyleConditions.ChangePercent)
+                            .DrawBorder(ExcelBorderStyle.Thick, key == set.Keys.Last());
                     }
 
                     cursor
@@ -242,9 +235,10 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
         {
             foreach (var field in packet.GroupedSums)
             {
+                var groupedFieldTitle = packet.Structure.Fields[field.Description.Calculation.GroupByIndex].Title;
                 cursor.Down(2)
                     .Column(INIT_COLUMN)
-                    .Header(field.Title)
+                    .Header(groupedFieldTitle)
                     .TopLeftBorderCorner()
                     .MergeDown(2)
                     .Right()
@@ -268,7 +262,7 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
                 }
 
                 cursor
-                    .Row(startRow)
+                    .Row(startRow - 2)
                     .Column(INIT_COLUMN + 2);
 
                 foreach (var report in packet.Reports.Skip(1))

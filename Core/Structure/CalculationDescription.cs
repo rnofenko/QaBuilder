@@ -10,7 +10,7 @@ namespace Qa.Core.Structure
 
         public bool IsGrouped()
         {
-            return GroupByIndex >= 0;
+            return GroupByIndex > 0;
         }
     }
 }
