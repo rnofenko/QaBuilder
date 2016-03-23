@@ -28,7 +28,11 @@
         { "name": "Term End Date" },
         {
           "name": "Month End Balance",
-          "numberFormat": "Money"
+          "numberFormat": "Money",
+          "calculation": {
+            "type": "sum",
+            "groupBy": "State"
+          }
         },
         {
           "name": "APY",
@@ -44,7 +48,7 @@
         { "name": "City" },
         {
           "name": "State",
-          "selectUniqueValues": true
+          "countUniqueValues": true
         },
         { "name": "Zip Code" },
         { "name": "Branch" },

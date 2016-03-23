@@ -7,18 +7,17 @@ using Qa.Core.Compare;
 using Qa.Core.Excel;
 using Qa.Core.Structure;
 
-namespace Qa.Novantas.SaleScape.Dr.Excel
+namespace Qa.Bai.Benchmark.Sb
 {
-    public class MainSheet
+    public class MainSheet : IExportPage
     {
         private const int INIT_COLUMN = 2;
 
         public void Print(ComparePacket packet, ExcelWorksheet sheet)
         {
-            
             var cursor = new ExcelCursor(sheet);
-            new Header().Print(cursor, $"{packet.Structure.Name}");
-
+            new Header().Print(cursor, packet.Structure.Name);
+            
             cursor.Column(INIT_COLUMN).Row(5);
             print(packet, cursor);
             cursor.Down(2);
@@ -27,7 +26,7 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
             sheet.Column(1).Width = 3;
         }
 
-        private static void print(ComparePacket packet, ExcelCursor cursor)
+        private void print(ComparePacket packet, ExcelCursor cursor)
         {
             var first = packet.Reports.First();
             var initRow = cursor.Pos.Row;
@@ -61,7 +60,7 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
                     .Percent(report.RowsCount.Change, StyleConditions.ChangePercent)
                     .Down()
                     .Left()
-                    .PrintDown(report.Numbers.Select(x => x.GetCurrent().Double()), NumberFormat.Money)
+                    .PrintDown(report.Numbers.Select(x => x.GetCurrent()))
                     .Right()
                     .PrintDown(report.Numbers.Select(x => x.GetChange()), StyleConditions.ChangePercent)
                     .Down(fieldsCount)
@@ -83,21 +82,13 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
             {
                 groupedSums(cursor, packet);
             }
-
         }
 
         private static string formatDate(string fileName)
         {
-            var parts = fileName.Split('_');
-
-            var parsedDate = DateTime.Parse(parts.Length == 2 
-                ? 
-                $"{parts[1].Substring(4, 2)}/01/{parts[1].Substring(0, 4)}" 
-                : 
-                $"{parts[2].Substring(4, 2)}/01/{parts[2].Substring(0, 4)}");
-
+            var parts = fileName.Split('.');
+            var parsedDate = DateTime.Parse($"{parts[3].Substring(4, 2)}/{parts[3].Substring(6, 2)}/{parts[3].Substring(0,4)}");
             var monthName = DateExtention.ToMonthName(parsedDate.Month);
-
             return $"{monthName} {parsedDate.Year}";
         }
 
@@ -181,7 +172,7 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
                     cursor
                         .Print(key)
                         .Right()
-                        .Integer(field.ValueLists[0].GetCurrent(key))
+                        .Print(field.ValueLists[0].GetCurrent(key))
                         .DrawBorder(ExcelBorderStyle.Thick, key == field.Keys.Last())
                         .Left()
                         .Down();
@@ -217,15 +208,15 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
                     {
                         cursor
                             .Right()
-                            .Integer(field.ValueLists[i].GetCurrent(key))
+                            .Print(field.ValueLists[i].GetCurrent(key))
                             .Right()
-                            .Percent(field.ValueLists[i].GetChange(key), StyleConditions.ChangePercent)
+                            .Print(field.ValueLists[i].GetChange(key), StyleConditions.ChangePercent)
                             .DrawBorder(ExcelBorderStyle.Thick, key == field.Keys.Last());
                     }
 
                     cursor
                         .Down()
-                        .Left((packet.Reports.Count - 1)*2);
+                        .Left((packet.Reports.Count - 1) * 2);
                 }
             }
         }
@@ -253,7 +244,7 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
                     cursor
                         .Print(key)
                         .Right()
-                        .Integer(field.ValueLists[0].GetCurrent(key))
+                        .Print(field.ValueLists[0].GetCurrent(key))
                         .DrawBorder(ExcelBorderStyle.Thick, key == field.Keys.Last())
                         .Left()
                         .Down();
@@ -285,9 +276,9 @@ namespace Qa.Novantas.SaleScape.Dr.Excel
                     {
                         cursor
                             .Right()
-                            .Integer(list.GetCurrent(key))
+                            .Print(list.GetCurrent(key))
                             .Right()
-                            .Percent(list.GetChange(key), StyleConditions.ChangePercent)
+                            .Print(list.GetChange(key), StyleConditions.ChangePercent)
                             .DrawBorder(ExcelBorderStyle.Thick, key == field.Keys.Last());
                     }
 

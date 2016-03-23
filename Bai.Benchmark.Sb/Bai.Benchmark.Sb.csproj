@@ -49,9 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ComparePrompt.cs" />
-    <Compile Include="Excel\Exporter.cs" />
-    <Compile Include="Excel\MainSheet.cs" />
+    <Compile Include="MainSheet.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Prompt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

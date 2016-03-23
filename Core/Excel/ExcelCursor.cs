@@ -98,6 +98,11 @@ namespace Qa.Core.Excel
             return this;
         }
 
+        public ExcelCursor Print(TypedValue value, Action<StyleConditionArgs> styleCondition)
+        {
+            return Print(value, _pos, styleCondition);
+        }
+
         public ExcelCursor Header(params string[] values)
         {
             for (var i = 0; i < values.Length; i++)
@@ -120,9 +125,14 @@ namespace Qa.Core.Excel
             return this;
         }
 
-        public ExcelCursor PrintDown(IEnumerable<string> values)
+        public ExcelCursor PrintDown(params IEnumerable<string>[] values)
         {
-            return PrintDown(values.ToArray());
+            var list = new List<string>();
+            foreach (var enumerable in values)
+            {
+                list.AddRange(enumerable);
+            }
+            return PrintDown(list.ToArray());
         }
 
         public ExcelCursor PrintDown(IEnumerable<double> values, NumberFormat type)
@@ -138,13 +148,28 @@ namespace Qa.Core.Excel
 
         public ExcelCursor PrintDown(IEnumerable<TypedValue> values, Action<StyleConditionArgs> styleCondition = null)
         {
+            return PrintDown(values.ToList(), styleCondition);
+        }
+
+        public ExcelCursor PrintDown(params IEnumerable<TypedValue>[] values)
+        {
+            var list = new List<TypedValue>();
+            foreach (var enumerable in values)
+            {
+                list.AddRange(enumerable);
+            }
+            return PrintDown(list, null);
+        }
+
+        public ExcelCursor PrintDown(IList<TypedValue> values, Action<StyleConditionArgs> styleCondition)
+        {
             var pos = _pos.Clone();
             foreach (var value in values)
             {
                 Print(value, pos);
                 if (styleCondition != null)
                 {
-                    styleCondition(new StyleConditionArgs {Pos = pos, Value = value, Cursor = this});
+                    styleCondition(new StyleConditionArgs { Pos = pos, Value = value, Cursor = this });
                 }
                 pos.Row++;
             }
@@ -158,6 +183,11 @@ namespace Qa.Core.Excel
 
         public ExcelCursor Print(TypedValue value, Pos pos)
         {
+            return Print(value, pos, null);
+        }
+
+        public ExcelCursor Print(TypedValue value, Pos pos, Action<StyleConditionArgs> condition)
+        {
             if (value.Type == DType.Number)
             {
                 if (value.Format == NumberFormat.Money)
@@ -170,7 +200,7 @@ namespace Qa.Core.Excel
                 }
                 if (value.Format == NumberFormat.Percent)
                 {
-                    return Percent(value.NullableDouble(), pos);
+                    return Percent(value.NullableDouble(), pos, condition);
                 }
                 if (value.Format == NumberFormat.Rate)
                 {

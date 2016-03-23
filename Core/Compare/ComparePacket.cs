@@ -25,6 +25,7 @@ namespace Qa.Core.Compare
             {
                 var report = new CompareReport
                 {
+                    Index = i,
                     RowsCount = fileInformations[i].RowsCount,
                     FileName = fileInformations[i].FileName,
                     Numbers = fieldPacks.Where(x => x.Type == DType.Number && !x.IsGroupedSumField).Select(x => x.GetNumberField(i)).ToList(),

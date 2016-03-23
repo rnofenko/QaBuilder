@@ -6,9 +6,9 @@ using Qa.Core;
 using Qa.Core.Compare;
 using Qa.Core.Excel;
 
-namespace Qa.Bai.Benchmark.Dp.Excel
+namespace Qa.Bai.Benchmark.Dp
 {
-    public class MainSheet
+    public class MainSheet : IExportPage
     {
         private const int INIT_COLUMN = 2;
 
@@ -171,7 +171,7 @@ namespace Qa.Bai.Benchmark.Dp.Excel
                     cursor
                         .Print(key)
                         .Right()
-                        .Integer(field.ValueLists[0].GetCurrent(key))
+                        .Print(field.ValueLists[0].GetCurrent(key))
                         .DrawBorder(ExcelBorderStyle.Thick, key == field.Keys.Last())
                         .Left()
                         .Down();
@@ -207,9 +207,9 @@ namespace Qa.Bai.Benchmark.Dp.Excel
                     {
                         cursor
                             .Right()
-                            .Integer(field.ValueLists[i].GetCurrent(key))
+                            .Print(field.ValueLists[i].GetCurrent(key))
                             .Right()
-                            .Percent(field.ValueLists[i].GetChange(key), StyleConditions.ChangePercent)
+                            .Print(field.ValueLists[i].GetChange(key), StyleConditions.ChangePercent)
                             .DrawBorder(ExcelBorderStyle.Thick, key == field.Keys.Last());
                     }
 
@@ -243,7 +243,7 @@ namespace Qa.Bai.Benchmark.Dp.Excel
                     cursor
                         .Print(key)
                         .Right()
-                        .Integer(field.ValueLists[0].GetCurrent(key))
+                        .Print(field.ValueLists[0].GetCurrent(key))
                         .DrawBorder(ExcelBorderStyle.Thick, key == field.Keys.Last())
                         .Left()
                         .Down();
@@ -275,9 +275,9 @@ namespace Qa.Bai.Benchmark.Dp.Excel
                     {
                         cursor
                             .Right()
-                            .Integer(list.GetCurrent(key))
+                            .Print(list.GetCurrent(key))
                             .Right()
-                            .Percent(list.GetChange(key), StyleConditions.ChangePercent)
+                            .Print(list.GetChange(key), StyleConditions.ChangePercent)
                             .DrawBorder(ExcelBorderStyle.Thick, key == field.Keys.Last());
                     }
 

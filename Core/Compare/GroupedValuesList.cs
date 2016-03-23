@@ -1,40 +1,43 @@
 using System.Collections.Generic;
 using System.Linq;
+using Qa.Core.Excel;
+using Qa.Core.Structure;
 
 namespace Qa.Core.Compare
 {
     public class GroupedValuesList
     {
-        public List<UniqueValue> Values { get; set; }
+        public List<KeyNumberPair> Values { get; set; }
+        public FieldDescription Field { get; set; }
 
-        public void Add(UniqueValue value)
+        public void Add(KeyNumberPair value)
         {
             Values.Add(value);
         }
 
         public GroupedValuesList()
         {
-            Values = new List<UniqueValue>();
+            Values = new List<KeyNumberPair>();
         }
 
-        public double GetCurrent(string key)
+        public TypedValue GetCurrent(string key)
         {
             var value = Values.FirstOrDefault(x => x.Value == key);
             if (value == null)
             {
-                return 0;
+                return new TypedValue(0, Field.NumberFormat);
             }
-            return value.Count.Current;
+            return new TypedValue(value.Count.Current, Field.NumberFormat);
         }
 
-        public double? GetChange(string key)
+        public TypedValue GetChange(string key)
         {
             var value = Values.FirstOrDefault(x => x.Value == key);
             if (value == null)
             {
-                return 0;
+                return new TypedValue(0, NumberFormat.Percent);
             }
-            return value.Count.Change;
+            return new TypedValue(value.Count.Change, NumberFormat.Percent);
         }
     }
 }

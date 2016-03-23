@@ -11,8 +11,7 @@ namespace Qa.Core.Structure
 
         public bool SelectUniqueValues => Description.SelectUniqueValues;
         public Dictionary<string, double> SelectedUniqueValues { get; }
-
-        public bool CountUniqueValues => Description.CountUniqueValues;
+        
         public int UniqueValuesCount { get; }
 
         public string Name => Description.Name;

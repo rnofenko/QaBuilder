@@ -9,7 +9,7 @@ namespace Qa.Core.Compare
         public GroupedValuesSet Compare(IEnumerable<Dictionary<string, double>> values, FieldDescription field)
         {
             Dictionary<string, double> previous = null;
-            var set = new GroupedValuesSet();
+            var set = new GroupedValuesSet(field);
             foreach (var current in values)
             {
                 set.Add(compare(current, previous));
@@ -67,7 +67,7 @@ namespace Qa.Core.Compare
                     prevCount = previous[pair.Key];
                 }
 
-                row.Add(new UniqueValue { Value = pair.Key, Count = new CompareNumber(pair.Value, prevCount) });
+                row.Add(new KeyNumberPair { Value = pair.Key, Count = new CompareNumber(pair.Value, prevCount) });
             }
             return row;
         }

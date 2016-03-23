@@ -10,6 +10,8 @@ namespace Qa.Core.Compare
 
         public string FileName { get; set; }
 
+        public int Index { get; set; }
+
         public CompareReport()
         {
             Numbers = new List<CompareField>();

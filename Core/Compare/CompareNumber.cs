@@ -19,9 +19,11 @@ namespace Qa.Core.Compare
         public double Previous { get; set; }
 
         public double Current { get; set; }
+        
+        public double? Change { get; set; }
 
         public TypedValue CurrentAsInteger => new TypedValue(Current, NumberFormat.Integer);
 
-        public double? Change { get; set; }
+        public TypedValue ChangeAsPercent => new TypedValue(Current, NumberFormat.Percent);
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
+using Qa.Core.Excel;
 using Qa.Core.Format;
+using Qa.Core.Qa;
 using Qa.Core.Structure;
 using Qa.Core.System;
 
@@ -31,7 +33,7 @@ namespace Qa.Argus.Cd
                 }
                 else if (key == '2')
                 {
-                    new ComparePrompt(settings).Start();
+                    new QaPrompt(settings, new Exporter(new MainSheet())).Start();
                 }
             }
         }

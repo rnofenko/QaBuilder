@@ -1,7 +1,8 @@
 ﻿using System;
-using System.IO;
 using Qa.Core.Combines;
+using Qa.Core.Excel;
 using Qa.Core.Format;
+using Qa.Core.Qa;
 using Qa.Core.Structure;
 using Qa.Core.System;
 
@@ -26,8 +27,7 @@ namespace Qa.Bai.Benchmark.Sb
                     .Wl("Select command:")
                     .Wl("1. Format")
                     .Wl("2. Create QA report")
-                    .Wl("3. Combine files")
-                    .Wl("4. Set working folder");
+                    .Wl("3. Combine files");
                 var key = Console.ReadKey().KeyChar;
                 if (key == '1')
                 {
@@ -35,32 +35,12 @@ namespace Qa.Bai.Benchmark.Sb
                 }
                 else if (key == '2')
                 {
-                    new ComparePrompt(settings).Start();
+                    new QaPrompt(settings, new Exporter(new MainSheet())).Start();
                 }
                 else if (key == '3')
                 {
                     new CombinePromt(settings).Start();
                 }
-                else if (key == '4')
-                {
-                    setWorkingFolder(settings);
-                }
-            }
-        }
-
-        private static void setWorkingFolder(Settings settings)
-        {
-            Lo.Wl().Wl($"Current folder is {settings.WorkingFolder}")
-                .W("Input new folder:");
-            var folder = Console.ReadLine() ?? "";
-            if (Directory.Exists(folder))
-            {
-                settings.WorkingFolder = folder;
-                _settingsProvider.Save(settings);
-            }
-            else
-            {
-                Lo.Wl("Entered folder doesn't exist.");
             }
         }
     }

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Qa.Core.Structure;
+﻿using Qa.Core.Structure;
 
 namespace Qa.Core.Compare
 {
@@ -8,10 +7,6 @@ namespace Qa.Core.Compare
         private readonly Settings _settings;
 
         public string FileMask { get; set; }
-
-        public string WorkingFolder => _settings.WorkingFolder;
-
-        public List<FileStructure> FileStructures => _settings.FileStructures;
 
         public CompareSettings(Settings settings)
         {
