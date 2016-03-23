@@ -9,5 +9,7 @@ namespace Qa.Core.Structure
         public List<FileStructure> FileStructures => Project.Structures;
 
         public ProjectStructure Project { get; set; }
+
+        public string QaFileName { get; set; }
     }
 }

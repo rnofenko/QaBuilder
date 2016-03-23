@@ -5,7 +5,6 @@ using Qa.Core.Format;
 using Qa.Core.Qa;
 using Qa.Core.Structure;
 using Qa.Core.System;
-using Qa.Novantas.SaleScape.Dr.Excel;
 
 namespace Qa.Novantas.SaleScape.Dr
 {

@@ -7,7 +7,7 @@ using Qa.Core.Compare;
 using Qa.Core.Excel;
 using Qa.Core.Structure;
 
-namespace Qa.Novantas.SaleScape.Dr.Excel
+namespace Qa.Novantas.SaleScape.Dr
 {
     public class MainSheet : IExportPage
     {

@@ -20,7 +20,8 @@ namespace Qa.Core.Excel
 
         public void Export(List<ComparePacket> packets, Settings settings)
         {
-            var path = Path.Combine(settings.WorkingFolder, $"{packets.First().Structure.Name}.xlsx");
+            var fileName = settings.QaFileName ?? packets.First().Structure.Name;
+            var path = Path.Combine(settings.WorkingFolder, $"{fileName}.xlsx");
             new PoliteDeleter().Delete(path);
             
             var file = new FileInfo(path);
