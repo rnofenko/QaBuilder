@@ -16,11 +16,11 @@ namespace Qa.Bai.Benchmark.Dp
         {
             var cursor = new ExcelCursor(sheet);
             new Header().Print(cursor, packet.Structure.Name);
-            
+
             cursor.Column(INIT_COLUMN).Row(5);
             print(packet, cursor);
             cursor.Down(2);
-            
+
             sheet.Cells[sheet.Dimension.Address].AutoFitColumns();
             sheet.Column(1).Width = 3;
         }
@@ -69,18 +69,11 @@ namespace Qa.Bai.Benchmark.Dp
 
             cursor.Sheet.View.FreezePanes(4, 3);
 
-            if (packet.UniqueCounts.Any())
-            {
-                uniqueCounts(cursor, packet);
-            }
-            if (packet.UniqueFields.Any())
-            {
-                uniqueFields(cursor, packet);
-            }
-            if (packet.GroupedSums.Any())
-            {
-                groupedSums(cursor, packet);
-            }
+            uniqueCounts(cursor, packet);
+
+            uniqueFields(cursor, packet);
+
+            groupedSums(cursor, packet);
         }
 
         private static string formatDate(string fileName)

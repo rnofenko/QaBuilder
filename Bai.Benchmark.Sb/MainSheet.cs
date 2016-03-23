@@ -5,7 +5,6 @@ using OfficeOpenXml.Style;
 using Qa.Core;
 using Qa.Core.Compare;
 using Qa.Core.Excel;
-using Qa.Core.Structure;
 
 namespace Qa.Bai.Benchmark.Sb
 {
@@ -26,7 +25,7 @@ namespace Qa.Bai.Benchmark.Sb
             sheet.Column(1).Width = 3;
         }
 
-        private void print(ComparePacket packet, ExcelCursor cursor)
+        private static void print(ComparePacket packet, ExcelCursor cursor)
         {
             var first = packet.Reports.First();
             var initRow = cursor.Pos.Row;
@@ -38,7 +37,7 @@ namespace Qa.Bai.Benchmark.Sb
                 .Down()
                 .Header("", "Values")
                 .Down()
-                .Print("Total Records", new TypedValue(first.RowsCount.Current, NumberFormat.Integer))
+                .Print("Total Records", first.RowsCount.CurrentAsInteger)
                 .Down()
                 .PrintDown(first.Numbers.Select(x => x.Title))
                 .Right()
@@ -70,18 +69,11 @@ namespace Qa.Bai.Benchmark.Sb
 
             cursor.Sheet.View.FreezePanes(4, 3);
 
-            if (packet.UniqueCounts.Any())
-            {
-                uniqueCounts(cursor, packet);
-            }
-            if (packet.UniqueFields.Any())
-            {
-                uniqueFields(cursor, packet);
-            }
-            if (packet.GroupedSums.Any())
-            {
-                groupedSums(cursor, packet);
-            }
+            uniqueCounts(cursor, packet);
+
+            uniqueFields(cursor, packet);
+
+            groupedSums(cursor, packet);
         }
 
         private static string formatDate(string fileName)

@@ -5,7 +5,6 @@ using OfficeOpenXml.Style;
 using Qa.Core;
 using Qa.Core.Compare;
 using Qa.Core.Excel;
-using Qa.Core.Structure;
 
 namespace Qa.Novantas.SaleScape.Dr
 {
@@ -15,14 +14,13 @@ namespace Qa.Novantas.SaleScape.Dr
 
         public void Print(ComparePacket packet, ExcelWorksheet sheet)
         {
-            
             var cursor = new ExcelCursor(sheet);
-            new Header().Print(cursor, $"{packet.Structure.Name}");
+            new Header().Print(cursor, packet.Structure.Name);
 
             cursor.Column(INIT_COLUMN).Row(5);
             print(packet, cursor);
             cursor.Down(2);
-            
+
             sheet.Cells[sheet.Dimension.Address].AutoFitColumns();
             sheet.Column(1).Width = 3;
         }
@@ -39,7 +37,7 @@ namespace Qa.Novantas.SaleScape.Dr
                 .Down()
                 .Header("", "Values")
                 .Down()
-                .Print("Total Records", new TypedValue(first.RowsCount.Current, NumberFormat.Integer))
+                .Print("Total Records", first.RowsCount.CurrentAsInteger)
                 .Down()
                 .PrintDown(first.Numbers.Select(x => x.Title))
                 .Right()
@@ -61,7 +59,7 @@ namespace Qa.Novantas.SaleScape.Dr
                     .Percent(report.RowsCount.Change, StyleConditions.ChangePercent)
                     .Down()
                     .Left()
-                    .PrintDown(report.Numbers.Select(x => x.GetCurrent().Double()), NumberFormat.Money)
+                    .PrintDown(report.Numbers.Select(x => x.GetCurrent()))
                     .Right()
                     .PrintDown(report.Numbers.Select(x => x.GetChange()), StyleConditions.ChangePercent)
                     .Down(fieldsCount)
@@ -71,30 +69,20 @@ namespace Qa.Novantas.SaleScape.Dr
 
             cursor.Sheet.View.FreezePanes(4, 3);
 
-            if (packet.UniqueCounts.Any())
-            {
-                uniqueCounts(cursor, packet);
-            }
-            if (packet.UniqueFields.Any())
-            {
-                uniqueFields(cursor, packet);
-            }
-            if (packet.GroupedSums.Any())
-            {
-                groupedSums(cursor, packet);
-            }
+            uniqueCounts(cursor, packet);
 
+            uniqueFields(cursor, packet);
+
+            groupedSums(cursor, packet);
         }
 
         private static string formatDate(string fileName)
         {
             var parts = fileName.Split('_');
 
-            var parsedDate = DateTime.Parse(parts.Length == 2 
-                ? 
-                $"{parts[1].Substring(4, 2)}/01/{parts[1].Substring(0, 4)}" 
-                : 
-                $"{parts[2].Substring(4, 2)}/01/{parts[2].Substring(0, 4)}");
+            var parsedDate = DateTime.Parse(parts.Length == 2
+                ? $"{parts[1].Substring(4, 2)}/01/{parts[1].Substring(0, 4)}"
+                : $"{parts[2].Substring(4, 2)}/01/{parts[2].Substring(0, 4)}");
 
             var monthName = DateExtention.ToMonthName(parsedDate.Month);
 
@@ -225,7 +213,7 @@ namespace Qa.Novantas.SaleScape.Dr
 
                     cursor
                         .Down()
-                        .Left((packet.Reports.Count - 1)*2);
+                        .Left((packet.Reports.Count - 1) * 2);
                 }
             }
         }
