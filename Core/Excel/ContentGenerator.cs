@@ -57,6 +57,8 @@ namespace Qa.Core.Excel
 
             uniqueFields(cursor, packet, startColumn);
 
+            uniqueFields2(cursor, packet, startColumn);
+
             groupedSums(cursor, packet, startColumn);
         }
 
@@ -119,6 +121,8 @@ namespace Qa.Core.Excel
 
         private void uniqueFields(ExcelCursor cursor, ComparePacket packet, int startColumn)
         {
+            var first = packet.Reports.First();
+
             foreach (var field in packet.UniqueValues)
             {
                 cursor.Down(2)
@@ -127,7 +131,7 @@ namespace Qa.Core.Excel
                     .TopLeftBorderCorner()
                     .MergeDown(2)
                     .Right()
-                    .Header(packet.Reports.Select(x => FormatDate(x.FileName)).First())
+                    .HeaderDown(FormatDate(first.FileName))
                     .Down()
                     .Header("Values")
                     .Left()
@@ -185,6 +189,55 @@ namespace Qa.Core.Excel
                     cursor
                         .Down()
                         .Left((packet.Reports.Count - 1) * 2);
+                }
+            }
+        }
+
+        private void uniqueFields2(ExcelCursor cursor, ComparePacket packet, int startColumn)
+        {
+            var first = packet.Reports.First();
+
+            foreach (var field in packet.UniqueValues)
+            {
+                cursor.Down(2)
+                    .Column(startColumn)
+                    .Header(field.Title)
+                    .TopLeftBorderCorner()
+                    .MergeDown(2)
+                    .Right()
+                    .HeaderDown(first.FileName, "Values")
+                    .Right();
+
+                foreach (var report in packet.Reports.Skip(1))
+                {
+                    cursor
+                        .TopLeftBorderCorner()
+                        .Header(report.FileName)
+                        .Merge(2)
+                        .Down()
+                        .Header("Values", "Change")
+                        .Right(2)
+                        .Up();
+                }
+
+                cursor.Down();
+
+                foreach (var key in field.Keys)
+                {
+                    cursor.Down()
+                        .Column(startColumn)
+                        .Print(key)
+                        .Right();
+
+                    foreach (var file in packet.Reports)
+                    {
+                        cursor
+                            .Print(field.GetCurrent(file, key))
+                            .RightIf(file != first)
+                            .PrintIf(file != first, field.GetChange(file, key))
+                            .DrawBorder(ExcelBorderStyle.Thick, key == field.Keys.Last())
+                            .Right();
+                    }
                 }
             }
         }
