@@ -6,19 +6,20 @@ using Qa.Core;
 using Qa.Core.Compare;
 using Qa.Core.Excel;
 
-namespace Qa.Bai.Benchmark.Sb
+namespace Qa.Bai.Benchmark.Dp
 {
-    public class Print
+    public class ContentGenerator
     {
-        public static void Content(ComparePacket packet, ExcelCursor cursor)
+        public void Print(ComparePacket packet, ExcelCursor cursor, int initColumn)
         {
+            var startColumn = initColumn;
             var first = packet.Reports.First();
             var initRow = cursor.Pos.Row;
             var fieldsCount = first.Numbers.Count - 1;
 
             cursor
                 .TopLeftBorderCorner()
-                .Header("", FormatDate(first.FileName))
+                .Header("", formatDate(first.FileName))
                 .Down()
                 .Header("", "Values")
                 .Down()
@@ -35,7 +36,7 @@ namespace Qa.Bai.Benchmark.Sb
             {
                 cursor.Row(initRow)
                     .TopLeftBorderCorner()
-                    .Header(FormatDate(report.FileName)).Merge(2)
+                    .Header(formatDate(report.FileName)).Merge(2)
                     .Down()
                     .Header("Values", "Change")
                     .Down()
@@ -54,14 +55,14 @@ namespace Qa.Bai.Benchmark.Sb
 
             cursor.Sheet.View.FreezePanes(4, 3);
 
-            UniqueCounts(cursor, packet);
+            uniqueCounts(cursor, packet, startColumn);
 
-            UniqueFields(cursor, packet);
+            uniqueFields(cursor, packet, startColumn);
 
-            GroupedSums(cursor, packet);
+            groupedSums(cursor, packet, startColumn);
         }
-        
-        internal static void UniqueCounts(ExcelCursor cursor, ComparePacket packet)
+
+        private void uniqueCounts(ExcelCursor cursor, ComparePacket packet, int startColumn)
         {
             if (!packet.UniqueCounts.Any())
             {
@@ -70,11 +71,11 @@ namespace Qa.Bai.Benchmark.Sb
 
             cursor
                 .Down(3)
-                .Column(MainSheet.InitColumn)
+                .Column(startColumn)
                 .TopLeftBorderCorner()
                 .Header("")
                 .Right()
-                .Header(packet.Reports.Select(x => FormatDate(x.FileName)).First())
+                .Header(packet.Reports.Select<CompareReport, string>(x => formatDate(x.FileName)).First())
                 .Down()
                 .Left()
                 .Header("", "Values")
@@ -85,7 +86,7 @@ namespace Qa.Bai.Benchmark.Sb
                 cursor
                     .Up()
                     .Right()
-                    .Header(FormatDate(report.FileName))
+                    .Header(formatDate(report.FileName))
                     .Merge(2)
                     .TopLeftBorderCorner()
                     .Down()
@@ -96,7 +97,7 @@ namespace Qa.Bai.Benchmark.Sb
             foreach (var field in packet.UniqueCounts)
             {
                 cursor
-                    .Column(MainSheet.InitColumn)
+                    .Column(startColumn)
                     .Down()
                     .Print(field.Title)
                     .Right()
@@ -118,17 +119,17 @@ namespace Qa.Bai.Benchmark.Sb
                 .Down();
         }
 
-        internal static void UniqueFields(ExcelCursor cursor, ComparePacket packet)
+        private void uniqueFields(ExcelCursor cursor, ComparePacket packet, int startColumn)
         {
             foreach (var field in packet.UniqueValues)
             {
                 cursor.Down(2)
-                    .Column(MainSheet.InitColumn)
+                    .Column(startColumn)
                     .Header(field.Title)
                     .TopLeftBorderCorner()
                     .MergeDown(2)
                     .Right()
-                    .Header(packet.Reports.Select(x => FormatDate(x.FileName)).First())
+                    .Header(packet.Reports.Select(x => formatDate(x.FileName)).First())
                     .Down()
                     .Header("Values")
                     .Left()
@@ -149,7 +150,7 @@ namespace Qa.Bai.Benchmark.Sb
 
                 cursor
                     .Row(startRow)
-                    .Column(MainSheet.InitColumn)
+                    .Column(startColumn)
                     .Up()
                     .Right();
 
@@ -159,7 +160,7 @@ namespace Qa.Bai.Benchmark.Sb
                         .Up()
                         .Right()
                         .TopLeftBorderCorner()
-                        .Header(FormatDate(report.FileName))
+                        .Header(formatDate(report.FileName))
                         .Merge(2)
                         .Down()
                         .Header("Values", "Change")
@@ -168,7 +169,7 @@ namespace Qa.Bai.Benchmark.Sb
 
                 cursor
                     .Row(startRow)
-                    .Column(MainSheet.InitColumn)
+                    .Column(startColumn)
                     .Right();
 
                 foreach (var key in field.Keys)
@@ -190,17 +191,17 @@ namespace Qa.Bai.Benchmark.Sb
             }
         }
 
-        internal static void GroupedSums(ExcelCursor cursor, ComparePacket packet)
+        private void groupedSums(ExcelCursor cursor, ComparePacket packet, int startColumn)
         {
             foreach (var field in packet.GroupedSums)
             {
                 cursor.Down(2)
-                    .Column(MainSheet.InitColumn)
+                    .Column(startColumn)
                     .Header(field.GroupByField.Title)
                     .TopLeftBorderCorner()
                     .MergeDown(2)
                     .Right()
-                    .Header(packet.Reports.Select(x => FormatDate(x.FileName)).First())
+                    .Header(packet.Reports.Select(x => formatDate(x.FileName)).First())
                     .Down()
                     .Header("Values")
                     .Left()
@@ -221,13 +222,13 @@ namespace Qa.Bai.Benchmark.Sb
 
                 cursor
                     .Row(startRow - 2)
-                    .Column(MainSheet.InitColumn + 2);
+                    .Column(startColumn + 2);
 
                 foreach (var report in packet.Reports.Skip(1))
                 {
                     cursor
                         .TopLeftBorderCorner()
-                        .Header(FormatDate(report.FileName))
+                        .Header(formatDate(report.FileName))
                         .Merge(2)
                         .Down()
                         .Header("Values", "Change")
@@ -237,7 +238,7 @@ namespace Qa.Bai.Benchmark.Sb
 
                 cursor
                     .Down(2)
-                    .Column(MainSheet.InitColumn + 1);
+                    .Column(startColumn + 1);
 
                 foreach (var key in field.Keys)
                 {
@@ -253,12 +254,12 @@ namespace Qa.Bai.Benchmark.Sb
 
                     cursor
                         .Down()
-                        .Left((packet.Reports.Count - 1)*2);
+                        .Left((packet.Reports.Count - 1) * 2);
                 }
             }
         }
 
-        internal static string FormatDate(string fileName)
+        private string formatDate(string fileName)
         {
             var rgx = new Regex(@"\d{6,}");
             var mat = rgx.Match(fileName).ToString();
