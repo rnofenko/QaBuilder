@@ -40,7 +40,7 @@ namespace Qa.Argus.Cd
                 .Down()
                 .PrintDown(first.Numbers.Select(x => x.Title), packet.UniqueCounts.Select(x => x.Title + " (Unique values)"))
                 .Right()
-                .PrintDown(first.Numbers.Select(x => x.GetCurrent()), packet.UniqueCounts.Select(x => x.Counts[first.Index].CurrentAsInteger))
+                .PrintDown(first.Numbers.Select(x => x.GetCurrent()), packet.UniqueCounts.Select(x => x.GetCurrent(first)))
                 .Down(fieldsCount)
                 .DrawBorder(ExcelBorderStyle.Thick)
                 .Right();
@@ -55,9 +55,9 @@ namespace Qa.Argus.Cd
                     .Down()
                     .Print(report.RowsCount.CurrentAsInteger, report.RowsCount.ChangeAsPercent)
                     .Down()
-                    .PrintDown(report.Numbers.Select(x => x.GetCurrent()), packet.UniqueCounts.Select(x => x.Counts[report.Index].CurrentAsInteger))
+                    .PrintDown(report.Numbers.Select(x => x.GetCurrent()), packet.UniqueCounts.Select(x => x.GetCurrent(report)))
                     .Right()
-                    .PrintDown(report.Numbers.Select(x => x.GetChange()), StyleConditions.ChangePercent)
+                    .PrintDown(report.Numbers.Select(x => x.GetChange()), packet.UniqueCounts.Select(x => x.GetChange(report)), StyleConditions.ChangePercent)
                     .Down(fieldsCount)
                     .DrawBorder(ExcelBorderStyle.Thick)
                     .Right();

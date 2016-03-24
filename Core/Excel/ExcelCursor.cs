@@ -151,6 +151,13 @@ namespace Qa.Core.Excel
             return PrintDown(values.ToList(), styleCondition);
         }
 
+        public ExcelCursor PrintDown(IEnumerable<TypedValue> values, IEnumerable<TypedValue> values2, Action<StyleConditionArgs> styleCondition = null)
+        {
+            var list = values.ToList();
+            list.AddRange(values2);
+            return PrintDown(list, styleCondition);
+        }
+
         public ExcelCursor PrintDown(params IEnumerable<TypedValue>[] values)
         {
             var list = new List<TypedValue>();
