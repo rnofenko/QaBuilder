@@ -87,6 +87,15 @@ namespace Qa.Core.Excel
             return this;
         }
 
+        public ExcelCursor PrintIf(bool ifCondition, params TypedValue[] values)
+        {
+            if (ifCondition)
+            {
+                return Print(values);
+            }
+            return this;
+        }
+
         public ExcelCursor Print(params TypedValue[] values)
         {
             var pos = _pos.Clone();
@@ -105,15 +114,33 @@ namespace Qa.Core.Excel
 
         public ExcelCursor Header(params string[] values)
         {
-            for (var i = 0; i < values.Length; i++)
+            var pos = _pos.Clone();
+            foreach (var value in values)
             {
-                var range = Sheet.Cells[Pos.Row, _pos.Column + i];
-                range.Value = values[i];
-                range.Style.HorizontalAlignment = _headerStyle.HorizontalAlignment;
-                range.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                range.Style.Fill.BackgroundColor.SetColor(_headerStyle.BackgroundColor);
+                header(value, pos);
+                pos.Column++;
             }
             return this;
+        }
+
+        public ExcelCursor HeaderDown(params string[] values)
+        {
+            var pos = _pos.Clone();
+            foreach (var value in values)
+            {
+                header(value, pos);
+                pos.Row++;
+            }
+            return this;
+        }
+
+        private void header(string value, Pos pos)
+        {
+            var range = Sheet.Cells[pos.Row, pos.Column];
+            range.Value = value;
+            range.Style.HorizontalAlignment = _headerStyle.HorizontalAlignment;
+            range.Style.Fill.PatternType = ExcelFillStyle.Solid;
+            range.Style.Fill.BackgroundColor.SetColor(_headerStyle.BackgroundColor);
         }
 
         public ExcelCursor PrintDown(params string[] values)
@@ -329,6 +356,15 @@ namespace Qa.Core.Excel
         public ExcelCursor Right(int count = 1)
         {
             _pos.Column += count;
+            return this;
+        }
+
+        public ExcelCursor RightIf(bool ifCondition, int count = 1)
+        {
+            if (ifCondition)
+            {
+                _pos.Column += count;
+            }
             return this;
         }
 
