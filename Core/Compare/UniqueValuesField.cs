@@ -26,5 +26,10 @@ namespace Qa.Core.Compare
         {
             return ValueLists[file.Index].GetCurrent(key);
         }
+
+        public TypedValue GetChange(CompareReport file, string key)
+        {
+            return ValueLists[file.Index].GetChange(key);
+        }
     }
 }
