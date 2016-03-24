@@ -107,7 +107,7 @@ namespace Qa.Argus.Cd
                         cursor
                             .Print(field.GetCurrent(file, key))
                             .RightIf(file != first)
-                            .PrintIf(file != first, field.GetChange(file, key))
+                            .PrintIf(file != first, field.GetChange(file, key), StyleConditions.ChangePercent)
                             .DrawBorder(ExcelBorderStyle.Thick, key == field.Keys.Last())
                             .Right();
                     }
