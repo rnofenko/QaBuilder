@@ -5,6 +5,6 @@ namespace Qa.Core.Excel
 {
     public interface IExportPage
     {
-        void Print(ComparePacket packet, ExcelWorksheet sheet);
+        void PrintReport(ComparePacket packet, ExcelWorksheet sheet);
     }
 }

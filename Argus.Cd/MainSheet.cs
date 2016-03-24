@@ -10,7 +10,7 @@ namespace Qa.Argus.Cd
     {
         private const int INIT_COLUMN = 2;
 
-        public void Print(ComparePacket packet, ExcelWorksheet sheet)
+        public void PrintReport(ComparePacket packet, ExcelWorksheet sheet)
         {
             const int initColumn = 2;
             var cursor = new ExcelCursor(sheet);
