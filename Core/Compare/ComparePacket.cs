@@ -10,7 +10,7 @@ namespace Qa.Core.Compare
 
         public List<CompareReport> Reports { get; set; }
 
-        public List<UniqueValuesField> UniqueFields { get; set; }
+        public List<UniqueValuesField> UniqueValues { get; set; }
 
         public List<UniqueCountField> UniqueCounts { get; set; }
 
@@ -33,7 +33,7 @@ namespace Qa.Core.Compare
                 Reports.Add(report);
             }
 
-            UniqueFields = fieldPacks
+            UniqueValues = fieldPacks
                 .Where(UniqueValuesField.IsConvertable)
                 .Select(x => new UniqueValuesField(x))
                 .ToList();

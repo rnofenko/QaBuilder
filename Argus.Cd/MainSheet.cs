@@ -40,7 +40,7 @@ namespace Qa.Argus.Cd
                 .Down()
                 .PrintDown(first.Numbers.Select(x => x.Title), packet.UniqueCounts.Select(x => x.Title + " (Unique values)"))
                 .Right()
-                .PrintDown(first.Numbers.Select(x => x.GetCurrent()), packet.UniqueCounts.Select(x => x.GetCurrent(first)))
+                .PrintDown(first.Numbers.Select(x => x.GetCurrent()), packet.UniqueCounts.Select(x => x.GetCurrent(first)), StyleConditions.ChangePercent)
                 .Down(fieldsCount)
                 .DrawBorder(ExcelBorderStyle.Thick)
                 .Right();
@@ -63,20 +63,22 @@ namespace Qa.Argus.Cd
                     .Right();
             }
 
-            groupedSums(cursor, packet);
+            uniqueFields(cursor, packet);
         }
 
-        private static void groupedSums(ExcelCursor cursor, ComparePacket packet)
+        private void uniqueFields(ExcelCursor cursor, ComparePacket packet)
         {
-            foreach (var field in packet.GroupedSums)
+            var first = packet.Reports.First();
+
+            foreach (var field in packet.UniqueValues)
             {
                 cursor.Down(2)
                     .Column(INIT_COLUMN)
-                    .Header(field.GroupByField.Title)
+                    .Header(field.Title)
                     .TopLeftBorderCorner()
                     .MergeDown(2)
                     .Right()
-                    .Header(packet.Reports.Select(x => x.FileName).First())
+                    .Header(first.FileName)
                     .Down()
                     .Header("Values")
                     .Left()
@@ -89,41 +91,45 @@ namespace Qa.Argus.Cd
                     cursor
                         .Print(key)
                         .Right()
-                        .Print(field.ValueLists[0].GetCurrent(key))
+                        .Print(field.GetCurrent(first, key))
                         .DrawBorder(ExcelBorderStyle.Thick, key == field.Keys.Last())
                         .Left()
                         .Down();
                 }
 
                 cursor
-                    .Row(startRow - 2)
-                    .Column(INIT_COLUMN + 2);
+                    .Row(startRow)
+                    .Column(INIT_COLUMN)
+                    .Up()
+                    .Right();
 
                 foreach (var report in packet.Reports.Skip(1))
                 {
                     cursor
+                        .Up()
+                        .Right()
                         .TopLeftBorderCorner()
                         .Header(report.FileName)
                         .Merge(2)
                         .Down()
                         .Header("Values", "Change")
-                        .Right(2)
-                        .Up();
+                        .Right();
                 }
 
                 cursor
-                    .Down(2)
-                    .Column(INIT_COLUMN + 1);
+                    .Row(startRow)
+                    .Column(INIT_COLUMN)
+                    .Right();
 
                 foreach (var key in field.Keys)
                 {
-                    foreach (var list in field.ValueLists.Skip(1))
+                    foreach (var valuesList in field.ValueLists.Skip(1))
                     {
                         cursor
                             .Right()
-                            .Print(list.GetCurrent(key))
+                            .Print(valuesList.GetCurrent(key))
                             .Right()
-                            .Print(list.GetChange(key), StyleConditions.ChangePercent)
+                            .Print(valuesList.GetChange(key), StyleConditions.ChangePercent)
                             .DrawBorder(ExcelBorderStyle.Thick, key == field.Keys.Last());
                     }
 

@@ -65,6 +65,10 @@ namespace Qa.Core.Format
                     {
                         value = $"{parsed:0.00}";
                     }
+                    else if (field.NumberFormat == NumberFormat.Rate)
+                    {
+                        value = $"{parsed:0.0000}";
+                    }
                     else
                     {
                         value = $"{parsed:0}";

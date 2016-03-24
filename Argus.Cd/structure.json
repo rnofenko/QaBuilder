@@ -28,11 +28,7 @@
         { "name": "Term End Date" },
         {
           "name": "Month End Balance",
-          "numberFormat": "Money",
-          "calculation": {
-            "type": "sum",
-            "groupBy": "State"
-          }
+          "numberFormat": "Money"
         },
         {
           "name": "APY",
@@ -59,11 +55,78 @@
         { "name": "Cycle End Date" },
         { "name": "Cycle Balance" }
       ]
+    },
+    {
+      "name": "Argus CD Appendix B",
+      "rowsInHeader": 1,
+      "delimeter": "|",
+      "fields": [
+        {
+          "name": "Account Identifier",
+          "countUniqueValues": true
+        },
+        { "name": "Transaction Post Date" },
+        {
+          "name": "Transaction Amount",
+          "numberFormat": "Money"
+        },
+        {
+          "name": "Credit/Debit Indicator",
+          "selectUniqueValues": true
+        },
+        {
+          "name": "Transaction Code",
+          "selectUniqueValues": true
+        },
+        { "name": "Source System" },
+        { "name": "Transaction Date" },
+        { "name": "Transaction Description" },
+        { "name": "Transaction Identifier" },
+        { "name": "Running balance" },
+        { "name": "Sequence number" }
+      ]
+    },
+    {
+      "name": "Argus CD Appendix C",
+      "rowsInHeader": 1,
+      "delimeter": "|",
+      "fields": [
+        {
+          "name": "Customer Identifier",
+          "countUniqueValues": true
+        },
+        {
+          "name": "Account Identifier",
+          "countUniqueValues": true
+        },
+        {
+          "name": "City",
+          "countUniqueValues": true
+        },
+        {
+          "name": "State",
+          "countUniqueValues": true
+        },
+        { "name": "Zip Code" },
+        { "name": "Birth Date" },
+        { "name": "Primary Customer Identifier" },
+        { "name": "Household Identifier" },
+        { "name": "Relationship Start Date" },
+        { "name": "Head Of Household Flag" }
+      ]
     }
   ],
   "formatSchemes": [
     {
       "name": "Argus CD Appendix A",
+      "delimeter": ","
+    },
+    {
+      "name": "Argus CD Appendix B",
+      "delimeter": ","
+    },
+    {
+      "name": "Argus CD Appendix C",
       "delimeter": ","
     }
   ]

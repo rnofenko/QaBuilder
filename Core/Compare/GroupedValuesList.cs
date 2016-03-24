@@ -25,9 +25,9 @@ namespace Qa.Core.Compare
             var value = Values.FirstOrDefault(x => x.Value == key);
             if (value == null)
             {
-                return new TypedValue(0, Field.NumberFormat);
+                return new TypedValue(0, NumberFormat.Integer);
             }
-            return new TypedValue(value.Count.Current, Field.NumberFormat);
+            return new TypedValue(value.Count.Current, NumberFormat.Integer);
         }
 
         public TypedValue GetChange(string key)

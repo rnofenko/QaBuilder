@@ -120,7 +120,7 @@ namespace Qa.Bai.Benchmark.Dp
 
         internal static void UniqueFields(ExcelCursor cursor, ComparePacket packet)
         {
-            foreach (var field in packet.UniqueFields)
+            foreach (var field in packet.UniqueValues)
             {
                 cursor.Down(2)
                     .Column(MainSheet.InitColumn)

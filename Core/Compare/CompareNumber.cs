@@ -24,6 +24,6 @@ namespace Qa.Core.Compare
 
         public TypedValue CurrentAsInteger => new TypedValue(Current, NumberFormat.Integer);
 
-        public TypedValue ChangeAsPercent => new TypedValue(Current, NumberFormat.Percent);
+        public TypedValue ChangeAsPercent => new TypedValue(Change, NumberFormat.Percent);
     }
 }

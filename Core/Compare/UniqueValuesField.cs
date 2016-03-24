@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Qa.Core.Excel;
 using Qa.Core.Structure;
 
 namespace Qa.Core.Compare
@@ -19,6 +20,11 @@ namespace Qa.Core.Compare
         public static bool IsConvertable(FieldPack pack)
         {
             return pack.Description.SelectUniqueValues;
+        }
+
+        public TypedValue GetCurrent(CompareReport file, string key)
+        {
+            return ValueLists[file.Index].GetCurrent(key);
         }
     }
 }
