@@ -2,11 +2,9 @@ using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 using OfficeOpenXml.Style;
-using Qa.Core;
 using Qa.Core.Compare;
-using Qa.Core.Excel;
 
-namespace Qa.Bai.Benchmark.Sb
+namespace Qa.Core.Excel
 {
     public class ContentGenerator
     {
@@ -19,7 +17,7 @@ namespace Qa.Bai.Benchmark.Sb
 
             cursor
                 .TopLeftBorderCorner()
-                .Header("", formatDate(first.FileName))
+                .Header("", FormatDate(first.FileName))
                 .Down()
                 .Header("", "Values")
                 .Down()
@@ -36,7 +34,7 @@ namespace Qa.Bai.Benchmark.Sb
             {
                 cursor.Row(initRow)
                     .TopLeftBorderCorner()
-                    .Header(formatDate(report.FileName)).Merge(2)
+                    .Header(FormatDate(report.FileName)).Merge(2)
                     .Down()
                     .Header("Values", "Change")
                     .Down()
@@ -75,7 +73,7 @@ namespace Qa.Bai.Benchmark.Sb
                 .TopLeftBorderCorner()
                 .Header("")
                 .Right()
-                .Header(packet.Reports.Select(x => formatDate(x.FileName)).First())
+                .Header(packet.Reports.Select(x => FormatDate(x.FileName)).First())
                 .Down()
                 .Left()
                 .Header("", "Values")
@@ -86,7 +84,7 @@ namespace Qa.Bai.Benchmark.Sb
                 cursor
                     .Up()
                     .Right()
-                    .Header(formatDate(report.FileName))
+                    .Header(FormatDate(report.FileName))
                     .Merge(2)
                     .TopLeftBorderCorner()
                     .Down()
@@ -129,7 +127,7 @@ namespace Qa.Bai.Benchmark.Sb
                     .TopLeftBorderCorner()
                     .MergeDown(2)
                     .Right()
-                    .Header(packet.Reports.Select(x => formatDate(x.FileName)).First())
+                    .Header(packet.Reports.Select(x => FormatDate(x.FileName)).First())
                     .Down()
                     .Header("Values")
                     .Left()
@@ -160,7 +158,7 @@ namespace Qa.Bai.Benchmark.Sb
                         .Up()
                         .Right()
                         .TopLeftBorderCorner()
-                        .Header(formatDate(report.FileName))
+                        .Header(FormatDate(report.FileName))
                         .Merge(2)
                         .Down()
                         .Header("Values", "Change")
@@ -201,7 +199,7 @@ namespace Qa.Bai.Benchmark.Sb
                     .TopLeftBorderCorner()
                     .MergeDown(2)
                     .Right()
-                    .Header(packet.Reports.Select(x => formatDate(x.FileName)).First())
+                    .Header(packet.Reports.Select(x => FormatDate(x.FileName)).First())
                     .Down()
                     .Header("Values")
                     .Left()
@@ -228,7 +226,7 @@ namespace Qa.Bai.Benchmark.Sb
                 {
                     cursor
                         .TopLeftBorderCorner()
-                        .Header(formatDate(report.FileName))
+                        .Header(FormatDate(report.FileName))
                         .Merge(2)
                         .Down()
                         .Header("Values", "Change")
@@ -254,19 +252,19 @@ namespace Qa.Bai.Benchmark.Sb
 
                     cursor
                         .Down()
-                        .Left((packet.Reports.Count - 1)*2);
+                        .Left((packet.Reports.Count - 1) * 2);
                 }
             }
         }
 
-        private string formatDate(string fileName)
+        public string FormatDate(string fileName)
         {
             var rgx = new Regex(@"\d{6,}");
-            var mat = rgx.Match(fileName).ToString();
+            var match = rgx.Match(fileName).ToString();
 
-            var parsedDate = DateTime.Parse(mat.Length < 8
-                ? $"{mat.Substring(4, 2)}/01/{mat.Substring(0, 4)}"
-                : $"{mat.Substring(4, 2)}/{mat.Substring(6, 2)}/{mat.Substring(0, 4)}");
+            var parsedDate = DateTime.Parse(match.Length < 8
+                ? $"{match.Substring(4, 2)}/01/{match.Substring(0, 4)}"
+                : $"{match.Substring(4, 2)}/{match.Substring(6, 2)}/{match.Substring(0, 4)}");
 
             var monthName = DateExtention.ToMonthName(parsedDate.Month);
 
