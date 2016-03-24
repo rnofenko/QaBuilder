@@ -96,6 +96,15 @@ namespace Qa.Core.Excel
             return this;
         }
 
+        public ExcelCursor PrintIf(bool ifCondition, TypedValue value, Action<StyleConditionArgs> styleCondition)
+        {
+            if (ifCondition)
+            {
+                return Print(value, styleCondition);
+            }
+            return this;
+        }
+
         public ExcelCursor Print(params TypedValue[] values)
         {
             var pos = _pos.Clone();
