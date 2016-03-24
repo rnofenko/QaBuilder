@@ -14,7 +14,7 @@ namespace Qa.Bai.Benchmark.Sb
             new Header().Print(cursor, packet.Structure.Name);
             
             cursor.Column(InitColumn).Row(5);
-            Print.Content(packet, cursor);
+            new ContentGenerator().Print(packet, cursor, InitColumn);
             cursor.Down(2);
             
             sheet.Cells[sheet.Dimension.Address].AutoFitColumns();
