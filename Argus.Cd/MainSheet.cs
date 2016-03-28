@@ -63,10 +63,10 @@ namespace Qa.Argus.Cd
                     .Right();
             }
 
-            uniqueFields2(cursor, packet);
+            uniqueValues(cursor, packet);
         }
 
-        private void uniqueFields2(ExcelCursor cursor, ComparePacket packet)
+        private void uniqueValues(ExcelCursor cursor, ComparePacket packet)
         {
             var first = packet.Reports.First();
 
@@ -99,7 +99,7 @@ namespace Qa.Argus.Cd
                 {
                     cursor.Down()
                         .Column(INIT_COLUMN)
-                        .Print(key)
+                        .Print(field.GetTranslate(key))
                         .Right();
 
                     foreach (var file in packet.Reports)

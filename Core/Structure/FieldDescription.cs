@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Qa.Core.Structure
 {
     public class FieldDescription
@@ -19,6 +21,10 @@ namespace Qa.Core.Structure
         public SortType Sort { get; set; }
 
         public CalculationDescription Calculation { get; set; }
+
+        public Dictionary<string, string> Translate { get; set; }
+
+        public List<BinRange> Bins { get; set; }
 
         public override string ToString()
         {

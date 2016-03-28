@@ -72,7 +72,11 @@
         },
         {
           "name": "Credit/Debit Indicator",
-          "selectUniqueValues": true
+          "selectUniqueValues": true,
+          "translate": {
+            "C": "Credit",
+            "D": "Debit"
+          }
         },
         {
           "name": "Transaction Code",

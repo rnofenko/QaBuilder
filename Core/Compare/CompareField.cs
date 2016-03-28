@@ -7,10 +7,6 @@ namespace Qa.Core.Compare
     {
         private readonly FieldDescription _description;
 
-        public DType Type => _description.Type;
-
-        public string Name => _description.Name;
-
         public string Title => _description.Title ?? _description.Name;
 
         public CompareNumber Number { get; }
@@ -39,6 +35,11 @@ namespace Qa.Core.Compare
 
         public TypedValue GetChange()
         {
+            if (_description.NumberFormat == NumberFormat.Rate)
+            {
+                return new TypedValue(Number.AbsoluteChange, NumberFormat.Rate);
+            }
+
             return new TypedValue(Number.Change, NumberFormat.Percent);
         }
     }

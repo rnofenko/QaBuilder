@@ -13,6 +13,7 @@ namespace Qa.Core.Compare
             {
                 Previous = previous.Value;
                 Change = Calculator.ChangeInPercent(current, Previous);
+                AbsoluteChange = Calculator.AbsoluteChange(current, Previous);
             }
         }
 
@@ -21,6 +22,8 @@ namespace Qa.Core.Compare
         public double Current { get; set; }
         
         public double? Change { get; set; }
+
+        public double AbsoluteChange { get; set; }
 
         public TypedValue CurrentAsInteger => new TypedValue(Current, NumberFormat.Integer);
 

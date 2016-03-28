@@ -10,9 +10,8 @@ namespace Qa.Core.Structure
         public DType Type => Description.Type;
 
         public NumberFormat NumberFormat => Description.NumberFormat;
-
-        public bool SelectUniqueValues => Description.SelectUniqueValues;
-        public Dictionary<string, double> SelectedUniqueValues { get; }
+        
+        public Dictionary<string, double> SelectedUniqueValues { get; set; }
         
         public int UniqueValuesCount { get; }
 

@@ -100,6 +100,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Structure\BaseField.cs" />
+    <Compile Include="Structure\BinRange.cs" />
     <Compile Include="Structure\CalculationDescription.cs" />
     <Compile Include="Structure\CalculationType.cs" />
     <Compile Include="Structure\DType.cs" />
@@ -125,6 +126,7 @@
     <Compile Include="System\Lo.cs" />
     <Compile Include="System\Logger.cs" />
     <Compile Include="System\PoliteDeleter.cs" />
+    <Compile Include="Transforms\BinCombiner.cs" />
     <Compile Include="Transforms\ReportTransformer.cs" />
   </ItemGroup>
   <ItemGroup>

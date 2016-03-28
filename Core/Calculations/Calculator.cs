@@ -19,7 +19,12 @@ namespace Qa.Core.Calculations
             {
                 return -1;
             }
-            return Math.Round(current * 1.0/ previous - 1, 4);
+            return current * 1.0/ previous - 1;
+        }
+
+        public static double AbsoluteChange(double current, double previous)
+        {
+            return Math.Abs(current - previous);
         }
     }
 }
