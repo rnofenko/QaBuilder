@@ -8,8 +8,6 @@ namespace Qa.Core.Structure
 
         public string Title { get; set; }
 
-        public bool CountUniqueValues { get; set; }
-
         public bool SelectUniqueValues { get; set; }
 
         public DType Type { get; set; }

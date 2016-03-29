@@ -12,12 +12,16 @@
         {
           "name": "CUST_ID",
           "title": "Customer ID",
-          "countUniqueValues": true
+          "calculation": {
+            "type": "countUnique"
+          }
         },
         {
           "name": "CUST_COST_CENTER",
           "title": "Customer Cost Center",
-          "countUniqueValues": true
+          "calculation": {
+            "type": "countUnique"
+          }
         },
         {
           "name": "CUST_SINCE_DATE",
@@ -26,12 +30,16 @@
         {
           "name": "HH_ID",
           "title": "Household ID",
-          "countUniqueValues": true
+          "calculation": {
+            "type": "countUnique"
+          }
         },
         {
           "name": "HH_COST_CENTER",
           "title": "Household Cost Center",
-          "countUniqueValues": true
+          "calculation": {
+            "type": "countUnique"
+          }
         },
         {
           "name": "HH_SINCE_DATE",
@@ -40,17 +48,23 @@
         {
           "name": "ACCT_ID",
           "title": "Account ID",
-          "countUniqueValues": true
+          "calculation": {
+            "type": "countUnique"
+          }
         },
         {
           "name": "ORIG_COST_CENTER",
           "title": "Original Cost Center",
-          "countUniqueValues": true
+          "calculation": {
+            "type": "countUnique"
+          }
         },
         {
           "name": "ACCT_COST_CENTER",
           "title": "Account Cost Center",
-          "countUniqueValues": true
+          "calculation": {
+            "type": "countUnique"
+          }
         },
         {
           "name": "ACCT_OPEN_DATE",
@@ -127,7 +141,9 @@
         {
           "name": "ATM_ID",
           "title": "ATM ID",
-          "countUniqueValues": true
+          "calculation": {
+            "type": "countUnique"
+          }
         },
         {
           "name": "TRXN_TYPE",

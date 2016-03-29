@@ -150,7 +150,7 @@ namespace Qa.Core.Excel
                 {
                     cursor.Down()
                         .Column(startColumn)
-                        .Print(key)
+                        .Print(field.GetTranslate(key))
                         .Right();
 
                     foreach (var file in packet.Reports)

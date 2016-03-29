@@ -8,12 +8,16 @@
         {
           "name": "HOUSEHOLD_ID",
           "title": "Household ID",
-          "countUniqueValues": true
+          "calculation": {
+            "type": "countUnique"
+          }
         },
         {
           "name": "CUSTOMER_ID",
           "title": "Customer ID",
-          "countUniqueValues": true
+          "calculation": {
+            "type": "countUnique"
+          }
         },
         {
           "name": "ACCOUNT_ID",
@@ -62,17 +66,25 @@
         {
           "name": "BRANCH_ID",
           "title": "Branch ID",
-          "countUniqueValues": true
+          "calculation": {
+            "type": "countUnique"
+          }
         },
         {
           "name": "HOME_BRANCH_ID",
           "title": "Home Branch ID",
-          "countUniqueValues": true
+          "calculation": {
+            "type": "countUnique"
+          }
         },
         {
           "name": "F_MANAGED_ACCOUNT",
           "title": "Managed Account",
-          "selectUniqueValues": true
+          "selectUniqueValues": true,
+          "translate": {
+            "Y": "Managed",
+            "N": "Not managed"
+          }
         },
         {
           "name": "F_EMPLOYEE",
@@ -82,7 +94,9 @@
         {
           "name": "ORIGINATION_CODE",
           "title": "Origination Code",
-          "countUniqueValues": false
+          "calculation": {
+            "type": "countUnique"
+          }
         },
         {
           "name": "STATUS_CODE1",

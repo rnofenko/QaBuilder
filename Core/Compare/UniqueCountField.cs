@@ -26,7 +26,7 @@ namespace Qa.Core.Compare
 
         public static bool IsConvertable(FieldPack pack)
         {
-            return pack.Description.CountUniqueValues;
+            return pack.Description.Calculation.Type == CalculationType.CountUnique;
         }
     }
 }

@@ -12,7 +12,9 @@
         {
           "name": "BUSINESS_ID",
           "title": "Busuness ID",
-          "countUniqueValues": true
+          "calculation": {
+            "type": "countUnique"
+          }
         },
         {
           "name": "ACCOUNT_ID",
@@ -53,7 +55,9 @@
         {
           "name": "BRANCH_ID",
           "title": "Branch ID",
-          "countUniqueValues": true
+          "calculation": {
+            "type": "countUnique"
+          }
         },
         {
           "name": "F_MANAGED",
@@ -141,7 +145,9 @@
         {
           "name": "HOUSEHOLD_ID",
           "title": "Household ID",
-          "countUniqueValues": true
+          "calculation": {
+            "type": "countUnique"
+          }
         },
         {
           "name": "GEOCODE",
@@ -154,7 +160,9 @@
         {
           "name": "HOME_BRANCH_ID",
           "title": "Home Branch ID",
-          "countUniqueValues": true
+          "calculation": {
+            "type": "countUnique"
+          }
         },
         {
           "name": "F_ATM",

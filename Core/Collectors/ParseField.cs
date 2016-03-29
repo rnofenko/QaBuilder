@@ -23,7 +23,7 @@ namespace Qa.Core.Collectors
         public bool SelectUniqueValues => Description.SelectUniqueValues;
         public Dictionary<string, double> SelectedUniqueValues { get; set; }
 
-        public bool CountUniqueValues => Description.CountUniqueValues;
+        public CalculationDescription Calculation => Description.Calculation;
         public HashSet<string> CountedUniqueValues { get; set; }
     }
 }

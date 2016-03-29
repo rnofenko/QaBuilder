@@ -7,17 +7,23 @@
       "fields": [
         {
           "name": "Account Identifier",
-          "countUniqueValues": true
+          "calculation": {
+            "type": "countUnique"
+          }
         },
         {
           "name": "Customer Identifier",
-          "countUniqueValues": true
+          "calculation": {
+            "type": "countUnique"
+          }
         },
         { "name": "Product Type" },
         { "name": "SubProduct Type" },
         {
           "name": "Account Status",
-          "countUniqueValues": true
+          "calculation": {
+            "type": "countUnique"
+          }
         },
         { "name": "Open Date" },
         {
@@ -44,7 +50,9 @@
         { "name": "City" },
         {
           "name": "State",
-          "countUniqueValues": true
+          "calculation": {
+            "type": "countUnique"
+          }
         },
         { "name": "Zip Code" },
         { "name": "Branch" },
@@ -63,7 +71,9 @@
       "fields": [
         {
           "name": "Account Identifier",
-          "countUniqueValues": true
+          "calculation": {
+            "type": "countUnique"
+          }
         },
         { "name": "Transaction Post Date" },
         {
@@ -97,19 +107,27 @@
       "fields": [
         {
           "name": "Customer Identifier",
-          "countUniqueValues": true
+          "calculation": {
+            "type": "countUnique"
+          }
         },
         {
           "name": "Account Identifier",
-          "countUniqueValues": true
+          "calculation": {
+            "type": "countUnique"
+          }
         },
         {
           "name": "City",
-          "countUniqueValues": true
+          "calculation": {
+            "type": "countUnique"
+          }
         },
         {
           "name": "State",
-          "countUniqueValues": true
+          "calculation": {
+            "type": "countUnique"
+          }
         },
         { "name": "Zip Code" },
         { "name": "Birth Date" },

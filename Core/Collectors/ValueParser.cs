@@ -75,7 +75,7 @@ namespace Qa.Core.Collectors
                         field.SelectedUniqueValues[value]++;
                     }
                 }
-                else if (field.CountUniqueValues)
+                else if (field.Calculation.Type == CalculationType.CountUnique)
                 {
                     if (!field.CountedUniqueValues.Contains(value))
                     {
