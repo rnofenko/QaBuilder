@@ -47,8 +47,17 @@ namespace Qa.Core.Transforms
             var bins = new Dictionary<string, double>();
             foreach (var old in field.SelectedUniqueValues)
             {
-                var key = double.Parse(old.Key);
-                var range = ranges.First(x => key >= x.From && key <= x.To);
+                NumericBinRange range;
+                double key;
+                if (double.TryParse(old.Key, out key))
+                {
+                    range = ranges.First(x => key >= x.From && key <= x.To);
+                }
+                else
+                {
+                    range = ranges.First(x => x.From == null);
+                }
+                
                 if (!bins.ContainsKey(range.Name))
                 {
                     bins.Add(range.Name, 0d);

@@ -10,7 +10,19 @@ namespace Qa.Core.Structure
 
         public NumericBinRange ToNumeric()
         {
-            return new NumericBinRange {Name = Name, To = double.Parse(To), From = double.Parse(From)};
+            var bin = new NumericBinRange {Name = Name};
+
+            double value;
+            if (double.TryParse(From, out value))
+            {
+                bin.From = value;
+            }
+            if (double.TryParse(To, out value))
+            {
+                bin.To = value;
+            }
+
+            return bin;
         }
     }
 }

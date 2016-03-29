@@ -130,7 +130,21 @@
           "name": "CD_TERM",
           "title": "CD Term",
           "selectUniqueValues": true,
-          "sort": "numeric"
+          "type": "Numeric",
+          "bins": [
+            { "name": "No Values" },
+            { "from": "0", "to": "0", "name": "0 months" },
+            { "from": "1", "to": "3", "name": "01-03 months" },
+            { "from": "4", "to": "6", "name": "04-06 months" },
+            { "from": "7", "to": "9", "name": "07-09 months" },
+            { "from": "10", "to": "12", "name": "10-12 months" },
+            { "from": "13", "to": "18", "name": "13-18 months" },
+            { "from": "19", "to": "24", "name": "19-24 months" },
+            { "from": "25", "to": "36", "name": "25-36 months" },
+            { "from": "37", "to": "48", "name": "37-48 months" },
+            { "from": "49", "to": "60", "name": "49-60 months" },
+            { "from": "61", "to": "99999", "name": "60+ months" }
+          ]
         },
         {
           "name": "CD_MATURITY_DATE",
