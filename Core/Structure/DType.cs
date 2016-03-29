@@ -3,7 +3,7 @@
     public enum DType
     {
         None = 0,
-        Number = 1,
+        Numeric = 1,
         String = 2,
         Date = 3
     }

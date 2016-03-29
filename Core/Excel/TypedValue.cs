@@ -19,21 +19,21 @@ namespace Qa.Core.Excel
         public TypedValue(double value)
         {
             Value = value;
-            Type = DType.Number;
+            Type = DType.Numeric;
             Format = NumberFormat.Double;
         }
 
         public TypedValue(int value)
         {
             Value = value;
-            Type = DType.Number;
+            Type = DType.Numeric;
             Format = NumberFormat.Integer;
         }
 
         public TypedValue(double? value, NumberFormat formatType)
         {
             Value = value;
-            Type = DType.Number;
+            Type = DType.Numeric;
             Format = formatType;
         }
 

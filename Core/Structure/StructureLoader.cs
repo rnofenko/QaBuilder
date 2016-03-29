@@ -56,11 +56,11 @@ namespace Qa.Core.Structure
                 }
                 else
                 {
-                    field.Type = DType.Number;
+                    field.Type = DType.Numeric;
                 }
             }
 
-            if (field.NumberFormat == NumberFormat.None && field.Type == DType.Number)
+            if (field.NumberFormat == NumberFormat.None && field.Type == DType.Numeric)
             {
                 field.NumberFormat = NumberFormat.Double;
             }
@@ -70,7 +70,7 @@ namespace Qa.Core.Structure
             {
                 field.Calculation = new CalculationDescription();
             }
-            if (field.Type == DType.Number)
+            if (field.Type == DType.Numeric)
             {
                 if (field.Calculation.Type == CalculationType.None)
                 {

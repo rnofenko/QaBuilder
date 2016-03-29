@@ -153,6 +153,7 @@
           "name": "CUSTOMER_AGE",
           "title": "Customer Age",
           "selectUniqueValues": true,
+          "type": "Numeric",
           "bins": [
             { "from": 0,"to": 0,"name": "00 years" },
             { "from": 1,"to": 4,"name": "01-04 years" },

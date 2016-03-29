@@ -7,5 +7,10 @@ namespace Qa.Core.Structure
         public string To { get; set; }
 
         public string Name { get; set; }
+
+        public NumericBinRange ToNumeric()
+        {
+            return new NumericBinRange {Name = Name, To = double.Parse(To), From = double.Parse(From)};
+        }
     }
 }

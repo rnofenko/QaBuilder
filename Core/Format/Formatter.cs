@@ -54,7 +54,7 @@ namespace Qa.Core.Format
             {
                 var value = match.Value;
                 var field = _fields[i];
-                if (field.Type == DType.Number)
+                if (field.Type == DType.Numeric)
                 {
                     if (value == ".")
                     {

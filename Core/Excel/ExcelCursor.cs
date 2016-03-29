@@ -231,7 +231,7 @@ namespace Qa.Core.Excel
 
         public ExcelCursor Print(TypedValue value, Pos pos, Action<StyleConditionArgs> condition)
         {
-            if (value.Type == DType.Number)
+            if (value.Type == DType.Numeric)
             {
                 if (value.Format == NumberFormat.Money)
                 {

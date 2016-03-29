@@ -40,7 +40,7 @@ namespace Qa.Core.Collectors
             {
                 var field = _fields[i];
                 var value = parts[i];
-                if (field.Type == DType.Number)
+                if (field.Type == DType.Numeric)
                 {
                     if (value.IsNotEmpty())
                     {
