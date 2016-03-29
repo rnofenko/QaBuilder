@@ -85,9 +85,10 @@
         },
         {
           "name": "F_MANAGED_ACCOUNT",
-          "title": "Managed Account",
+          "title": "Counts of customers by Managed Account",
           "calculation": {
-            "type": "count",
+            "type": "countUnique",
+            "field": "CUSTOMER_ID",
             "group": true
           },
           "translate": {
@@ -381,7 +382,7 @@
           "calculation": {
             "type": "count",
             "group": true
-          },
+          }
         },
         {
           "name": "F_ATM",

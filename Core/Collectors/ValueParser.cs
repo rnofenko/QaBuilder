@@ -61,16 +61,32 @@ namespace Qa.Core.Collectors
                 }
                 else if (field.Calculation.Type == CalculationType.CountUnique)
                 {
-                    if (!field.CountedUniqueValues.Contains(value))
+                    if (field.Calculation.Group)
                     {
-                        field.CountedUniqueValues.Add(value);
+                        if (!field.GroupedUniqueValues.ContainsKey(value))
+                        {
+                            field.GroupedUniqueValues.Add(value, new HashSet<string>());
+                        }
+                        var set = field.GroupedUniqueValues[value];
+                        var fieldValue = parts[field.Calculation.FieldIndex];
+                        if (!set.Contains(fieldValue))
+                        {
+                            set.Add(fieldValue);
+                        }
+                    }
+                    else
+                    {
+                        if (!field.UniqueValues.Contains(value))
+                        {
+                            field.UniqueValues.Add(value);
+                        }
                     }
                 }
-                else if (field.Calculation.Type == CalculationType.Sum)
+                else if (field.Calculation.Type == CalculationType.Sum || field.Calculation.Type == CalculationType.Average)
                 {
                     if (field.Calculation.Group)
                     {
-                        var parsed = double.Parse(parts[field.Calculation.FieldIndex]);
+                        var parsed = parseNumeric(parts[field.Calculation.FieldIndex]);
                         if (!field.GroupedNumbers.ContainsKey(value))
                         {
                             field.GroupedNumbers.Add(value, parsed);
@@ -82,10 +98,24 @@ namespace Qa.Core.Collectors
                     }
                     else
                     {
-                        field.Number += double.Parse(value);
+                        field.Number += parseNumeric(value);
                     }
                 }
             }
+        }
+
+        private double parseNumeric(string value)
+        {
+            double res;
+            if (double.TryParse(value, out res))
+            {
+                return res;
+            }
+            if (value == "")
+            {
+                return 0;
+            }
+            throw new InvalidOperationException($"[{value}] is not a numeric format.");
         }
 
         public void Dispose()

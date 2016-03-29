@@ -8,8 +8,9 @@ namespace Qa.Core.Collectors
         public ParseField(FieldDescription field)
         {
             Description = field;
-            CountedUniqueValues = new HashSet<string>();
+            UniqueValues = new HashSet<string>();
             GroupedNumbers = new Dictionary<string, double>();
+            GroupedUniqueValues = new Dictionary<string, HashSet<string>>();
         }
 
         public FieldDescription Description { get; set; }
@@ -22,6 +23,13 @@ namespace Qa.Core.Collectors
 
         public CalculationDescription Calculation => Description.Calculation;
 
-        public HashSet<string> CountedUniqueValues { get; set; }
+        public HashSet<string> UniqueValues { get; set; }
+
+        public Dictionary<string,HashSet<string>> GroupedUniqueValues { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Description.Name}";
+        }
     }
 }

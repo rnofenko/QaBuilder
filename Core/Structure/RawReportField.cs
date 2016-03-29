@@ -21,15 +21,24 @@ namespace Qa.Core.Structure
         public RawReportField(ParseField field)
         {
             Description = field.Description;
-            if (field.CountedUniqueValues.Any())
+
+            if (field.UniqueValues.Any())
             {
-                Number = field.CountedUniqueValues.Count;
+                Number = field.UniqueValues.Count;
             }
             else
             {
                 Number = field.Number;
-            }            
-            GroupedNumbers = field.GroupedNumbers;
+            }
+
+            if (field.GroupedUniqueValues.Any())
+            {
+                GroupedNumbers = field.GroupedUniqueValues.ToDictionary(x => x.Key, x => (double)x.Value.Count);
+            }
+            else
+            {
+                GroupedNumbers = field.GroupedNumbers;
+            }
         }
 
         public RawReportField(FieldDescription description, double sum)
