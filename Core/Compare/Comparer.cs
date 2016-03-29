@@ -61,10 +61,8 @@ namespace Qa.Core.Compare
             var field = rawFields.First().Description;
             var pack = new FieldPack(field)
             {
-                UniqueValues = _valuesComparer.Compare(rawFields.Select(x => x.SelectedUniqueValues), field),
-                GroupedSumNumbers = _valuesComparer.Compare(rawFields.Select(x => x.GroupedSum), field),
-                UniqueValueCounts = _valuesComparer.Compare(rawFields.Select(x => x.UniqueValuesCount)),
-                SumNumbers = _valuesComparer.Compare(rawFields.Select(x => x.Sum))
+                GroupedNumbers = _valuesComparer.Compare(rawFields.Select(x => x.GroupedNumbers), field),
+                Numbers = _valuesComparer.Compare(rawFields.Select(x => x.Number))
             };
             
             return pack;

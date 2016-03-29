@@ -34,7 +34,10 @@
         {
           "name": "PRODUCT_CODE",
           "title": "Product Code",
-          "selectUniqueValues": true
+          "calculation": {
+            "type": "count",
+            "group": true
+          }
         },
         {
           "name": "PRODUCT_SUB_CODE",
@@ -47,7 +50,10 @@
         {
           "name": "PRODUCT_TYPE",
           "title": "Product Type",
-          "selectUniqueValues": true
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
         },
         {
           "name": "MONTH_END_BALANCE",
@@ -80,7 +86,10 @@
         {
           "name": "F_MANAGED_ACCOUNT",
           "title": "Managed Account",
-          "selectUniqueValues": true,
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
           "translate": {
             "Y": "Managed",
             "N": "Not managed"
@@ -89,7 +98,10 @@
         {
           "name": "F_EMPLOYEE",
           "title": "Employee",
-          "selectUniqueValues": true
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
         },
         {
           "name": "ORIGINATION_CODE",
@@ -123,41 +135,100 @@
         {
           "name": "F_DEBIT_CARD",
           "title": "Debit Card",
-          "selectUniqueValues": true
+          "calculation": {
+            "type": "count",
+            "group": true
+          }
         },
         {
           "name": "F_ONLINE_BANKING",
           "title": "Online Banking",
-          "selectUniqueValues": true
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
         },
         {
           "name": "F_ONLINE_BILLPAY",
           "title": "Online Billpay",
-          "selectUniqueValues": true
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
         },
         {
           "name": "F_DIRECT_DEPOSIT",
           "title": "Direct Deposit",
-          "selectUniqueValues": true
+          "calculation": {
+            "type": "count",
+            "group": true
+          }
         },
         {
           "name": "CD_TERM",
           "title": "CD Term",
-          "selectUniqueValues": true,
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
           "type": "Numeric",
           "bins": [
             { "name": "No Values" },
-            { "from": "0", "to": "0", "name": "0 months" },
-            { "from": "1", "to": "3", "name": "01-03 months" },
-            { "from": "4", "to": "6", "name": "04-06 months" },
-            { "from": "7", "to": "9", "name": "07-09 months" },
-            { "from": "10", "to": "12", "name": "10-12 months" },
-            { "from": "13", "to": "18", "name": "13-18 months" },
-            { "from": "19", "to": "24", "name": "19-24 months" },
-            { "from": "25", "to": "36", "name": "25-36 months" },
-            { "from": "37", "to": "48", "name": "37-48 months" },
-            { "from": "49", "to": "60", "name": "49-60 months" },
-            { "from": "61", "to": "99999", "name": "60+ months" }
+            {
+              "from": "0",
+              "to": "0",
+              "name": "0 months"
+            },
+            {
+              "from": "1",
+              "to": "3",
+              "name": "01-03 months"
+            },
+            {
+              "from": "4",
+              "to": "6",
+              "name": "04-06 months"
+            },
+            {
+              "from": "7",
+              "to": "9",
+              "name": "07-09 months"
+            },
+            {
+              "from": "10",
+              "to": "12",
+              "name": "10-12 months"
+            },
+            {
+              "from": "13",
+              "to": "18",
+              "name": "13-18 months"
+            },
+            {
+              "from": "19",
+              "to": "24",
+              "name": "19-24 months"
+            },
+            {
+              "from": "25",
+              "to": "36",
+              "name": "25-36 months"
+            },
+            {
+              "from": "37",
+              "to": "48",
+              "name": "37-48 months"
+            },
+            {
+              "from": "49",
+              "to": "60",
+              "name": "49-60 months"
+            },
+            {
+              "from": "61",
+              "to": "99999",
+              "name": "60+ months"
+            }
           ]
         },
         {
@@ -180,28 +251,107 @@
         {
           "name": "CUSTOMER_AGE",
           "title": "Customer Age",
-          "selectUniqueValues": true,
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
           "type": "Numeric",
           "bins": [
-            { "from": 0,"to": 0,"name": "00 years" },
-            { "from": 1,"to": 4,"name": "01-04 years" },
-            { "from": 5,"to": 9,"name": "05-09 years" },
-            { "from": 10,"to": 14,"name": "10-14 years" },
-            { "from": 15,"to": 19,"name": "15-19 years" },
-            { "from": 20,"to": 24,"name": "20-24 years" },
-            { "from": 25,"to": 29,"name": "25-29 years" },
-            { "from": 30,"to": 34,"name": "30-34 years" },
-            { "from": 35,"to": 39,"name": "35-39 years" },
-            { "from": 40,"to": 44,"name": "40-44 years" },
-            { "from": 45,"to": 49,"name": "45-49 years" },
-            { "from": 50,"to": 54,"name": "50-54 years" },
-            { "from": 55,"to": 59,"name": "55-59 years" },
-            { "from": 60,"to": 64,"name": "60-64 years" },
-            { "from": 65,"to": 69,"name": "65-69 years" },
-            { "from": 70,"to": 74,"name": "70-74 years" },
-            { "from": 75,"to": 79,"name": "75-79 years" },
-            { "from": 80,"to": 84,"name": "80-84 years" },
-            { "from": 85,"to": 999,"name": "85+ years" }
+            {
+              "from": 0,
+              "to": 0,
+              "name": "00 years"
+            },
+            {
+              "from": 1,
+              "to": 4,
+              "name": "01-04 years"
+            },
+            {
+              "from": 5,
+              "to": 9,
+              "name": "05-09 years"
+            },
+            {
+              "from": 10,
+              "to": 14,
+              "name": "10-14 years"
+            },
+            {
+              "from": 15,
+              "to": 19,
+              "name": "15-19 years"
+            },
+            {
+              "from": 20,
+              "to": 24,
+              "name": "20-24 years"
+            },
+            {
+              "from": 25,
+              "to": 29,
+              "name": "25-29 years"
+            },
+            {
+              "from": 30,
+              "to": 34,
+              "name": "30-34 years"
+            },
+            {
+              "from": 35,
+              "to": 39,
+              "name": "35-39 years"
+            },
+            {
+              "from": 40,
+              "to": 44,
+              "name": "40-44 years"
+            },
+            {
+              "from": 45,
+              "to": 49,
+              "name": "45-49 years"
+            },
+            {
+              "from": 50,
+              "to": 54,
+              "name": "50-54 years"
+            },
+            {
+              "from": 55,
+              "to": 59,
+              "name": "55-59 years"
+            },
+            {
+              "from": 60,
+              "to": 64,
+              "name": "60-64 years"
+            },
+            {
+              "from": 65,
+              "to": 69,
+              "name": "65-69 years"
+            },
+            {
+              "from": 70,
+              "to": 74,
+              "name": "70-74 years"
+            },
+            {
+              "from": 75,
+              "to": 79,
+              "name": "75-79 years"
+            },
+            {
+              "from": 80,
+              "to": 84,
+              "name": "80-84 years"
+            },
+            {
+              "from": 85,
+              "to": 999,
+              "name": "85+ years"
+            }
           ]
         },
         {
@@ -211,18 +361,27 @@
         {
           "name": "HOUSEHOLD_INCOME_TIER",
           "title": "Household Income Tier",
-          "selectUniqueValues": true,
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
           "sort": "numeric"
         },
         {
           "name": "F_ACTIVE_CHEKING",
           "title": "Active Checking",
-          "selectUniqueValues": true
+          "calculation": {
+            "type": "count",
+            "group": true
+          }
         },
         {
           "name": "F_ACH_DIRECT_DEPOSIT",
           "title": "ACH Direct Deposit",
-          "selectUniqueValues": true
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
         },
         {
           "name": "F_ATM",
@@ -239,7 +398,10 @@
         {
           "name": "F_FEE",
           "title": "Fee",
-          "selectUniqueValues": true
+          "calculation": {
+            "type": "count",
+            "group": true
+          }
         },
         {
           "name": "TOTAL_FEES",
@@ -248,8 +410,7 @@
         },
         {
           "name": "ORIGINATION_CHANNEL",
-          "title": "Origination Channel",
-          "selectUniqueValues": false
+          "title": "Origination Channel"
         },
         {
           "name": "PSYCLE_NE_CODE",
@@ -257,28 +418,23 @@
         },
         {
           "name": "F_MOBILE_BANKING",
-          "title": "Mobile Banking",
-          "selectUniqueValues": false
+          "title": "Mobile Banking"
         },
         {
           "name": "F_REMOTE_DEPOSIT_CAPTURE",
-          "title": "Remote Deposit Capture",
-          "selectUniqueValues": false
+          "title": "Remote Deposit Capture"
         },
         {
           "name": "F_PERSON-TO-PERSON_PAYMENT",
-          "title": "Person-to-person Payment",
-          "selectUniqueValues": false
+          "title": "Person-to-person Payment"
         },
         {
           "name": "F_PRIMARY_CHECKING",
-          "title": "Primary Checking",
-          "selectUniqueValues": false
+          "title": "Primary Checking"
         },
         {
           "name": "NUMBER_OF_TIMES_CD_RENEWED",
-          "title": "Number of times CD renewed",
-          "selectUniqueValues": false
+          "title": "Number of times CD renewed"
         }
       ]
     }

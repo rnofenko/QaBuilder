@@ -25,7 +25,7 @@ namespace Qa.Core.Compare
         public CompareField(RawReportField current, RawReportField previous)
         {
             _description = current.Description;
-            Number = new CompareNumber(current.Sum, previous?.Sum);
+            Number = new CompareNumber(current.Number, previous?.Number);
         }
 
         public TypedValue GetCurrent()

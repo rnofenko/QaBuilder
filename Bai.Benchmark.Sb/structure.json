@@ -23,7 +23,10 @@
         {
           "name": "PRODUCT_CODE",
           "title": "Product Code",
-          "selectUniqueValues": true
+          "calculation": {
+            "type": "count",
+            "group": true
+          }
         },
         {
           "name": "PRODUCT_SUB_CODE",
@@ -36,7 +39,10 @@
         {
           "name": "PRODUCT_TYPE",
           "title": "Product Type",
-          "selectUniqueValues": true
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
         },
         {
           "name": "MONTH_END_BALANCE",
@@ -62,12 +68,18 @@
         {
           "name": "F_MANAGED",
           "title": "Managed",
-          "selectUniqueValues": true
+          "calculation": {
+            "type": "count",
+            "group": true
+          }
         },
         {
           "name": "ORIGINATION_CODE",
           "title": "Origination Code",
-          "selectUniqueValues": true
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
         },
         {
           "name": "STATUS_CODE1",
@@ -90,27 +102,42 @@
         {
           "name": "F_DEBIT_CARD",
           "title": "Debit Card",
-          "selectUniqueValues": true
+          "calculation": {
+            "type": "count",
+            "group": true
+          }
         },
         {
           "name": "F_ONLINE_BANKING",
           "title": "Online Banking",
-          "selectUniqueValues": true
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
         },
         {
           "name": "F_ONLINE_BILLPAY",
           "title": "Online Billpay",
-          "selectUniqueValues": true
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
         },
         {
           "name": "F_ACH_ACCOUNT",
           "title": "ACH Account",
-          "selectUniqueValues": true
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
         },
         {
           "name": "CD_TERM",
           "title": "CD Term",
-          "selectUniqueValues": true,
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
           "sort": "numeric"
         },
         {
@@ -179,12 +206,18 @@
         {
           "name": "F_ACTIVE_CHECKING",
           "title": "Active Checking",
-          "selectUniqueValues": true
+          "calculation": {
+            "type": "count",
+            "group": true
+          }
         },
         {
           "name": "F_FEE",
           "title": "Fee",
-          "selectUniqueValues": true
+          "calculation": {
+            "type": "count",
+            "group": true
+          }
         },
         {
           "name": "TOTAL_FEES",
@@ -199,7 +232,10 @@
         {
           "name": "ORIGINATION_CHANNEL",
           "title": "Origination Channel",
-          "selectUniqueValues": true
+          "calculation": {
+            "type": "count",
+            "group": true
+          }
         },
         {
           "name": "F_MOBILE_BANKING",
@@ -208,12 +244,18 @@
         {
           "name": "F_REMOTE_DEPOSIT_CAPTURE",
           "title": "Remote Deposit Capture",
-          "selectUniqueValues": true
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
         },
         {
           "name": "F_PRIMARY_CHECKING",
           "title": "Primary Checking",
-          "selectUniqueValues": true
+          "calculation": {
+            "type": "count",
+            "group": true
+          }
         }
       ]
     }

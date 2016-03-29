@@ -81,12 +81,18 @@
         {
           "name": "LOB",
           "title": "Line of Business",
-          "selectUniqueValues": true
+          "calculation": {
+            "type": "count",
+            "group": true
+          }
         },
         {
           "name": "PROD_CODE1",
           "title": "Product Code 1",
-          "selectUniqueValues": true
+          "calculation": {
+            "type": "count",
+            "group": true
+          }
         },
         {
           "name": "PROD_CODE2",
@@ -99,7 +105,10 @@
         {
           "name": "TERM",
           "title": "CD Term",
-          "selectUniqueValues": true,
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
           "sort": "numeric"
         },
         {
@@ -119,8 +128,7 @@
         },
         {
           "name": "INTEREST_RATE",
-          "title": "Interest Rate",
-          "selectUniqueValues": false
+          "title": "Interest Rate"
         },
         {
           "name": "FEE_INC",

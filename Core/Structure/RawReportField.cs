@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Qa.Core.Collectors;
 
 namespace Qa.Core.Structure
@@ -11,34 +12,35 @@ namespace Qa.Core.Structure
 
         public NumberFormat NumberFormat => Description.NumberFormat;
         
-        public Dictionary<string, double> SelectedUniqueValues { get; set; }
-        
-        public int UniqueValuesCount { get; }
-
         public string Name => Description.Name;
 
-        public double Sum { get; }
+        public double Number { get; }
 
-        public Dictionary<string, double> GroupedSum { get; set; }
+        public Dictionary<string, double> GroupedNumbers { get; set; }
 
         public RawReportField(ParseField field)
         {
             Description = field.Description;
-            SelectedUniqueValues = field.SelectedUniqueValues;
-            UniqueValuesCount = field.CountedUniqueValues.Count;
-            Sum = field.Sum;
-            GroupedSum = field.GroupedSum;
+            if (field.CountedUniqueValues.Any())
+            {
+                Number = field.CountedUniqueValues.Count;
+            }
+            else
+            {
+                Number = field.Number;
+            }            
+            GroupedNumbers = field.GroupedNumbers;
         }
 
         public RawReportField(FieldDescription description, double sum)
         {
             Description = description;
-            Sum  = sum;
+            Number = sum;
         }
 
         public RawReportField Clone()
         {
-            var field = new RawReportField(Description, Sum);
+            var field = new RawReportField(Description, Number);
             return field;
         }
     }

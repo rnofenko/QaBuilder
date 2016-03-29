@@ -23,7 +23,7 @@ namespace Qa.Core.Collectors
                 .ToList()
                 .ForEach(x =>
                 {
-                    x.Sum = x.Sum/RowsCount;
+                    x.Number = x.Number / RowsCount;
                 });
 
             var resultFields = _fields.Select(x => new RawReportField(x)).ToList();
@@ -41,15 +41,22 @@ namespace Qa.Core.Collectors
                 var field = _fields[i];
                 var value = parts[i];
                 
-                if (field.SelectUniqueValues)
+                if (field.Calculation.Type == CalculationType.Count)
                 {
-                    if (!field.SelectedUniqueValues.ContainsKey(value))
+                    if (field.Calculation.Group)
                     {
-                        field.SelectedUniqueValues.Add(value, 1);
+                        if (!field.GroupedNumbers.ContainsKey(value))
+                        {
+                            field.GroupedNumbers.Add(value, 1);
+                        }
+                        else
+                        {
+                            field.GroupedNumbers[value]++;
+                        }
                     }
                     else
                     {
-                        field.SelectedUniqueValues[value]++;
+                        field.Number += 1;
                     }
                 }
                 else if (field.Calculation.Type == CalculationType.CountUnique)
@@ -64,18 +71,18 @@ namespace Qa.Core.Collectors
                     if (field.Calculation.Group)
                     {
                         var parsed = double.Parse(parts[field.Calculation.FieldIndex]);
-                        if (!field.GroupedSum.ContainsKey(value))
+                        if (!field.GroupedNumbers.ContainsKey(value))
                         {
-                            field.GroupedSum.Add(value, parsed);
+                            field.GroupedNumbers.Add(value, parsed);
                         }
                         else
                         {
-                            field.GroupedSum[value] += parsed;
+                            field.GroupedNumbers[value] += parsed;
                         }
                     }
                     else
                     {
-                        field.Sum += double.Parse(value);
+                        field.Number += double.Parse(value);
                     }
                 }
             }

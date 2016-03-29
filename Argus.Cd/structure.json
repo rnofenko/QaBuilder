@@ -82,7 +82,10 @@
         },
         {
           "name": "Credit/Debit Indicator",
-          "selectUniqueValues": true,
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
           "translate": {
             "C": "Credit",
             "D": "Debit"
@@ -90,7 +93,10 @@
         },
         {
           "name": "Transaction Code",
-          "selectUniqueValues": true
+          "calculation": {
+            "type": "count",
+            "group": true
+          }
         },
         { "name": "Source System" },
         { "name": "Transaction Date" },

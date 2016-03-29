@@ -8,7 +8,10 @@
         { "name": "CYCLE_TYPE" },
         {
           "name": "STATE",
-          "selectUniqueValues": true
+          "calculation": {
+            "type": "count",
+            "group": true
+          }
         },
         { "name": "CYCLE_DT" },
         {

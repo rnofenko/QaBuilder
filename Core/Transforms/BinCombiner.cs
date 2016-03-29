@@ -11,15 +11,15 @@ namespace Qa.Core.Transforms
         {
             foreach (var rawReport in rawReports)
             {
-                foreach (var field in rawReport.Fields.Where(x=>x.Description.SelectUniqueValues && x.Description.Bins.IsNotEmpty()))
+                foreach (var field in rawReport.Fields.Where(x=>x.Description.Calculation.Group && x.Description.Bins.IsNotEmpty()))
                 {
                     if (field.Type == DType.Numeric)
                     {
-                        field.SelectedUniqueValues = fillNumericBins(field);
+                        field.GroupedNumbers = fillNumericBins(field);
                     }
                     else
                     {
-                        field.SelectedUniqueValues = fillStringBins(field);
+                        field.GroupedNumbers = fillStringBins(field);
                     }
                 }
             }
@@ -29,7 +29,7 @@ namespace Qa.Core.Transforms
         {
             var ranges = field.Description.Bins;
             var bins = new Dictionary<string, double>();
-            foreach (var old in field.SelectedUniqueValues)
+            foreach (var old in field.GroupedNumbers)
             {
                 var range = ranges.First(x => string.CompareOrdinal(old.Key, x.From) >= 0 && string.CompareOrdinal(old.Key, x.To) <= 0);
                 if (!bins.ContainsKey(range.Name))
@@ -45,7 +45,7 @@ namespace Qa.Core.Transforms
         {
             var ranges = field.Description.Bins.Select(x => x.ToNumeric()).ToList();
             var bins = new Dictionary<string, double>();
-            foreach (var old in field.SelectedUniqueValues)
+            foreach (var old in field.GroupedNumbers)
             {
                 NumericBinRange range;
                 double key;

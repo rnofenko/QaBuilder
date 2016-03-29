@@ -5,6 +5,7 @@ namespace Qa.Core.Structure
         None = 0,
         Sum = 1,
         Average = 2,
-        CountUnique = 3
+        Count = 3,
+        CountUnique = 4
     }
 }

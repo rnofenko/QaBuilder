@@ -4,16 +4,16 @@ using Qa.Core.Structure;
 
 namespace Qa.Core.Compare
 {
-    public class UniqueValuesField : BaseField
+    public class GroupedField : BaseField
     {
         private readonly Dictionary<string, string> _translate;
 
-        public UniqueValuesField(FieldPack pack)
-            : base(pack.Description)
+        public GroupedField(FieldPack pack)
+            :base(pack.Description)
         {
             _translate = pack.Description.Translate ?? new Dictionary<string, string>();
-            Keys = pack.UniqueValues.Keys;
-            ValueLists = pack.UniqueValues.Lists;
+            Keys = pack.GroupedNumbers.Keys;
+            ValueLists = pack.GroupedNumbers.Lists;
         }
 
         public List<GroupedValuesList> ValueLists { get; set; }
@@ -31,13 +31,8 @@ namespace Qa.Core.Compare
             {
                 return _translate[key];
             }
-            
-            return key;
-        }
 
-        public static bool IsConvertable(FieldPack pack)
-        {
-            return pack.Description.SelectUniqueValues;
+            return key;
         }
 
         public TypedValue GetCurrent(CompareReport file, string key)

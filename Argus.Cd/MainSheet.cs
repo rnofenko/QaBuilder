@@ -63,14 +63,14 @@ namespace Qa.Argus.Cd
                     .Right();
             }
 
-            uniqueValues(cursor, packet);
+            groupedFields(cursor, packet);
         }
 
-        private void uniqueValues(ExcelCursor cursor, ComparePacket packet)
+        private void groupedFields(ExcelCursor cursor, ComparePacket packet)
         {
             var first = packet.Reports.First();
 
-            foreach (var field in packet.UniqueValues)
+            foreach (var field in packet.GroupedFields)
             {
                 cursor.Down(2)
                     .Column(INIT_COLUMN)

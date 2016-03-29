@@ -8,28 +8,24 @@ namespace Qa.Core.Compare
         public DType Type => Description.Type;
 
         public string Name => Description.Name;
-        
-        public bool SelectUniqueValues => Description.SelectUniqueValues;
 
-        public bool IsGroupedSumField => Description.Calculation.Group;
+        public bool IsGrouped => Description.Calculation.Group;
 
-        public GroupedValuesSet UniqueValues { get; set; }
-        public List<CompareNumber> UniqueValueCounts { get; set; }
+        public GroupedValuesSet GroupedNumbers { get; set; }
 
-        public GroupedValuesSet GroupedSumNumbers { get; set; }
-        public List<CompareNumber> SumNumbers { get; set; }
+        public List<CompareNumber> Numbers { get; set; }
         
         public string FileName { get; set; }
 
         public FieldPack(FieldDescription fieldDescription)
             :base(fieldDescription)
         {
-            SumNumbers =  new List<CompareNumber>();
+            Numbers =  new List<CompareNumber>();
         }
 
         public CompareField GetNumberField(int periodId)
         {
-            return new CompareField(Description, SumNumbers[periodId]);
+            return new CompareField(Description, Numbers[periodId]);
         }
     }
 }

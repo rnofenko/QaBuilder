@@ -9,7 +9,7 @@ namespace Qa.Core.Compare
         public UniqueCountField(FieldPack pack)
             : base(pack.Description)
         {
-            Counts = pack.UniqueValueCounts;
+            Counts = pack.Numbers;
         }
 
         public List<CompareNumber> Counts { get; set; }

@@ -55,9 +55,7 @@ namespace Qa.Core.Excel
 
             uniqueCounts(cursor, packet, startColumn);
 
-            uniqueFields(cursor, packet, startColumn);
-
-            groupedSums(cursor, packet, startColumn);
+            groupedFields(cursor, packet, startColumn);
         }
 
         private void uniqueCounts(ExcelCursor cursor, ComparePacket packet, int startColumn)
@@ -116,59 +114,10 @@ namespace Qa.Core.Excel
                 .DrawBorder(ExcelBorderStyle.Thick)
                 .Down();
         }
-        
-        private void uniqueFields(ExcelCursor cursor, ComparePacket packet, int startColumn)
+
+        private void groupedFields(ExcelCursor cursor, ComparePacket packet, int startColumn)
         {
-            var first = packet.Reports.First();
-
-            foreach (var field in packet.UniqueValues)
-            {
-                cursor.Down(2)
-                    .Column(startColumn)
-                    .Header(field.Title)
-                    .TopLeftBorderCorner()
-                    .MergeDown(2)
-                    .Right()
-                    .HeaderDown(FormatDate(first.FileName), "Values")
-                    .Right();
-
-                foreach (var report in packet.Reports.Skip(1))
-                {
-                    cursor
-                        .TopLeftBorderCorner()
-                        .Header(FormatDate(report.FileName))
-                        .Merge(2)
-                        .Down()
-                        .Header("Values", "Change")
-                        .Right(2)
-                        .Up();
-                }
-
-                cursor.Down();
-
-                foreach (var key in field.Keys)
-                {
-                    cursor.Down()
-                        .Column(startColumn)
-                        .Print(field.GetTranslate(key))
-                        .Right();
-
-                    foreach (var file in packet.Reports)
-                    {
-                        cursor
-                            .Print(field.GetCurrent(file, key))
-                            .RightIf(file != first)
-                            .PrintIf(file != first, field.GetChange(file, key), StyleConditions.ChangePercent)
-                            .DrawBorder(ExcelBorderStyle.Thick, key == field.Keys.Last())
-                            .Right();
-                    }
-                }
-            }
-        }
-
-        private void groupedSums(ExcelCursor cursor, ComparePacket packet, int startColumn)
-        {
-            foreach (var field in packet.GroupedSums)
+            foreach (var field in packet.GroupedFields)
             {
                 cursor.Down(2)
                     .Column(startColumn)

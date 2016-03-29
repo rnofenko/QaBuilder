@@ -27,7 +27,7 @@ namespace Qa.Core.Transforms
         {
             var selected = fields.Where(x => link.Fields.Contains(x.Name)).ToList();
             var description = new FieldDescription {Name = link.Name, Title = link.Name, Type = selected.First().Type};
-            var rawField = new RawReportField(description, selected.Sum(x => x.Sum));
+            var rawField = new RawReportField(description, selected.Sum(x => x.Number));
             return rawField;
         }
 

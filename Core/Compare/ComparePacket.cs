@@ -10,11 +10,9 @@ namespace Qa.Core.Compare
 
         public List<CompareReport> Reports { get; set; }
 
-        public List<UniqueValuesField> UniqueValues { get; set; }
-
         public List<UniqueCountField> UniqueCounts { get; set; }
 
-        public List<GroupedSumField> GroupedSums { get; set; }
+        public List<GroupedField> GroupedFields { get; set; }
 
         public ComparePacket(IList<FileInformation> fileInformations, List<FieldPack> fieldPacks, FileStructure structure)
         {
@@ -28,24 +26,19 @@ namespace Qa.Core.Compare
                     Index = i,
                     RowsCount = fileInformations[i].RowsCount,
                     FileName = fileInformations[i].FileName,
-                    Numbers = fieldPacks.Where(x => x.Type == DType.Numeric && !x.IsGroupedSumField).Select(x => x.GetNumberField(i)).ToList(),
+                    Numbers = fieldPacks.Where(x => x.Type == DType.Numeric && !x.IsGrouped).Select(x => x.GetNumberField(i)).ToList(),
                 };
                 Reports.Add(report);
             }
-
-            UniqueValues = fieldPacks
-                .Where(UniqueValuesField.IsConvertable)
-                .Select(x => new UniqueValuesField(x))
-                .ToList();
 
             UniqueCounts = fieldPacks
                 .Where(UniqueCountField.IsConvertable)
                 .Select(x => new UniqueCountField(x))
                 .ToList();
 
-            GroupedSums = fieldPacks
-                .Where(x => x.IsGroupedSumField)
-                .Select(x => new GroupedSumField(x))
+            GroupedFields = fieldPacks
+                .Where(x => x.IsGrouped)
+                .Select(x => new GroupedField(x))
                 .ToList();
         }
     }
