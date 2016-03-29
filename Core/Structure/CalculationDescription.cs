@@ -2,17 +2,12 @@ namespace Qa.Core.Structure
 {
     public class CalculationDescription
     {
-        public string GroupBy { get; set; }
+        public bool Group { get; set; }
 
-        public int GroupByIndex { get; set; }
+        public string Field { get; set; }
 
-        public FieldDescription GroupByField { get; set; }
+        public int FieldIndex { get; set; }
 
         public CalculationType Type { get; set; }
-
-        public bool IsGrouped()
-        {
-            return GroupByIndex > 0;
-        }
     }
 }

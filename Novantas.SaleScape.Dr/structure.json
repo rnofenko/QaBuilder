@@ -147,17 +147,18 @@
         },
         {
           "name": "TRXN_TYPE",
-          "title": "Trxn Type"
+          "title": "Trxn Type",
+          "calculation": {
+            "type": "sum",
+            "field": "TRXN_COUNT",
+            "group": true
+          },
+          "sort": "numeric"
         },
         {
           "name": "TRXN_COUNT",
           "title": "Trxn Count",
-          "numberFormat": "Integer",
-          "calculation": {
-            "type": "sum",
-            "groupBy": "TRXN_TYPE"
-          },
-          "sort": "numeric"
+          "numberFormat": "Integer"
         }
       ]
     }

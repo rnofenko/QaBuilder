@@ -11,7 +11,7 @@ namespace Qa.Core.Compare
         
         public bool SelectUniqueValues => Description.SelectUniqueValues;
 
-        public bool IsGroupedSumField => Description.Calculation.IsGrouped();
+        public bool IsGroupedSumField => Description.Calculation.Group;
 
         public GroupedValuesSet UniqueValues { get; set; }
         public List<CompareNumber> UniqueValueCounts { get; set; }

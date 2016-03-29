@@ -12,8 +12,6 @@ namespace Qa.Core.Compare
             ValueLists = pack.GroupedSumNumbers.Lists;
         }
 
-        public FieldDescription GroupByField => Description.Calculation.GroupByField;
-
         public List<GroupedValuesList> ValueLists { get; set; }
 
         public List<string> Keys { get; set; }

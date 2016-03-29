@@ -40,29 +40,6 @@ namespace Qa.Core.Collectors
             {
                 var field = _fields[i];
                 var value = parts[i];
-                if (field.Type == DType.Numeric)
-                {
-                    if (value.IsNotEmpty())
-                    {
-                        var parsed = double.Parse(value);                        
-                        if (field.Description.Calculation.GroupByIndex >= 0)
-                        {
-                            var key = parts[field.Description.Calculation.GroupByIndex];
-                            if (!field.GroupedSum.ContainsKey(key))
-                            {
-                                field.GroupedSum.Add(key, parsed);
-                            }
-                            else
-                            {
-                                field.GroupedSum[key] += parsed;
-                            }
-                        }
-                        else
-                        {
-                            field.Sum += parsed;
-                        }
-                    }
-                }
                 
                 if (field.SelectUniqueValues)
                 {
@@ -80,6 +57,25 @@ namespace Qa.Core.Collectors
                     if (!field.CountedUniqueValues.Contains(value))
                     {
                         field.CountedUniqueValues.Add(value);
+                    }
+                }
+                else if (field.Calculation.Type == CalculationType.Sum)
+                {
+                    if (field.Calculation.Group)
+                    {
+                        var parsed = double.Parse(parts[field.Calculation.FieldIndex]);
+                        if (!field.GroupedSum.ContainsKey(value))
+                        {
+                            field.GroupedSum.Add(value, parsed);
+                        }
+                        else
+                        {
+                            field.GroupedSum[value] += parsed;
+                        }
+                    }
+                    else
+                    {
+                        field.Sum += double.Parse(value);
                     }
                 }
             }

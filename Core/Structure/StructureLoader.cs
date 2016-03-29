@@ -76,8 +76,10 @@ namespace Qa.Core.Structure
                 {
                     field.Calculation.Type = CalculationType.Sum;
                 }
-                field.Calculation.GroupByIndex = structure.Fields.FindIndex(x => x.Name == field.Calculation.GroupBy);
-                field.Calculation.GroupByField = structure.Fields.FirstOrDefault(x => x.Name == field.Calculation.GroupBy);
+            }
+            if (field.Calculation.Field.IsNotEmpty())
+            {
+                field.Calculation.FieldIndex = structure.Fields.FindIndex(x => x.Name == field.Calculation.Field);
             }
 
             field.Title = field.Title ?? field.Name;

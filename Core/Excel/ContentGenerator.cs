@@ -172,7 +172,7 @@ namespace Qa.Core.Excel
             {
                 cursor.Down(2)
                     .Column(startColumn)
-                    .Header(field.GroupByField.Title)
+                    .Header(field.Description.Title)
                     .TopLeftBorderCorner()
                     .MergeDown(2)
                     .Right()
