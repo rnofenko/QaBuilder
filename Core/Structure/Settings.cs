@@ -11,5 +11,12 @@ namespace Qa.Core.Structure
         public ProjectStructure Project { get; set; }
 
         public string QaFileName { get; set; }
+
+        public string FileMask { get; set; }
+
+        public Settings()
+        {
+            FileMask = "*.txt";
+        }
     }
 }
