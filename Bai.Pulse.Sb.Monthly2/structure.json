@@ -1,0 +1,145 @@
+﻿{
+  "structures": [
+    {
+      "name": "BAI SB Pulse Monthly",
+      "delimeter": "|",
+      "fields": [
+        { "name": "BANK_CODE" },
+        { "name": "CYCLE_TYPE" },
+        {
+          "name": "STATE",
+          "calculation": {
+            "type": "count",
+            "group": true
+          }
+        },
+        { "name": "CYCLE_DT" },
+        {
+          "name": "NACH",
+          "numberFormat": "Money",
+          "title": "Non-Analysis Checking"
+        },
+        {
+          "name": "FBC",
+          "numberFormat": "Money",
+          "title": "Free Business Checking"
+        },
+        {
+          "name": "NNC",
+          "numberFormat": "Money",
+          "title": "Non-Interest Non-Analysis Checking"
+        },
+        {
+          "name": "INC",
+          "numberFormat": "Money",
+          "title": "Interest Non Analysis Checking"
+        },
+        {
+          "name": "NAC",
+          "numberFormat": "Money",
+          "title": "Non-Interest Analysis Checking"
+        },
+        {
+          "name": "SWP",
+          "numberFormat": "Money",
+          "title": "Commercial Sweep (On Balance Sheet)"
+        },
+        {
+          "name": "SWO",
+          "numberFormat": "Money",
+          "title": "Commercial Sweep (Off Balance Sheet)"
+        },
+        {
+          "name": "BSV",
+          "numberFormat": "Money",
+          "title": "Business Savings"
+        },
+        {
+          "name": "MMA",
+          "numberFormat": "Money",
+          "title": "Money Market"
+        },
+        {
+          "name": "RMA",
+          "numberFormat": "Money",
+          "title": "Regular MMDA"
+        },
+        {
+          "name": "HMA",
+          "numberFormat": "Money",
+          "title": "High Rate MMDA"
+        },
+        {
+          "name": "BCD",
+          "numberFormat": "Money",
+          "title": "Business CDs"
+        },
+        {
+          "name": "TOTAL_CKG_ACCTS",
+          "numberFormat": "Integer",
+          "title": "Total Checking Accounts"
+        },
+        {
+          "name": "TOTAL_NACH_CKG_ACCTS",
+          "numberFormat": "Integer",
+          "title": "Total Non-Analysis Checking Accounts"
+        },
+        {
+          "name": "TOTAL_NAC_CKG_ACCTS",
+          "numberFormat": "Integer",
+          "title": "Total Analysis Checking Accounts"
+        },
+        {
+          "name": "NEW_CKG_ACCTS",
+          "numberFormat": "Integer",
+          "title": "New Checking Accounts"
+        },
+        {
+          "name": "NEW_NACH_CKG_ACCTS",
+          "numberFormat": "Integer",
+          "title": "New Non-Analysis Checking Accounts"
+        },
+        {
+          "name": "NEW_NAC_CKG_ACCTS",
+          "numberFormat": "Integer",
+          "title": "New Analysis Checking Accounts"
+        },
+        {
+          "name": "CLOSED_CKG_ACCTS",
+          "numberFormat": "Integer",
+          "title": "Closed Checking Accounts"
+        },
+        {
+          "name": "CLOSED_NACH_CKG_ACCTS",
+          "numberFormat": "Integer",
+          "title": "Closed Non-Analysis Checking Accounts"
+        },
+        {
+          "name": "CLOSED_NAC_CKG_ACCTS",
+          "numberFormat": "Integer",
+          "title": "Closed Analysis Checking Accounts"
+        }
+      ],
+      "transformations": [
+        {
+          "name": "byState",
+          "fields": [
+            {
+              "name": "Total Balance",
+              "fields": [ "NACH", "NAC", "SWP", "SWO", "BSV", "MMA", "BCD" ]
+            },
+            { "name": "TOTAL_CKG_ACCTS" },
+            { "name": "NEW_CKG_ACCTS" },
+            { "name": "CLOSED_CKG_ACCTS" }
+          ]
+        }
+      ]
+    }
+  ],
+  "formatSchemes": [
+    {
+      "name": "BAI SB Pulse Monthly",
+      "delimeter": ","
+    }
+  ]
+}

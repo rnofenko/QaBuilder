@@ -1,5 +1,4 @@
-﻿using System;
-using Qa.Bai.Pulse.Sb.Collectors;
+﻿using Qa.Bai.Pulse.Sb.Collectors;
 using Qa.Bai.Pulse.Sb.Excel;
 using Qa.Bai.Pulse.Sb.Transforms;
 using Qa.Core.Structure;
@@ -46,7 +45,6 @@ namespace Qa.Bai.Pulse.Sb.Compare
             _excelExporter.Export(result, _settings);
 
             Lo.Wl().Wl("Comparing was finished.");
-            Console.ReadKey();
         }
     }
 }

@@ -1,10 +1,10 @@
-﻿namespace Qa.Bai.Pulse.Sb.Monthly
+﻿namespace Bai.Pulse.Sb.Monthly2
 {
     class Program
     {
         static void Main(string[] args)
         {
-            new PulsePropmt().Run();
+            new Prompt().Run();
         }
     }
 }

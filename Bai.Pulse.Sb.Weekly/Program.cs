@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            new Propmt().Run();
+            new PulsePropmt().Run();
         }
     }
 }
