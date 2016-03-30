@@ -54,6 +54,10 @@
             "type": "count",
             "group": true
           },
+          "translate": {
+            "C": "Commercial",
+            "R": "Retail"
+          }
         },
         {
           "name": "MONTH_END_BALANCE",
@@ -85,24 +89,28 @@
         },
         {
           "name": "F_MANAGED_ACCOUNT",
-          "title": "Counts of customers by Managed Account",
+          "title": "Managed Account",
           "calculation": {
             "type": "countUnique",
             "field": "CUSTOMER_ID",
             "group": true
           },
           "translate": {
-            "Y": "Managed",
-            "N": "Not managed"
+            "Y": "Customers with Managed Accounts",
+            "N": "Customers without Managed Accounts"
           }
         },
         {
           "name": "F_EMPLOYEE",
-          "title": "Employee",
+          "title": "Customer Employee Status",
           "calculation": {
             "type": "count",
             "group": true
           },
+          "translate": {
+            "Y": "Employee",
+            "N": "Not Employee"
+          }
         },
         {
           "name": "ORIGINATION_CODE",
@@ -121,13 +129,13 @@
         },
         {
           "name": "MONTHLY_INTEREST_PAID",
-          "title": "Monthly Interest Paid",
-          "numberFormat": "Money"
+          "title": "Monthly Interest Paid"//,
+          //"numberFormat": "Money"
         },
         {
           "name": "MONTHLY_INTEREST_CHARGED",
-          "title": "Monthly Interest Charged",
-          "numberFormat": "Money"
+          "title": "Monthly Interest Charged"//,
+          //"numberFormat": "Money"
         },
         {
           "name": "INTEREST_RATE",
@@ -139,31 +147,35 @@
           "calculation": {
             "type": "count",
             "group": true
+          },
+          "translate": {
+            "Y": "Active",
+            "N": "Inactive"
           }
         },
         {
           "name": "F_ONLINE_BANKING",
-          "title": "Online Banking",
-          "calculation": {
-            "type": "count",
-            "group": true
-          },
+          "title": "Online Banking"//,
+          //"calculation": {
+          //  "type": "count",
+          //  "group": true
+          //},
         },
         {
           "name": "F_ONLINE_BILLPAY",
-          "title": "Online Billpay",
-          "calculation": {
-            "type": "count",
-            "group": true
-          },
+          "title": "Online Billpay"//,
+          //"calculation": {
+          //  "type": "count",
+          //  "group": true
+          //},
         },
         {
           "name": "F_DIRECT_DEPOSIT",
-          "title": "Direct Deposit",
-          "calculation": {
-            "type": "count",
-            "group": true
-          }
+          "title": "Direct Deposit"//,
+          //"calculation": {
+          //  "type": "count",
+          //  "group": true
+          //}
         },
         {
           "name": "CD_TERM",
@@ -175,25 +187,25 @@
           "type": "Numeric",
           "bins": [
             { "name": "No Values" },
+            //{
+            //  "from": "0",
+            //  "to": "0",
+            //  "name": "0 months"
+            //},
             {
               "from": "0",
-              "to": "0",
-              "name": "0 months"
-            },
-            {
-              "from": "1",
               "to": "3",
-              "name": "01-03 months"
+              "name": "1-3 months"
             },
             {
               "from": "4",
               "to": "6",
-              "name": "04-06 months"
+              "name": "4-6 months"
             },
             {
               "from": "7",
               "to": "9",
-              "name": "07-09 months"
+              "name": "7-9 months"
             },
             {
               "from": "10",
@@ -242,8 +254,8 @@
         },
         {
           "name": "ORIGINAL_BALANCE",
-          "title": "Original Balance",
-          "numberFormat": "Money"
+          "title": "Original Balance"//,
+          //"numberFormat": "Money"
         },
         {
           "name": "CREDIT_MAXIMUM_LINE",
@@ -258,20 +270,20 @@
           },
           "type": "Numeric",
           "bins": [
-            {
-              "from": 0,
-              "to": 0,
-              "name": "00 years"
-            },
+            //{
+            //  "from": 0,
+            //  "to": 0,
+            //  "name": "00 years"
+            //},
             {
               "from": 1,
               "to": 4,
-              "name": "01-04 years"
+              "name": "1-4 years"
             },
             {
               "from": 5,
               "to": 9,
-              "name": "05-09 years"
+              "name": "5-9 years"
             },
             {
               "from": 10,
@@ -350,8 +362,18 @@
             },
             {
               "from": 85,
-              "to": 999,
+              "to": 110,
               "name": "85+ years"
+            },
+            {
+              "from": 111,
+              "to": 999,
+              "name": "Not Available"
+            },
+            {
+              "from": 0,
+              "to": 0,
+              "name": "Not Available"
             }
           ]
         },
@@ -370,19 +392,19 @@
         },
         {
           "name": "F_ACTIVE_CHEKING",
-          "title": "Active Checking",
-          "calculation": {
-            "type": "count",
-            "group": true
-          }
+          "title": "Active Checking"//,
+          //"calculation": {
+          //  "type": "count",
+          //  "group": true
+          //}
         },
         {
           "name": "F_ACH_DIRECT_DEPOSIT",
-          "title": "ACH Direct Deposit",
-          "calculation": {
-            "type": "count",
-            "group": true
-          }
+          "title": "ACH Direct Deposit"//,
+          //"calculation": {
+          //  "type": "count",
+          //  "group": true
+          //}
         },
         {
           "name": "F_ATM",
@@ -398,11 +420,11 @@
         },
         {
           "name": "F_FEE",
-          "title": "Fee",
-          "calculation": {
-            "type": "count",
-            "group": true
-          }
+          "title": "Fee"//,
+          //"calculation": {
+          //  "type": "count",
+          //  "group": true
+          //}
         },
         {
           "name": "TOTAL_FEES",
