@@ -21,7 +21,6 @@ namespace Qa.Core.Excel
         {
             var cursor = new ExcelCursor(sheet);
             new Header().Print(cursor, packet.Structure.Name);
-
             cursor.Column(INIT_COLUMN).Row(5);
             
             _groupOfNumberFieldPrinter.Print(packet.NumberFields.Where(x => x.Description.Calculation.Type != CalculationType.CountUnique), cursor, packet);

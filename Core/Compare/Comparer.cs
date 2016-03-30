@@ -42,7 +42,8 @@ namespace Qa.Core.Compare
 
         private List<FileInformation> compareFiles(IEnumerable<RawReport> rawReports)
         {
-            return rawReports.Select(x => new FileInformation { FileName = Path.GetFileNameWithoutExtension(x.Path) }).ToList();
+            var i = 0;
+            return rawReports.Select(x => new FileInformation { FileName = Path.GetFileNameWithoutExtension(x.Path), Index = i++ }).ToList();
         }
 
         private FieldPack getFieldPack(IList<RawReportField> rawFields)

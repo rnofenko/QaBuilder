@@ -16,7 +16,7 @@ namespace Qa.Core.Excel
         public void Print(GroupedField field, ExcelCursor cursor, ComparePacket packet)
         {
             var startColumn = cursor.Pos.Column;
-            var first = packet.Reports.First();
+            var first = packet.Files.First();
 
             cursor.Column(startColumn)
                 .Header(field.Title)
@@ -26,7 +26,7 @@ namespace Qa.Core.Excel
                 .HeaderDown(_dateParser.ExtractDate(first.FileName), "Values")
                 .Right();
 
-            foreach (var report in packet.Reports.Skip(1))
+            foreach (var report in packet.Files.Skip(1))
             {
                 cursor
                     .TopLeftBorderCorner()
@@ -47,7 +47,7 @@ namespace Qa.Core.Excel
                     .Print(field.GetTranslate(key))
                     .Right();
 
-                foreach (var file in packet.Reports)
+                foreach (var file in packet.Files)
                 {
                     cursor
                         .Print(field.GetCurrent(file, key))

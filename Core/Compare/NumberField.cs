@@ -14,19 +14,14 @@ namespace Qa.Core.Compare
 
         public List<CompareNumber> Numbers { get; set; }
 
-        public TypedValue GetCurrent(CompareReport report)
+        public TypedValue GetCurrent(FileInformation report)
         {
-            return Numbers[report.Index].CurrentAsInteger;
+            return new TypedValue(Numbers[report.Index].Current, Description.NumberFormat);
         }
 
-        public TypedValue GetChange(CompareReport report)
+        public TypedValue GetChange(FileInformation report)
         {
-            return Numbers[report.Index].ChangeAsPercent;
-        }
-
-        public static bool IsConvertable(FieldPack pack)
-        {
-            return pack.Description.Calculation.Type == CalculationType.CountUnique;
+            return new TypedValue(Numbers[report.Index].Change, NumberFormat.Percent);
         }
     }
 }

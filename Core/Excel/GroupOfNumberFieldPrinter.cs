@@ -13,64 +13,59 @@ namespace Qa.Core.Excel
         {
             _dateParser = new DateParser();
         }
-
+        
         public void Print(IEnumerable<NumberField> fields, ExcelCursor cursor, ComparePacket packet)
         {
             var fieldsList = fields.ToList();
-            if (!fieldsList.Any())
+            if (fieldsList.IsEmpty())
             {
                 return;
             }
 
             var startColumn = cursor.Pos.Column;
-            cursor
-                .Column(startColumn)
+            var first = packet.Files.First();
+
+            cursor.Column(startColumn)
+                .Header("Field")
                 .TopLeftBorderCorner()
-                .Header("")
+                .MergeDown(2)
                 .Right()
-                .Header(packet.Reports.Select(x => _dateParser.ExtractDate(x.FileName)).First())
-                .Down()
-                .Left()
-                .Header("", "Values")
+                .HeaderDown(_dateParser.ExtractDate(first.FileName), "Values")
                 .Right();
 
-            foreach (var report in packet.Reports.Skip(1))
+            foreach (var file in packet.Files.Skip(1))
             {
                 cursor
-                    .Up()
-                    .Right()
-                    .Header(_dateParser.ExtractDate(report.FileName))
-                    .Merge(2)
                     .TopLeftBorderCorner()
+                    .Header(_dateParser.ExtractDate(file.FileName))
+                    .Merge(2)
                     .Down()
                     .Header("Values", "Change")
-                    .Right();
+                    .Right(2)
+                    .Up();
             }
+
+            cursor.Down();
 
             foreach (var field in fieldsList)
             {
-                cursor
+                cursor.Down()
                     .Column(startColumn)
-                    .Down()
                     .Print(field.Title)
-                    .Right()
-                    .Integer(field.Numbers.First().Current);
+                    .Right();
 
-                foreach (var compareNumber in field.Numbers.Skip(1))
+                foreach (var file in packet.Files)
                 {
                     cursor
-                        .Right()
-                        .Integer(compareNumber.Current)
-                        .Right()
-                        .Percent(compareNumber.Change, StyleConditions.ChangePercent)
-                        .DrawBorder(ExcelBorderStyle.Thick, field == packet.NumberFields.Last());
+                        .Print(field.GetCurrent(file))
+                        .RightIf(file != first)
+                        .PrintIf(file != first, field.GetChange(file), StyleConditions.ChangePercent)
+                        .DrawBorder(ExcelBorderStyle.Thick, field == fieldsList.Last())
+                        .Right();
                 }
             }
 
-            cursor
-                .DrawBorder(ExcelBorderStyle.Thick)
-                .Down(3)
-                .Column(startColumn);
+            cursor.Column(startColumn).Down(3);
         }
     }
 }
