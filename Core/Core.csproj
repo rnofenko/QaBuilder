@@ -67,9 +67,12 @@
     <Compile Include="Compare\CompareNumber.cs" />
     <Compile Include="Compare\CompareField.cs" />
     <Compile Include="Compare\GroupedField.cs" />
-    <Compile Include="Excel\ContentGenerator.cs" />
+    <Compile Include="Excel\CommonPage.cs" />
+    <Compile Include="Excel\GroupOfNumberFieldPrinter.cs" />
+    <Compile Include="Excel\DateParser.cs" />
+    <Compile Include="Excel\GroupedFieldPrinter.cs" />
     <Compile Include="Qa\QaPrompt.cs" />
-    <Compile Include="Compare\UniqueCountField.cs" />
+    <Compile Include="Compare\NumberField.cs" />
     <Compile Include="Compare\ValuesComparer.cs" />
     <Compile Include="Compare\GroupedValuesSet.cs" />
     <Compile Include="Compare\KeyNumberPair.cs" />
@@ -86,7 +89,6 @@
     <Compile Include="Excel\StyleConditions.cs" />
     <Compile Include="Excel\TypedValue.cs" />
     <Compile Include="Extensions\NumericComparer.cs" />
-    <Compile Include="Extensions\DateExtention.cs" />
     <Compile Include="Extensions\EnumerableExtension.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Fast.cs" />

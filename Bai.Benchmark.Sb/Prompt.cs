@@ -35,7 +35,7 @@ namespace Qa.Bai.Benchmark.Sb
                 }
                 else if (key == '2')
                 {
-                    new QaPrompt(settings, new Exporter(new MainSheet())).Start();
+                    new QaPrompt(settings, new Exporter(new CommonPage())).Start();
                 }
                 else if (key == '3')
                 {

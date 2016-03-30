@@ -40,20 +40,9 @@ namespace Qa.Core.Compare
             return new ComparePacket(fileInformations, fieldPacks, first.Structure);
         }
 
-        private List<FileInformation> compareFiles(IList<RawReport> rawReports)
+        private List<FileInformation> compareFiles(IEnumerable<RawReport> rawReports)
         {
-            RawReport previous = null;
-            var reports = new List<FileInformation>();
-            foreach (var current in rawReports)
-            {
-                reports.Add(new FileInformation
-                {
-                    FileName = Path.GetFileNameWithoutExtension(current.Path),
-                    RowsCount = new CompareNumber(current.RowsCount, previous?.RowsCount)
-                });
-                previous = current;
-            }
-            return reports;
+            return rawReports.Select(x => new FileInformation { FileName = Path.GetFileNameWithoutExtension(x.Path) }).ToList();
         }
 
         private FieldPack getFieldPack(IList<RawReportField> rawFields)

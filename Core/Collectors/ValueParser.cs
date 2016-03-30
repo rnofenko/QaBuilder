@@ -27,6 +27,7 @@ namespace Qa.Core.Collectors
                 });
 
             var resultFields = _fields.Select(x => new RawReportField(x)).ToList();
+            resultFields.Insert(0, new RawReportField(FieldDescription.RowsCountDescription(), RowsCount));
 
             Dispose();
 

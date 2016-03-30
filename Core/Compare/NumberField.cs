@@ -4,24 +4,24 @@ using Qa.Core.Structure;
 
 namespace Qa.Core.Compare
 {
-    public class UniqueCountField : BaseField
+    public class NumberField : BaseField
     {
-        public UniqueCountField(FieldPack pack)
+        public NumberField(FieldPack pack)
             : base(pack.Description)
         {
-            Counts = pack.Numbers;
+            Numbers = pack.Numbers;
         }
 
-        public List<CompareNumber> Counts { get; set; }
+        public List<CompareNumber> Numbers { get; set; }
 
         public TypedValue GetCurrent(CompareReport report)
         {
-            return Counts[report.Index].CurrentAsInteger;
+            return Numbers[report.Index].CurrentAsInteger;
         }
 
         public TypedValue GetChange(CompareReport report)
         {
-            return Counts[report.Index].ChangeAsPercent;
+            return Numbers[report.Index].ChangeAsPercent;
         }
 
         public static bool IsConvertable(FieldPack pack)

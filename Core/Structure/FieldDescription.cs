@@ -26,5 +26,17 @@ namespace Qa.Core.Structure
         {
             return $"{Name} {Type}";
         }
+
+        public static FieldDescription RowsCountDescription()
+        {
+            return new FieldDescription
+            {
+                Name = "RowsCount",
+                Title = "Rows Count",
+                Calculation = new CalculationDescription {Type = CalculationType.Count},
+                Type = DType.Numeric,
+                NumberFormat = NumberFormat.Integer
+            };
+        }
     }
 }

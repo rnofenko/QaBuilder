@@ -10,7 +10,7 @@ namespace Qa.Core.Compare
 
         public List<CompareReport> Reports { get; set; }
 
-        public List<UniqueCountField> UniqueCounts { get; set; }
+        public List<NumberField> NumberFields { get; set; }
 
         public List<GroupedField> GroupedFields { get; set; }
 
@@ -24,16 +24,15 @@ namespace Qa.Core.Compare
                 var report = new CompareReport
                 {
                     Index = i,
-                    RowsCount = fileInformations[i].RowsCount,
                     FileName = fileInformations[i].FileName,
                     Numbers = fieldPacks.Where(x => x.Type == DType.Numeric && !x.IsGrouped).Select(x => x.GetNumberField(i)).ToList(),
                 };
                 Reports.Add(report);
             }
 
-            UniqueCounts = fieldPacks
-                .Where(UniqueCountField.IsConvertable)
-                .Select(x => new UniqueCountField(x))
+            NumberFields = fieldPacks
+                .Where(x=> x.Description.Calculation.Type == CalculationType.CountUnique || x.Description.Type == DType.Numeric)
+                .Select(x => new NumberField(x))
                 .ToList();
 
             GroupedFields = fieldPacks

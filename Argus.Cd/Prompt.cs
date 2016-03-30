@@ -33,7 +33,7 @@ namespace Qa.Argus.Cd
                 }
                 else if (key == '2')
                 {
-                    new QaPrompt(settings, new Exporter(new MainSheet())).Start();
+                    new QaPrompt(settings, new Exporter(new CommonPage())).Start();
                 }
             }
         }

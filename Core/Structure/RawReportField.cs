@@ -10,8 +10,6 @@ namespace Qa.Core.Structure
 
         public DType Type => Description.Type;
 
-        public NumberFormat NumberFormat => Description.NumberFormat;
-        
         public string Name => Description.Name;
 
         public double Number { get; }
@@ -43,6 +41,7 @@ namespace Qa.Core.Structure
 
         public RawReportField(FieldDescription description, double sum)
         {
+            GroupedNumbers = new Dictionary<string, double>();
             Description = description;
             Number = sum;
         }

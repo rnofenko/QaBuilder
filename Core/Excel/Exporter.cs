@@ -39,7 +39,7 @@ namespace Qa.Core.Excel
         private void fillPacket(ComparePacket packet, ExcelWorkbook book)
         {
             var sheet = book.Worksheets.Add(packet.Structure.Name);
-            _page.PrintReport(packet, sheet);
+            _page.Print(packet, sheet);
         }
     }
 }
