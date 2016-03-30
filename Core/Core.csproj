@@ -61,7 +61,6 @@
     <Compile Include="Combines\FileCombiner.cs" />
     <Compile Include="Compare\ComparePacket.cs" />
     <Compile Include="Compare\Comparer.cs" />
-    <Compile Include="Compare\CompareSettings.cs" />
     <Compile Include="Compare\FieldPack.cs" />
     <Compile Include="Compare\CompareNumber.cs" />
     <Compile Include="Compare\CompareField.cs" />

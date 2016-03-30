@@ -33,7 +33,7 @@ namespace Qa.Core.Qa
 
         private void doReport()
         {
-            var files = _fileFinder.Find(_settings.WorkingFolder, new CompareSettings(_settings).FileMask);
+            var files = _fileFinder.Find(_settings.WorkingFolder, _settings.FileMask);
             Lo.Wl().Wl($"Found {files.Count} files:");
 
             var rawReports = new RawDataCollector().CollectReports(files, _settings.FileStructures);
