@@ -14,9 +14,9 @@ namespace Qa.Core.Structure
 
         public string FileMask { get; set; }
 
-        public Settings()
+        public Settings(string fileMask = "*.txt")
         {
-            FileMask = "*.txt";
+            FileMask = fileMask;
         }
     }
 }
