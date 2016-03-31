@@ -27,7 +27,7 @@ namespace Qa.Core
 
         private int? parse(string str)
         {
-            var rgx = new Regex(@"^\d{1,2}");
+            var rgx = new Regex(@"^\d{1,}");
             var match = rgx.Match(str).ToString();
             int res;
             if (int.TryParse(match, out res))
