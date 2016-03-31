@@ -14,6 +14,10 @@
           "title": "Customer ID",
           "calculation": {
             "type": "countUnique"
+          },
+          "fieldstyle": {
+            "styletype": "indent",
+            "indent": 6
           }
         },
         {
@@ -21,6 +25,10 @@
           "title": "Customer Cost Center",
           "calculation": {
             "type": "countUnique"
+          },
+          "fieldstyle": {
+            "styletype": "indent",
+            "indent": 6
           }
         },
         {
@@ -32,6 +40,10 @@
           "title": "Household ID",
           "calculation": {
             "type": "countUnique"
+          },
+          "fieldstyle": {
+            "styletype": "indent",
+            "indent": 6
           }
         },
         {
@@ -39,6 +51,10 @@
           "title": "Household Cost Center",
           "calculation": {
             "type": "countUnique"
+          },
+          "fieldstyle": {
+            "styletype": "indent",
+            "indent": 6
           }
         },
         {
@@ -50,6 +66,10 @@
           "title": "Account ID",
           "calculation": {
             "type": "countUnique"
+          },
+          "fieldstyle": {
+            "styletype": "indent",
+            "indent": 6
           }
         },
         {
@@ -57,6 +77,10 @@
           "title": "Original Cost Center",
           "calculation": {
             "type": "countUnique"
+          },
+          "fieldstyle": {
+            "styletype": "indent",
+            "indent": 6
           }
         },
         {
@@ -64,6 +88,10 @@
           "title": "Account Cost Center",
           "calculation": {
             "type": "countUnique"
+          },
+          "fieldstyle": {
+            "styletype": "indent",
+            "indent": 6
           }
         },
         {
@@ -84,6 +112,10 @@
           "calculation": {
             "type": "count",
             "group": true
+          },
+          "fieldstyle": {
+            "styletype": "indent",
+            "indent": 6
           }
         },
         {
@@ -92,6 +124,9 @@
           "calculation": {
             "type": "count",
             "group": true
+          },
+          "fieldstyle": {
+            "styletype": "center"
           }
         },
         {
@@ -109,22 +144,91 @@
             "type": "count",
             "group": true
           },
-          "sort": "numeric"
+          "type": "Numeric",
+          "bins": [
+            { "name": "No Values" },
+            {
+              "from": "0",
+              "to": "3",
+              "name": "1-3 months"
+            },
+            {
+              "from": "4",
+              "to": "6",
+              "name": "4-6 months"
+            },
+            {
+              "from": "7",
+              "to": "9",
+              "name": "7-9 months"
+            },
+            {
+              "from": "10",
+              "to": "12",
+              "name": "10-12 months"
+            },
+            {
+              "from": "13",
+              "to": "18",
+              "name": "13-18 months"
+            },
+            {
+              "from": "19",
+              "to": "24",
+              "name": "19-24 months"
+            },
+            {
+              "from": "25",
+              "to": "36",
+              "name": "25-36 months"
+            },
+            {
+              "from": "37",
+              "to": "48",
+              "name": "37-48 months"
+            },
+            {
+              "from": "49",
+              "to": "60",
+              "name": "49-60 months"
+            },
+            {
+              "from": "61",
+              "to": "99999",
+              "name": "60+ months"
+            }
+          ],
+          "fieldstyle": {
+            "styletype": "indent",
+            "indent": 6
+          }
         },
         {
           "name": "BAL_EOM",
           "title": "End of Month Balance",
-          "numberFormat": "Money"
+          "numberFormat": "Money",
+          "fieldstyle": {
+            "styletype": "indent",
+            "indent": 6
+          }
         },
         {
           "name": "AVG_BAL",
           "title": "Average Monthly Balance",
-          "numberFormat": "Money"
+          "numberFormat": "Money",
+          "fieldstyle": {
+            "styletype": "indent",
+            "indent": 6
+          }
         },
         {
           "name": "LINE_EOM",
           "title": "Line End of Month",
-          "numberFormat": "Money"
+          "numberFormat": "Money",
+          "fieldstyle": {
+            "styletype": "indent",
+            "indent": 6
+          }
         },
         {
           "name": "INTEREST_RATE",
@@ -133,7 +237,11 @@
         {
           "name": "FEE_INC",
           "title": "Fee Income",
-          "numberFormat": "Money"
+          "numberFormat": "Money",
+          "fieldstyle": {
+            "styletype": "indent",
+            "indent": 6
+          }
         }
       ]
     },
@@ -151,6 +259,10 @@
           "title": "ATM ID",
           "calculation": {
             "type": "countUnique"
+          },
+          "fieldstyle": {
+            "styletype": "indent",
+            "indent": 2
           }
         },
         {
@@ -161,12 +273,20 @@
             "field": "TRXN_COUNT",
             "group": true
           },
-          "sort": "numeric"
+          "sort": "numeric",
+          "fieldstyle": {
+            "styletype": "indent",
+            "indent": 0
+          }
         },
         {
           "name": "TRXN_COUNT",
           "title": "Trxn Count",
-          "numberFormat": "Integer"
+          "numberFormat": "Integer",
+          "fieldstyle": {
+            "styletype": "indent",
+            "indent": 1
+          }
         }
       ]
     }

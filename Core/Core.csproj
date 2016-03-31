@@ -105,6 +105,7 @@
     <Compile Include="Structure\DType.cs" />
     <Compile Include="Structure\FieldDescription.cs" />
     <Compile Include="Structure\FieldLink.cs" />
+    <Compile Include="Structure\FieldStyle.cs" />
     <Compile Include="Structure\FileInformation.cs" />
     <Compile Include="Structure\FileStructure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -120,6 +121,7 @@
     <Compile Include="Structure\StructureDetector.cs" />
     <Compile Include="Structure\StructureDetectResut.cs" />
     <Compile Include="Structure\StructureLoader.cs" />
+    <Compile Include="Structure\StyleType.cs" />
     <Compile Include="Structure\TransformStructure.cs" />
     <Compile Include="System\CommonResources.cs" />
     <Compile Include="System\FileFinder.cs" />

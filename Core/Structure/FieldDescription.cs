@@ -22,6 +22,8 @@ namespace Qa.Core.Structure
 
         public List<BinRange> Bins { get; set; }
 
+        public FieldStyle FieldStyle { get; set; }
+
         public override string ToString()
         {
             return $"{Name} {Type}";
@@ -35,7 +37,16 @@ namespace Qa.Core.Structure
                 Title = "Rows Count",
                 Calculation = new CalculationDescription {Type = CalculationType.Count},
                 Type = DType.Numeric,
-                NumberFormat = NumberFormat.Integer
+                NumberFormat = NumberFormat.Integer,
+                /*FieldStyle = new FieldStyle
+                {
+                    StyleType = StyleType.Indent,
+                    Indent = 6
+                }*/
+                FieldStyle = new FieldStyle
+                {
+                    StyleType = StyleType.Center
+                }
             };
         }
     }

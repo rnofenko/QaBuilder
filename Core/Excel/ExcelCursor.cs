@@ -60,7 +60,7 @@ namespace Qa.Core.Excel
             return this;
         }
 
-        public ExcelCursor Print(params string[] values)
+        public ExcelCursor Print(StyleType style, int styleValue = 1, params string[] values)
         {
             var pos = _pos.Clone();
             foreach (var value in values)
@@ -271,10 +271,26 @@ namespace Qa.Core.Excel
             return this;
         }
 
-        public ExcelCursor String(string value, Pos pos)
+        public ExcelCursor String(string value, Pos pos/*, StyleType style, int styleValue*/)
         {
             var cell = getCell(pos);
             cell.Value = value;
+            //if (style == StyleType.Indent)
+            //{
+            //    cell.Style.Indent = styleValue;
+            //}
+            //if (style == StyleType.Center)
+            //{
+            //    cell.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            //}
+            //if (style == StyleType.RightAlign)
+            //{
+            //    cell.Style.HorizontalAlignment = ExcelHorizontalAlignment.Right;
+            //}
+            //if (style == StyleType.Justify)
+            //{
+            //    cell.Style.HorizontalAlignment = ExcelHorizontalAlignment.Justify;
+            //}
             return this;
         }
 

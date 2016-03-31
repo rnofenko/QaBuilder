@@ -10,6 +10,10 @@
           "title": "Household ID",
           "calculation": {
             "type": "countUnique"
+          },
+          "fieldstyle": {
+            "styletype": "indent",
+            "indent": 6
           }
         },
         {
@@ -17,6 +21,10 @@
           "title": "Customer ID",
           "calculation": {
             "type": "countUnique"
+          },
+          "fieldstyle": {
+            "styletype": "indent",
+            "indent": 6
           }
         },
         {
@@ -37,6 +45,9 @@
           "calculation": {
             "type": "count",
             "group": true
+          },
+          "fieldstyle": {
+            "styletype": "center"
           }
         },
         {
@@ -57,17 +68,29 @@
           "translate": {
             "C": "Commercial",
             "R": "Retail"
+          },
+          "fieldstyle": {
+            "styletype": "indent",
+            "indent": 6
           }
         },
         {
           "name": "MONTH_END_BALANCE",
           "title": "Month End Balance",
-          "numberFormat": "Money"
+          "numberFormat": "Money",
+          "fieldstyle": {
+            "styletype": "indent",
+            "indent": 6
+          }
         },
         {
           "name": "AVG_MONTHLY_BALANCE",
           "title": "Average Monthly Balance",
-          "numberFormat": "Money"
+          "numberFormat": "Money",
+          "fieldstyle": {
+            "styletype": "indent",
+            "indent": 6
+          }
         },
         {
           "name": "ACCOUNT_OPEN_DATE",
@@ -78,6 +101,10 @@
           "title": "Branch ID",
           "calculation": {
             "type": "countUnique"
+          },
+          "fieldstyle": {
+            "styletype": "indent",
+            "indent": 6
           }
         },
         {
@@ -85,6 +112,10 @@
           "title": "Home Branch ID",
           "calculation": {
             "type": "countUnique"
+          },
+          "fieldstyle": {
+            "styletype": "indent",
+            "indent": 6
           }
         },
         {
@@ -98,6 +129,10 @@
           "translate": {
             "Y": "Customers with Managed Accounts",
             "N": "Customers without Managed Accounts"
+          },
+          "fieldstyle": {
+            "styletype": "indent",
+            "indent": 0
           }
         },
         {
@@ -110,6 +145,10 @@
           "translate": {
             "Y": "Employee",
             "N": "Not Employee"
+          },
+          "fieldstyle": {
+            "styletype": "indent",
+            "indent": 6
           }
         },
         {
@@ -117,6 +156,10 @@
           "title": "Origination Code",
           "calculation": {
             "type": "countUnique"
+          },
+          "fieldstyle": {
+            "styletype": "indent",
+            "indent": 6
           }
         },
         {
@@ -129,13 +172,11 @@
         },
         {
           "name": "MONTHLY_INTEREST_PAID",
-          "title": "Monthly Interest Paid"//,
-          //"numberFormat": "Money"
+          "title": "Monthly Interest Paid"
         },
         {
           "name": "MONTHLY_INTEREST_CHARGED",
-          "title": "Monthly Interest Charged"//,
-          //"numberFormat": "Money"
+          "title": "Monthly Interest Charged"
         },
         {
           "name": "INTEREST_RATE",
@@ -151,31 +192,23 @@
           "translate": {
             "Y": "Active",
             "N": "Inactive"
+          },
+          "fieldstyle": {
+            "styletype": "indent",
+            "indent": 6
           }
         },
         {
           "name": "F_ONLINE_BANKING",
-          "title": "Online Banking"//,
-          //"calculation": {
-          //  "type": "count",
-          //  "group": true
-          //},
+          "title": "Online Banking"
         },
         {
           "name": "F_ONLINE_BILLPAY",
-          "title": "Online Billpay"//,
-          //"calculation": {
-          //  "type": "count",
-          //  "group": true
-          //},
+          "title": "Online Billpay"
         },
         {
           "name": "F_DIRECT_DEPOSIT",
-          "title": "Direct Deposit"//,
-          //"calculation": {
-          //  "type": "count",
-          //  "group": true
-          //}
+          "title": "Direct Deposit"
         },
         {
           "name": "CD_TERM",
@@ -187,11 +220,6 @@
           "type": "Numeric",
           "bins": [
             { "name": "No Values" },
-            //{
-            //  "from": "0",
-            //  "to": "0",
-            //  "name": "0 months"
-            //},
             {
               "from": "0",
               "to": "3",
@@ -242,7 +270,11 @@
               "to": "99999",
               "name": "60+ months"
             }
-          ]
+          ],
+          "fieldstyle": {
+            "styletype": "indent",
+            "indent": 6
+          }
         },
         {
           "name": "CD_MATURITY_DATE",
@@ -254,8 +286,7 @@
         },
         {
           "name": "ORIGINAL_BALANCE",
-          "title": "Original Balance"//,
-          //"numberFormat": "Money"
+          "title": "Original Balance"
         },
         {
           "name": "CREDIT_MAXIMUM_LINE",
@@ -270,11 +301,6 @@
           },
           "type": "Numeric",
           "bins": [
-            //{
-            //  "from": 0,
-            //  "to": 0,
-            //  "name": "00 years"
-            //},
             {
               "from": 1,
               "to": 4,
@@ -375,7 +401,11 @@
               "to": 0,
               "name": "Not Available"
             }
-          ]
+          ],
+          "fieldstyle": {
+            "styletype": "indent",
+            "indent": 6
+          }
         },
         {
           "name": "CUSTOMER_APPENDED_AGE",
@@ -388,23 +418,18 @@
             "type": "count",
             "group": true
           },
-          "sort": "numeric"
+          "sort": "numeric",
+          "fieldstyle": {
+            "styletype": "center"
+          }
         },
         {
           "name": "F_ACTIVE_CHEKING",
-          "title": "Active Checking"//,
-          //"calculation": {
-          //  "type": "count",
-          //  "group": true
-          //}
+          "title": "Active Checking"
         },
         {
           "name": "F_ACH_DIRECT_DEPOSIT",
-          "title": "ACH Direct Deposit"//,
-          //"calculation": {
-          //  "type": "count",
-          //  "group": true
-          //}
+          "title": "ACH Direct Deposit"
         },
         {
           "name": "F_ATM",
@@ -420,16 +445,16 @@
         },
         {
           "name": "F_FEE",
-          "title": "Fee"//,
-          //"calculation": {
-          //  "type": "count",
-          //  "group": true
-          //}
+          "title": "Fee"
         },
         {
           "name": "TOTAL_FEES",
           "title": "Total Fees",
-          "numberFormat": "Money"
+          "numberFormat": "Money",
+          "fieldstyle": {
+            "styletype": "indent",
+            "indent": 6
+          }
         },
         {
           "name": "ORIGINATION_CHANNEL",
