@@ -48,6 +48,10 @@ namespace Qa.Core.Compare
             {
                 keys = keys.OrderBy(x => x, new NumericComparer());
             }
+            else if (sort == SortType.StringAsNumber)
+            {
+                keys = keys.OrderBy(x => x, new StringsAsNumbersComparer());
+            }
             else
             {
                 keys = keys.OrderBy(x => x);
