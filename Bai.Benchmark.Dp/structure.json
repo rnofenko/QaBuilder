@@ -71,7 +71,7 @@
           },
           "fieldstyle": {
             "styletype": "indent",
-            "indent": 6
+            "indent": 8
           }
         },
         {
@@ -148,7 +148,7 @@
           },
           "fieldstyle": {
             "styletype": "indent",
-            "indent": 6
+            "indent": 8
           }
         },
         {
@@ -195,7 +195,7 @@
           },
           "fieldstyle": {
             "styletype": "indent",
-            "indent": 6
+            "indent": 8
           }
         },
         {
@@ -273,7 +273,7 @@
           ],
           "fieldstyle": {
             "styletype": "indent",
-            "indent": 6
+            "indent": 8
           }
         },
         {
@@ -404,7 +404,7 @@
           ],
           "fieldstyle": {
             "styletype": "indent",
-            "indent": 6
+            "indent": 8
           }
         },
         {
