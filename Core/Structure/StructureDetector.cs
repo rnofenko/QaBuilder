@@ -7,79 +7,23 @@ namespace Qa.Core.Structure
 {
     public class StructureDetector
     {
-        public FormatStructure Detect(string filepath, List<FormatStructure> sourceStructures, bool showError = false)
+        public T Detect<T>(string filepath, List<T> structures) where T : IStructure
         {
             using (var stream = new StreamReader(filepath))
             {
                 var line = stream.ReadLine();
-                if (line == null || line.IsEmpty())
-                {
-                    if (showError)
-                    {
-                        Lo.Wl().Wl($"ERROR  in {filepath}: File is empty");
-                    }
-                    return null;
-                }
-
-                var structures = new List<FormatStructure>();
-
-                foreach (var structure in sourceStructures.Where(x => x.Delimiter.IsNotEmpty()))
-                {
-                    var fields = structure.GetLineParser().Parse(line);
-                    if (fields.Length == structure.Fields.Count)
-                    {
-                        structures.Add(structure);
-                    }
-                }
-
-                if (!structures.Any())
-                {
-                    if (showError)
-                    {
-                        Lo.Wl().Wl($"ERROR  in {filepath}: Corresponding file structure wasn't found.");
-                    }
-                    return null;
-                }
-                else if (structures.Count > 1)
-                {
-                    if (showError)
-                    {
-                        Lo.Wl().Wl($"ERROR  in {filepath}: There are {structures.Count} corresponding file structures.");
-                    }
-                    return null;
-                }
-                return structures.First();
+                return line.IsEmpty() ? default(T) : findStructure(line, filepath, structures);
             }
         }
 
-        public StructureDetectResut Detect(string filepath, List<FileStructure> structures, bool showError = false)
+        private T findStructure<T>(string line, string filepath, IEnumerable<T> sourceStructures) where T : IStructure
         {
-            var result = new StructureDetectResut { FilePath = filepath };
-            using (var stream = new StreamReader(filepath))
-            {
-                result.Line = stream.ReadLine();
-            }
-            if (result.Line.IsEmpty())
-            {
-                if (showError)
-                {
-                    Lo.Wl().Wl($"ERROR  in {filepath}: File is empty");
-                }
-                return null;
-            }
-            tryAllDelimeters(result, structures);
+            var structures = new List<T>();
 
-            return result;
-        }
-
-        private void tryAllDelimeters(StructureDetectResut result, IEnumerable<FileStructure> sourceStructures, bool showError = false)
-        {
-            var structures = new List<FileStructure>();
-
-            foreach (var structure in sourceStructures.Where(x => x.Delimiter.IsNotEmpty()))
+            foreach (var structure in sourceStructures)
             {
-                var fields = structure.GetLineParser().Parse(result.Line);
-                if (fields.Length == structure.Fields.Count)
+                var fields = structure.GetLineParser().Parse(line);
+                if (fields.Length == structure.FieldsCount)
                 {
                     structures.Add(structure);
                 }
@@ -87,24 +31,14 @@ namespace Qa.Core.Structure
 
             if (!structures.Any())
             {
-                if (showError)
-                {
-                    Lo.Wl().Wl($"ERROR  in {result.FilePath}: Corresponding file structure wasn't found.");
-                }
-                return;
+                return default(T);
             }
-            else if (structures.Count > 1)
+            if (structures.Count > 1)
             {
-                if (showError)
-                {
-                    Lo.Wl().Wl($"ERROR  in {result.FilePath}: There are {structures.Count} corresponding file structures.");
-                }
-                return;
+                Lo.Wl().Wl($"ERROR  in {filepath}: There are {structures.Count} corresponding file structures.");
+                return default(T);
             }
-            else
-            {
-                result.Structure = structures.First();
-            }
+            return structures.First();
         }
     }
 }

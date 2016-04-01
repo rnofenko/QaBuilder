@@ -9,8 +9,6 @@ namespace Qa.Core.Collectors
 
         public FileStructure Structure { get; set; }
 
-        public int FieldsCount { get; set; }
-
         public int RowsCount { get; set; }
 
         public List<RawReportField> Fields { get; set; }

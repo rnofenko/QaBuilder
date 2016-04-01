@@ -2,7 +2,7 @@
 
 namespace Qa.Core.Structure
 {
-    public class FileStructure
+    public class FileStructure: IStructure
     {
         public string Name { get; set; }
 
@@ -11,6 +11,8 @@ namespace Qa.Core.Structure
         public string Delimiter { get; set; }
 
         public string TextQualifier { get; set; }
+
+        public int FieldsCount => Fields.Count;
 
         public List<FieldDescription> Fields { get; set; }
 

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Qa.Core.Structure
 {
-    public class FormatStructure
+    public class FormatStructure : IStructure
     {
         public string Name { get; set; }
 
@@ -17,5 +17,7 @@ namespace Qa.Core.Structure
         public FileStructure Destination { get; set; }
 
         public string TextQualifier { get; set; }
+
+        public int FieldsCount => Fields.Count;
     }
 }

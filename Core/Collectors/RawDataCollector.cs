@@ -31,16 +31,13 @@ namespace Qa.Core.Collectors
             Console.ForegroundColor = ConsoleColor.Cyan;
             Lo.Wl($"File: {Path.GetFileNameWithoutExtension(filepath)}");
             Console.ResetColor();
-            var detected = _structureDetector.Detect(filepath, structures);
-            if (detected == null)
+            var structure = _structureDetector.Detect(filepath, structures);
+            if (structure == null)
             {
                 return null;
             }
-
-            var structure = detected.Structure;
-            var lineParser = structure.GetLineParser();
-            
-            using (var valueParser = new ValueParser(detected.Structure.Fields))
+            var lineParser = structure.GetLineParser();            
+            using (var valueParser = new ValueParser(structure.Fields))
             {
                 using (var stream = new StreamReader(filepath))
                 {
@@ -65,7 +62,6 @@ namespace Qa.Core.Collectors
                 {
                     Path = filepath,
                     Structure = structure,
-                    FieldsCount = detected.FieldsCount,
                     Fields = valueParser.GetResultFields(),
                     RowsCount = valueParser.RowsCount
                 };

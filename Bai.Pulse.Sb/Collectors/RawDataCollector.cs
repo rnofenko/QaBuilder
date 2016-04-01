@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Qa.Core;
 using Qa.Core.Structure;
 using Qa.Core.System;
 using Qa.Sbpm.Collectors;
@@ -29,20 +28,19 @@ namespace Qa.Bai.Pulse.Sb.Collectors
 
         private PulseRawReport collect(string filepath, CollectionSettings settings)
         {
-            var detected = _structureDetector.Detect(filepath, settings.FileStructures);
-            if (detected == null)
+            var structure = _structureDetector.Detect(filepath, settings.FileStructures);
+            if (structure == null)
             {
                 return null;
             }
 
-            var report = new PulseRawReport(detected.Structure.Fields)
+            var report = new PulseRawReport(structure.Fields)
             {
                 Path = filepath,
-                Structure = detected.Structure,
-                FieldsCount = detected.FieldsCount
+                Structure = structure
             };
             
-            using (var parserGroup = new ValueParserGroup(detected.Structure))
+            using (var parserGroup = new ValueParserGroup(structure))
             {
                 using (var stream = new StreamReader(filepath))
                 {
