@@ -217,6 +217,7 @@
             "type": "count",
             "group": true
           },
+          "sort": "stringasnumber",
           "type": "Numeric",
           "bins": [
             { "name": "No Values" },
@@ -299,6 +300,7 @@
             "type": "count",
             "group": true
           },
+          "sort": "stringasnumber",
           "type": "Numeric",
           "bins": [
             {

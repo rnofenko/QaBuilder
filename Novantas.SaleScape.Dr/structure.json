@@ -17,7 +17,7 @@
           },
           "fieldstyle": {
             "styletype": "indent",
-            "indent": 6
+            "indent": 1
           }
         },
         {
@@ -28,7 +28,7 @@
           },
           "fieldstyle": {
             "styletype": "indent",
-            "indent": 6
+            "indent": 1
           }
         },
         {
@@ -43,7 +43,7 @@
           },
           "fieldstyle": {
             "styletype": "indent",
-            "indent": 6
+            "indent": 1
           }
         },
         {
@@ -54,7 +54,7 @@
           },
           "fieldstyle": {
             "styletype": "indent",
-            "indent": 6
+            "indent": 1
           }
         },
         {
@@ -69,7 +69,7 @@
           },
           "fieldstyle": {
             "styletype": "indent",
-            "indent": 6
+            "indent": 1
           }
         },
         {
@@ -80,7 +80,7 @@
           },
           "fieldstyle": {
             "styletype": "indent",
-            "indent": 6
+            "indent": 1
           }
         },
         {
@@ -91,7 +91,7 @@
           },
           "fieldstyle": {
             "styletype": "indent",
-            "indent": 6
+            "indent": 1
           }
         },
         {
@@ -115,7 +115,7 @@
           },
           "fieldstyle": {
             "styletype": "indent",
-            "indent": 6
+            "indent": 5
           }
         },
         {
@@ -144,6 +144,7 @@
             "type": "count",
             "group": true
           },
+          "sort": "stringasnumber",
           "type": "Numeric",
           "bins": [
             { "name": "No Values" },
@@ -200,7 +201,7 @@
           ],
           "fieldstyle": {
             "styletype": "indent",
-            "indent": 6
+            "indent": 3
           }
         },
         {
@@ -209,16 +210,16 @@
           "numberFormat": "Money",
           "fieldstyle": {
             "styletype": "indent",
-            "indent": 6
+            "indent": 1
           }
         },
         {
           "name": "AVG_BAL",
-          "title": "Average Monthly Balance",
+          "title": "Avg. Monthly Balance",
           "numberFormat": "Money",
           "fieldstyle": {
             "styletype": "indent",
-            "indent": 6
+            "indent": 1
           }
         },
         {
@@ -227,7 +228,7 @@
           "numberFormat": "Money",
           "fieldstyle": {
             "styletype": "indent",
-            "indent": 6
+            "indent": 1
           }
         },
         {
@@ -240,7 +241,7 @@
           "numberFormat": "Money",
           "fieldstyle": {
             "styletype": "indent",
-            "indent": 6
+            "indent": 1
           }
         }
       ]
