@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Qa.Core.Collectors;
 using Qa.Core.Compare;
 using Qa.Core.Excel;
@@ -14,7 +15,7 @@ namespace Qa.Core.Qa
         private readonly FileFinder _fileFinder;
         private readonly IExporter _excelExporter;
         private readonly Comparer _comparer;
-        private BinCombiner _binCombiner;
+        private readonly BinCombiner _binCombiner;
 
         public QaPrompt(Settings settings, IExporter exporter)
         {
@@ -33,12 +34,15 @@ namespace Qa.Core.Qa
 
         private void doReport()
         {
-            var files = _fileFinder.Find(_settings.WorkingFolder, _settings.FileMask);
-            Lo.Wl().Wl($"Found {files.Count} files:");
-
-            var rawReports = new RawDataCollector().CollectReports(files, _settings.FileStructures);
+            var detector = new StructureDetector();
+            var rawReports = _fileFinder
+                .Find(_settings.WorkingFolder, _settings.FileMask)
+                .Select(x => new RawReport {Path = x, Structure = detector.Detect(x, _settings.FileStructures)})
+                .Where(x => x.Structure != null)
+                .Select(x => new RawDataCollector().Collect(x))
+                .ToList();
+            
             _binCombiner.Combine(rawReports);
-
             var result = _comparer.Compare(rawReports);
             _excelExporter.Export(result, _settings);
 

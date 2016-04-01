@@ -1,45 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using Qa.Core.Structure;
 using Qa.Core.System;
 
 namespace Qa.Core.Collectors
 {
     public class RawDataCollector
     {
-        private readonly StructureDetector _structureDetector;
-        
-        public RawDataCollector()
-        {
-            _structureDetector = new StructureDetector();
-        }
-
-        public List<RawReport> CollectReports(IEnumerable<string> files, List<FileStructure> structures)
-        {
-            var statisticsByFiles = files
-                .Select(x => new RawDataCollector().collectReport(x, structures))
-                .Where(x => x != null)
-                .OrderBy(x => x.Structure.Name)
-                .ToList();
-            return statisticsByFiles;
-        }
-
-        private RawReport collectReport(string filepath, List<FileStructure> structures)
+        public RawReport Collect(RawReport report)
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Lo.Wl($"File: {Path.GetFileNameWithoutExtension(filepath)}");
+            Lo.Wl($"File: {Path.GetFileNameWithoutExtension(report.Path)}");
             Console.ResetColor();
-            var structure = _structureDetector.Detect(filepath, structures);
-            if (structure == null)
-            {
-                return null;
-            }
-            var lineParser = structure.GetLineParser();            
+            var structure = report.Structure;
+            var lineParser = structure.GetLineParser();
             using (var valueParser = new ValueParser(structure.Fields))
             {
-                using (var stream = new StreamReader(filepath))
+                using (var stream = new StreamReader(report.Path))
                 {
                     for (var i = 0; i < structure.RowsInHeader; i++)
                     {
@@ -51,20 +27,14 @@ namespace Qa.Core.Collectors
                     {
                         var parts = lineParser.Parse(line);
                         valueParser.Parse(parts);
-                        if ((valueParser.RowsCount%500000) == 0)
+                        if ((valueParser.RowsCount % 500000) == 0)
                         {
                             Lo.Wl($"Processed {valueParser.RowsCount}");
                         }
                     }
                 }
 
-                return new RawReport
-                {
-                    Path = filepath,
-                    Structure = structure,
-                    Fields = valueParser.GetResultFields(),
-                    RowsCount = valueParser.RowsCount
-                };
+                return report;
             }
         }
     }
