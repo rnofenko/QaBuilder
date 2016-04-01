@@ -215,7 +215,7 @@
         },
         {
           "name": "AVG_BAL",
-          "title": "Average Monthly Balance",
+          "title": "Avg. Monthly Balance",
           "numberFormat": "Money",
           "fieldstyle": {
             "styletype": "indent",
