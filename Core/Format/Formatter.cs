@@ -5,22 +5,23 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Qa.Core.Structure;
 using Qa.Core.System;
+using Qa.Core.Collectors;
 
 namespace Qa.Core.Format
 {
     public class Formatter
     {
         private List<FieldDescription> _fields;
-        private string _regexPattern;
+        private LineParser _lineParser;
         private string _destinationDelimeter;
-
+        
         public void Format(FormattingFile file)
         {
-            _destinationDelimeter = file.FormatStructure.Destination.Delimeter;
+            _destinationDelimeter = file.FormatStructure.Destination.Delimiter;
             var formatStructure = file.FormatStructure;
-            var delimeter = formatStructure.Delimeter;
+            var delimeter = formatStructure.Delimiter;
+            _lineParser = new LineParser(formatStructure.Delimiter);
             _fields = file.FormatStructure.Destination.Fields;
-            _regexPattern = "((?<=\")[^\"]*(?=\"(" + delimeter + "|$)+)|(?<=" + delimeter + "|^)[^" + delimeter + "\"]*(?=" + delimeter + "|$))";
             var rowCount = 1;
             using (var reader = new StreamReader(file.SourcePath))
             {

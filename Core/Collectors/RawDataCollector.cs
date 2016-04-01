@@ -56,7 +56,7 @@ namespace Qa.Core.Collectors
                     string line;
                     while ((line = stream.ReadLine()) != null)
                     {
-                        var parts = line.Split(new[] {report.Structure.Delimeter }, StringSplitOptions.None);
+                        var parts = line.Split(new[] {report.Structure.Delimiter }, StringSplitOptions.None);
                         valueParser.Parse(parts);
                         if ((valueParser.RowsCount%500000) == 0)
                         {

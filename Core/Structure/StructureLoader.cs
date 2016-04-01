@@ -30,7 +30,7 @@ namespace Qa.Core.Structure
                 return;
             }
             formatStructure.Destination = structure;
-            formatStructure.Delimeter = formatStructure.Delimeter ?? (structure.Delimeter ?? ",");
+            formatStructure.Delimiter = formatStructure.Delimiter ?? (structure.Delimiter ?? ",");
             if (formatStructure.Fields.IsEmpty())
             {
                 formatStructure.Fields = structure.Fields.Select(x=>new FormatFieldDescription(x)).ToList();

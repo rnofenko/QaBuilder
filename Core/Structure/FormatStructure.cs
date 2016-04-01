@@ -8,7 +8,7 @@ namespace Qa.Core.Structure
 
         public int? RowsInHeader { get; set; }
 
-        public string Delimeter { get; set; }
+        public string Delimiter { get; set; }
 
         public List<FormatFieldDescription> Fields { get; set; }
 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Qa.Core.Collectors;
 using Qa.Core.Structure;
 
@@ -22,7 +23,16 @@ namespace Qa.Bai.Pulse.Sb.Collectors
 
         public void Parse(string line)
         {
-            var parts = line.Split(new[] { _structure.Delimeter }, StringSplitOptions.None);
+            string[] parts;
+            //if (_structure.TextQualifier == "")
+            {
+                parts = line.Split(new[] { _structure.Delimiter }, StringSplitOptions.None);
+            }
+            /*else
+            {
+                string pattern = $"{_structure.TextQualifier}\\s*{_structure.Delimiter}\\s*{_structure.TextQualifier}";
+                parts = Regex.Split(line.Substring(1, line.Length - 2), pattern);
+            }*/
             var parser = getParser(parts[_subReportIndex]);
             parser.Parse(parts);
             RowsCount++;

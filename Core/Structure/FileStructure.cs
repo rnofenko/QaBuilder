@@ -8,7 +8,9 @@ namespace Qa.Core.Structure
 
         public int RowsInHeader { get; set; }
 
-        public string Delimeter { get; set; }
+        public string Delimiter { get; set; }
+
+        //public string TextQualifier { get; set; }
 
         public List<FieldDescription> Fields { get; set; }
 

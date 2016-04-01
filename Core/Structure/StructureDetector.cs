@@ -24,9 +24,9 @@ namespace Qa.Core.Structure
 
                 var structures = new List<FormatStructure>();
 
-                foreach (var structure in sourceStructures.Where(x => x.Delimeter.IsNotEmpty()))
+                foreach (var structure in sourceStructures.Where(x => x.Delimiter.IsNotEmpty()))
                 {
-                    var fields = line.Split(new[] { structure.Delimeter }, StringSplitOptions.None);
+                    var fields = line.Split(new[] { structure.Delimiter }, StringSplitOptions.None);
                     if (fields.Length == structure.Fields.Count)
                     {
                         structures.Add(structure);
@@ -77,9 +77,9 @@ namespace Qa.Core.Structure
         {
             var structures = new List<FileStructure>();
 
-            foreach (var structure in sourceStructures.Where(x => x.Delimeter.IsNotEmpty()))
+            foreach (var structure in sourceStructures.Where(x => x.Delimiter.IsNotEmpty()))
             {
-                var fields = result.Line.Split(new[] { structure.Delimeter }, StringSplitOptions.None);
+                var fields = result.Line.Split(new[] { structure.Delimiter }, StringSplitOptions.None);
                 if (fields.Length == structure.Fields.Count)
                 {
                     structures.Add(structure);
