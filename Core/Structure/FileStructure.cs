@@ -10,7 +10,7 @@ namespace Qa.Core.Structure
 
         public string Delimiter { get; set; }
 
-        //public string TextQualifier { get; set; }
+        public string TextQualifier { get; set; }
 
         public List<FieldDescription> Fields { get; set; }
 

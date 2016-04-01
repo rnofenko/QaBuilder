@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Qa.Core.System;
@@ -26,7 +25,7 @@ namespace Qa.Core.Structure
 
                 foreach (var structure in sourceStructures.Where(x => x.Delimiter.IsNotEmpty()))
                 {
-                    var fields = line.Split(new[] { structure.Delimiter }, StringSplitOptions.None);
+                    var fields = structure.GetLineParser().Parse(line);
                     if (fields.Length == structure.Fields.Count)
                     {
                         structures.Add(structure);
@@ -79,7 +78,7 @@ namespace Qa.Core.Structure
 
             foreach (var structure in sourceStructures.Where(x => x.Delimiter.IsNotEmpty()))
             {
-                var fields = result.Line.Split(new[] { structure.Delimiter }, StringSplitOptions.None);
+                var fields = structure.GetLineParser().Parse(result.Line);
                 if (fields.Length == structure.Fields.Count)
                 {
                     structures.Add(structure);

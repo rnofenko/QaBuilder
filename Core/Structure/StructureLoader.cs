@@ -31,6 +31,7 @@ namespace Qa.Core.Structure
             }
             formatStructure.Destination = structure;
             formatStructure.Delimiter = formatStructure.Delimiter ?? (structure.Delimiter ?? ",");
+            formatStructure.TextQualifier = formatStructure.TextQualifier ?? (structure.TextQualifier ?? "\"");
             if (formatStructure.Fields.IsEmpty())
             {
                 formatStructure.Fields = structure.Fields.Select(x=>new FormatFieldDescription(x)).ToList();

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using Qa.Core.Structure;
 using Qa.Core.System;
 using Qa.Core.Collectors;
@@ -19,8 +18,7 @@ namespace Qa.Core.Format
         {
             _destinationDelimeter = file.FormatStructure.Destination.Delimiter;
             var formatStructure = file.FormatStructure;
-            var delimeter = formatStructure.Delimiter;
-            _lineParser = new LineParser(formatStructure.Delimiter);
+            _lineParser = formatStructure.GetLineParser();
             _fields = file.FormatStructure.Destination.Fields;
             var rowCount = 1;
             using (var reader = new StreamReader(file.SourcePath))
@@ -49,11 +47,11 @@ namespace Qa.Core.Format
         private string processLine(string line)
         {
             var parts = new string[_fields.Count];
-            var match = Regex.Match(line, _regexPattern);
+            var matches = _lineParser.Parse(line);
 
             for (var i = 0; i < _fields.Count; i++)
             {
-                var value = match.Value;
+                var value = matches[i];
                 var field = _fields[i];
                 if (field.Type == DType.Numeric)
                 {
@@ -97,8 +95,6 @@ namespace Qa.Core.Format
                 }
 
                 parts[i] = value;
-
-                match = match.NextMatch();
             }
             return string.Join(_destinationDelimeter, parts);
         }

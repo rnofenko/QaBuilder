@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
+using Qa.Core;
 using Qa.Core.Collectors;
 using Qa.Core.Structure;
 
@@ -8,31 +8,24 @@ namespace Qa.Bai.Pulse.Sb.Collectors
 {
     public class ValueParserGroup : IDisposable
     {
+        private readonly FileStructure _structure;
+        private readonly int _subReportIndex;
+        private readonly Dictionary<string, ValueParser> _parsers;
+        private readonly LineParser _lineParser;
+
+        public int RowsCount { get; private set; }
+
         public ValueParserGroup(FileStructure structure)
         {
             _structure = structure;
             _subReportIndex = _structure.Fields.FindIndex(f => f.Name == QaSettings.Field.State);
             _parsers = new Dictionary<string, ValueParser>();
+            _lineParser = structure.GetLineParser();
         }
-
-        private readonly FileStructure _structure;
-        private readonly int _subReportIndex;
-        private readonly Dictionary<string, ValueParser> _parsers;
-
-        public int RowsCount { get; private set; }
-
+        
         public void Parse(string line)
         {
-            string[] parts;
-            //if (_structure.TextQualifier == "")
-            {
-                parts = line.Split(new[] { _structure.Delimiter }, StringSplitOptions.None);
-            }
-            /*else
-            {
-                string pattern = $"{_structure.TextQualifier}\\s*{_structure.Delimiter}\\s*{_structure.TextQualifier}";
-                parts = Regex.Split(line.Substring(1, line.Length - 2), pattern);
-            }*/
+            var parts = _lineParser.Parse(line);
             var parser = getParser(parts[_subReportIndex]);
             parser.Parse(parts);
             RowsCount++;

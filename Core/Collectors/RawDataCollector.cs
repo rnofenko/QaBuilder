@@ -37,18 +37,14 @@ namespace Qa.Core.Collectors
                 return null;
             }
 
-            var report = new RawReport
-            {
-                Path = filepath,
-                Structure = detected.Structure,
-                FieldsCount = detected.FieldsCount
-            };
+            var structure = detected.Structure;
+            var lineParser = structure.GetLineParser();
             
             using (var valueParser = new ValueParser(detected.Structure.Fields))
             {
                 using (var stream = new StreamReader(filepath))
                 {
-                    for (var i = 0; i < report.Structure.RowsInHeader; i++)
+                    for (var i = 0; i < structure.RowsInHeader; i++)
                     {
                         stream.ReadLine();
                     }
@@ -56,7 +52,7 @@ namespace Qa.Core.Collectors
                     string line;
                     while ((line = stream.ReadLine()) != null)
                     {
-                        var parts = line.Split(new[] {report.Structure.Delimiter }, StringSplitOptions.None);
+                        var parts = lineParser.Parse(line);
                         valueParser.Parse(parts);
                         if ((valueParser.RowsCount%500000) == 0)
                         {
@@ -64,10 +60,16 @@ namespace Qa.Core.Collectors
                         }
                     }
                 }
-                report.Fields = valueParser.GetResultFields();
-                report.RowsCount = valueParser.RowsCount;
+
+                return new RawReport
+                {
+                    Path = filepath,
+                    Structure = structure,
+                    FieldsCount = detected.FieldsCount,
+                    Fields = valueParser.GetResultFields(),
+                    RowsCount = valueParser.RowsCount
+                };
             }
-            return report;
         }
     }
 }

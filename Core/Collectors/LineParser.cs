@@ -1,25 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace Qa.Core.Collectors
 {
     public class LineParser
     {
-        private string _regexPattern;
+        private readonly string _pattern;
 
-        public LineParser(string delimiter)
+        public LineParser(string delimiter, string textQualifier)
         {
-            _regexPattern = "((?<=\")[^\"]*(?=\"(" + delimiter + "|$)+)|(?<=" + delimiter + "|^)[^" + delimiter + "\"]*(?=" + delimiter + "|$))";
+            if (delimiter == "|")
+            {
+                delimiter = "\\|";
+            }
+
+            if (textQualifier.IsEmpty())
+            {
+                textQualifier = "\"";
+            }
+            
+            _pattern = "((?<="+ textQualifier + ")[^" + textQualifier + "]*(?=" + textQualifier + "(" + delimiter + "|$)+)|(?<=" + delimiter + "|^)[^" + delimiter + textQualifier +"]*(?=" + delimiter + "|$))";
         }
 
         public string[] Parse(string line)
         {
-            /*var match = Regex.Match(line, _regexPattern);
-            while(match.)*/
-            return null;
+            var matches = Regex.Matches(line, _pattern);
+            var result = new string[matches.Count];
+            for(var i=0;i<matches.Count;i++)
+            {
+                result[i] = matches[i].Value;
+            }
+
+            return result;
         }
     }
 }

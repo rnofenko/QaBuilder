@@ -15,5 +15,7 @@ namespace Qa.Core.Structure
         public List<FormatFieldDescription> CalculatedFields { get; set; }
 
         public FileStructure Destination { get; set; }
+
+        public string TextQualifier { get; set; }
     }
 }
