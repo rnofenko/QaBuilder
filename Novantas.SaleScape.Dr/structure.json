@@ -3,7 +3,7 @@
     {
       "name": "Account Level Data",
       "rowsInHeader": 1,
-      "delimeter": "|",
+      "delimiter": "|",
       "fields": [
         {
           "name": "YEAR_MONTH",
@@ -249,7 +249,7 @@
     {
       "name": "ATM Transactions",
       "rowsInHeader": 1,
-      "delimeter": "|",
+      "delimiter": "|",
       "fields": [
         {
           "name": "YEAR_MONTH",

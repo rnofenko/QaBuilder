@@ -2,7 +2,7 @@
   "structures": [
     {
       "name": "BAI SB Pulse Weekly",
-      "delimeter": "|",
+      "delimiter": "|",
       "fields": [
         { "name": "BANK_CODE" },
         { "name": "CYCLE_TYPE" },
@@ -94,7 +94,7 @@
   "formatSchemes": [
     {
       "name": "BAI SB Pulse Weekly",
-      "delimeter": ","
+      "delimiter": ","
     }
   ]
 }

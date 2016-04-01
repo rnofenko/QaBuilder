@@ -3,7 +3,7 @@
     {
       "name": "Argus CD Appendix A",
       "rowsInHeader": 1,
-      "delimeter": "|",
+      "delimiter": "|",
       "fields": [
         {
           "name": "Account Identifier",
@@ -67,7 +67,7 @@
     {
       "name": "Argus CD Appendix B",
       "rowsInHeader": 1,
-      "delimeter": "|",
+      "delimiter": "|",
       "fields": [
         {
           "name": "Account Identifier",
@@ -109,7 +109,7 @@
     {
       "name": "Argus CD Appendix C",
       "rowsInHeader": 1,
-      "delimeter": "|",
+      "delimiter": "|",
       "fields": [
         {
           "name": "Customer Identifier",
@@ -147,15 +147,15 @@
   "formatSchemes": [
     {
       "name": "Argus CD Appendix A",
-      "delimeter": ","
+      "delimiter": ","
     },
     {
       "name": "Argus CD Appendix B",
-      "delimeter": ","
+      "delimiter": ","
     },
     {
       "name": "Argus CD Appendix C",
-      "delimeter": ","
+      "delimiter": ","
     }
   ]
 }

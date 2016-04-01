@@ -3,7 +3,7 @@
     {
       "name": "BAI DPB",
       "rowsInHeader": 0,
-      "delimeter": "|",
+      "delimiter": "|",
       "fields": [
         {
           "name": "HOUSEHOLD_ID",
