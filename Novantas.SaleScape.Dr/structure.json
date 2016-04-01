@@ -17,7 +17,7 @@
           },
           "fieldstyle": {
             "styletype": "indent",
-            "indent": 4
+            "indent": 1
           }
         },
         {
@@ -28,7 +28,7 @@
           },
           "fieldstyle": {
             "styletype": "indent",
-            "indent": 4
+            "indent": 1
           }
         },
         {
@@ -43,7 +43,7 @@
           },
           "fieldstyle": {
             "styletype": "indent",
-            "indent": 4
+            "indent": 1
           }
         },
         {
@@ -54,7 +54,7 @@
           },
           "fieldstyle": {
             "styletype": "indent",
-            "indent": 4
+            "indent": 1
           }
         },
         {
@@ -69,7 +69,7 @@
           },
           "fieldstyle": {
             "styletype": "indent",
-            "indent": 4
+            "indent": 1
           }
         },
         {
@@ -80,7 +80,7 @@
           },
           "fieldstyle": {
             "styletype": "indent",
-            "indent": 4
+            "indent": 1
           }
         },
         {
@@ -91,7 +91,7 @@
           },
           "fieldstyle": {
             "styletype": "indent",
-            "indent": 4
+            "indent": 1
           }
         },
         {
@@ -115,7 +115,7 @@
           },
           "fieldstyle": {
             "styletype": "indent",
-            "indent": 6
+            "indent": 5
           }
         },
         {
@@ -201,7 +201,7 @@
           ],
           "fieldstyle": {
             "styletype": "indent",
-            "indent": 5
+            "indent": 3
           }
         },
         {
@@ -210,7 +210,7 @@
           "numberFormat": "Money",
           "fieldstyle": {
             "styletype": "indent",
-            "indent": 4
+            "indent": 1
           }
         },
         {
@@ -219,7 +219,7 @@
           "numberFormat": "Money",
           "fieldstyle": {
             "styletype": "indent",
-            "indent": 4
+            "indent": 1
           }
         },
         {
@@ -228,7 +228,7 @@
           "numberFormat": "Money",
           "fieldstyle": {
             "styletype": "indent",
-            "indent": 4
+            "indent": 1
           }
         },
         {
@@ -241,7 +241,7 @@
           "numberFormat": "Money",
           "fieldstyle": {
             "styletype": "indent",
-            "indent": 4
+            "indent": 1
           }
         }
       ]
