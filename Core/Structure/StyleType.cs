@@ -1,11 +1,10 @@
 namespace Qa.Core.Structure
 {
-    public enum StyleType
+    public enum Alignment
     {
         None = 0,
-        Indent = 1,
-        Center = 2,
-        RightAlign = 3,
-        Justify = 4
+        Center = 1,
+        Right = 2,
+        Justify = 3
     }
 }

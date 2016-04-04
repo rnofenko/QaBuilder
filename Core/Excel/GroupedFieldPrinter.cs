@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using OfficeOpenXml.Style;
 using Qa.Core.Compare;
-using Qa.Core.Structure;
 
 namespace Qa.Core.Excel
 {
@@ -45,16 +44,8 @@ namespace Qa.Core.Excel
             {
                 cursor.Down()
                     .Column(startColumn)
-                    .Print(field.GetTranslate(key));
-                if(field.Description.FieldStyle?.StyleType == StyleType.Indent)
-                {
-                    cursor.Cell.Style.Indent = field.Description.FieldStyle.Indent;
-                }
-                if (field.Description.FieldStyle?.StyleType == StyleType.Center)
-                {
-                    cursor.Cell.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                }
-                cursor.Right();
+                    .Print(field.GetTranslate(key), field.Description.Style)
+                    .Right();
 
                 foreach (var file in packet.Files)
                 {

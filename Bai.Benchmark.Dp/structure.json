@@ -11,8 +11,7 @@
           "calculation": {
             "type": "countUnique"
           },
-          "fieldstyle": {
-            "styletype": "indent",
+          "style": {
             "indent": 6
           }
         },
@@ -22,8 +21,7 @@
           "calculation": {
             "type": "countUnique"
           },
-          "fieldstyle": {
-            "styletype": "indent",
+          "style": {
             "indent": 6
           }
         },
@@ -46,8 +44,8 @@
             "type": "count",
             "group": true
           },
-          "fieldstyle": {
-            "styletype": "center"
+          "style": {
+            "alignment": "center"
           }
         },
         {
@@ -69,8 +67,7 @@
             "C": "Commercial",
             "R": "Retail"
           },
-          "fieldstyle": {
-            "styletype": "indent",
+          "style": {
             "indent": 8
           }
         },
@@ -78,8 +75,7 @@
           "name": "MONTH_END_BALANCE",
           "title": "Month End Balance",
           "numberFormat": "Money",
-          "fieldstyle": {
-            "styletype": "indent",
+          "style": {
             "indent": 6
           }
         },
@@ -87,8 +83,7 @@
           "name": "AVG_MONTHLY_BALANCE",
           "title": "Average Monthly Balance",
           "numberFormat": "Money",
-          "fieldstyle": {
-            "styletype": "indent",
+          "style": {
             "indent": 6
           }
         },
@@ -102,8 +97,7 @@
           "calculation": {
             "type": "countUnique"
           },
-          "fieldstyle": {
-            "styletype": "indent",
+          "style": {
             "indent": 6
           }
         },
@@ -113,8 +107,7 @@
           "calculation": {
             "type": "countUnique"
           },
-          "fieldstyle": {
-            "styletype": "indent",
+          "style": {
             "indent": 6
           }
         },
@@ -130,8 +123,7 @@
             "Y": "Customers with Managed Accounts",
             "N": "Customers without Managed Accounts"
           },
-          "fieldstyle": {
-            "styletype": "indent",
+          "style": {
             "indent": 0
           }
         },
@@ -146,8 +138,7 @@
             "Y": "Employee",
             "N": "Not Employee"
           },
-          "fieldstyle": {
-            "styletype": "indent",
+          "style": {
             "indent": 8
           }
         },
@@ -157,8 +148,7 @@
           "calculation": {
             "type": "countUnique"
           },
-          "fieldstyle": {
-            "styletype": "indent",
+          "style": {
             "indent": 6
           }
         },
@@ -193,8 +183,7 @@
             "Y": "Active",
             "N": "Inactive"
           },
-          "fieldstyle": {
-            "styletype": "indent",
+          "style": {
             "indent": 8
           }
         },
@@ -272,8 +261,7 @@
               "name": "60+ months"
             }
           ],
-          "fieldstyle": {
-            "styletype": "indent",
+          "style": {
             "indent": 8
           }
         },
@@ -404,8 +392,7 @@
               "name": "Not Available"
             }
           ],
-          "fieldstyle": {
-            "styletype": "indent",
+          "style": {
             "indent": 8
           }
         },
@@ -421,8 +408,8 @@
             "group": true
           },
           "sort": "numeric",
-          "fieldstyle": {
-            "styletype": "center"
+          "style": {
+            "alignment": "center"
           }
         },
         {
@@ -453,8 +440,7 @@
           "name": "TOTAL_FEES",
           "title": "Total Fees",
           "numberFormat": "Money",
-          "fieldstyle": {
-            "styletype": "indent",
+          "style": {
             "indent": 6
           }
         },

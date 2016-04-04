@@ -60,12 +60,12 @@ namespace Qa.Core.Excel
             return this;
         }
 
-        public ExcelCursor Print(StyleType style, int styleValue = 1, params string[] values)
+        public ExcelCursor Print(params string[] values)
         {
             var pos = _pos.Clone();
             foreach (var value in values)
             {
-                String(value, pos);
+                String(value, pos, null);
                 pos.Column++;
             }
             return this;
@@ -74,6 +74,12 @@ namespace Qa.Core.Excel
         public ExcelCursor Print(IEnumerable<string> values)
         {
             return Print(values.ToArray());
+        }
+
+        public ExcelCursor Print(string value, FieldStyle style)
+        {
+            String(value, _pos, style);
+            return this;
         }
 
         public ExcelCursor Print(IEnumerable<double> values)
@@ -253,7 +259,7 @@ namespace Qa.Core.Excel
             }
             if (value.Type == DType.String)
             {
-                return String(value.String(), pos);
+                return String(value.String(), pos, null);
             }
             throw new InvalidOperationException($"Type {value.Type} isn't supported.");
         }
@@ -271,27 +277,28 @@ namespace Qa.Core.Excel
             return this;
         }
 
-        public ExcelCursor String(string value, Pos pos/*, StyleType style, int styleValue*/)
+        public ExcelCursor String(string value, Pos pos, FieldStyle style)
         {
             var cell = getCell(pos);
+            applyStyle(cell, style);
             cell.Value = value;
-            //if (style == StyleType.Indent)
-            //{
-            //    cell.Style.Indent = styleValue;
-            //}
-            //if (style == StyleType.Center)
-            //{
-            //    cell.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-            //}
-            //if (style == StyleType.RightAlign)
-            //{
-            //    cell.Style.HorizontalAlignment = ExcelHorizontalAlignment.Right;
-            //}
-            //if (style == StyleType.Justify)
-            //{
-            //    cell.Style.HorizontalAlignment = ExcelHorizontalAlignment.Justify;
-            //}
             return this;
+        }
+
+        private void applyStyle(ExcelRange cell, FieldStyle style)
+        {
+            if (style == null)
+            {
+                return;
+            }
+            if (style.Indent > 0)
+            {
+                cell.Style.Indent = style.Indent;
+            }
+            if (style.Alignment == Alignment.Center)
+            {
+                cell.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            }
         }
 
         public ExcelCursor Double(double value, Pos pos)

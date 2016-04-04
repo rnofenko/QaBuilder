@@ -15,8 +15,7 @@
           "calculation": {
             "type": "countUnique"
           },
-          "fieldstyle": {
-            "styletype": "indent",
+          "style": {
             "indent": 1
           }
         },
@@ -26,8 +25,7 @@
           "calculation": {
             "type": "countUnique"
           },
-          "fieldstyle": {
-            "styletype": "indent",
+          "style": {
             "indent": 1
           }
         },
@@ -41,8 +39,7 @@
           "calculation": {
             "type": "countUnique"
           },
-          "fieldstyle": {
-            "styletype": "indent",
+          "style": {
             "indent": 1
           }
         },
@@ -52,8 +49,7 @@
           "calculation": {
             "type": "countUnique"
           },
-          "fieldstyle": {
-            "styletype": "indent",
+          "style": {
             "indent": 1
           }
         },
@@ -67,8 +63,7 @@
           "calculation": {
             "type": "countUnique"
           },
-          "fieldstyle": {
-            "styletype": "indent",
+          "style": {
             "indent": 1
           }
         },
@@ -78,8 +73,7 @@
           "calculation": {
             "type": "countUnique"
           },
-          "fieldstyle": {
-            "styletype": "indent",
+          "style": {
             "indent": 1
           }
         },
@@ -89,8 +83,7 @@
           "calculation": {
             "type": "countUnique"
           },
-          "fieldstyle": {
-            "styletype": "indent",
+          "style": {
             "indent": 1
           }
         },
@@ -113,8 +106,7 @@
             "type": "count",
             "group": true
           },
-          "fieldstyle": {
-            "styletype": "indent",
+          "style": {
             "indent": 5
           }
         },
@@ -125,8 +117,8 @@
             "type": "count",
             "group": true
           },
-          "fieldstyle": {
-            "styletype": "center"
+          "style": {
+            "alignment": "center"
           }
         },
         {
@@ -199,8 +191,7 @@
               "name": "60+ months"
             }
           ],
-          "fieldstyle": {
-            "styletype": "indent",
+          "style": {
             "indent": 3
           }
         },
@@ -208,8 +199,7 @@
           "name": "BAL_EOM",
           "title": "End of Month Balance",
           "numberFormat": "Money",
-          "fieldstyle": {
-            "styletype": "indent",
+          "style": {
             "indent": 1
           }
         },
@@ -217,8 +207,7 @@
           "name": "AVG_BAL",
           "title": "Avg. Monthly Balance",
           "numberFormat": "Money",
-          "fieldstyle": {
-            "styletype": "indent",
+          "style": {
             "indent": 1
           }
         },
@@ -226,8 +215,7 @@
           "name": "LINE_EOM",
           "title": "Line End of Month",
           "numberFormat": "Money",
-          "fieldstyle": {
-            "styletype": "indent",
+          "style": {
             "indent": 1
           }
         },
@@ -239,8 +227,7 @@
           "name": "FEE_INC",
           "title": "Fee Income",
           "numberFormat": "Money",
-          "fieldstyle": {
-            "styletype": "indent",
+          "style": {
             "indent": 1
           }
         }
@@ -261,8 +248,7 @@
           "calculation": {
             "type": "countUnique"
           },
-          "fieldstyle": {
-            "styletype": "indent",
+          "style": {
             "indent": 2
           }
         },
@@ -275,8 +261,7 @@
             "group": true
           },
           "sort": "numeric",
-          "fieldstyle": {
-            "styletype": "indent",
+          "style": {
             "indent": 0
           }
         },
@@ -284,8 +269,7 @@
           "name": "TRXN_COUNT",
           "title": "Trxn Count",
           "numberFormat": "Integer",
-          "fieldstyle": {
-            "styletype": "indent",
+          "style": {
             "indent": 1
           }
         }

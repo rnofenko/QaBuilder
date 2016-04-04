@@ -22,7 +22,7 @@ namespace Qa.Core.Structure
 
         public List<BinRange> Bins { get; set; }
 
-        public FieldStyle FieldStyle { get; set; }
+        public FieldStyle Style { get; set; }
 
         public override string ToString()
         {
@@ -38,14 +38,9 @@ namespace Qa.Core.Structure
                 Calculation = new CalculationDescription {Type = CalculationType.Count},
                 Type = DType.Numeric,
                 NumberFormat = NumberFormat.Integer,
-                /*FieldStyle = new FieldStyle
+                Style = new FieldStyle
                 {
-                    StyleType = StyleType.Indent,
-                    Indent = 6
-                }*/
-                FieldStyle = new FieldStyle
-                {
-                    StyleType = StyleType.Center
+                    Alignment = Alignment.Center
                 }
             };
         }
