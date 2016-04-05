@@ -12,7 +12,7 @@ namespace Qa.Tests
         {
             var parser = new LineParser(",", "\"");
             var w = Stopwatch.StartNew();
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 500000; i++)
             {
                 parser.Parse("apple,juice,\"pineapple\",apple,juice,\"pineapple\",apple,juice,\"pineapple\",apple,juice,\"pineapple\",apple,juice,\"pineapple\"");
             }
