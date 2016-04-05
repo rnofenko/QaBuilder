@@ -20,6 +20,7 @@ namespace Qa.Core.Compare
             Files = fileInformations.ToList();
             
             NumberFields = fieldPacks
+                .Where(x => !x.IsGrouped)
                 .Where(x=> x.Description.Calculation.Type == CalculationType.CountUnique || x.Description.Type == DType.Numeric)
                 .Select(x => new NumberField(x))
                 .ToList();

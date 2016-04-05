@@ -16,7 +16,12 @@ namespace Qa.Core.Compare
 
         public TypedValue GetCurrent(FileInformation report)
         {
-            return new TypedValue(Numbers[report.Index].Current, Description.NumberFormat);
+            var format = Description.NumberFormat;
+            if (Description.Calculation.Type == CalculationType.CountUnique)
+            {
+                format = NumberFormat.Integer;
+            }
+            return new TypedValue(Numbers[report.Index].Current, format);
         }
 
         public TypedValue GetChange(FileInformation report)
