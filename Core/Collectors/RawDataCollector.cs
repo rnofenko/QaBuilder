@@ -34,6 +34,7 @@ namespace Qa.Core.Collectors
                     }
                 }
 
+                report.Fields = valueParser.GetResultFields();
                 return report;
             }
         }
