@@ -209,9 +209,13 @@
           "sort": "stringasnumber",
           "type": "Numeric",
           "bins": [
-            { "name": "No Values" },
             {
               "from": "0",
+              "to": "0",
+              "name": "No Values"
+            },
+            {
+              "from": "1",
               "to": "3",
               "name": "1-3 months"
             },

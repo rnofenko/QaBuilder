@@ -1,7 +1,6 @@
 ﻿using System;
 using Qa.Core.Structure;
 using Qa.Core.System;
-using Qa.System;
 
 namespace Qa.Core.Combines
 {

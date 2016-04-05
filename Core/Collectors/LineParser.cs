@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Qa.Core.Collectors
 {
@@ -25,7 +26,7 @@ namespace Qa.Core.Collectors
         public string[] Parse(string line)
         {
             var matches = _regex.Matches(line);
-            var result = new string[matches.Count - 1];
+            var result = new string[matches.Count];
             for (var i = 0; i < result.Length; i++)
             {
                 result[i] = matches[i].Groups[2].Value;

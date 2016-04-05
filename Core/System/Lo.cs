@@ -1,5 +1,4 @@
 ﻿using System;
-using Qa.System;
 
 namespace Qa.Core.System
 {
@@ -13,6 +12,11 @@ namespace Qa.Core.System
         public static Logger Wl(string message = "")
         {
             return new Logger().Wl(message);
+        }
+
+        public static Logger Wl(string message, ConsoleColor color)
+        {
+            return new Logger().Wl(message, color);
         }
 
         public static Logger WaitAnyKey()

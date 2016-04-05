@@ -41,14 +41,19 @@ namespace Qa.Core.Qa
                 .Where(x => x.Structure != null)
                 .Select(x => new RawDataCollector().Collect(x))
                 .ToList();
-            
-            _binCombiner.Combine(rawReports);
-            var result = _comparer.Compare(rawReports);
-            _excelExporter.Export(result, _settings);
 
-            Console.ForegroundColor = ConsoleColor.Green;
-            Lo.Wl().Wl("Comparing was finished.");
-            Console.ResetColor();
+            if (rawReports.IsEmpty())
+            {
+                Lo.Wl("No files were detected as QA report", ConsoleColor.Red);
+            }
+            else
+            {
+                _binCombiner.Combine(rawReports);
+                var result = _comparer.Compare(rawReports);
+                _excelExporter.Export(result, _settings);
+
+                Lo.Wl().Wl("Comparing was finished.", ConsoleColor.Green);
+            }
             Console.ReadKey();
         }
     }

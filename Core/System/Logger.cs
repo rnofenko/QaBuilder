@@ -1,6 +1,6 @@
 using System;
 
-namespace Qa.System
+namespace Qa.Core.System
 {
     public class Logger
     {
@@ -19,6 +19,14 @@ namespace Qa.System
             {
                 Console.WriteLine(message);
             }
+            return this;
+        }
+
+        public Logger Wl(string message, ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+            Console.WriteLine(message);
+            Console.ResetColor();
             return this;
         }
 
