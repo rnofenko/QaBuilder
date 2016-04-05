@@ -17,7 +17,7 @@ namespace Qa.Tests
                 parser.Parse("apple,juice,\"pineapple\",apple,juice,\"pineapple\",apple,juice,\"pineapple\",apple,juice,\"pineapple\",apple,juice,\"pineapple\"");
             }
             w.Stop();
-            //Assert.Equal(new TimeSpan(0, 0, 0, 0), w.Elapsed);
+            Assert.Equal(new TimeSpan(0, 0, 0, 0), w.Elapsed);
         }
 
         [Fact]
@@ -25,6 +25,13 @@ namespace Qa.Tests
         {
             var result = new LineParser(",", "\"").Parse("apple,juice");
             Assert.Equal(new[] { "apple", "juice" }, result);
+        }
+
+        [Fact]
+        public void EmptyFieldAtTheEnd()
+        {
+            var result = new LineParser(",", "\"").Parse("apple,juice,");
+            Assert.Equal(new[] { "apple", "juice", "" }, result);
         }
 
         [Fact]
