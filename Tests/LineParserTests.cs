@@ -1,10 +1,25 @@
-﻿using Qa.Core.Collectors;
+﻿using System;
+using System.Diagnostics;
+using Qa.Core.Collectors;
 using Xunit;
 
 namespace Qa.Tests
 {
     public class LineParserTests
     {
+        [Fact]
+        public void Performance()
+        {
+            var parser = new LineParser(",", "\"");
+            var w = Stopwatch.StartNew();
+            for (int i = 0; i < 200000; i++)
+            {
+                parser.Parse("apple,juice,\"pineapple\",apple,juice,\"pineapple\",apple,juice,\"pineapple\",apple,juice,\"pineapple\",apple,juice,\"pineapple\"");
+            }
+            w.Stop();
+            Assert.Equal(new TimeSpan(0, 0, 0, 0), w.Elapsed);
+        }
+
         [Fact]
         public void SimpleCsv()
         {

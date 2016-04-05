@@ -4,7 +4,7 @@ namespace Qa.Core.Collectors
 {
     public class LineParser
     {
-        private readonly string _pattern;
+        private readonly Regex _regex;
 
         public LineParser(string delimiter, string textQualifier)
         {
@@ -18,16 +18,17 @@ namespace Qa.Core.Collectors
                 textQualifier = "\"";
             }
             
-            _pattern = "((?<="+ textQualifier + ")[^" + textQualifier + "]*(?=" + textQualifier + "(" + delimiter + "|$)+)|(?<=" + delimiter + "|^)[^" + delimiter + textQualifier +"]*(?=" + delimiter + "|$))";
+            var pattern = "\\s*(?:" + textQualifier + "(?<v>[^" + textQualifier + "]*(" + textQualifier + textQualifier + "[^" + textQualifier + "]*)*)" + textQualifier + "\\s*|(?<v>[^" + delimiter + "]*))(?:" + delimiter + "|$)";
+            _regex = new Regex(pattern, RegexOptions.IgnorePatternWhitespace);
         }
 
         public string[] Parse(string line)
         {
-            var matches = Regex.Matches(line, _pattern);
-            var result = new string[matches.Count];
-            for(var i=0;i<matches.Count;i++)
+            var matches = _regex.Matches(line);
+            var result = new string[matches.Count - 1];
+            for (var i = 0; i < result.Length; i++)
             {
-                result[i] = matches[i].Value;
+                result[i] = matches[i].Groups[2].Value;
             }
 
             return result;
