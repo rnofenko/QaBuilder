@@ -57,12 +57,15 @@ namespace Qa.Core.Transforms
                 {
                     range = ranges.First(x => x.From == null);
                 }
-                
-                if (!bins.ContainsKey(range.Name))
+
+                if (!range.Hide)
                 {
-                    bins.Add(range.Name, 0d);
+                    if (!bins.ContainsKey(range.Name))
+                    {
+                        bins.Add(range.Name, 0d);
+                    }
+                    bins[range.Name] += old.Value;
                 }
-                bins[range.Name] += old.Value;
             }
             return bins;
         }

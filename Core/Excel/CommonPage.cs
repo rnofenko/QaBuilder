@@ -31,10 +31,11 @@ namespace Qa.Core.Excel
                 _groupedFieldPrinter.Print(field, cursor, packet);
             }
 
-            cursor.Sheet.View.FreezePanes(4, 3);
-
             sheet.Cells[sheet.Dimension.Address].AutoFitColumns();
             sheet.Column(1).Width = 3;
+            sheet.Column(packet.Files.Count * 2 + 2).Width = 3;
+
+            cursor.Sheet.View.FreezePanes(4, 3);
         }
     }
 }

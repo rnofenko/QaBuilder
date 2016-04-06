@@ -1,16 +1,14 @@
 namespace Qa.Core.Structure
 {
-    public class BinRange
+    public class BinRange : BaseBinRange
     {
         public string From { get; set; }
 
         public string To { get; set; }
 
-        public string Name { get; set; }
-
         public NumericBinRange ToNumeric()
         {
-            var bin = new NumericBinRange {Name = Name};
+            var bin = new NumericBinRange {Name = Name, Hide = Hide};
 
             double value;
             if (double.TryParse(From, out value))

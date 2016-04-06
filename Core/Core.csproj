@@ -101,6 +101,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Structure\BaseBinRange.cs" />
     <Compile Include="Structure\BaseField.cs" />
     <Compile Include="Structure\BinRange.cs" />
     <Compile Include="Structure\CalculationDescription.cs" />

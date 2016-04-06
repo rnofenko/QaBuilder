@@ -51,7 +51,7 @@
           },
           "translate": {
             "C": "Commercial",
-            "R": "Retail"
+            "R": "Consumer"
           },
           "style": {
             "indent": 8
@@ -199,11 +199,11 @@
           "sort": "stringasnumber",
           "type": "Numeric",
           "bins": [
-            { "name": "No Values" },
+            { "hide": true },
             {
               "from": "0",
               "to": "0",
-              "name": "No Values"
+              "name": "No term provided"
             },
             {
               "from": "1",

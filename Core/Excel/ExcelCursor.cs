@@ -299,6 +299,10 @@ namespace Qa.Core.Excel
             {
                 cell.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
             }
+            if (style.Alignment == Alignment.Right)
+            {
+                cell.Style.HorizontalAlignment = ExcelHorizontalAlignment.Right;
+            }
         }
 
         public ExcelCursor Double(double value, Pos pos)
@@ -320,6 +324,7 @@ namespace Qa.Core.Excel
             if (value == null)
             {
                 cell.Value = "NA";
+                cell.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
             }
             else
             {
