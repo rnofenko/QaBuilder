@@ -13,15 +13,15 @@ namespace Qa.Core.Collectors
         public LineParser(string delimiter, string textQualifier)
         {
             _delimiter = delimiter[0];
+            if (textQualifier.IsEmpty())
+            {
+                textQualifier = "\"";
+            }
+
             _textQualifier = textQualifier[0];
             if (delimiter == "|")
             {
                 delimiter = "\\|";
-            }
-            
-            if (textQualifier.IsEmpty())
-            {
-                textQualifier = "\"";
             }
             
             var pattern = "\\s*(?:" + textQualifier + "(?<v>[^" + textQualifier + "]*(" + textQualifier + textQualifier + "[^" + textQualifier + "]*)*)" + textQualifier + "\\s*|(?<v>[^" + delimiter + "]*))(?:" + delimiter + "|$)";
