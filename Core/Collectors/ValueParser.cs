@@ -8,12 +8,21 @@ namespace Qa.Core.Collectors
     public class ValueParser : IDisposable
     {
         private readonly List<ParseField> _fields;
+        private readonly List<int> _fieldIndexes = new List<int>();
 
         public int RowsCount { get; private set; }
 
         public ValueParser(IEnumerable<FieldDescription> fields)
         {
             _fields = fields.Select(x => new ParseField(x)).ToList();
+
+            for (var index = 0; index < _fields.Count; index++)
+            {
+                if (_fields[index].Calculation.Type != CalculationType.None)
+                {
+                    _fieldIndexes.Add(index);
+                }
+            }
         }
 
         public List<RawReportField> GetResultFields()
@@ -37,22 +46,23 @@ namespace Qa.Core.Collectors
         public void Parse(string[] parts)
         {
             RowsCount++;
-            for (var i = 0; i < parts.Length; i++)
+            foreach (var index in _fieldIndexes)
             {
-                var field = _fields[i];
-                var value = parts[i];
-                
-                if (field.Calculation.Type == CalculationType.Count)
+                var field = _fields[index];
+                var value = parts[index];
+                var calculation = field.Calculation;
+
+                if (calculation.Type == CalculationType.Count)
                 {
-                    if (field.Calculation.Group)
+                    if (calculation.Group)
                     {
-                        if (!field.GroupedNumbers.ContainsKey(value))
-                        {
-                            field.GroupedNumbers.Add(value, 1);
-                        }
-                        else
+                        try
                         {
                             field.GroupedNumbers[value]++;
+                        }
+                        catch
+                        {
+                            field.GroupedNumbers.Add(value, 1);
                         }
                     }
                     else
@@ -60,15 +70,17 @@ namespace Qa.Core.Collectors
                         field.Number += 1;
                     }
                 }
-                else if (field.Calculation.Type == CalculationType.CountUnique)
+                else if (calculation.Type == CalculationType.CountUnique)
                 {
-                    if (field.Calculation.Group)
+                    if (calculation.Group)
                     {
-                        if (!field.GroupedUniqueValues.ContainsKey(value))
+                        HashSet<string> set;
+                        if (!field.GroupedUniqueValues.TryGetValue(value, out set))
                         {
-                            field.GroupedUniqueValues.Add(value, new HashSet<string>());
+                            set = new HashSet<string>();
+                            field.GroupedUniqueValues.Add(value, set);
                         }
-                        var set = field.GroupedUniqueValues[value];
+                        
                         var fieldValue = parts[field.Calculation.FieldIndex];
                         if (!set.Contains(fieldValue))
                         {
@@ -83,18 +95,18 @@ namespace Qa.Core.Collectors
                         }
                     }
                 }
-                else if (field.Calculation.Type == CalculationType.Sum || field.Calculation.Type == CalculationType.Average)
+                else if (calculation.Type == CalculationType.Sum || calculation.Type == CalculationType.Average)
                 {
-                    if (field.Calculation.Group)
+                    if (calculation.Group)
                     {
                         var parsed = parseNumeric(parts[field.Calculation.FieldIndex]);
-                        if (!field.GroupedNumbers.ContainsKey(value))
-                        {
-                            field.GroupedNumbers.Add(value, parsed);
-                        }
-                        else
+                        try
                         {
                             field.GroupedNumbers[value] += parsed;
+                        }
+                        catch
+                        {
+                            field.GroupedNumbers.Add(value, parsed);
                         }
                     }
                     else
@@ -107,16 +119,18 @@ namespace Qa.Core.Collectors
 
         private double parseNumeric(string value)
         {
-            double res;
-            if (double.TryParse(value, out res))
+            try
             {
-                return res;
+                return double.Parse(value);
             }
-            if (value == "")
+            catch
             {
-                return 0;
+                if (value == "")
+                {
+                    return 0;
+                }
+                throw new InvalidOperationException($"[{value}] is not a numeric format.");
             }
-            throw new InvalidOperationException($"[{value}] is not a numeric format.");
         }
 
         public void Dispose()
