@@ -51,7 +51,7 @@ namespace Qa.Core.Collectors
                 var field = _fields[index];
                 var value = parts[index];
                 var calculation = field.Calculation;
-
+                
                 if (calculation.Type == CalculationType.Count)
                 {
                     if (calculation.Group)
@@ -119,16 +119,17 @@ namespace Qa.Core.Collectors
 
         private double parseNumeric(string value)
         {
+            if (value.Length == 0)
+            {
+                return 0;
+            }
+
             try
             {
                 return double.Parse(value);
             }
             catch
             {
-                if (value == "")
-                {
-                    return 0;
-                }
                 throw new InvalidOperationException($"[{value}] is not a numeric format.");
             }
         }

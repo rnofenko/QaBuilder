@@ -39,7 +39,7 @@ namespace Qa.Core.Collectors
 
             return result;
         }
-
+        
         public string[] Parse(string line)
         {
             var words = new List<string>();
