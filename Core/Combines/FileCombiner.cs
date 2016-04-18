@@ -25,7 +25,7 @@ namespace Qa.Core.Combines
             {
                 combineFiles(filePaths, outputPath);
             }
-            Lo.NewPage($"{filePaths.Count} files were combined into {outputPath}.")
+            Lo.NewPage(string.Format("{0} files were combined into {1}.", filePaths.Count, outputPath))
               .WaitAnyKey();
         }
 

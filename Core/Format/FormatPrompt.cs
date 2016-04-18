@@ -29,7 +29,7 @@ namespace Qa.Core.Format
             showSettings();
 
             var files = _fileFinder.Find(_settings.WorkingFolder, SOURCE_FILE_MASK).ToList();
-            Lo.Wl().Wl($"Found {files.Count} files:");
+            Lo.Wl().Wl(string.Format("Found {0} files:", files.Count));
             
             foreach (var filepath in files)
             {
@@ -48,11 +48,11 @@ namespace Qa.Core.Format
         {
             Lo.Wl()
                 .Wl("Source File Settings:")
-                .Wl($"Working folder        = {_settings.WorkingFolder}")
-                .Wl($"File mask             = {SOURCE_FILE_MASK}")
+                .Wl("Working folder        = {_settings.WorkingFolder}")
+                .Wl("File mask             = {SOURCE_FILE_MASK}")
                 .Wl()
                 .Wl("Destination File Settings:")
-                .Wl($"New File Extension    = {DESTINATION_FILE_EXTENSION}");
+                .Wl("New File Extension    = {DESTINATION_FILE_EXTENSION}");
         }
 
         private void askFormat(FormattingFile file)
@@ -62,8 +62,8 @@ namespace Qa.Core.Format
             var intoFileName = Path.GetFileName(file.DestinationPath);
             Lo.Wl()
                 .Wl("Are sure that you want to format file")
-                .Wl($"  from   {fromFileName}")
-                .Wl($"  to     {intoFileName}")
+                .Wl(string.Format("  from   {0}", fromFileName))
+                .Wl(string.Format("  to     {0}", intoFileName))
                 .Wl("Y(Yes) / Any key(No)");
             var key = Console.ReadKey();
             if (key.KeyChar.ToString().ToLower() == "y")

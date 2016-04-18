@@ -6,7 +6,7 @@ namespace Qa.Core.Structure
     {
         public string WorkingFolder { get; set; }
 
-        public List<FileStructure> FileStructures => Project.Structures;
+        public List<FileStructure> FileStructures {get { return Project.Structures; } }
 
         public ProjectStructure Project { get; set; }
 

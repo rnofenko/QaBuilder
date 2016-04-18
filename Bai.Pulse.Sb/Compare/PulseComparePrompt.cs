@@ -31,7 +31,7 @@ namespace Qa.Bai.Pulse.Sb.Compare
         private void doReport()
         {
             var files = _fileFinder.Find(_settings.WorkingFolder, _settings.FileMask);
-            Lo.Wl().Wl($"Found {files.Count} files:");
+            Lo.Wl().Wl(string.Format("Found {0} files:", files.Count));
 
             var rawReports = new RawDataCollector().Collect(files, new CollectionSettings
             {

@@ -5,11 +5,20 @@ namespace Qa.Core.Compare
 {
     public class FieldPack : BaseField
     {
-        public DType Type => Description.Type;
+        public DType Type
+        {
+            get { return Description.Type; }
+        }
 
-        public string Name => Description.Name;
+        public string Name
+        {
+            get { return Description.Name; }
+        }
 
-        public bool IsGrouped => Description.Calculation.Group;
+        public bool IsGrouped
+        {
+            get { return Description.Calculation.Group; }
+        }
 
         public GroupedValuesSet GroupedNumbers { get; set; }
 

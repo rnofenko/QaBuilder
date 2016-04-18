@@ -42,14 +42,23 @@ namespace Qa.Bai.Pulse.Sb.Compare
             foreach (var key in states)
             {
                 var currentSub = current.GetSubReport(key);
-                var previousSub = previous?.GetSubReport(key);
+                RawSubReport previousSub = null;
+                if (previous != null)
+                {
+                    previousSub = previous.GetSubReport(key);
+                }
                 var subResult = compare(currentSub, previousSub, key, fileName);
                 result.SubReports.Add(subResult);
             }
 
             foreach (var transformation in current.TransformedReports.Keys)
             {
-                var report = compare(current.TransformedReports[transformation], previous?.TransformedReports[transformation], states);
+                PulseRawReport prevReport = null;
+                if (previous != null)
+                {
+                    prevReport = previous.TransformedReports[transformation];
+                }
+                var report = compare(current.TransformedReports[transformation], prevReport, states);
                 result.TransformReports.Add(transformation, report);
             }
             
@@ -58,9 +67,14 @@ namespace Qa.Bai.Pulse.Sb.Compare
 
         private CompareSubReport compare(RawSubReport current, RawSubReport previous, string key, string fileName)
         {
+            var prevRowsCount = 0;
+            if (previous != null)
+            {
+                prevRowsCount = previous.RowsCount;
+            }
             var result = new CompareSubReport
             {
-                RowsCount = new CompareNumber(current.RowsCount, previous?.RowsCount),
+                RowsCount = new CompareNumber(current.RowsCount, prevRowsCount),
                 State = key,
                 FileName = fileName
             };

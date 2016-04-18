@@ -1,4 +1,6 @@
-﻿namespace Qa.Core.Excel
+﻿using System;
+
+namespace Qa.Core.Excel
 {
     public struct Pos
     {
@@ -13,7 +15,7 @@
 
         public override string ToString()
         {
-            return $"r{Row} c{Column}";
+            return string.Format("r{0} c{1}", Row, Column);
         }
     }
 }

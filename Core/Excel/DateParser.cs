@@ -12,12 +12,12 @@ namespace Qa.Core.Excel
             var match = rgx.Match(fileName).ToString();
 
             var parsedDate = DateTime.Parse(match.Length < 8
-                ? $"{match.Substring(4, 2)}/01/{match.Substring(0, 4)}"
-                : $"{match.Substring(4, 2)}/{match.Substring(6, 2)}/{match.Substring(0, 4)}");
+                ? string.Format("{0}/01/{1}", match.Substring(4, 2), match.Substring(0, 4))
+                : string.Format("{0}/{1}/{2}", match.Substring(4, 2), match.Substring(6, 2), match.Substring(0, 4)));
 
             var monthName = toMonthName(parsedDate.Month);
 
-            return $"{monthName} {parsedDate.Year}";
+            return string.Format("{0} {1}", monthName, parsedDate.Year);
         }
 
         private string toMonthName(int monthNumber)

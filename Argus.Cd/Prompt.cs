@@ -21,19 +21,23 @@ namespace Qa.Argus.Cd
                 Console.Clear();
                 Lo.NewPage("Santander")
                     .Wl()
-                    .Wl($"Current folder is {settings.WorkingFolder}")
+                    .Wl(string.Format("Current folder is {0}", settings.WorkingFolder))
                     .Wl()
                     .Wl("Select command:")
                     .Wl("1. Format")
                     .Wl("2. Create QA report");
-                var key = Console.ReadKey().KeyChar;
-                if (key == '1')
+                var key = Console.ReadKey();
+                if (key.KeyChar == '1')
                 {
                     new FormatPrompt(settings).Start();
                 }
-                else if (key == '2')
+                else if (key.KeyChar == '2')
                 {
                     new QaPrompt(settings, new Exporter(new CommonPage())).Start();
+                }
+                else if (key.Key == ConsoleKey.Escape)
+                {
+                    break;
                 }
             }
         }

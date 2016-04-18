@@ -48,8 +48,8 @@ namespace Qa.Core.Combines
         private void showSettings(CombineSettings settings)
         {
             Lo.Wl().Wl("Combine Settings:")
-                .Wl($"File mask      = {settings.FileMask}")
-                .Wl($"Working folder = {settings.WorkingFolder}");
+                .Wl(string.Format("File mask      = {0}", settings.FileMask))
+                .Wl(string.Format("Working folder = {0}", settings.WorkingFolder));
         }
     }
 }

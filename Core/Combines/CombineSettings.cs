@@ -8,7 +8,10 @@ namespace Qa.Core.Combines
 
         public string FileMask { get; set; }
 
-        public string WorkingFolder => _settings.WorkingFolder;
+        public string WorkingFolder
+        {
+            get { return _settings.WorkingFolder; }
+        }
 
         public int HeaderRowsCount { get; set; }
 

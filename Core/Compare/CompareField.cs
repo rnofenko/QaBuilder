@@ -7,9 +7,12 @@ namespace Qa.Core.Compare
     {
         private readonly FieldDescription _description;
 
-        public string Title => _description.Title ?? _description.Name;
+        public string Title
+        {
+            get { return _description.Title ?? _description.Name; }
+        }
 
-        public CompareNumber Number { get; }
+        public CompareNumber Number { get; private set; }
 
         public CompareField(RawReportField current)
         {
@@ -25,7 +28,7 @@ namespace Qa.Core.Compare
         public CompareField(RawReportField current, RawReportField previous)
         {
             _description = current.Description;
-            Number = new CompareNumber(current.Number, previous?.Number);
+            Number = new CompareNumber(current.Number, previous != null ? previous.Number : (double?)null);
         }
 
         public TypedValue GetCurrent()

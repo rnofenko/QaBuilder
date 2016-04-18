@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Qa.Bai.Pulse.Sb.Monthly</RootNamespace>
     <AssemblyName>Qa.Bai.Pulse.Sb.Monthly</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -61,7 +62,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Bai.Pulse.Sb\Bai.Pulse.Sb.csproj">
       <Project>{a18dfc80-f1dd-4541-ab2e-e2b4839e48b6}</Project>
-      <Name>Qa.Bai.Sbp</Name>
+      <Name>Bai.Pulse.Sb</Name>
     </ProjectReference>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{4de5c331-b873-423d-80dd-8c946e41a538}</Project>

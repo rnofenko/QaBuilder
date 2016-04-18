@@ -35,7 +35,7 @@ namespace Qa.Core.Structure
             }
             if (structures.Count > 1)
             {
-                Lo.Wl().Wl($"ERROR  in {filepath}: There are {structures.Count} corresponding file structures.");
+                Lo.Wl().Wl("ERROR  in {filepath}: There are {structures.Count} corresponding file structures.");
                 return default(T);
             }
             return structures.First();

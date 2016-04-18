@@ -67,7 +67,11 @@ namespace Qa.Core.Structure
         private string get(string name)
         {
             var parameter = getSettings()[name];
-            return parameter?.Value;
+            if (parameter != null)
+            {
+                return parameter.Value;
+            }
+            return null;
         }
 
         private void set(string name, string value)

@@ -12,7 +12,10 @@ namespace Qa.Core.Structure
 
         public string TextQualifier { get; set; }
 
-        public int FieldsCount => Fields.Count;
+        public int FieldsCount
+        {
+            get { return Fields.Count; }
+        }
 
         public List<FieldDescription> Fields { get; set; }
 

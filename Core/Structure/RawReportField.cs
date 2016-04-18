@@ -6,13 +6,13 @@ namespace Qa.Core.Structure
 {
     public class RawReportField
     {
-        public FieldDescription Description { get; }
+        public FieldDescription Description { get; private set; }
 
-        public DType Type => Description.Type;
+        public DType Type { get { return Description.Type; } }
 
-        public string Name => Description.Name;
+        public string Name {get { return Description.Name; } }
 
-        public double Number { get; }
+        public double Number { get; private set; }
 
         public Dictionary<string, double> GroupedNumbers { get; set; }
 

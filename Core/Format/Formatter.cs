@@ -41,7 +41,7 @@ namespace Qa.Core.Format
                     }
                 }
             }
-            Lo.Wl().Wl($"Processed {rowCount} rows.");
+            Lo.Wl().Wl(String.Format("Processed {0} rows.", rowCount));
         }
 
         private string processLine(string line)
@@ -62,15 +62,15 @@ namespace Qa.Core.Format
                     var parsed = double.Parse(value);
                     if (field.NumberFormat == NumberFormat.Double || field.NumberFormat == NumberFormat.Money)
                     {
-                        value = $"{parsed:0.00}";
+                        value = string.Format("{0:0.00}", parsed);
                     }
                     else if (field.NumberFormat == NumberFormat.Rate)
                     {
-                        value = $"{parsed:0.0000}";
+                        value = string.Format("{0:0.0000}", parsed);
                     }
                     else
                     {
-                        value = $"{parsed:0}";
+                        value = string.Format("{0:0}", parsed);
                     }
                 }
                 else if (field.Type == DType.Date)

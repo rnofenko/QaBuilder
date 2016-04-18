@@ -22,7 +22,7 @@ namespace Qa.Bai.Benchmark.Dp
                 Console.Clear();
                 Lo.NewPage("Santander")
                     .Wl()
-                    .Wl($"Current folder is {settings.WorkingFolder}")
+                    .Wl(string.Format("Current folder is {0}", settings.WorkingFolder))
                     .Wl()
                     .Wl("Select command:")
                     .Wl("1. Format")

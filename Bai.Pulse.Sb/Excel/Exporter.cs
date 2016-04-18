@@ -12,7 +12,7 @@ namespace Qa.Bai.Pulse.Sb.Excel
     {
         public void Export(List<PulseComparePacket> packets, CompareSettings settings)
         {
-            var path = Path.Combine(settings.WorkingFolder, $"{packets.First().Strucure.Name}.xlsx");
+            var path = Path.Combine(settings.WorkingFolder, string.Format("{0}.xlsx", packets.First().Strucure.Name));
             new PoliteDeleter().Delete(path);
 
             var file = new FileInfo(path);

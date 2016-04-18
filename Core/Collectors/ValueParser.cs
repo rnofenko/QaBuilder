@@ -130,7 +130,7 @@ namespace Qa.Core.Collectors
             }
             catch
             {
-                throw new InvalidOperationException($"[{value}] is not a numeric format.");
+                throw new InvalidOperationException(string.Format("[{0}] is not a numeric format.", value));
             }
         }
 

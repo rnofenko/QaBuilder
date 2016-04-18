@@ -10,12 +10,21 @@ namespace Qa.Core.Excel
 {
     public class ExcelCursor
     {
-        public ExcelWorksheet Sheet { get; }
+        public ExcelWorksheet Sheet { get; private set; }
 
         private Pos _pos;
         private readonly Queue<Pos> _topLeftCorners;
         private readonly HeaderStyle _headerStyle;
-        public Pos Pos => _pos;
+
+        public Pos Pos
+        {
+            get { return _pos; }
+        }
+
+        public ExcelRange Cell
+        {
+            get { return getCell(_pos); }
+        }
 
         public ExcelCursor(ExcelWorksheet sheet)
         {
@@ -34,9 +43,7 @@ namespace Qa.Core.Excel
             _pos.Row = rowPosition;
             return this;
         }
-
-        public ExcelRange Cell => getCell(_pos);
-
+        
         public ExcelCursor Merge(int count)
         {
             var range = Sheet.Cells[Pos.Row, _pos.Column, Pos.Row, _pos.Column + count - 1];
@@ -261,7 +268,7 @@ namespace Qa.Core.Excel
             {
                 return String(value.String(), pos, null);
             }
-            throw new InvalidOperationException($"Type {value.Type} isn't supported.");
+            throw new InvalidOperationException(string.Format("Type {0} isn't supported.", value.Type));
         }
 
         public ExcelCursor Money(double value)

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Qa.Core.Structure;
 
 namespace Qa.Core.Collectors
@@ -15,13 +16,19 @@ namespace Qa.Core.Collectors
 
         public FieldDescription Description { get; set; }
 
-        public DType Type => Description.Type;
+        public DType Type
+        {
+            get { return Description.Type; }
+        }
 
         public double Number { get; set; }
 
         public Dictionary<string, double> GroupedNumbers { get; set; }
 
-        public CalculationDescription Calculation => Description.Calculation;
+        public CalculationDescription Calculation
+        {
+            get { return Description.Calculation; }
+        }
 
         public HashSet<string> UniqueValues { get; set; }
 
@@ -29,7 +36,7 @@ namespace Qa.Core.Collectors
 
         public override string ToString()
         {
-            return $"{Description.Name}";
+            return string.Format("{0}", Description.Name);
         }
     }
 }

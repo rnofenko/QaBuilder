@@ -55,7 +55,7 @@ namespace Qa.Bai.Pulse.Sb.Collectors
                         parserGroup.Parse(line);                        
                         if ((parserGroup.RowsCount % 25000) == 0)
                         {
-                            Lo.Wl($"Processed {parserGroup.RowsCount}");
+                            Lo.Wl(string.Format("Processed {0}", parserGroup.RowsCount));
                         }
                     }
                 }

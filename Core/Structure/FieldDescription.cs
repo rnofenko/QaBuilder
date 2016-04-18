@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Qa.Core.Structure
@@ -26,7 +27,7 @@ namespace Qa.Core.Structure
 
         public override string ToString()
         {
-            return $"{Name} {Type}";
+            return String.Format("{0} {1}", Name, Type);
         }
 
         public static FieldDescription RowsCountDescription()

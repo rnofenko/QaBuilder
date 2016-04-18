@@ -73,7 +73,7 @@ namespace Qa.Core.Excel
 
         public override string ToString()
         {
-            return $"{Type} - {Value}";
+            return string.Format("{0} - {1}", Type, Value);
         }
     }
 }

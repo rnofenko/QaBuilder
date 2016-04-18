@@ -11,9 +11,15 @@ namespace Qa.Bai.Pulse.Sb.Compare
 
         public bool ShowNotParsedFiles { get; set; }
 
-        public string WorkingFolder => _settings.WorkingFolder;
+        public string WorkingFolder
+        {
+            get { return _settings.WorkingFolder; }
+        }
 
-        public List<FileStructure> FileStructures => _settings.FileStructures;
+        public List<FileStructure> FileStructures
+        {
+            get { return _settings.FileStructures; }
+        }
 
         public CompareSettings(Settings settings)
         {
