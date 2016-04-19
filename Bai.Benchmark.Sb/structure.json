@@ -3,6 +3,7 @@
     {
       "name": "BAI SBB",
       "rowsInHeader": 0,
+      "skipRows": 0,
       "delimiter": "|",
       "fields": [
         {

@@ -22,6 +22,19 @@ namespace Qa.Core.Structure
 
             foreach (var structure in sourceStructures)
             {
+                if (structure.SkipRows > 0)
+                {
+                    using (var stream = new StreamReader(filepath))
+                    {
+                        for (var i = 0; i < structure.SkipRows; i++)
+                        {
+
+                            stream.ReadLine();
+                        }
+                        line = stream.ReadLine();
+                    }
+                }
+
                 var fields = structure.GetLineParser().Parse(line);
                 if (fields.Length == structure.FieldsCount)
                 {

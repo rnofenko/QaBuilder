@@ -3,6 +3,7 @@
     {
       "name": "Account Level Data",
       "rowsInHeader": 1,
+      "skipRows": 1,
       "delimiter": "|",
       "fields": [
         {

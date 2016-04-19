@@ -7,5 +7,7 @@
         string TextQualifier { get; }
 
         int FieldsCount { get; }
+        
+        int? SkipRows { get; }
     }
 }
