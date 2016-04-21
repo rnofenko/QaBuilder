@@ -3,6 +3,7 @@
     {
       "name": "BAI SB Pulse Monthly",
       "delimiter": "|",
+      "rowsInHeader": 1, 
       "fields": [
         { "name": "BANK_CODE" },
         { "name": "CYCLE_TYPE" },

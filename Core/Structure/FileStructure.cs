@@ -6,7 +6,7 @@ namespace Qa.Core.Structure
     {
         public string Name { get; set; }
 
-        public int RowsInHeader { get; set; }
+        public int? RowsInHeader { get; set; }
 
         public int? SkipRows { get; set; }
 

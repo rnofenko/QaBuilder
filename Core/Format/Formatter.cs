@@ -41,7 +41,7 @@ namespace Qa.Core.Format
                     }
                 }
             }
-            Lo.Wl().Wl(String.Format("Processed {0} rows.", rowCount));
+            Lo.Wl().Wl(string.Format("Processed {0} rows.", rowCount));
         }
 
         private string processLine(string line)

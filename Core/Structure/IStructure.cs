@@ -9,5 +9,7 @@
         int FieldsCount { get; }
         
         int? SkipRows { get; }
+
+        int? RowsInHeader { get; }
     }
 }
