@@ -7,32 +7,24 @@ namespace Qa.Core.Structure
 {
     public class StructureDetector
     {
-        public T Detect<T>(string filepath, List<T> structures) where T : IStructure
-        {
-            using (var stream = new StreamReader(filepath))
-            {
-                var line = stream.ReadLine();
-                return line.IsEmpty() ? default(T) : findStructure(line, filepath, structures);
-            }
-        }
-
-        private T findStructure<T>(string line, string filepath, IEnumerable<T> sourceStructures) where T : IStructure
+        public T Detect<T>(string filepath, IEnumerable<T> sourceStructures) where T : IStructure
         {
             var structures = new List<T>();
 
             foreach (var structure in sourceStructures)
             {
-                if (structure.SkipRows > 0)
+                string line;
+                using (var stream = new StreamReader(filepath))
                 {
-                    using (var stream = new StreamReader(filepath))
+                    for (var i = 0; i < structure.SkipRows + structure.RowsInHeader; i++)
                     {
-                        for (var i = 0; i < structure.SkipRows; i++)
-                        {
-
-                            stream.ReadLine();
-                        }
-                        line = stream.ReadLine();
+                        stream.ReadLine();
                     }
+                    line = stream.ReadLine();
+                }
+                if (line.IsEmpty())
+                {
+                    continue;
                 }
 
                 var fields = structure.GetLineParser().Parse(line);
