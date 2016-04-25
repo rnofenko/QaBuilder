@@ -14,6 +14,8 @@ namespace Qa.Core.Structure
 
         public string TextQualifier { get; set; }
 
+        public string FileMask { get; set; }
+
         public int FieldsCount
         {
             get { return Fields.Count; }

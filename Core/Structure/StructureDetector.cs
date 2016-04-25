@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Qa.Core.System;
@@ -8,11 +7,18 @@ namespace Qa.Core.Structure
 {
     public class StructureDetector
     {
+        private readonly FileMaskFilter _fileMaskFilter;
+
+        public StructureDetector()
+        {
+            _fileMaskFilter = new FileMaskFilter();
+        }
+
         public T Detect<T>(string filepath, IEnumerable<T> sourceStructures) where T : IStructure
         {
             var structures = new List<T>();
 
-            foreach (var structure in sourceStructures)
+            foreach (var structure in sourceStructures.Where(x=> _fileMaskFilter.IsMatch(x.FileMask,filepath)))
             {
                 string line;
                 using (var stream = new StreamReader(filepath))
