@@ -280,6 +280,48 @@
           }
         }
       ]
+    },
+    {
+      "name": "Branch Customer Facing Transactions",
+      "rowsInHeader": 1,
+      "delimiter": "|",
+      "fields": [
+        {
+          "name": "YEAR_MONTH",
+          "title": "Period"
+        },
+        {
+          "name": "BRANCH_ID",
+          "title": "Branch ID",
+          "calculation": {
+            "type": "countUnique"
+          },
+          "style": {
+            "indent": 2
+          }
+        },
+        {
+          "name": "TRXN_TYPE",
+          "title": "Trxn Type",
+          "calculation": {
+            "type": "sum",
+            "field": "TRXN_COUNT",
+            "group": true
+          },
+          "sort": "numeric",
+          "style": {
+            "indent": 0
+          }
+        },
+        {
+          "name": "TRXN_COUNT",
+          "title": "Trxn Count",
+          "numberFormat": "Integer",
+          "style": {
+            "indent": 1
+          }
+        }
+      ]
     }
   ]
 }
