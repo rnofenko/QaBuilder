@@ -57,6 +57,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileMaskApplierTests.cs" />
     <Compile Include="LineParserTests.cs" />
     <Compile Include="PerformanceParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

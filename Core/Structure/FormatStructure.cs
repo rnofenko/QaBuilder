@@ -8,6 +8,8 @@ namespace Qa.Core.Structure
 
         public int? RowsInHeader { get; set; }
 
+        public string FileMask { get; set; }
+
         public int? SkipRows { get; set; }
 
         public string Delimiter { get; set; }

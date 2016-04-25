@@ -11,5 +11,7 @@
         int? SkipRows { get; }
 
         int? RowsInHeader { get; }
+
+        string FileMask { get; }
     }
 }
