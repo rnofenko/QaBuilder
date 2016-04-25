@@ -1,6 +1,7 @@
 ﻿{
   "structures": [
     {
+      "fileMask": "ACCT", 
       "name": "Account Level Data",
       "rowsInHeader": 1,
       "skipRows": 0,
@@ -240,6 +241,7 @@
       ]
     },
     {
+      "fileMask": "ATM_TRXN",
       "name": "ATM Transactions",
       "rowsInHeader": 1,
       "delimiter": "|",
@@ -282,6 +284,7 @@
       ]
     },
     {
+      "fileMask": "TRXN",
       "name": "Branch Customer Facing Transactions",
       "rowsInHeader": 1,
       "delimiter": "|",
