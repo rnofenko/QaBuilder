@@ -1,7 +1,7 @@
 ﻿{
   "structures": [
     {
-      "fileMask": "ACCT", 
+      "fileMask": "ACCT*.txt", 
       "name": "Account Level Data",
       "rowsInHeader": 1,
       "skipRows": 0,
@@ -241,7 +241,7 @@
       ]
     },
     {
-      "fileMask": "ATM_TRXN",
+      "fileMask": "ATM_TRXN*.txt",
       "name": "ATM Transactions",
       "rowsInHeader": 1,
       "delimiter": "|",
@@ -284,8 +284,8 @@
       ]
     },
     {
-      "fileMask": "TRXN",
-      "name": "Branch Customer Facing Transactions",
+      "fileMask": "TRXN*.txt",
+      "name": "Branch Customer Facing Trxn",
       "rowsInHeader": 1,
       "delimiter": "|",
       "fields": [
