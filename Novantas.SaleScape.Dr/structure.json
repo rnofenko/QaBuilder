@@ -257,7 +257,7 @@
             "type": "countUnique"
           },
           "style": {
-            "indent": 2
+            "indent": 6
           }
         },
         {
@@ -270,7 +270,7 @@
           },
           "sort": "numeric",
           "style": {
-            "indent": 0
+            "indent": 4
           }
         },
         {
@@ -278,7 +278,7 @@
           "title": "Trxn Count",
           "numberFormat": "Integer",
           "style": {
-            "indent": 1
+            "indent": 5
           }
         }
       ]
@@ -300,7 +300,7 @@
             "type": "countUnique"
           },
           "style": {
-            "indent": 2
+            "indent": 5
           }
         },
         {
@@ -313,7 +313,7 @@
           },
           "sort": "numeric",
           "style": {
-            "indent": 0
+            "indent": 4
           }
         },
         {
@@ -321,7 +321,7 @@
           "title": "Trxn Count",
           "numberFormat": "Integer",
           "style": {
-            "indent": 1
+            "indent": 5
           }
         }
       ]

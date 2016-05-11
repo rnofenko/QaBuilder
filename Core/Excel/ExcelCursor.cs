@@ -336,7 +336,7 @@ namespace Qa.Core.Excel
             else
             {
                 cell.Value = value;
-                cell.Style.Numberformat.Format = "#,##0%;-#,##0%";
+                cell.Style.Numberformat.Format = "#,##0.0%;-#,##0.0%";
             }
             if (styleCondition != null)
             {
