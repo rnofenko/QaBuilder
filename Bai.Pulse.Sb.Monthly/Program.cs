@@ -1,4 +1,4 @@
-﻿namespace Qa.Bai.Pulse.Sb.Monthly
+﻿namespace Q2.Bai.Pulse.Sb.Monthly
 {
     class Program
     {

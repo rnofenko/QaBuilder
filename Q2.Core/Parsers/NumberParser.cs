@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Q2.Core.Collectors.CalcFields
+namespace Q2.Core.Collectors
 {
     public static class NumberParser
     {

@@ -3,14 +3,14 @@ using Q2.Core.Structure;
 
 namespace Q2.Core.Collectors.CalcFields
 {
-    public class CalcGroupedSumField : ICalculationField
+    public class CalcGroupedSumField : CalcBaseField, ICalculationField
     {
         private readonly int _index;
         private readonly Dictionary<string, double> _groupedNumbers;
 
         public CalcGroupedSumField(QaField field)
+            :base(field)
         {
-            Field = field;
             _index = field.FieldIndex;
             _groupedNumbers = new Dictionary<string, double>();
         }
@@ -28,8 +28,6 @@ namespace Q2.Core.Collectors.CalcFields
                 _groupedNumbers.Add(value, parsed);
             }
         }
-
-        public QaField Field { get; }
 
         public double GetSingleResult()
         {

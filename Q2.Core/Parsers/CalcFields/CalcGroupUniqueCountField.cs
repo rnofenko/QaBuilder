@@ -4,14 +4,13 @@ using Q2.Core.Structure;
 
 namespace Q2.Core.Collectors.CalcFields
 {
-    public class CalcGroupUniqueCountField : ICalculationField
+    public class CalcGroupUniqueCountField : CalcBaseField, ICalculationField
     {
         private readonly Dictionary<string, HashSet<string>> _groupedUniqueValues;
         private readonly int _index;
 
-        public CalcGroupUniqueCountField(QaField field)
+        public CalcGroupUniqueCountField(QaField field) : base(field)
         {
-            Field = field;
             _groupedUniqueValues = new Dictionary<string, HashSet<string>>();
             _index = field.FieldIndex;
         }
@@ -33,8 +32,6 @@ namespace Q2.Core.Collectors.CalcFields
                 set.Add(fieldValue);
             }
         }
-
-        public QaField Field { get; }
 
         public double GetSingleResult()
         {

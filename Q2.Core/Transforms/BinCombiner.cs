@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Q2.Core.Collectors;
 using Q2.Core.Extensions;
+using Q2.Core.Parsers;
 using Q2.Core.Structure;
 
 namespace Q2.Core.Transforms
 {
     public class BinCombiner
     {
-        public void Combine(List<RawReport> rawReports)
+        public void Combine(List<ParsedFile> files)
         {
-            foreach (var rawReport in rawReports)
+            foreach (var rawReport in files)
             {
                 foreach (var field in rawReport.Fields.Where(x=>x.Field.Group && x.Field.Bins.IsNotEmpty()))
                 {

@@ -3,15 +3,15 @@ using Q2.Core.Structure;
 
 namespace Q2.Core.Collectors.CalcFields
 {
-    public class CalcGroupCountField : ICalculationField
+    public class CalcGroupCountField : CalcBaseField, ICalculationField
     {
         private readonly Dictionary<string, double> _groupedNumbers;
         private readonly int _index;
 
-        public CalcGroupCountField(QaField qaField)
+        public CalcGroupCountField(QaField field)
+            : base(field)
         {
-            Field = qaField;
-            _index = qaField.FieldIndex;
+            _index = field.FieldIndex;
             _groupedNumbers = new Dictionary<string, double>();
         }
 
@@ -28,8 +28,6 @@ namespace Q2.Core.Collectors.CalcFields
                 _groupedNumbers.Add(value, 1);
             }
         }
-
-        public QaField Field { get; }
 
         public double GetSingleResult()
         {

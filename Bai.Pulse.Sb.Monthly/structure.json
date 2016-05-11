@@ -1,146 +1,180 @@
-﻿{
-  "structures": [
-    {
-      "name": "BAI SB Pulse Monthly",
-      "delimiter": "|",
-      "rowsInHeader": 1, 
-      "fields": [
-        { "name": "BANK_CODE" },
-        { "name": "CYCLE_TYPE" },
-        {
-          "name": "STATE",
-          "calculation": {
-            "type": "count",
-            "group": true
-          }
-        },
-        { "name": "CYCLE_DT" },
-        {
-          "name": "NACH",
-          "numberFormat": "Money",
-          "title": "Non-Analysis Checking"
-        },
-        {
-          "name": "FBC",
-          "numberFormat": "Money",
-          "title": "Free Business Checking"
-        },
-        {
-          "name": "NNC",
-          "numberFormat": "Money",
-          "title": "Non-Interest Non-Analysis Checking"
-        },
-        {
-          "name": "INC",
-          "numberFormat": "Money",
-          "title": "Interest Non Analysis Checking"
-        },
-        {
-          "name": "NAC",
-          "numberFormat": "Money",
-          "title": "Non-Interest Analysis Checking"
-        },
-        {
-          "name": "SWP",
-          "numberFormat": "Money",
-          "title": "Commercial Sweep (On Balance Sheet)"
-        },
-        {
-          "name": "SWO",
-          "numberFormat": "Money",
-          "title": "Commercial Sweep (Off Balance Sheet)"
-        },
-        {
-          "name": "BSV",
-          "numberFormat": "Money",
-          "title": "Business Savings"
-        },
-        {
-          "name": "MMA",
-          "numberFormat": "Money",
-          "title": "Money Market"
-        },
-        {
-          "name": "RMA",
-          "numberFormat": "Money",
-          "title": "Regular MMDA"
-        },
-        {
-          "name": "HMA",
-          "numberFormat": "Money",
-          "title": "High Rate MMDA"
-        },
-        {
-          "name": "BCD",
-          "numberFormat": "Money",
-          "title": "Business CDs"
-        },
-        {
-          "name": "TOTAL_CKG_ACCTS",
-          "numberFormat": "Integer",
-          "title": "Total Checking Accounts"
-        },
-        {
-          "name": "TOTAL_NACH_CKG_ACCTS",
-          "numberFormat": "Integer",
-          "title": "Total Non-Analysis Checking Accounts"
-        },
-        {
-          "name": "TOTAL_NAC_CKG_ACCTS",
-          "numberFormat": "Integer",
-          "title": "Total Analysis Checking Accounts"
-        },
-        {
-          "name": "NEW_CKG_ACCTS",
-          "numberFormat": "Integer",
-          "title": "New Checking Accounts"
-        },
-        {
-          "name": "NEW_NACH_CKG_ACCTS",
-          "numberFormat": "Integer",
-          "title": "New Non-Analysis Checking Accounts"
-        },
-        {
-          "name": "NEW_NAC_CKG_ACCTS",
-          "numberFormat": "Integer",
-          "title": "New Analysis Checking Accounts"
-        },
-        {
-          "name": "CLOSED_CKG_ACCTS",
-          "numberFormat": "Integer",
-          "title": "Closed Checking Accounts"
-        },
-        {
-          "name": "CLOSED_NACH_CKG_ACCTS",
-          "numberFormat": "Integer",
-          "title": "Closed Non-Analysis Checking Accounts"
-        },
-        {
-          "name": "CLOSED_NAC_CKG_ACCTS",
-          "numberFormat": "Integer",
-          "title": "Closed Analysis Checking Accounts"
-        }
-      ],
-      "transformations": [
-        {
-          "name": "byState",
-          "fields": [
-            {
-              "name": "Total Balance",
-              "fields": [ "NACH", "NAC", "SWP", "SWO", "BSV", "MMA", "BCD" ]
-            },
-            { "name": "TOTAL_CKG_ACCTS" },
-            { "name": "NEW_CKG_ACCTS" },
-            { "name": "CLOSED_CKG_ACCTS" }
-          ]
-        }
-      ]
-    }
-  ],
-  "formatSchemes": [
-    {
-      "name": "BAI SB Pulse Monthly",
+﻿[
+  {
+    "name": "BAI SB Pulse Monthly",
+    "rowsInHeader": 1,
+    "fields": [
+      { "name": "BANK_CODE" },
+      { "name": "CYCLE_TYPE" },
+      { "name": "STATE" },
+      { "name": "CYCLE_DT" },
+      {
+        "name": "NACH",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "FBC",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "NNC",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "INC",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "NAC",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "SWP",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "SWO",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "BSV",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "MMA",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "RMA",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "HMA",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "BCD",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "TOTAL_CKG_ACCTS",
+        "numberFormat": "Integer"
+      },
+      {
+        "name": "TOTAL_NACH_CKG_ACCTS",
+        "numberFormat": "Integer"
+      },
+      {
+        "name": "TOTAL_NAC_CKG_ACCTS",
+        "numberFormat": "Integer"
+      },
+      {
+        "name": "NEW_CKG_ACCTS",
+        "numberFormat": "Integer"
+      },
+      {
+        "name": "NEW_NACH_CKG_ACCTS",
+        "numberFormat": "Integer"
+      },
+      {
+        "name": "NEW_NAC_CKG_ACCTS",
+        "numberFormat": "Integer"
+      },
+      {
+        "name": "CLOSED_CKG_ACCTS",
+        "numberFormat": "Integer"
+      },
+      {
+        "name": "CLOSED_NACH_CKG_ACCTS",
+        "numberFormat": "Integer"
+      },
+      {
+        "name": "CLOSED_NAC_CKG_ACCTS",
+        "numberFormat": "Integer"
+      }
+    ],
+    "format": {
       "delimiter": ","
-    }
-  ]
-}
+    },
+    "qa": {
+        "name": "BAI SB Pulse Monthly",
+        "delimiter": "|",
+        "rowsInHeader": 1,
+        "fields": [
+          { "field": "NACH", "title": "Non-Analysis Checking" },
+          { "field": "FBC", "title": "Free Business Checking" },
+          { "field": "NNC", "title": "Non-Interest Non-Analysis Checking" },
+          { "field": "INC",
+            "title": "Interest Non Analysis Checking"
+          },
+          {
+            "field": "NAC",
+            "title": "Non-Interest Analysis Checking"
+          },
+          {
+            "field": "SWP",
+            "title": "Commercial Sweep (On Balance Sheet)"
+          },
+          {
+            "field": "SWO",
+            "title": "Commercial Sweep (Off Balance Sheet)"
+          },
+          {
+            "field": "BSV",
+            "title": "Business Savings"
+          },
+          {
+            "field": "MMA",
+            "title": "Money Market"
+          },
+          {
+            "field": "RMA",
+            "title": "Regular MMDA"
+          },
+          {
+            "field": "HMA",
+            "title": "High Rate MMDA"
+          },
+          {
+            "field": "BCD",
+            "title": "Business CDs"
+          },
+          {
+            "field": "TOTAL_CKG_ACCTS",
+            "title": "Total Checking Accounts"
+          },
+          {
+            "field": "TOTAL_NACH_CKG_ACCTS",
+            "title": "Total Non-Analysis Checking Accounts"
+          },
+          {
+            "field": "TOTAL_NAC_CKG_ACCTS",
+            "title": "Total Analysis Checking Accounts"
+          },
+          {
+            "field": "NEW_CKG_ACCTS",
+            "title": "New Checking Accounts"
+          },
+          {
+            "field": "NEW_NACH_CKG_ACCTS",
+            "title": "New Non-Analysis Checking Accounts"
+          },
+          {
+            "field": "NEW_NAC_CKG_ACCTS",
+            "title": "New Analysis Checking Accounts"
+          },
+          {
+            "field": "CLOSED_CKG_ACCTS",
+            "title": "Closed Checking Accounts"
+          },
+          {
+            "field": "CLOSED_NACH_CKG_ACCTS",
+            "title": "Closed Non-Analysis Checking Accounts"
+          },
+          {
+            "field": "CLOSED_NAC_CKG_ACCTS",
+            "title": "Closed Analysis Checking Accounts"
+          }
+        ]
+      }
+  }
+]

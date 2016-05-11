@@ -3,33 +3,28 @@ using Q2.Core.Structure;
 
 namespace Q2.Core.Collectors.CalcFields
 {
-    public class CalcUniqueCountField : ICalculationField
+    public class CalcAverageField : CalcBaseField, ICalculationField
     {
-        private readonly HashSet<string> _uniqueValues;
+        private double _sum;
+        private int _count;
         private readonly int _index;
 
-        public CalcUniqueCountField(QaField field)
+        public CalcAverageField(QaField field)
+            :base(field)
         {
-            Field = field;
             _index = field.FieldIndex;
-            _uniqueValues = new HashSet<string>();
         }
 
         public void Calc(string[] parts)
         {
             var value = parts[_index];
-
-            if (!_uniqueValues.Contains(value))
-            {
-                _uniqueValues.Add(value);
-            }
+            _sum += NumberParser.Parse(value);
+            _count++;
         }
-
-        public QaField Field { get; }
 
         public double GetSingleResult()
         {
-            return _uniqueValues.Count;
+            return _sum / _count;
         }
 
         public Dictionary<string, double> GetGroupedResult()

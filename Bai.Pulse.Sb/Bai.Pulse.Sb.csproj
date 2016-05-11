@@ -7,8 +7,8 @@
     <ProjectGuid>{A18DFC80-F1DD-4541-AB2E-E2B4839E48B6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Qa.Bai.Pulse.Sb</RootNamespace>
-    <AssemblyName>Qa.Bai.Pulse.Sb</AssemblyName>
+    <RootNamespace>Q2.Bai.Pulse.Sb</RootNamespace>
+    <AssemblyName>Q2.Bai.Pulse.Sb</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -47,29 +47,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Collectors\CollectionSettings.cs" />
-    <Compile Include="Collectors\RawDataCollector.cs" />
-    <Compile Include="Collectors\PulseRawReport.cs" />
-    <Compile Include="Collectors\RawSubReport.cs" />
-    <Compile Include="Collectors\ValueParserGroup.cs" />
-    <Compile Include="Compare\PulseComparePacket.cs" />
-    <Compile Include="Compare\PulseComparePrompt.cs" />
-    <Compile Include="Compare\PulseComparer.cs" />
-    <Compile Include="Compare\PulseCompareReport.cs" />
-    <Compile Include="Compare\CompareSettings.cs" />
-    <Compile Include="Compare\CompareSubReport.cs" />
-    <Compile Include="Excel\Exporter.cs" />
-    <Compile Include="Excel\MainSheet.cs" />
-    <Compile Include="Excel\PeriodSheet.cs" />
+    <Compile Include="Excel\MainPage.cs" />
+    <Compile Include="PulseQaPrompt.cs" />
+    <Compile Include="Excel\PulseExporter.cs" />
+    <Compile Include="Excel\MainSheet2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PulsePropmt.cs" />
     <Compile Include="QaSettings.cs" />
-    <Compile Include="Transforms\SbpReportTransformer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{4de5c331-b873-423d-80dd-8c946e41a538}</Project>
-      <Name>Qa.Core</Name>
+    <ProjectReference Include="..\Q2.Core\Q2.Core.csproj">
+      <Project>{a4e171dc-9318-4a29-b3b4-7309110d3720}</Project>
+      <Name>Q2.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

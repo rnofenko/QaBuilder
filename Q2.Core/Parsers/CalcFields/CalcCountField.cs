@@ -3,21 +3,19 @@ using Q2.Core.Structure;
 
 namespace Q2.Core.Collectors.CalcFields
 {
-    public class CalcCountField : ICalculationField
+    public class CalcCountField : CalcBaseField, ICalculationField
     {
         private int _count;
 
         public CalcCountField(QaField field)
+            : base(field)
         {
-            Field = field;
         }
 
         public void Calc(string[] parts)
         {
             _count++;
         }
-
-        public QaField Field { get; }
 
         public double GetSingleResult()
         {

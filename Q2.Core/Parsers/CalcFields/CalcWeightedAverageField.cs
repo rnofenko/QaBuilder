@@ -3,7 +3,7 @@ using Q2.Core.Structure;
 
 namespace Q2.Core.Collectors.CalcFields
 {
-    public class CalcWeightedAverageField : ICalculationField
+    public class CalcWeightedAverageField : CalcBaseField, ICalculationField
     {
         private const double FAKE_SUM = 1000000;
 
@@ -12,11 +12,9 @@ namespace Q2.Core.Collectors.CalcFields
         private readonly int _index;
         private readonly int _weightIndex;
 
-        public QaField Field { get; }
-
         public CalcWeightedAverageField(QaField field)
+            :base(field)
         {
-            Field = field;
             _index = field.FieldIndex;
             _weightIndex = field.WeightFieldIndex;
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Q2.Core.Compare;
 using Q2.Core.Excel;
@@ -8,9 +9,9 @@ using Q2.Core.Structure;
 using Q2.Core.System;
 using Q2.Core.Transforms;
 
-namespace Q2.Core.Qa
+namespace Q2.Bai.Pulse.Sb
 {
-    public class QaPrompt
+    public class PulseQaPrompt
     {
         private readonly Settings _settings;
         private readonly FileFinder _fileFinder;
@@ -19,7 +20,7 @@ namespace Q2.Core.Qa
         private readonly BinCombiner _binCombiner;
         private readonly StructureDetector _detector;
 
-        public QaPrompt(Settings settings, IExporter exporter)
+        public PulseQaPrompt(Settings settings, IExporter exporter)
         {
             _settings = settings;
             _fileFinder = new FileFinder();
@@ -32,22 +33,22 @@ namespace Q2.Core.Qa
         public void Start()
         {
             Lo.NewPage("QA Reports");
-            var files = _fileFinder
+            var batches = _fileFinder
                 .Find(_settings.WorkingFolder, "*.*")
                 .Select(getParseArgs)
                 .Where(x => x != null)
-                .Select(x => new FileParser().Parse(x))
+                .Select(x => new FileParser().Parse(x, "STATE"))
                 .ToList();
+            alignFiles(batches);
 
-            if (files.IsEmpty())
+            if (batches.IsEmpty())
             {
                 Lo.Wl("No files were detected as QA report", ConsoleColor.Red);
             }
             else
             {
-                _binCombiner.Combine(files);
-                var result = _comparer.Compare(files);
-                _excelExporter.Export(result, _settings);
+                //var result = _comparer.Compare(files);
+                //_excelExporter.Export(result, _settings);
 
                 Lo.Wl().Wl("Comparing was finished.", ConsoleColor.Green);
             }
@@ -61,7 +62,26 @@ namespace Q2.Core.Qa
             {
                 return null;
             }
-            return new FileParseArgs { Path = path, Structure = structure};
+            return new FileParseArgs { Path = path, Structure = structure };
+        }
+
+        private void alignFiles(List<ParsedBatch> batches)
+        {
+            foreach (var parsedBatch in batches)
+            {
+                parsedBatch.Sort();
+            }
+
+            foreach (var parsedBatch in batches)
+            {
+                foreach (var parsedFile in parsedBatch.Files)
+                {
+                    foreach (var batch in batches)
+                    {
+                        batch.CreateIfAbsent(parsedFile.SplitValue);
+                    }
+                }
+            }
         }
     }
 }

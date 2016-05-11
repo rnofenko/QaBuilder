@@ -7,8 +7,8 @@
     <ProjectGuid>{F6A3DFCC-B03F-417B-AB06-F3423B97D0F2}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Qa.Bai.Pulse.Sb.Monthly</RootNamespace>
-    <AssemblyName>Qa.Bai.Pulse.Sb.Monthly</AssemblyName>
+    <RootNamespace>Q2.Bai.Pulse.Sb.Monthly</RootNamespace>
+    <AssemblyName>Q2.Bai.Pulse.Sb.Monthly</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -59,9 +59,9 @@
       <Project>{a18dfc80-f1dd-4541-ab2e-e2b4839e48b6}</Project>
       <Name>Bai.Pulse.Sb</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{4de5c331-b873-423d-80dd-8c946e41a538}</Project>
-      <Name>Qa.Core</Name>
+    <ProjectReference Include="..\Q2.Core\Q2.Core.csproj">
+      <Project>{a4e171dc-9318-4a29-b3b4-7309110d3720}</Project>
+      <Name>Q2.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

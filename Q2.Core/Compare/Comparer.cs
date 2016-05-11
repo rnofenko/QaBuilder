@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Q2.Core.Collectors;
+using Q2.Core.Parsers;
 using Q2.Core.Structure;
 
 namespace Q2.Core.Compare
@@ -15,7 +15,7 @@ namespace Q2.Core.Compare
             _valuesComparer = new ValuesComparer();
         }
 
-        public List<ComparePacket> Compare(IEnumerable<RawReport> statistics)
+        public List<ComparePacket> Compare(IEnumerable<ParsedFile> statistics)
         {
             var packets = statistics
                 .GroupBy(x => x.Structure.Name)
@@ -24,7 +24,7 @@ namespace Q2.Core.Compare
             return packets;
         }
 
-        private ComparePacket compare(IEnumerable<RawReport> rawReports)
+        private ComparePacket compare(IEnumerable<ParsedFile> rawReports)
         {
             var reports = rawReports.OrderBy(x => x.Path).ToList();
             var first = reports.First();
@@ -40,7 +40,7 @@ namespace Q2.Core.Compare
             return new ComparePacket(fileInformations, fieldPacks, first.Structure);
         }
 
-        private List<FileInformation> compareFiles(IEnumerable<RawReport> rawReports)
+        private List<FileInformation> compareFiles(IEnumerable<ParsedFile> rawReports)
         {
             var i = 0;
             return rawReports.Select(x => new FileInformation { FileName = Path.GetFileNameWithoutExtension(x.Path), Index = i++ }).ToList();

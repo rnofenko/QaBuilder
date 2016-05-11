@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Q2.Core.Extensions;
 using Q2.Core.Structure;
 
-namespace Q2.Core.Collectors.CalcFields
+namespace Q2.Core.Collectors
 {
     public class ExpressionFilter
     {

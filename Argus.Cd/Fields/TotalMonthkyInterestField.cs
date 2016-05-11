@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Q2.Core.Collectors;
 using Q2.Core.Collectors.CalcFields;
 using Q2.Core.Structure;
 

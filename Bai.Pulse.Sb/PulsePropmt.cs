@@ -1,11 +1,11 @@
 ﻿using System;
-using Qa.Bai.Pulse.Sb.Compare;
-using Qa.Core.Combines;
-using Qa.Core.Format;
-using Qa.Core.Structure;
-using Qa.Core.System;
+using Q2.Bai.Pulse.Sb.Excel;
+using Q2.Core.Combines;
+using Q2.Core.Format;
+using Q2.Core.Structure;
+using Q2.Core.System;
 
-namespace Qa.Bai.Pulse.Sb
+namespace Q2.Bai.Pulse.Sb
 {
     public class PulsePropmt
     {
@@ -34,7 +34,7 @@ namespace Qa.Bai.Pulse.Sb
                 }
                 else if (key.KeyChar == '2')
                 {
-                    new PulseComparePrompt(settings).Start();
+                    new PulseQaPrompt(settings, new PulseExporter()).Start();
                 }
                 else if (key.KeyChar == '3')
                 {

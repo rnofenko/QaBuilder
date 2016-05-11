@@ -50,23 +50,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Calculations\Calculator.cs" />
-    <Compile Include="Collectors\CalcFields\CalcAverageField.cs" />
-    <Compile Include="Collectors\CalcFields\CalcCountField.cs" />
-    <Compile Include="Collectors\CalcFields\CalcGroupCountField.cs" />
-    <Compile Include="Collectors\CalcFields\CalcGroupedSumField.cs" />
-    <Compile Include="Collectors\CalcFields\CalcGroupUniqueCountField.cs" />
-    <Compile Include="Collectors\CalcFields\CalcSumField.cs" />
-    <Compile Include="Collectors\CalcFields\CalcUniqueCountField.cs" />
-    <Compile Include="Collectors\CalcFields\CalcWeightedAverageField.cs" />
-    <Compile Include="Collectors\CalcFields\ExpressionFilter.cs" />
-    <Compile Include="Collectors\CalcFields\ICalculationField.cs" />
-    <Compile Include="Collectors\CalcFields\NumberParser.cs" />
-    <Compile Include="Collectors\DefaultCalculationFieldFactory.cs" />
-    <Compile Include="Collectors\ICalculationFieldFactory.cs" />
-    <Compile Include="Collectors\LineParser.cs" />
-    <Compile Include="Collectors\RawDataCollector.cs" />
-    <Compile Include="Collectors\RawReport.cs" />
-    <Compile Include="Collectors\ValueParser.cs" />
+    <Compile Include="Parsers\CalcFields\CalcAverageField.cs" />
+    <Compile Include="Parsers\CalcFields\CalcBaseField.cs" />
+    <Compile Include="Parsers\CalcFields\CalcCountField.cs" />
+    <Compile Include="Parsers\CalcFields\CalcGroupCountField.cs" />
+    <Compile Include="Parsers\CalcFields\CalcGroupedSumField.cs" />
+    <Compile Include="Parsers\CalcFields\CalcGroupUniqueCountField.cs" />
+    <Compile Include="Parsers\CalcFields\CalcSumField.cs" />
+    <Compile Include="Parsers\CalcFields\CalcUniqueCountField.cs" />
+    <Compile Include="Parsers\CalcFields\CalcWeightedAverageField.cs" />
+    <Compile Include="Parsers\ExpressionFilter.cs" />
+    <Compile Include="Parsers\CalcFields\ICalculationField.cs" />
+    <Compile Include="Parsers\NumberParser.cs" />
+    <Compile Include="Parsers\CalcFields\DefaultCalculationFieldFactory.cs" />
+    <Compile Include="Parsers\CalcFields\ICalculationFieldFactory.cs" />
+    <Compile Include="Parsers\LineParser.cs" />
+    <Compile Include="Parsers\FileParser.cs" />
+    <Compile Include="Parsers\ParsedFile.cs" />
+    <Compile Include="Parsers\ValueParser.cs" />
     <Compile Include="Combines\CombinePromt.cs" />
     <Compile Include="Combines\CombineSettings.cs" />
     <Compile Include="Combines\FileCombiner.cs" />
@@ -112,6 +113,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Parsers\FileParseArgs.cs" />
     <Compile Include="Qa\QaPrompt.cs" />
     <Compile Include="Structure\BaseBinRange.cs" />
     <Compile Include="Structure\BinRange.cs" />

@@ -3,30 +3,32 @@ using Q2.Core.Structure;
 
 namespace Q2.Core.Collectors.CalcFields
 {
-    public class CalcAverageField : ICalculationField
+    public class CalcSumField : CalcBaseField, ICalculationField
     {
         private double _sum;
-        private int _count;
         private readonly int _index;
+        private readonly ExpressionFilter _filter;
 
-        public CalcAverageField(QaField field)
+        public CalcSumField(QaField field, List<Field> sourceFields) : base(field)
         {
-            Field = field;
             _index = field.FieldIndex;
+            _filter = new ExpressionFilter(field.FilterExpression, sourceFields);
         }
 
         public void Calc(string[] parts)
         {
+            if (!_filter.Match(parts))
+            {
+                return;
+            }
+
             var value = parts[_index];
             _sum += NumberParser.Parse(value);
-            _count++;
         }
-
-        public QaField Field { get; }
 
         public double GetSingleResult()
         {
-            return _sum / _count;
+            return _sum;
         }
 
         public Dictionary<string, double> GetGroupedResult()
