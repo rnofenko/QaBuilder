@@ -17,7 +17,7 @@
             "type": "countUnique"
           },
           "style": {
-            "indent": 6
+            "indent": 4
           }
         },
         {
@@ -55,7 +55,7 @@
             "R": "Consumer"
           },
           "style": {
-            "indent": 8
+            "indent": 6
           }
         },
         {
@@ -63,15 +63,15 @@
           "title": "Month End Balance",
           "numberFormat": "Money",
           "style": {
-            "indent": 6
+            "indent": 3
           }
         },
         {
           "name": "AVG_MONTHLY_BALANCE",
-          "title": "Average Nonthly Balance",
+          "title": "Avg. Nonthly Balance",
           "numberFormat": "Money",
           "style": {
-            "indent": 6
+            "indent": 3
           }
         },
         {
@@ -85,7 +85,7 @@
             "type": "countUnique"
           },
           "style": {
-            "indent": 6
+            "indent": 4
           }
         },
         {
@@ -96,8 +96,8 @@
             "group": true
           },
           "translate": {
-            "Y": "Customers with Managed Accounts",
-            "N": "Customers without Managed Accounts"
+            "Y": "Cust. with Managed Accts",
+            "N": "Cust. w/o Managed Accts"
           },
           "style": {
             "indent": 0
@@ -111,7 +111,7 @@
             "group": true
           },
           "style": {
-            "indent": 10
+            "indent": 7
           }
         },
         {
@@ -142,7 +142,7 @@
             "N": "Inactive"
           },
           "style": {
-            "indent": 8
+            "indent": 6
           }
         },
         {
@@ -157,7 +157,7 @@
             "N": "Inactive"
           },
           "style": {
-            "indent": 8
+            "indent": 6
           }
         },
         {
@@ -172,7 +172,7 @@
             "N": "Inactive"
           },
           "style": {
-            "indent": 8
+            "indent": 6
           }
         },
         {
@@ -187,7 +187,7 @@
             "N": "Not ACH"
           },
           "style": {
-            "indent": 8
+            "indent": 6
           }
         },
         {
@@ -258,7 +258,7 @@
             }
           ],
           "style": {
-            "indent": 8
+            "indent": 5
           }
         },
         {
@@ -296,7 +296,7 @@
             "type": "countUnique"
           },
           "style": {
-            "indent": 6
+            "indent": 4
           }
         },
         {
@@ -314,7 +314,7 @@
             "type": "countUnique"
           },
           "style": {
-            "indent": 6
+            "indent": 4
           }
         },
         {
@@ -341,7 +341,7 @@
             "N": "Inactive"
           },
           "style": {
-            "indent": 8
+            "indent": 6
           }
         },
         {
@@ -353,7 +353,7 @@
           "title": "Total Fees",
           "numberFormat": "Money",
           "style": {
-            "indent": 6
+            "indent": 4
           }
         },
         {
@@ -387,7 +387,7 @@
             "N": "Inactive"
           },
           "style": {
-            "indent": 8
+            "indent": 6
           }
         },
         {
@@ -402,7 +402,7 @@
             "N": "Inactive"
           },
           "style": {
-            "indent": 8
+            "indent": 6
           }
         }
       ]
