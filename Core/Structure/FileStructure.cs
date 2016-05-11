@@ -23,8 +23,6 @@ namespace Qa.Core.Structure
 
         public List<FieldDescription> Fields { get; set; }
 
-        public List<FieldDescription> NewFields { get; set; }
-
         public List<TransformStructure> Transformations { get; set; }
 
         public FileStructure()

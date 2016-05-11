@@ -1,161 +1,174 @@
-﻿{
-  "structures": [
-    {
-      "name": "Argus CD Appendix A",
-      "rowsInHeader": 1,
-      "delimiter": "|",
-      "fields": [
-        {
-          "name": "Account Identifier",
-          "calculation": {
-            "type": "countUnique"
-          }
-        },
-        {
-          "name": "Customer Identifier",
-          "calculation": {
-            "type": "countUnique"
-          }
-        },
-        { "name": "Product Type" },
-        { "name": "SubProduct Type" },
-        {
-          "name": "Account Status",
-          "calculation": {
-            "type": "countUnique"
-          }
-        },
-        { "name": "Open Date" },
-        {
-          "name": "Close Date",
-          "type": "Date"
-        },
-        { "name": "Term Start Date" },
-        { "name": "Term End Date" },
-        {
-          "name": "Month End Balance",
-          "numberFormat": "Money"
-        },
-        {
-          "name": "APY",
-          "numberFormat": "Rate",
-          "calculation": {
-            "type": "average"
-          }
-        },
-        {
-          "name": "Interest Accrued",
-          "numberFormat": "Money"
-        },
-        { "name": "City" },
-        {
-          "name": "State",
-          "calculation": {
-            "type": "countUnique"
-          }
-        },
-        { "name": "Zip Code" },
-        { "name": "Branch" },
-        { "name": "Origin Branch" },
-        { "name": "Origination Channel" },
-        { "name": "Close Reason Code" },
-        { "name": "Cycle Start Date" },
-        { "name": "Cycle End Date" },
-        { "name": "Cycle Balance" }
-      ]
+﻿[
+  {
+    "name": "Argus CD - Account Attributes",
+    "rowsInHeader": 1,
+    "fields": [ 
+      { "name": "Account Identifier" },
+      { "name": "Customer Identifier" },
+      { "name": "Product Type" },
+      { "name": "SubProduct Type" },
+      { "name": "Account Status" },
+      { "name": "Open Date" },
+      {
+        "name": "Close Date",
+        "type": "Date"
+      },
+      { "name": "Term Start Date" },
+      { "name": "Term End Date" },
+      {
+        "name": "Month End Balance",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "APY",
+        "numberFormat": "Rate"
+      },
+      {
+        "name": "Interest Accrued",
+        "numberFormat": "Money"
+      },
+      { "name": "City" },
+      { "name": "State" },
+      { "name": "Zip Code" },
+      { "name": "Branch" },
+      { "name": "Origin Branch" },
+      { "name": "Origination Channel" },
+      { "name": "Close Reason Code" },
+      { "name": "Cycle Start Date" },
+      { "name": "Cycle End Date" },
+      { "name": "Cycle Balance" }
+    ],
+    "format": {
+      "delimiter": ","
     },
-    {
-      "name": "Argus CD Appendix B",
-      "rowsInHeader": 1,
+    "qa": {
       "delimiter": "|",
       "fields": [
         {
-          "name": "Account Identifier",
-          "calculation": {
-            "type": "countUnique"
-          }
-        },
-        { "name": "Transaction Post Date" },
-        {
-          "name": "Transaction Amount",
-          "numberFormat": "Money"
+          "title": "Number of Contracts",
+          "type": "countUnique",
+          "field": "Account Identifier"
         },
         {
-          "name": "Credit/Debit Indicator",
-          "calculation": {
-            "type": "count",
-            "group": true
-          },
+          "title": "Unique Customer Count",
+          "type": "countUnique",
+          "field": "Customer Identifier"
+        },
+        {
+          "field": "Month End Balance"
+        },
+        {
+          "type": "weightedAverage",
+          "field": "APY",
+          "weightField": "Month End Balance"
+        },
+        { "field": "Interest Accrued" },
+        {
+          "title": "Total Monthly Interest",
+          "type": "custom",
+          "numberFormat": "Money",
+          "code": "totalMonthlyInterest"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Argus CD - Transactios Attributes",
+    "rowsInHeader": 1,
+    "format": {
+      "delimiter": ","
+    },
+    "fields": [
+      { "name": "Account Identifier" },
+      { "name": "Transaction Post Date" },
+      {
+        "name": "Transaction Amount",
+        "numberFormat": "Money"
+      },
+      { "name": "Credit/Debit Indicator" },
+      { "name": "Transaction Code" },
+      { "name": "Source System" },
+      { "name": "Transaction Date" },
+      { "name": "Transaction Description" },
+      { "name": "Transaction Identifier" },
+      { "name": "Running balance" },
+      { "name": "Sequence number" }
+    ],
+    "qa": {
+      "delimiter": "|",
+      "fields": [
+        {
+          "title": "Total Transaction Amount of Renewal/Rollover",
+          "field": "Transaction Amount",
+          "type": "sum",
+          "filterExpression": "Transaction Code=Renewal/Rollover"
+        },
+        {
+          "title": "Total Transaction Amount of Withdrawal",
+          "field": "Transaction Amount",
+          "type": "sum",
+          "filterExpression": "Transaction Code=Withdrawal-Full or Partial"
+        },
+        {
+          "title": "Total Transaction Amount of New Account",
+          "field": "Transaction Amount",
+          "type": "sum",
+          "filterExpression": "Transaction Code=New Account"
+        },
+        {
+          "title": "Number of contracts",
+          "field": "Account Identifier",
+          "type": "countUnique"
+        },
+        {
+          "field": "Credit/Debit Indicator",
+          "type": "count",
+          "group": true,
           "translate": {
             "C": "Credit",
             "D": "Debit"
           }
         },
         {
-          "name": "Transaction Code",
-          "calculation": {
-            "type": "count",
-            "group": true
-          }
-        },
-        { "name": "Source System" },
-        { "name": "Transaction Date" },
-        { "name": "Transaction Description" },
-        { "name": "Transaction Identifier" },
-        { "name": "Running balance" },
-        { "name": "Sequence number" }
+          "field": "Transaction Code",
+          "type": "count",
+          "group": true
+        }
       ]
+    }
+  },
+  {
+    "name": "Argus CD - Customer Attributes",
+    "rowsInHeader": 1,
+    "format": {
+      "delimiter": ","
     },
-    {
-      "name": "Argus CD Appendix C",
-      "rowsInHeader": 1,
+    "fields": [
+      { "name": "Customer Identifier" },
+      { "name": "Account Identifier" },
+      { "name": "City" },
+      { "name": "State" },
+      { "name": "Zip Code" },
+      { "name": "Birth Date" },
+      { "name": "Primary Customer Identifier" },
+      { "name": "Household Identifier" },
+      { "name": "Relationship Start Date" },
+      { "name": "Head Of Household Flag" }
+    ],
+    "qa": {
       "delimiter": "|",
       "fields": [
         {
-          "name": "Customer Identifier",
-          "calculation": {
-            "type": "countUnique"
-          }
+          "title": "Number of Customers",
+          "field": "Customer Identifier",
+          "type": "countUnique"
         },
         {
-          "name": "Account Identifier",
-          "calculation": {
-            "type": "countUnique"
-          }
-        },
-        {
-          "name": "City",
-          "calculation": {
-            "type": "countUnique"
-          }
-        },
-        {
-          "name": "State",
-          "calculation": {
-            "type": "countUnique"
-          }
-        },
-        { "name": "Zip Code" },
-        { "name": "Birth Date" },
-        { "name": "Primary Customer Identifier" },
-        { "name": "Household Identifier" },
-        { "name": "Relationship Start Date" },
-        { "name": "Head Of Household Flag" }
+          "title": "Number of Contracts",
+          "field": "Account Identifier",
+          "type": "countUnique"
+        }
       ]
     }
-  ],
-  "formatSchemes": [
-    {
-      "name": "Argus CD Appendix A",
-      "delimiter": ","
-    },
-    {
-      "name": "Argus CD Appendix B",
-      "delimiter": ","
-    },
-    {
-      "name": "Argus CD Appendix C",
-      "delimiter": ","
-    }
-  ]
-}
+  }
+]
