@@ -1,1 +1,1 @@
-C:\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild QA.sln /p:Configuration=Release /p:Platform="Any CPU"
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild qa_build.sln /p:Configuration=Release /p:Platform="Any CPU"

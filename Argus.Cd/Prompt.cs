@@ -1,11 +1,12 @@
 ﻿using System;
-using Qa.Core.Excel;
-using Qa.Core.Format;
-using Qa.Core.Qa;
-using Qa.Core.Structure;
-using Qa.Core.System;
+using Q2.Argus.Cd.Fields;
+using Q2.Core.Excel;
+using Q2.Core.Format;
+using Q2.Core.Qa;
+using Q2.Core.Structure;
+using Q2.Core.System;
 
-namespace Qa.Argus.Cd
+namespace Q2.Argus.Cd
 {
     public class Prompt
     {
@@ -15,6 +16,7 @@ namespace Qa.Argus.Cd
         {
             _settingsProvider = new SettingsProvider();
             var settings = _settingsProvider.Load();
+            ServiceLocator.CalculationFieldFactory = new CustomCalculationFieldFactory();
 
             while (true)
             {
@@ -33,7 +35,7 @@ namespace Qa.Argus.Cd
                 }
                 else if (key.KeyChar == '2')
                 {
-                    new QaPrompt(settings, new Exporter(new CommonPage())).Start();
+                    new QaPrompt(settings, new Exporter(new CommonPage(new CommonPageSettings {Freeze = false}))).Start();
                 }
                 else if (key.Key == ConsoleKey.Escape)
                 {

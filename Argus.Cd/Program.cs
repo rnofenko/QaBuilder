@@ -1,4 +1,4 @@
-﻿namespace Qa.Argus.Cd
+﻿namespace Q2.Argus.Cd
 {
     class Program
     {
