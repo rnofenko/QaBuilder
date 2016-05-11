@@ -13,7 +13,7 @@
             "type": "countUnique"
           },
           "style": {
-            "indent": 6
+            "indent": 4
           }
         },
         {
@@ -23,7 +23,7 @@
             "type": "countUnique"
           },
           "style": {
-            "indent": 6
+            "indent": 4
           }
         },
         {
@@ -69,7 +69,7 @@
             "R": "Consumer"
           },
           "style": {
-            "indent": 8
+            "indent": 6
           }
         },
         {
@@ -77,15 +77,15 @@
           "title": "Month End Balance",
           "numberFormat": "Money",
           "style": {
-            "indent": 6
+            "indent": 2
           }
         },
         {
           "name": "AVG_MONTHLY_BALANCE",
-          "title": "Average Monthly Balance",
+          "title": "Avg. Monthly Balance",
           "numberFormat": "Money",
           "style": {
-            "indent": 6
+            "indent": 2
           }
         },
         {
@@ -99,7 +99,7 @@
             "type": "countUnique"
           },
           "style": {
-            "indent": 6
+            "indent": 4
           }
         },
         {
@@ -109,7 +109,7 @@
             "type": "countUnique"
           },
           "style": {
-            "indent": 6
+            "indent": 4
           }
         },
         {
@@ -121,8 +121,8 @@
             "group": true
           },
           "translate": {
-            "Y": "Customers with Managed Accounts",
-            "N": "Customers without Managed Accounts"
+            "Y": "Cust. with Managed Accts",
+            "N": "Cust. w/o Managed Accts"
           },
           "style": {
             "indent": 0
@@ -140,7 +140,7 @@
             "N": "Not Employee"
           },
           "style": {
-            "indent": 8
+            "indent": 5
           }
         },
         {
@@ -179,7 +179,7 @@
             "N": "Inactive"
           },
           "style": {
-            "indent": 8
+            "indent": 5
           }
         },
         {
@@ -264,7 +264,7 @@
             }
           ],
           "style": {
-            "indent": 8
+            "indent": 5
           }
         },
         {
@@ -395,7 +395,7 @@
             }
           ],
           "style": {
-            "indent": 8
+            "indent": 6
           }
         },
         {
@@ -443,7 +443,7 @@
           "title": "Total Fees",
           "numberFormat": "Money",
           "style": {
-            "indent": 6
+            "indent": 4
           }
         },
         {
