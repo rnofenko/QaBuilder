@@ -1,3 +1,4 @@
+using System.Drawing;
 using System.Linq;
 using OfficeOpenXml;
 using Q2.Core.Compare;
@@ -8,40 +9,48 @@ namespace Q2.Bai.Pulse.Sb.Excel
 {
     public class MainPage : IExportPage
     {
-        private readonly CommonPageSettings _settings;
         private readonly GroupedFieldPrinter _groupedFieldPrinter;
         private readonly GroupOfNumberFieldPrinter _groupOfNumberFieldPrinter;
+        private ExcelCursor _cursor;
         private const int INIT_COLUMN = 2;
 
         public MainPage()
         {
-            _settings = new CommonPageSettings {Freeze = false};
             _groupedFieldPrinter = new GroupedFieldPrinter();
             _groupOfNumberFieldPrinter = new GroupOfNumberFieldPrinter();
         }
 
         public void Print(ComparePacket packet, ExcelWorksheet sheet)
         {
-            var cursor = new ExcelCursor(sheet);
-            new Header().Print(cursor, packet.Structure.Name);
-            cursor.Column(INIT_COLUMN).Row(5);
+            _cursor = new ExcelCursor(sheet);
+            new Header().Print(_cursor, packet.Structure.Name);
+            _cursor.Column(INIT_COLUMN).Row(5);
 
-            _groupOfNumberFieldPrinter.Print(packet.NumberFields.Where(x => x.Calculation != CalculationType.CountUnique), cursor, packet);
-            _groupOfNumberFieldPrinter.Print(packet.NumberFields.Where(x => x.Calculation == CalculationType.CountUnique), cursor, packet);
+            _groupOfNumberFieldPrinter.Print(packet.NumberFields.Where(x => x.Calculation != CalculationType.CountUnique), _cursor, packet);
+            _groupOfNumberFieldPrinter.Print(packet.NumberFields.Where(x => x.Calculation == CalculationType.CountUnique), _cursor, packet);
 
             foreach (var field in packet.GroupedFields)
             {
-                _groupedFieldPrinter.Print(field, cursor, packet);
+                _groupedFieldPrinter.Print(field, _cursor, packet);
             }
+        }
 
+        public void PrintState(ComparePacket packet, ExcelWorksheet sheet)
+        {
+            _cursor.Print(packet.SplitValue).BackgroundColor(Color.Bisque).Down();
+            _groupOfNumberFieldPrinter.Print(packet.NumberFields.Where(x => x.Calculation != CalculationType.CountUnique), _cursor, packet);
+            _groupOfNumberFieldPrinter.Print(packet.NumberFields.Where(x => x.Calculation == CalculationType.CountUnique), _cursor, packet);
+
+            foreach (var field in packet.GroupedFields)
+            {
+                _groupedFieldPrinter.Print(field, _cursor, packet);
+            }
+        }
+
+        public void Footer(ExcelWorksheet sheet)
+        {
             sheet.Cells[sheet.Dimension.Address].AutoFitColumns();
             sheet.Column(1).Width = 3;
-            sheet.Column(packet.Files.Count * 2 + 2).Width = 3;
-
-            if (_settings.Freeze)
-            {
-                cursor.Sheet.View.FreezePanes(4, 3);
-            }
         }
     }
 }

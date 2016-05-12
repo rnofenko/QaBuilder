@@ -14,6 +14,8 @@ namespace Q2.Core.Compare
 
         public List<GroupedField> GroupedFields { get; set; }
 
+        public string SplitValue { get; set; }
+
         public ComparePacket(IEnumerable<FileInformation> fileInformations, List<FieldPack> fieldPacks, QaStructure structure)
         {
             Structure = structure;

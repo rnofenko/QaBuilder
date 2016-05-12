@@ -12,7 +12,7 @@ namespace Q2.Bai.Pulse.Sb.Excel
 {
     public class PulseExporter : IExporter
     {
-        private readonly IExportPage _page;
+        private readonly MainPage _page;
 
         public PulseExporter()
         {
@@ -28,19 +28,18 @@ namespace Q2.Bai.Pulse.Sb.Excel
             var file = new FileInfo(path);
             using (var package = new ExcelPackage(file))
             {
-                foreach (var packet in packets)
+                var sheet = package.Workbook.Worksheets.Add(packets.First().Structure.Name);
+
+                _page.Print(packets.First(x => x.SplitValue == PulseConsts.NATIONAL), sheet);
+                foreach (var packet in packets.Where(x => x.SplitValue != PulseConsts.NATIONAL))
                 {
-                    fillPacket(packet, package.Workbook);
+                    _page.PrintState(packet, sheet);
                 }
+                _page.Footer(sheet);
+
                 package.Save();
             }
             Process.Start(path);
-        }
-
-        private void fillPacket(ComparePacket packet, ExcelWorkbook book)
-        {
-            var sheet = book.Worksheets.Add(packet.Structure.Name);
-            _page.Print(packet, sheet);
         }
     }
 }

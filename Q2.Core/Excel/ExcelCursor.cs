@@ -28,7 +28,7 @@ namespace Q2.Core.Excel
             get { return getCell(_pos); }
         }
 
-        public ExcelCursor(ExcelWorksheet sheet)
+        public  ExcelCursor(ExcelWorksheet sheet)
         {
             Sheet = sheet;
             _headerStyle = new HeaderStyle

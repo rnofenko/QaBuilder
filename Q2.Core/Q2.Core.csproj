@@ -66,6 +66,7 @@
     <Compile Include="Parsers\CalcFields\ICalculationFieldFactory.cs" />
     <Compile Include="Parsers\LineParser.cs" />
     <Compile Include="Parsers\FileParser.cs" />
+    <Compile Include="Parsers\ParsedBatch.cs" />
     <Compile Include="Parsers\ParsedFile.cs" />
     <Compile Include="Parsers\ValueParser.cs" />
     <Compile Include="Combines\CombinePromt.cs" />

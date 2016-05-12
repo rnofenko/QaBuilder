@@ -24,6 +24,20 @@ namespace Q2.Core.Compare
             return packets;
         }
 
+        public List<ComparePacket> Compare(List<ParsedBatch> batches)
+        {
+            var packets = new List<ComparePacket>();
+            for (var i = 0; i < batches.First().Files.Count; i++)
+            {
+                var index = i;
+                var files = batches.Select(x => x.Files[index]).ToList();
+                var packet = compare(files);
+                packet.SplitValue = files.First().SplitValue;
+                packets.Add(packet);
+            }
+            return packets;
+        }
+
         private ComparePacket compare(IEnumerable<ParsedFile> rawReports)
         {
             var reports = rawReports.OrderBy(x => x.Path).ToList();
