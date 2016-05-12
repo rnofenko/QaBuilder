@@ -1,4 +1,4 @@
-﻿using Q2.Core.Collectors;
+﻿using Qa.Core.Parsers;
 using Xunit;
 
 namespace Qa.Tests

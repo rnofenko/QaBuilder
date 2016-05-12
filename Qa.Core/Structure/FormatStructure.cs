@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using Q2.Core.Structure;
 
-namespace Q2.Core.Structure
+namespace Qa.Core.Structure
 {
     public class FormatStructure : IStructure
     {

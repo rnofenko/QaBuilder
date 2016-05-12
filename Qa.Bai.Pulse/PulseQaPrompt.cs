@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Q2.Core.Compare;
-using Q2.Core.Excel;
-using Q2.Core.Extensions;
-using Q2.Core.Parsers;
 using Q2.Core.Structure;
-using Q2.Core.System;
+using Qa.Core;
 using Qa.Core.Compare;
 using Qa.Core.Excel;
 using Qa.Core.Parsers;
 using Qa.Core.Structure;
+using Qa.Core.System;
 
-namespace Q2.Bai.Pulse.Sb
+namespace Qa.Bai.Pulse
 {
     public class PulseQaPrompt
     {

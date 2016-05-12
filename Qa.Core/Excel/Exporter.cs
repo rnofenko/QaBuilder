@@ -5,8 +5,8 @@ using System.Linq;
 using OfficeOpenXml;
 using Q2.Core.Compare;
 using Q2.Core.Excel;
-using Q2.Core.System;
 using Qa.Core.Structure;
+using Qa.Core.System;
 
 namespace Qa.Core.Excel
 {

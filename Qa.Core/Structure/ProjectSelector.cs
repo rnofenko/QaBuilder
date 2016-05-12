@@ -2,8 +2,7 @@
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using Q2.Core.Extensions;
-using Q2.Core.System;
+using Qa.Core.System;
 
 namespace Qa.Core.Structure
 {

@@ -1,10 +1,9 @@
 ﻿using System;
-using Q2.Bai.Pulse.Sb;
-using Q2.Bai.Pulse.Sb.Excel;
-using Q2.Core.System;
+using Qa.Bai.Pulse.Excel;
 using Qa.Core.Combines;
 using Qa.Core.Format;
 using Qa.Core.Structure;
+using Qa.Core.System;
 
 namespace Qa.Bai.Pulse
 {

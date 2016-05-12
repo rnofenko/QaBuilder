@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Qa.Core.Structure;
+using Q2.Core.Structure;
 
-namespace Q2.Core.Structure
+namespace Qa.Core.Structure
 {
     public class FileStructure
     {

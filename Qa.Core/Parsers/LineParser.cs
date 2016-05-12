@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using Q2.Core.Extensions;
-using Qa.Core;
 
-namespace Q2.Core.Collectors
+namespace Qa.Core.Parsers
 {
     public class LineParser
     {

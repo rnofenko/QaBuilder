@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Q2.Core.Extensions
+namespace Qa.Core
 {
     public static class EnumerableExtension
     {

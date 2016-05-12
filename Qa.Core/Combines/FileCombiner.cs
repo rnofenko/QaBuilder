@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using Q2.Core.System;
+using Qa.Core.System;
 
 namespace Qa.Core.Combines
 {

@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Q2.Core.Extensions;
-using Q2.Core.Parsers;
 using Q2.Core.Structure;
 using Qa.Core.Parsers;
 using Qa.Core.Structure;

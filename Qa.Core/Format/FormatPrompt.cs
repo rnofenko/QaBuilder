@@ -1,10 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using Q2.Core.Format;
 using Q2.Core.Structure;
-using Q2.Core.System;
 using Qa.Core.Structure;
+using Qa.Core.System;
 
 namespace Qa.Core.Format
 {

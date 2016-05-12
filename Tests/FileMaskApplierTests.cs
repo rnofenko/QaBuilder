@@ -1,4 +1,4 @@
-﻿using Q2.Core.System;
+﻿using Qa.Core.System;
 using Xunit;
 
 namespace Qa.Tests

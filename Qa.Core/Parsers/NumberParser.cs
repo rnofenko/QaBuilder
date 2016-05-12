@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Q2.Core.Collectors
+namespace Qa.Core.Parsers
 {
     public static class NumberParser
     {

@@ -5,7 +5,7 @@ using Q2.Core.Compare;
 using Q2.Core.Excel;
 using Q2.Core.Structure;
 
-namespace Q2.Bai.Pulse.Sb.Monthly.Excel
+namespace Qa.Bai.Pulse.Excel
 {
     public class MainPage : IExportPage
     {

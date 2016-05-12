@@ -1,4 +1,5 @@
-using Q2.Core.Extensions;
+using Qa.Core;
+using Qa.Core.Structure;
 
 namespace Q2.Core.Structure.Json
 {

@@ -69,38 +69,30 @@
       "fields": [
         {
           "field": "NIC",
-          "title": "Total balance of non-interest checking"
+          "title": "Non-interest checking"
         },
         {
           "field": "FCK",
-          "title": "Total balance of totally free checking"
+          "title": "Totally free checking"
         },
         {
-          "field": "NNC",
-          "title": "Non-Interest Non-Analysis Checking"
+          "field": "FCD",
+          "title": "Free checking with direct deposit"
         },
         {
-          "field": "INC",
-          "title": "Interest Non Analysis Checking"
+          "field": "NCK",
+          "title": "Other non-interest checking"
         },
         {
-          "field": "NAC",
-          "title": "Non-Interest Analysis Checking"
+          "field": "ICK",
+          "title": "Interest checking"
         },
         {
-          "field": "SWP",
-          "title": "Commercial Sweep (On Balance Sheet)"
+          "field": "SAV",
+          "title": "Traditional savings"
         },
         {
-          "field": "SWO",
-          "title": "Commercial Sweep (Off Balance Sheet)"
-        },
-        {
-          "field": "BSV",
-          "title": "Business Savings"
-        },
-        {
-          "field": "MMA",
+          "field": "MMDA",
           "title": "Money Market"
         },
         {
@@ -112,8 +104,20 @@
           "title": "High Rate MMDA"
         },
         {
-          "field": "BCD",
-          "title": "Business CDs"
+          "field": "IRA",
+          "title": "IRAs"
+        },
+        {
+          "field": "CD",
+          "title": "All CDs"
+        },
+        {
+          "field": "RCD",
+          "title": "Regular CD"
+        },
+        {
+          "field": "JCD",
+          "title": "JCD"
         }
       ]
     }

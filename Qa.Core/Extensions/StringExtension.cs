@@ -1,4 +1,4 @@
-﻿namespace Q2.Core.Extensions
+﻿namespace Qa.Core
 {
     public static class StringExtension
     {

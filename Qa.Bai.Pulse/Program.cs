@@ -1,6 +1,4 @@
-﻿using Q2.Bai.Pulse.Sb;
-
-namespace Qa.Bai.Pulse
+﻿namespace Qa.Bai.Pulse
 {
     class Program
     {

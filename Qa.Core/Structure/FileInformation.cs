@@ -1,4 +1,4 @@
-namespace Q2.Core.Structure
+namespace Qa.Core.Structure
 {
     public class FileInformation
     {

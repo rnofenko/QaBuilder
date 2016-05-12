@@ -2,9 +2,8 @@ using System;
 using System.Configuration;
 using System.Diagnostics;
 using System.IO;
-using Q2.Core.Extensions;
-using Q2.Core.System;
 using Qa.Core.Structure.Json;
+using Qa.Core.System;
 
 namespace Qa.Core.Structure
 {

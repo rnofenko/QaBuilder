@@ -61,6 +61,7 @@
     <Compile Include="Parsers\CalcFields\CalcWeightedAverageField.cs" />
     <Compile Include="Parsers\ExpressionFilter.cs" />
     <Compile Include="Parsers\CalcFields\ICalculationField.cs" />
+    <Compile Include="Parsers\FileReaders\TextFileReader.cs" />
     <Compile Include="Parsers\NumberParser.cs" />
     <Compile Include="Parsers\CalcFields\DefaultCalculationFieldFactory.cs" />
     <Compile Include="Parsers\CalcFields\ICalculationFieldFactory.cs" />

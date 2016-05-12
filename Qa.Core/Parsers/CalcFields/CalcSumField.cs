@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using Q2.Core.Structure;
-using Qa.Core.Parsers.CalcFields;
+using Q2.Core.Collectors;
+using Q2.Core.Collectors.CalcFields;
 using Qa.Core.Structure;
 
-namespace Q2.Core.Collectors.CalcFields
+namespace Qa.Core.Parsers.CalcFields
 {
     public class CalcSumField : CalcBaseField, ICalculationField
     {

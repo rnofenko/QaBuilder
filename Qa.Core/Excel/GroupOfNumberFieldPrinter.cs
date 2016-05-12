@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using OfficeOpenXml.Style;
 using Q2.Core.Compare;
-using Q2.Core.Extensions;
+using Qa.Core;
 using Qa.Core.Excel;
 
 namespace Q2.Core.Excel

@@ -4,9 +4,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Q2.Core.Collectors;
-using Q2.Core.Extensions;
-using Q2.Core.Parsers;
-using Q2.Core.System;
+using Qa.Core.Parsers.FileReaders;
+using Qa.Core.System;
 
 namespace Qa.Core.Parsers
 {
@@ -17,21 +16,15 @@ namespace Qa.Core.Parsers
         public ParsedBatch Parse(FileParseArgs args, string splitBy)
         {
             Lo.Wl(string.Format("File: {0}", Path.GetFileNameWithoutExtension(args.Path)), ConsoleColor.Cyan);
-            var lineParser = args.Structure.GetLineParser();
             var splitByIndex = args.Structure.SourceFields.FindIndex(x => x.Name == splitBy);
 
             var parsers = new Dictionary<string, ValueParser>();
-            using (var stream = new StreamReader(args.Path))
+            using (var reader = FileReaderFactory.Create(args.Path, args.Structure))
             {
-                for (var i = 0; i < args.Structure.RowsInHeader; i++)
+                reader.Skip(args.Structure.RowsInHeader);
+                string[] parts;
+                while ((parts = reader.ReadRow()) != null)
                 {
-                    stream.ReadLine();
-                }
-
-                string line;
-                while ((line = stream.ReadLine()) != null)
-                {
-                    var parts = lineParser.Parse(line);
                     var splitValue = parts[splitByIndex];
                     if (!parsers.ContainsKey(splitValue))
                     {
@@ -60,8 +53,6 @@ namespace Qa.Core.Parsers
         public ParsedFile Parse(FileParseArgs args)
         {
             Lo.Wl(string.Format("File: {0}", Path.GetFileNameWithoutExtension(args.Path)), ConsoleColor.Cyan);
-            var lineParser = args.Structure.GetLineParser();
-
             if (_watch == null)
             {
                 _watch = Stopwatch.StartNew();
@@ -69,17 +60,12 @@ namespace Qa.Core.Parsers
 
             using (var valueParser = new ValueParser(args.Structure))
             {
-                using (var stream = new StreamReader(args.Path))
+                using (var reader = FileReaderFactory.Create(args.Path, args.Structure))
                 {
-                    for (var i = 0; i < args.Structure.RowsInHeader; i++)
+                    reader.Skip(args.Structure.RowsInHeader);
+                    string[] parts;
+                    while ((parts = reader.ReadRow()) != null)
                     {
-                        stream.ReadLine();
-                    }
-
-                    string line;
-                    while ((line = stream.ReadLine()) != null)
-                    {
-                        var parts = lineParser.Parse(line);
                         valueParser.Parse(parts);
                         if ((valueParser.RowsCount % 250000) == 0)
                         {

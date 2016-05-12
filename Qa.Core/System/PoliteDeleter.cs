@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Q2.Core.System
+namespace Qa.Core.System
 {
     public class PoliteDeleter
     {

@@ -1,7 +1,6 @@
 ﻿using System;
-using Qa.Core.System;
 
-namespace Q2.Core.System
+namespace Qa.Core.System
 {
     public static class Lo
     {

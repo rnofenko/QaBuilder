@@ -1,4 +1,4 @@
-﻿namespace Q2.Bai.Pulse.Sb
+﻿namespace Qa.Bai.Pulse
 {
     public class PulseConsts
     {

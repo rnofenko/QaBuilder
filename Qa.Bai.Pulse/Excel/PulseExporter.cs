@@ -3,15 +3,12 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using OfficeOpenXml;
-using Q2.Bai.Pulse.Sb.Monthly.Excel;
 using Q2.Core.Compare;
-using Q2.Core.Excel;
-using Q2.Core.Structure;
-using Q2.Core.System;
 using Qa.Core.Excel;
 using Qa.Core.Structure;
+using Qa.Core.System;
 
-namespace Q2.Bai.Pulse.Sb.Excel
+namespace Qa.Bai.Pulse.Excel
 {
     public class PulseExporter : IExporter
     {

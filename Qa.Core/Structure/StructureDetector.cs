@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Q2.Core.Extensions;
-using Q2.Core.System;
+using Qa.Core.System;
 
-namespace Q2.Core.Structure
+namespace Qa.Core.Structure
 {
     public class StructureDetector
     {

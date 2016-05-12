@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Q2.Core.Collectors;
-using Q2.Core.Extensions;
 using Q2.Core.Structure;
-using Q2.Core.System;
-using Qa.Core;
+using Qa.Core.Parsers;
 using Qa.Core.Structure;
+using Qa.Core.System;
 
-namespace Q2.Core.Format
+namespace Qa.Core.Format
 {
     public class Formatter
     {

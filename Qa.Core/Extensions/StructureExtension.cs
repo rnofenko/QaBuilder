@@ -1,7 +1,8 @@
-﻿using Q2.Core.Collectors;
-using Q2.Core.Structure;
+﻿using Q2.Core.Structure;
+using Qa.Core.Parsers;
+using Qa.Core.Structure;
 
-namespace Q2.Core.Extensions
+namespace Qa.Core
 {
     public static class StructureExtension
     {

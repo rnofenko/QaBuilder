@@ -2,9 +2,8 @@
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Q2.Core.Extensions;
 
-namespace Q2.Core.System
+namespace Qa.Core.System
 {
     public class FileMaskFilter
     {

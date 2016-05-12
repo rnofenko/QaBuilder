@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Q2.Core.Collectors.CalcFields;
-using Q2.Core.Structure;
-using Q2.Core.System;
 using Qa.Core.Parsers.CalcFields;
 using Qa.Core.Structure;
+using Qa.Core.System;
 
-namespace Q2.Core.Collectors
+namespace Qa.Core.Parsers
 {
     public class ValueParser : IDisposable
     {

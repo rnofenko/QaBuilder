@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Q2.Core.Compare;
 using Q2.Core.Excel;
-using Q2.Core.Extensions;
 using Q2.Core.Structure;
 using Qa.Core.Structure;
 
