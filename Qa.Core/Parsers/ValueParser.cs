@@ -4,6 +4,8 @@ using System.Linq;
 using Q2.Core.Collectors.CalcFields;
 using Q2.Core.Structure;
 using Q2.Core.System;
+using Qa.Core.Parsers.CalcFields;
+using Qa.Core.Structure;
 
 namespace Q2.Core.Collectors
 {

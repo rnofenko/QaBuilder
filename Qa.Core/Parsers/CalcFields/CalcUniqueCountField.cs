@@ -1,7 +1,8 @@
 using System.Collections.Generic;
-using Q2.Core.Structure;
+using Q2.Core.Collectors.CalcFields;
+using Qa.Core.Structure;
 
-namespace Q2.Core.Collectors.CalcFields
+namespace Qa.Core.Parsers.CalcFields
 {
     public class CalcUniqueCountField : CalcBaseField, ICalculationField
     {

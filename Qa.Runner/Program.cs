@@ -1,6 +1,4 @@
-﻿using Qa.Runner;
-
-namespace Q2.Argus.Cd
+﻿namespace Qa.Runner
 {
     class Program
     {

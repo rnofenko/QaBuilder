@@ -1,7 +1,8 @@
 using System.Collections.Generic;
-using Q2.Core.Collectors.CalcFields;
+using Q2.Core.Structure;
+using Qa.Core.Parsers.CalcFields;
 
-namespace Q2.Core.Structure
+namespace Qa.Core.Structure
 {
     public class CalculatedField
     {

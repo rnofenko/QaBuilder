@@ -1,4 +1,5 @@
 using Q2.Core.Structure;
+using Qa.Core.Structure;
 
 namespace Q2.Core.Collectors.CalcFields
 {

@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using Q2.Core.Excel;
 using Q2.Core.Structure;
+using Qa.Core.Compare;
+using Qa.Core.Structure;
 
 namespace Q2.Core.Compare
 {

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Q2.Core.Structure.Json
+namespace Qa.Core.Structure.Json
 {
     public class JsonQaStructure
     {

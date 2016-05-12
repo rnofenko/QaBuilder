@@ -2,8 +2,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using Q2.Core.Extensions;
+using Q2.Core.Structure;
 
-namespace Q2.Core.Structure.Json
+namespace Qa.Core.Structure.Json
 {
     public class JsonQaField
     {
@@ -19,9 +20,11 @@ namespace Q2.Core.Structure.Json
 
         public bool Group { get; set; }
 
+        public string GroupBy { get; set; }
+
         public NumberFormat NumberFormat { get; set; }
 
-        public CalculationType Type { get; set; }
+        public CalculationType Calculation { get; set; }
 
         public Dictionary<string, string> Translate { get; set; }
 
@@ -30,7 +33,7 @@ namespace Q2.Core.Structure.Json
             var field = getField(fields);
             var qa = new QaField
             {
-                Calculation = Type,
+                Calculation = Calculation,
                 Code = Code,
                 FieldIndex = fields.FindIndex(x => x.Name == Field),
                 FilterExpression = FilterExpression,
@@ -38,8 +41,13 @@ namespace Q2.Core.Structure.Json
                 NumberFormat = NumberFormat == NumberFormat.None ? field.NumberFormat : NumberFormat,
                 Title = Title ?? Field,
                 Translate = Translate,
+                GroupByIndex = fields.FindIndex(x => x.Name == GroupBy),
                 WeightFieldIndex = fields.FindIndex(x => x.Name == WeightField)
             };
+            if (qa.GroupByIndex >= 0)
+            {
+                qa.Group = true;
+            }
             if (field.Type == DType.Numeric)
             {
                 if (qa.Calculation == CalculationType.None)
@@ -58,11 +66,11 @@ namespace Q2.Core.Structure.Json
         {
             if (Field.IsEmpty())
             {
-                if (Type == CalculationType.Count)
+                if (Calculation == CalculationType.Count)
                 {
                     return new Field { Name = "ROWS_COUNT", NumberFormat = NumberFormat.Integer, Type = DType.Numeric };
                 }
-                if (Type == CalculationType.Custom)
+                if (Calculation == CalculationType.Custom)
                 {
                     return new Field();
                 }

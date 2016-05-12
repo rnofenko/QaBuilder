@@ -2,6 +2,8 @@ using System;
 using System.Configuration;
 using System.Diagnostics;
 using System.IO;
+using Q2.Core.Extensions;
+using Q2.Core.System;
 using Qa.Core.Structure.Json;
 
 namespace Qa.Core.Structure
@@ -12,18 +14,31 @@ namespace Qa.Core.Structure
 
         public Settings Load()
         {
-            var projectName = get("defaultProject") ?? new ProjectSelector().Select(getBinFolder());
-            var projectJsonPath = getBinFolder() + projectName + ".json";
+            var projectName = get("defaultProject");
+            if (!File.Exists(getProjectFilePath(projectName)))
+            {
+                Lo.Wl(string.Format("JSON file for {0} is absent.", projectName), ConsoleColor.Red);
+                projectName = null;
+            }
+            if (projectName.IsEmpty())
+            {
+                projectName = new ProjectSelector().Select(getBinFolder());
+            }
 
             var config = new Settings
             {
                 Project = projectName,
                 WorkingFolder = getWorkingFolder(projectName),
-                FileStructures = new JsonStructureLoader().Load(projectJsonPath),
+                FileStructures = new JsonStructureLoader().Load(getProjectFilePath(projectName)),
                 QaFileName = get(projectName + "FileName")
             };
 
             return config;
+        }
+
+        private string getProjectFilePath(string project)
+        {
+            return getBinFolder() + project + ".json";
         }
 
         private string getWorkingFolder(string project)

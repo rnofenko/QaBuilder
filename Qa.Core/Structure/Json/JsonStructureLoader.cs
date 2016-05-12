@@ -18,6 +18,8 @@ namespace Qa.Core.Structure.Json
 
         private FileStructure convert(JsonFileStructure json)
         {
+            json.Format = json.Format ?? new JsonFormatStructure();
+
             var fields = json.Fields.Select(x => x.Convert()).ToList();
             var structure = new FileStructure
             {

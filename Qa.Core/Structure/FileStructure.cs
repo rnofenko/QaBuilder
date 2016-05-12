@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Qa.Core.Structure;
 
 namespace Q2.Core.Structure
 {

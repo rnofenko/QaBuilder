@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Q2.Core.Structure;
 using Qa.Core.Compare;
+using Qa.Core.Structure;
 
 namespace Q2.Core.Compare
 {

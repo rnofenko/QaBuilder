@@ -72,9 +72,7 @@
         {
           "field": "HOUSEHOLD_ID",
           "title": "Household ID",
-          "calculation": {
-            "type": "countUnique"
-          },
+          "calculation": "countUnique",
           "style": {
             "indent": 4
           }
@@ -82,9 +80,7 @@
         {
           "field": "CUSTOMER_ID",
           "title": "Customer ID",
-          "calculation": {
-            "type": "countUnique"
-          },
+          "calculation": "countUnique",
           "style": {
             "indent": 4
           }
@@ -92,10 +88,8 @@
         {
           "field": "PRODUCT_CODE",
           "title": "Product Code",
-          "calculation": {
-            "type": "count",
-            "group": true
-          },
+          "calculation": "count",
+          "group": true,
           "style": {
             "alignment": "center"
           }
@@ -103,10 +97,8 @@
         {
           "field": "PRODUCT_TYPE",
           "title": "Product Type",
-          "calculation": {
-            "type": "count",
-            "group": true
-          },
+          "calculation": "count",
+          "group": true,
           "translate": {
             "C": "Commercial",
             "R": "Consumer"
@@ -118,7 +110,6 @@
         {
           "field": "MONTH_END_BALANCE",
           "title": "Month End Balance",
-          "numberFormat": "Money",
           "style": {
             "indent": 2
           }
@@ -126,7 +117,6 @@
         {
           "field": "AVG_MONTHLY_BALANCE",
           "title": "Avg. Monthly Balance",
-          "numberFormat": "Money",
           "style": {
             "indent": 2
           }
@@ -134,9 +124,7 @@
         {
           "field": "BRANCH_ID",
           "title": "Branch ID",
-          "calculation": {
-            "type": "countUnique"
-          },
+          "calculation": "countUnique",
           "style": {
             "indent": 4
           }
@@ -144,21 +132,16 @@
         {
           "field": "HOME_BRANCH_ID",
           "title": "Home Branch ID",
-          "calculation": {
-            "type": "countUnique"
-          },
+          "calculation": "countUnique",
           "style": {
             "indent": 4
           }
         },
         {
-          "field": "F_MANAGED_ACCOUNT",
+          "field": "CUSTOMER_ID",
           "title": "Managed Account",
-          "calculation": {
-            "type": "countUnique",
-            "field": "CUSTOMER_ID",
-            "group": true
-          },
+          "groupBy": "F_MANAGED_ACCOUNT",
+          "calculation": "countUnique",
           "translate": {
             "Y": "Cust. with Managed Accts",
             "N": "Cust. w/o Managed Accts"
@@ -170,10 +153,8 @@
         {
           "field": "F_EMPLOYEE",
           "title": "Customer Employee Status",
-          "calculation": {
-            "type": "count",
-            "group": true
-          },
+          "calculation": "count",
+          "group": true,
           "translate": {
             "Y": "Employee",
             "N": "Not Employee"
@@ -185,10 +166,8 @@
         {
           "field": "F_DEBIT_CARD",
           "title": "Debit Card",
-          "calculation": {
-            "type": "count",
-            "group": true
-          },
+          "calculation": "count",
+          "group": true,
           "translate": {
             "Y": "Active",
             "N": "Inactive"
@@ -200,12 +179,9 @@
         {
           "field": "CD_TERM",
           "title": "CD Term",
-          "calculation": {
-            "type": "count",
-            "group": true
-          },
+          "calculation": "count",
+          "group": true,
           "sort": "stringasnumber",
-          "type": "Numeric",
           "bins": [
             {
               "hide": true
@@ -273,12 +249,9 @@
         {
           "field": "CUSTOMER_AGE",
           "title": "Customer Age",
-          "calculation": {
-            "type": "count",
-            "group": true
-          },
+          "calculation": "count",
+          "group": true,
           "sort": "stringasnumber",
-          "type": "Numeric",
           "bins": [
             {
               "from": 1,
@@ -388,10 +361,8 @@
         {
           "field": "HOUSEHOLD_INCOME_TIER",
           "title": "Household Income Tier",
-          "calculation": {
-            "type": "count",
-            "group": true
-          },
+          "calculation": "count",
+          "group": true,
           "sort": "numeric",
           "style": {
             "alignment": "center"
@@ -400,7 +371,6 @@
         {
           "field": "TOTAL_FEES",
           "title": "Total Fees",
-          "numberFormat": "Money",
           "style": {
             "indent": 4
           }

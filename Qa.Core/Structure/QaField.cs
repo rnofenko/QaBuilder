@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Qa.Core.Structure;
+using Q2.Core.Structure;
 
-namespace Q2.Core.Structure
+namespace Qa.Core.Structure
 {
     public class QaField
     {
@@ -25,6 +25,8 @@ namespace Q2.Core.Structure
 
         public int WeightFieldIndex { get; set; }
 
+        public int GroupByIndex { get; set; }
+
         public string Code { get; set; }
 
         public string FilterExpression { get; set; }
@@ -40,6 +42,7 @@ namespace Q2.Core.Structure
             Translate = qa.Translate;
             Title = qa.Title;
             WeightFieldIndex = qa.WeightFieldIndex;
+            GroupByIndex = qa.GroupByIndex;
         }
 
         public QaField()

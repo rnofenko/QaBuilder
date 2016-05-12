@@ -1,5 +1,6 @@
 ﻿using Q2.Core.Collectors;
 using Q2.Core.Collectors.CalcFields;
+using Qa.Core.Parsers.CalcFields;
 
 namespace Q2.Core.System
 {

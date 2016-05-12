@@ -5,9 +5,10 @@ using System.IO;
 using System.Linq;
 using Q2.Core.Collectors;
 using Q2.Core.Extensions;
+using Q2.Core.Parsers;
 using Q2.Core.System;
 
-namespace Q2.Core.Parsers
+namespace Qa.Core.Parsers
 {
     public class FileParser
     {

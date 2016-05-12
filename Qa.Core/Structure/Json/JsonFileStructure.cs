@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Qa.Core.Structure.Json;
 
 namespace Q2.Core.Structure.Json
 {

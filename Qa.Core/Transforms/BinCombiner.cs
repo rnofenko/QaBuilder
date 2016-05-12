@@ -3,8 +3,10 @@ using System.Linq;
 using Q2.Core.Extensions;
 using Q2.Core.Parsers;
 using Q2.Core.Structure;
+using Qa.Core.Parsers;
+using Qa.Core.Structure;
 
-namespace Q2.Core.Transforms
+namespace Qa.Core.Transforms
 {
     public class BinCombiner
     {
