@@ -1,0 +1,335 @@
+﻿[
+  {
+    "name": "Account Level Data",
+    "qa": {
+      "fileMask": "ACCT*.txt",
+      "rowsInHeader": 1,
+      "delimiter": "|",
+      "fields": [
+        {
+          "field": "CUST_ID",
+          "title": "Customer ID",
+          "calculation": {
+            "type": "countUnique"
+          },
+          "style": {
+            "indent": 1
+          }
+        },
+        {
+          "field": "CUST_COST_CENTER",
+          "title": "Customer Cost Center",
+          "calculation": {
+            "type": "countUnique"
+          },
+          "style": {
+            "indent": 1
+          }
+        },
+        {
+          "field": "HH_ID",
+          "title": "Household ID",
+          "calculation": {
+            "type": "countUnique"
+          },
+          "style": {
+            "indent": 1
+          }
+        },
+        {
+          "field": "HH_COST_CENTER",
+          "title": "Household Cost Center",
+          "calculation": {
+            "type": "countUnique"
+          },
+          "style": {
+            "indent": 1
+          }
+        },
+        {
+          "field": "ACCT_ID",
+          "title": "Account ID",
+          "calculation": {
+            "type": "countUnique"
+          },
+          "style": {
+            "indent": 1
+          }
+        },
+        {
+          "field": "ORIG_COST_CENTER",
+          "title": "Original Cost Center",
+          "calculation": {
+            "type": "countUnique"
+          },
+          "style": {
+            "indent": 1
+          }
+        },
+        {
+          "field": "ACCT_COST_CENTER",
+          "title": "Account Cost Center",
+          "calculation": { "type": "countUnique" },
+          "style": { "indent": 1 }
+        },
+        {
+          "field": "LOB",
+          "title": "Line of Business",
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
+          "style": {
+            "indent": 5
+          }
+        },
+        {
+          "field": "PROD_CODE1",
+          "title": "Product Code 1",
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
+          "style": {
+            "alignment": "center"
+          }
+        },
+        {
+          "field": "TERM",
+          "title": "CD Term",
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
+          "sort": "stringasnumber",
+          "type": "Numeric",
+          "bins": [
+            { "hide": true },
+            {
+              "from": "0",
+              "to": "0",
+              "name": "No term provided"
+            },
+            {
+              "from": "1",
+              "to": "3",
+              "name": "1-3 months"
+            },
+            {
+              "from": "4",
+              "to": "6",
+              "name": "4-6 months"
+            },
+            {
+              "from": "7",
+              "to": "9",
+              "name": "7-9 months"
+            },
+            {
+              "from": "10",
+              "to": "12",
+              "name": "10-12 months"
+            },
+            {
+              "from": "13",
+              "to": "18",
+              "name": "13-18 months"
+            },
+            {
+              "from": "19",
+              "to": "24",
+              "name": "19-24 months"
+            },
+            {
+              "from": "25",
+              "to": "36",
+              "name": "25-36 months"
+            },
+            {
+              "from": "37",
+              "to": "48",
+              "name": "37-48 months"
+            },
+            {
+              "from": "49",
+              "to": "60",
+              "name": "49-60 months"
+            },
+            {
+              "from": "61",
+              "to": "99999",
+              "name": "60+ months"
+            }
+          ],
+          "style": {
+            "indent": 3
+          }
+        },
+        {
+          "field": "BAL_EOM",
+          "title": "End of Month Balance",
+          "style": {
+            "indent": 1
+          }
+        },
+        {
+          "field": "AVG_BAL",
+          "title": "Avg. Monthly Balance",
+          "style": {
+            "indent": 1
+          }
+        },
+        {
+          "field": "LINE_EOM",
+          "title": "Line End of Month",
+          "style": {
+            "indent": 1
+          }
+        },
+        {
+          "field": "FEE_INC",
+          "title": "Fee Income",
+          "style": {
+            "indent": 1
+          }
+        }
+      ]
+    },    
+    "fields": [
+      { "name": "YEAR_MONTH" },
+      { "name": "CUST_ID" },
+      { "name": "CUST_COST_CENTER" },
+      { "name": "CUST_SINCE_DATE" },
+      { "name": "HH_ID" },
+      { "name": "HH_COST_CENTER" },
+      { "name": "HH_SINCE_DATE" },
+      { "name": "ACCT_ID" },
+      { "name": "ORIG_COST_CENTER" },
+      { "name": "ACCT_COST_CENTER" },
+      { "name": "ACCT_OPEN_DATE" },
+      { "name": "ACCT_CLOSE_DATE" },
+      { "name": "DATE_RENEWED" },
+      { "name": "LOB" },
+      { "name": "PROD_CODE1" },
+      { "name": "PROD_CODE2" },
+      { "name": "PROD_CODE3" },
+      { "name": "TERM",
+        "type": "Numeric"
+      },
+      {
+        "name": "BAL_EOM",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "AVG_BAL",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "LINE_EOM",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "FEE_INC",
+        "numberFormat": "Money"
+      }
+    ]
+  },
+  {
+    "name": "ATM Transactions",
+    "fields": [
+      { "name": "YEAR_MONTH" },
+      { "name": "ATM_ID" },
+      { "name": "TRXN_TYPE" },
+      {
+        "name": "TRXN_COUNT",
+        "numberFormat": "Integer"
+      }
+    ],
+    "qa": {
+      "fileMask": "ATM_TRXN*.txt",
+      "rowsInHeader": 1,
+      "delimiter": "|",
+      "fields": [
+        {
+          "field": "ATM_ID",
+          "title": "ATM ID",
+          "calculation": {
+            "type": "countUnique"
+          },
+          "style": {
+            "indent": 6
+          }
+        },
+        {
+          "field": "TRXN_TYPE",
+          "title": "Trxn Type",
+          "calculation": {
+            "type": "sum",
+            "field": "TRXN_COUNT",
+            "group": true
+          },
+          "sort": "numeric",
+          "style": {
+            "indent": 4
+          }
+        },
+        {
+          "field": "TRXN_COUNT",
+          "title": "Trxn Count",
+          "style": {
+            "indent": 5
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "Branch Customer Facing Trxn",
+    "fields": [
+      { "name": "YEAR_MONTH" },
+      { "name": "BRANCH_ID" },
+      { "name": "TRXN_TYPE" },
+      {
+        "name": "TRXN_COUNT",
+        "numberFormat": "Integer"
+      }
+    ],
+    "qa": {
+      "fileMask": "TRXN*.txt",
+      "rowsInHeader": 1,
+      "delimiter": "|",
+      "fields": [
+        {
+          "field": "BRANCH_ID",
+          "title": "Branch ID",
+          "calculation": {
+            "type": "countUnique"
+          },
+          "style": {
+            "indent": 5
+          }
+        },
+        {
+          "field": "TRXN_TYPE",
+          "title": "Trxn Type",
+          "calculation": {
+            "type": "sum",
+            "field": "TRXN_COUNT",
+            "group": true
+          },
+          "sort": "numeric",
+          "style": {
+            "indent": 4
+          }
+        },
+        {
+          "field": "TRXN_COUNT",
+          "title": "Trxn Count",
+          "style": {
+            "indent": 5
+          }
+        }
+      ]
+    }
+  }
+]

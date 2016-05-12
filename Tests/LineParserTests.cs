@@ -1,4 +1,4 @@
-﻿using Qa.Core.Collectors;
+﻿using Q2.Core.Collectors;
 using Xunit;
 
 namespace Qa.Tests

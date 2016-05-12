@@ -1,0 +1,365 @@
+﻿[
+  {
+    "name": "BAI SBB",
+    "fields": [
+      { "name": "ENTERPRISE_ID" },
+      { "name": "BUSINESS_ID" },
+      { "name": "ACCOUNT_ID" },
+      { "name": "PRODUCT_CODE" },
+      { "name": "PRODUCT_SUB_CODE" },
+      { "name": "STANDARD_REFERENCE" },
+      { "name": "PRODUCT_TYPE" },
+      { "name": "MONTH_END_BALANCE",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "AVG_MONTHLY_BALANCE",
+        "numberFormat": "Money"
+      },
+      { "name": "ACCOUNT_OPEN_DATE" },
+      { "name": "BRANCH_ID" },
+      { "name": "F_MANAGED" },
+      { "name": "ORIGINATION_CODE" },
+      { "name": "STATUS_CODE1" },
+      { "name": "STATUS_CODE2" },
+      { "name": "MONTHLY_INTEREST_PAID" },
+      { "name": "MONTHLY_INTEREST_CHARGED" },
+      { "name": "F_DEBIT_CARD" },
+      { "name": "F_ONLINE_BANKING" },
+      { "name": "F_ONLINE_BILLPAY" },
+      { "name": "F_ACH_ACCOUNT" },
+      { "name": "CD_TERM",
+        "type": "Numeric"
+      },
+      { "name": "CD_MATURITY_DATE" },
+      { "name": "LOAN_MATURITY_DATE" },
+      { "name": "ORIGINAL_BALANCE" },
+      { "name": "CREDIT_MAXIMUM_LINE" },
+      { "name": "INTEREST_RATE" },
+      { "name": "F_SBA" },
+      { "name": "F_OFF_BALANCE_SHEET_BALANCE" },
+      { "name": "HOUSEHOLD_ID" },
+      { "name": "GEOCODE" },
+      { "name": "ZIP_PLUS_FOUR" },
+      { "name": "HOME_BRANCH_ID" },
+      { "name": "F_ATM" },
+      { "name": "F_E-STATEMENT" },
+      { "name": "F_CHECKS" },
+      { "name": "F_ACTIVE_CHECKING" },
+      { "name": "F_FEE" },
+      { "name": "TOTAL_FEES",
+        "numberFormat": "Money"
+      },
+      { "name": "ACTUAL_ECR" },
+      { "name": "ORIGINATION_CHANNEL" },
+      { "name": "F_MOBILE_BANKING" },
+      { "name": "F_REMOTE_DEPOSIT_CAPTURE" },
+      { "name": "F_PRIMARY_CHECKING" }
+    ],
+    "qa": {
+      "delimiter": "|",
+      "fields": [
+        {
+          "field": "BUSINESS_ID",
+          "title": "Busuness ID",
+          "calculation": {
+            "type": "countUnique"
+          },
+          "style": {
+            "indent": 4
+          }
+        },
+        {
+          "field": "PRODUCT_CODE",
+          "title": "Product Code",
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
+          "style": {
+            "alignment": "center"
+          }
+        },
+        {
+          "field": "PRODUCT_TYPE",
+          "title": "Product Type",
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
+          "translate": {
+            "C": "Commercial",
+            "R": "Consumer"
+          },
+          "style": {
+            "indent": 6
+          }
+        },
+        {
+          "field": "MONTH_END_BALANCE",
+          "title": "Month End Balance",
+          "style": {
+            "indent": 3
+          }
+        },
+        {
+          "field": "AVG_MONTHLY_BALANCE",
+          "title": "Avg. Nonthly Balance",
+          "style": {
+            "indent": 3
+          }
+        },
+        {
+          "field": "BRANCH_ID",
+          "title": "Branch ID",
+          "calculation": {
+            "type": "countUnique"
+          },
+          "style": {
+            "indent": 4
+          }
+        },
+        {
+          "field": "F_MANAGED",
+          "title": "Managed Account",
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
+          "translate": {
+            "Y": "Cust. with Managed Accts",
+            "N": "Cust. w/o Managed Accts"
+          },
+          "style": {
+            "indent": 0
+          }
+        },
+        {
+          "field": "ORIGINATION_CODE",
+          "title": "Origination Code",
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
+          "style": {
+            "indent": 7
+          }
+        },
+        {
+          "field": "F_DEBIT_CARD",
+          "title": "Debit Card",
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
+          "translate": {
+            "Y": "Active",
+            "N": "Inactive"
+          },
+          "style": {
+            "indent": 6
+          }
+        },
+        {
+          "field": "F_ONLINE_BANKING",
+          "title": "Online Banking",
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
+          "translate": {
+            "Y": "Active",
+            "N": "Inactive"
+          },
+          "style": {
+            "indent": 6
+          }
+        },
+        {
+          "field": "F_ONLINE_BILLPAY",
+          "title": "Online Billpay",
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
+          "translate": {
+            "Y": "Active",
+            "N": "Inactive"
+          },
+          "style": {
+            "indent": 6
+          }
+        },
+        {
+          "field": "F_ACH_ACCOUNT",
+          "title": "ACH Account",
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
+          "translate": {
+            "Y": "ACH",
+            "N": "Not ACH"
+          },
+          "style": {
+            "indent": 6
+          }
+        },
+        {
+          "field": "CD_TERM",
+          "title": "CD Term",
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
+          "sort": "stringasnumber",
+          "type": "Numeric",
+          "bins": [
+            { "hide": true },
+            {
+              "from": "0",
+              "to": "0",
+              "name": "No term provided"
+            },
+            {
+              "from": "1",
+              "to": "3",
+              "name": "1-3 months"
+            },
+            {
+              "from": "4",
+              "to": "6",
+              "name": "4-6 months"
+            },
+            {
+              "from": "7",
+              "to": "9",
+              "name": "7-9 months"
+            },
+            {
+              "from": "10",
+              "to": "12",
+              "name": "10-12 months"
+            },
+            {
+              "from": "13",
+              "to": "18",
+              "name": "13-18 months"
+            },
+            {
+              "from": "19",
+              "to": "24",
+              "name": "19-24 months"
+            },
+            {
+              "from": "25",
+              "to": "36",
+              "name": "25-36 months"
+            },
+            {
+              "from": "37",
+              "to": "48",
+              "name": "37-48 months"
+            },
+            {
+              "from": "49",
+              "to": "60",
+              "name": "49-60 months"
+            },
+            {
+              "from": "61",
+              "to": "99999",
+              "name": "60+ months"
+            }
+          ],
+          "style": {
+            "indent": 5
+          }
+        },
+        {
+          "field": "HOUSEHOLD_ID",
+          "title": "Household ID",
+          "calculation": {
+            "type": "countUnique"
+          },
+          "style": {
+            "indent": 4
+          }
+        },
+        {
+          "field": "HOME_BRANCH_ID",
+          "title": "Home Branch ID",
+          "calculation": {
+            "type": "countUnique"
+          },
+          "style": {
+            "indent": 4
+          }
+        },
+        {
+          "field": "F_ACTIVE_CHECKING",
+          "title": "Active Checking",
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
+          "translate": {
+            "Y": "Active",
+            "N": "Inactive"
+          },
+          "style": {
+            "indent": 6
+          }
+        },
+        {
+          "field": "TOTAL_FEES",
+          "title": "Total Fees",
+          "style": {
+            "indent": 4
+          }
+        },
+        {
+          "field": "ORIGINATION_CHANNEL",
+          "title": "Origination Channel",
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
+          "style": {
+            "alignment": "center"
+          }
+        },
+        {
+          "field": "F_REMOTE_DEPOSIT_CAPTURE",
+          "title": "Remote Deposit Capture",
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
+          "translate": {
+            "Y": "Active",
+            "N": "Inactive"
+          },
+          "style": {
+            "indent": 6
+          }
+        },
+        {
+          "field": "F_PRIMARY_CHECKING",
+          "title": "Primary Checking",
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
+          "translate": {
+            "Y": "Active",
+            "N": "Inactive"
+          },
+          "style": {
+            "indent": 6
+          }
+        }
+      ]
+    }
+  }
+]

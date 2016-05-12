@@ -1,0 +1,411 @@
+﻿[
+  {
+    "name": "BAI DPB",
+    "fields": [
+      { "name": "HOUSEHOLD_ID" },
+      { "name": "CUSTOMER_ID" },
+      { "name": "ACCOUNT_ID" },
+      { "name": "GEOCODE" },
+      { "name": "ZIP_PLUS_FOUR" },
+      { "name": "PRODUCT_CODE" },
+      { "name": "PRODUCT_SUB_CODE" },
+      { "name": "STANDARD_REFERENCE" },
+      { "name": "PRODUCT_TYPE" },
+      {
+        "name": "MONTH_END_BALANCE",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "AVG_MONTHLY_BALANCE",
+        "numberFormat": "Money"
+      },
+      { "name": "ACCOUNT_OPEN_DATE" },
+      { "name": "BRANCH_ID" },
+      { "name": "HOME_BRANCH_ID" },
+      { "name": "F_MANAGED_ACCOUNT" },
+      { "name": "F_EMPLOYEE" },
+      { "name": "ORIGINATION_CODE" },
+      { "name": "STATUS_CODE1" },
+      { "name": "STATUS_CODE2" },
+      { "name": "MONTHLY_INTEREST_PAID" },
+      { "name": "MONTHLY_INTEREST_CHARGED" },
+      { "name": "INTEREST_RATE" },
+      { "name": "F_DEBIT_CARD" },
+      { "name": "F_ONLINE_BANKING" },
+      { "name": "F_ONLINE_BILLPAY" },
+      { "name": "F_DIRECT_DEPOSIT" },
+      {
+        "name": "CD_TERM",
+        "type": "Numeric"
+      },
+      { "name": "CD_MATURITY_DATE" },
+      { "name": "LOAN_MATURITY_DATE" },
+      { "name": "ORIGINAL_BALANCE" },
+      { "name": "CREDIT_MAXIMUM_LINE" },
+      {
+        "name": "CUSTOMER_AGE",
+        "type": "Numeric"
+      },
+      { "name": "CUSTOMER_APPENDED_AGE" },
+      { "name": "HOUSEHOLD_INCOME_TIER" },
+      { "name": "F_ACTIVE_CHEKING" },
+      { "name": "F_ACH_DIRECT_DEPOSIT" },
+      { "name": "F_ATM" },
+      { "name": "F_E-STATEMENT" },
+      { "name": "F_CHECKS" },
+      { "name": "F_FEE" },
+      {
+        "name": "TOTAL_FEES",
+        "numberFormat": "Money"
+      },
+      { "name": "ORIGINATION_CHANNEL" },
+      { "name": "PSYCLE_NE_CODE" },
+      { "name": "F_MOBILE_BANKING" },
+      { "name": "F_REMOTE_DEPOSIT_CAPTURE" },
+      { "name": "F_PERSON-TO-PERSON_PAYMENT" },
+      { "name": "F_PRIMARY_CHECKING" },
+      { "name": "NUMBER_OF_TIMES_CD_RENEWED" }
+    ],
+    "qa": {
+      "delimiter": "|",
+      "fields": [
+        {
+          "field": "HOUSEHOLD_ID",
+          "title": "Household ID",
+          "calculation": {
+            "type": "countUnique"
+          },
+          "style": {
+            "indent": 4
+          }
+        },
+        {
+          "field": "CUSTOMER_ID",
+          "title": "Customer ID",
+          "calculation": {
+            "type": "countUnique"
+          },
+          "style": {
+            "indent": 4
+          }
+        },
+        {
+          "field": "PRODUCT_CODE",
+          "title": "Product Code",
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
+          "style": {
+            "alignment": "center"
+          }
+        },
+        {
+          "field": "PRODUCT_TYPE",
+          "title": "Product Type",
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
+          "translate": {
+            "C": "Commercial",
+            "R": "Consumer"
+          },
+          "style": {
+            "indent": 6
+          }
+        },
+        {
+          "field": "MONTH_END_BALANCE",
+          "title": "Month End Balance",
+          "numberFormat": "Money",
+          "style": {
+            "indent": 2
+          }
+        },
+        {
+          "field": "AVG_MONTHLY_BALANCE",
+          "title": "Avg. Monthly Balance",
+          "numberFormat": "Money",
+          "style": {
+            "indent": 2
+          }
+        },
+        {
+          "field": "BRANCH_ID",
+          "title": "Branch ID",
+          "calculation": {
+            "type": "countUnique"
+          },
+          "style": {
+            "indent": 4
+          }
+        },
+        {
+          "field": "HOME_BRANCH_ID",
+          "title": "Home Branch ID",
+          "calculation": {
+            "type": "countUnique"
+          },
+          "style": {
+            "indent": 4
+          }
+        },
+        {
+          "field": "F_MANAGED_ACCOUNT",
+          "title": "Managed Account",
+          "calculation": {
+            "type": "countUnique",
+            "field": "CUSTOMER_ID",
+            "group": true
+          },
+          "translate": {
+            "Y": "Cust. with Managed Accts",
+            "N": "Cust. w/o Managed Accts"
+          },
+          "style": {
+            "indent": 0
+          }
+        },
+        {
+          "field": "F_EMPLOYEE",
+          "title": "Customer Employee Status",
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
+          "translate": {
+            "Y": "Employee",
+            "N": "Not Employee"
+          },
+          "style": {
+            "indent": 5
+          }
+        },
+        {
+          "field": "F_DEBIT_CARD",
+          "title": "Debit Card",
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
+          "translate": {
+            "Y": "Active",
+            "N": "Inactive"
+          },
+          "style": {
+            "indent": 5
+          }
+        },
+        {
+          "field": "CD_TERM",
+          "title": "CD Term",
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
+          "sort": "stringasnumber",
+          "type": "Numeric",
+          "bins": [
+            {
+              "hide": true
+            },
+            {
+              "from": "0",
+              "to": "0",
+              "name": "No term provided"
+            },
+            {
+              "from": "1",
+              "to": "3",
+              "name": "1-3 months"
+            },
+            {
+              "from": "4",
+              "to": "6",
+              "name": "4-6 months"
+            },
+            {
+              "from": "7",
+              "to": "9",
+              "name": "7-9 months"
+            },
+            {
+              "from": "10",
+              "to": "12",
+              "name": "10-12 months"
+            },
+            {
+              "from": "13",
+              "to": "18",
+              "name": "13-18 months"
+            },
+            {
+              "from": "19",
+              "to": "24",
+              "name": "19-24 months"
+            },
+            {
+              "from": "25",
+              "to": "36",
+              "name": "25-36 months"
+            },
+            {
+              "from": "37",
+              "to": "48",
+              "name": "37-48 months"
+            },
+            {
+              "from": "49",
+              "to": "60",
+              "name": "49-60 months"
+            },
+            {
+              "from": "61",
+              "to": "99999",
+              "name": "60+ months"
+            }
+          ],
+          "style": {
+            "indent": 5
+          }
+        },
+        {
+          "field": "CUSTOMER_AGE",
+          "title": "Customer Age",
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
+          "sort": "stringasnumber",
+          "type": "Numeric",
+          "bins": [
+            {
+              "from": 1,
+              "to": 4,
+              "name": "1-4 years"
+            },
+            {
+              "from": 5,
+              "to": 9,
+              "name": "5-9 years"
+            },
+            {
+              "from": 10,
+              "to": 14,
+              "name": "10-14 years"
+            },
+            {
+              "from": 15,
+              "to": 19,
+              "name": "15-19 years"
+            },
+            {
+              "from": 20,
+              "to": 24,
+              "name": "20-24 years"
+            },
+            {
+              "from": 25,
+              "to": 29,
+              "name": "25-29 years"
+            },
+            {
+              "from": 30,
+              "to": 34,
+              "name": "30-34 years"
+            },
+            {
+              "from": 35,
+              "to": 39,
+              "name": "35-39 years"
+            },
+            {
+              "from": 40,
+              "to": 44,
+              "name": "40-44 years"
+            },
+            {
+              "from": 45,
+              "to": 49,
+              "name": "45-49 years"
+            },
+            {
+              "from": 50,
+              "to": 54,
+              "name": "50-54 years"
+            },
+            {
+              "from": 55,
+              "to": 59,
+              "name": "55-59 years"
+            },
+            {
+              "from": 60,
+              "to": 64,
+              "name": "60-64 years"
+            },
+            {
+              "from": 65,
+              "to": 69,
+              "name": "65-69 years"
+            },
+            {
+              "from": 70,
+              "to": 74,
+              "name": "70-74 years"
+            },
+            {
+              "from": 75,
+              "to": 79,
+              "name": "75-79 years"
+            },
+            {
+              "from": 80,
+              "to": 84,
+              "name": "80-84 years"
+            },
+            {
+              "from": 85,
+              "to": 110,
+              "name": "85+ years"
+            },
+            {
+              "from": 111,
+              "to": 999,
+              "name": "Not Available"
+            },
+            {
+              "from": 0,
+              "to": 0,
+              "name": "Not Available"
+            }
+          ],
+          "style": {
+            "indent": 6
+          }
+        },
+        {
+          "field": "HOUSEHOLD_INCOME_TIER",
+          "title": "Household Income Tier",
+          "calculation": {
+            "type": "count",
+            "group": true
+          },
+          "sort": "numeric",
+          "style": {
+            "alignment": "center"
+          }
+        },
+        {
+          "field": "TOTAL_FEES",
+          "title": "Total Fees",
+          "numberFormat": "Money",
+          "style": {
+            "indent": 4
+          }
+        }
+      ]
+    }
+  }
+]
