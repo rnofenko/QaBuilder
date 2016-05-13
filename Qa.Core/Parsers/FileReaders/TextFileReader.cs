@@ -1,20 +1,20 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using Qa.Core.Structure;
 
 namespace Qa.Core.Parsers.FileReaders
 {
     public class TextFileReader: IFileReader
     {
-        private readonly StreamReader _stream;
-        private LineParser _parser;
+        private StreamReader _stream;
+        private readonly LineParser _parser;
+        private readonly string _path;
 
-        public TextFileReader(string path, QaStructure structure)
+        public TextFileReader(string path, IStructure structure)
         {
-            _stream = new StreamReader(path);
+            _path = path;
             _parser = structure.GetLineParser();
         }
-
+        
         public void Dispose()
         {
             _stream?.Dispose();
@@ -24,60 +24,33 @@ namespace Qa.Core.Parsers.FileReaders
         {
             for (var i = 0; i < lines; i++)
             {
-                _stream.ReadLine();
+                getReader().ReadLine();
             }
         }
 
         public string[] ReadRow()
         {
-            var line = _stream.ReadLine();
+            var line = getReader().ReadLine();
             if (line == null)
             {
                 return null;
             }
             return _parser.Parse(line);
         }
-    }
 
-    public class ExcelFileReader: IFileReader
-    {
-        public ExcelFileReader(string path, QaStructure structure)
+        public int GetFieldsCount()
         {
-            throw new global::System.NotImplementedException();
+            var row = ReadRow();
+            return row.Length;
         }
 
-        public void Dispose()
+        private StreamReader getReader()
         {
-            throw new NotImplementedException();
-        }
-
-        public void Skip(int lines)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string[] ReadRow()
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public interface IFileReader : IDisposable
-    {
-        void Skip(int lines);
-
-        string[] ReadRow();
-    }
-
-    public class FileReaderFactory
-    {
-        public static IFileReader Create(string path, QaStructure structure)
-        {
-            if (path.EndsWith(".xls"))
+            if (_stream == null)
             {
-                return new ExcelFileReader(path, structure);
+                _stream = new StreamReader(_path);
             }
-            return new TextFileReader(path, structure);
+            return _stream;
         }
     }
 }

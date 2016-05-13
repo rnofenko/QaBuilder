@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Calculations\Calculator.cs" />
+    <Compile Include="Excel\XlsToCsvConverter.cs" />
     <Compile Include="Parsers\CalcFields\CalcAverageField.cs" />
     <Compile Include="Parsers\CalcFields\CalcBaseField.cs" />
     <Compile Include="Parsers\CalcFields\CalcCountField.cs" />
@@ -61,6 +62,9 @@
     <Compile Include="Parsers\CalcFields\CalcWeightedAverageField.cs" />
     <Compile Include="Parsers\ExpressionFilter.cs" />
     <Compile Include="Parsers\CalcFields\ICalculationField.cs" />
+    <Compile Include="Parsers\FileReaders\ExcelFileReader.cs" />
+    <Compile Include="Parsers\FileReaders\FileReaderFactory.cs" />
+    <Compile Include="Parsers\FileReaders\IFileReader.cs" />
     <Compile Include="Parsers\FileReaders\TextFileReader.cs" />
     <Compile Include="Parsers\NumberParser.cs" />
     <Compile Include="Parsers\CalcFields\DefaultCalculationFieldFactory.cs" />

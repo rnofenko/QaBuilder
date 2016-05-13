@@ -1,6 +1,7 @@
 ﻿using System;
 using Qa.Bai.Pulse.Excel;
 using Qa.Core.Combines;
+using Qa.Core.Excel;
 using Qa.Core.Format;
 using Qa.Core.Structure;
 using Qa.Core.System;
@@ -18,14 +19,14 @@ namespace Qa.Bai.Pulse
 
             while (true)
             {
-                Console.Clear();
-                Lo.NewPage(string.Format("Santander - {0}", settings.Project))
+                Lo.Wl().Wl().Wl(string.Format("..................... Santander - {0} .........................", settings.Project))
                     .Wl(string.Format("Current folder is {0}", settings.WorkingFolder))
                     .Wl()
                     .Wl("Select command:")
                     .Wl("1. Format")
                     .Wl("2. Create QA report")
-                    .Wl("3. Combine files");
+                    .Wl("3. Combine files")
+                    .Wl("4. xls to csv");
                 var key = Console.ReadKey();
                 if (key.KeyChar == '1')
                 {
@@ -38,6 +39,10 @@ namespace Qa.Bai.Pulse
                 else if (key.KeyChar == '3')
                 {
                     new CombinePromt(settings).Start();
+                }
+                else if (key.KeyChar == '4')
+                {
+                    new XlsToCsvConverter().ConvertAll(settings.WorkingFolder);
                 }
                 else if (key.Key == ConsoleKey.Escape)
                 {

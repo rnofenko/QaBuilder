@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Qa.Core.Parsers.FileReaders;
 using Qa.Core.System;
 
 namespace Qa.Core.Structure
@@ -20,24 +21,13 @@ namespace Qa.Core.Structure
 
             foreach (var structure in sourceStructures.Where(x=> _fileMaskFilter.IsMatch(x.FileMask,filepath)))
             {
-                string line;
-                using (var stream = new StreamReader(filepath))
+                using (var reader = FileReaderFactory.Create(filepath, structure))
                 {
-                    for (var i = 0; i < structure.SkipRows + structure.RowsInHeader; i++)
+                    reader.Skip(structure.SkipRows + structure.RowsInHeader);
+                    if (reader.GetFieldsCount() == structure.CountOfFieldsInFile)
                     {
-                        stream.ReadLine();
+                        structures.Add(structure);
                     }
-                    line = stream.ReadLine();
-                }
-                if (line.IsEmpty())
-                {
-                    continue;
-                }
-
-                var fields = structure.GetLineParser().Parse(line);
-                if (fields.Length == structure.CountOfFieldsInFile)
-                {
-                    structures.Add(structure);
                 }
             }
 

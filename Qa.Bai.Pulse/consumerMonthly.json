@@ -1,0 +1,318 @@
+﻿[
+  {
+    "name": "BAI Consumer Pulse Monthly",
+    "rowsInHeader": 1,
+    "fields": [
+      { "name": "BANK_CODE" },
+      { "name": "CYCLE_TYPE" },
+      { "name": "STATE" },
+      { "name": "CYCLE_DT" },
+      {
+        "name": "NIC",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "FCK",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "FCD",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "NCK",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "ICK",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "SAV",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "MMDA",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "RMA",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "HMA",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "IRA",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "CD",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "RCD",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "JCD",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "NIC_MOB",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "FCK_MOB",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "FCD_MOB",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "NCK_MOB",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "ICK_MOB",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "RSA_MOB",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "MMDA_MOB",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "RMA_MOB",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "HMA_MOB",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "IRA_MOB",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "CD_MOB",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "RCD_MOB",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "JCD_MOB",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "NIC_NEW",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "FCK_NEW",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "FCD_NEW",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "NCK_NEW",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "ICK_NEW",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "RSA_NEW",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "MMDA_NEW",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "RMA_NEW",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "HMA_NEW",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "IRA_NEW",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "CD_NEW",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "RCD_NEW",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "JCD_NEW",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "TOTAL_CKG_ACCTS",
+        "numberFormat": "Integer"
+      },
+      {
+        "name": "NEW_CKG_ACCTS",
+        "numberFormat": "Integer"
+      },
+      {
+        "name": "CLOSED_CKG_ACCTS",
+        "numberFormat": "Integer"
+      },
+      {
+        "name": "WAR",
+        "numberFormat": "Rate"
+      },
+      {
+        "name": "ICK_WAR",
+        "numberFormat": "Rate"
+      },
+      {
+        "name": "RSA_WAR",
+        "numberFormat": "Rate"
+      },
+      {
+        "name": "MMDA_WAR",
+        "numberFormat": "Rate"
+      },
+      {
+        "name": "RMA_WAR",
+        "numberFormat": "Rate"
+      },
+      {
+        "name": "HMA_WAR",
+        "numberFormat": "Rate"
+      },
+      {
+        "name": "IRA_WAR",
+        "numberFormat": "Rate"
+      },
+      {
+        "name": "CD_WAR",
+        "numberFormat": "Rate"
+      },
+      {
+        "name": "RCD_WAR",
+        "numberFormat": "Rate"
+      },
+      {
+        "name": "JCD_WAR",
+        "numberFormat": "Rate"
+      }
+    ],
+    "format": {
+      "delimiter": ","
+    },
+    "qa": {
+      "delimiter": ",",
+      "rowsInHeader": 1,
+      "FileMask": "*.csv",
+      "fields": [
+        {
+          "field": "NIC",
+          "title": "Non-interest checking"
+        },
+        {
+          "field": "FCK",
+          "title": "Totally free checking"
+        },
+        {
+          "field": "FCD",
+          "title": "Free checking with direct deposit"
+        },
+        {
+          "field": "NCK",
+          "title": "Other non-interest checking"
+        },
+        {
+          "field": "ICK",
+          "title": "Interest checking"
+        },
+        {
+          "field": "SAV",
+          "title": "Traditional savings"
+        },
+        {
+          "field": "MMDA",
+          "title": "Money Market"
+        },
+        {
+          "field": "RMA",
+          "title": "Regular MMDA"
+        },
+        {
+          "field": "HMA",
+          "title": "High Rate MMDA"
+        },
+        {
+          "field": "IRA",
+          "title": "IRAs"
+        },
+        {
+          "field": "CD",
+          "title": "All CDs"
+        },
+        {
+          "field": "RCD",
+          "title": "Regular CD"
+        },
+        { "field": "JCD" },
+        { "field": "NIC_MOB" },
+        { "field": "FCK_MOB" },
+        { "field": "FCD_MOB" },
+        { "field": "NCK_MOB" },
+        { "field": "ICK_MOB" },
+        { "field": "RSA_MOB" },
+        { "field": "MMDA_MOB" },
+        { "field": "RMA_MOB" },
+        { "field": "HMA_MOB" },
+        { "field": "IRA_MOB" },
+        { "field": "CD_MOB" },
+        { "field": "RCD_MOB" },
+        { "field": "JCD_MOB" },
+        { "field": "NIC_NEW" },
+        { "field": "FCK_NEW" },
+        { "field": "FCD_NEW" },
+        { "field": "NCK_NEW" },
+        { "field": "ICK_NEW" },
+        { "field": "RSA_NEW" },
+        { "field": "MMDA_NEW" },
+        { "field": "RMA_NEW" },
+        { "field": "HMA_NEW" },
+        { "field": "IRA_NEW" },
+        { "field": "CD_NEW" },
+        { "field": "RCD_NEW"},
+        {"field": "JCD_NEW"},
+        {"field": "TOTAL_CKG_ACCTS"},
+        {"field": "NEW_CKG_ACCTS"},
+        {"field": "CLOSED_CKG_ACCTS"},
+        {"field": "WAR"},
+        {"field": "ICK_WAR"},
+        {"field": "RSA_WAR"},
+        {"field": "MMDA_WAR"},
+        {"field": "RMA_WAR"},
+        {"field": "HMA_WAR"},
+        {"field": "IRA_WAR"},
+        {"field": "CD_WAR"},
+        {"field": "RCD_WAR"},
+        {"field": "JCD_WAR"}
+      ]
+    }
+  }
+]

@@ -1,5 +1,4 @@
-﻿using Q2.Core.Structure;
-using Qa.Core.Parsers;
+﻿using Qa.Core.Parsers;
 using Qa.Core.Structure;
 
 namespace Qa.Core

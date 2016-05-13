@@ -64,8 +64,9 @@
       "delimiter": ","
     },
     "qa": {
-      "delimiter": "|",
+      "delimiter": ",",
       "rowsInHeader": 1,
+      "FileMask": "*.csv",
       "fields": [
         {
           "field": "NIC",
