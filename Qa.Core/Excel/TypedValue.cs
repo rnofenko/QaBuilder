@@ -1,7 +1,6 @@
-using Q2.Core.Structure;
 using Qa.Core.Structure;
 
-namespace Q2.Core.Excel
+namespace Qa.Core.Excel
 {
     public class TypedValue
     {

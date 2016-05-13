@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using OfficeOpenXml.Style;
-using Q2.Core.Compare;
-using Qa.Core;
-using Qa.Core.Excel;
+using Q2.Core.Excel;
+using Qa.Core.Compare;
 
-namespace Q2.Core.Excel
+namespace Qa.Core.Excel
 {
     public class GroupOfNumberFieldPrinter
     {

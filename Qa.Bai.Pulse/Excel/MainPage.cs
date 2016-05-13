@@ -1,9 +1,10 @@
 using System.Drawing;
 using System.Linq;
 using OfficeOpenXml;
-using Q2.Core.Compare;
 using Q2.Core.Excel;
-using Q2.Core.Structure;
+using Qa.Core.Compare;
+using Qa.Core.Excel;
+using Qa.Core.Structure;
 
 namespace Qa.Bai.Pulse.Excel
 {

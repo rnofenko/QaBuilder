@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Q2.Core.Compare;
 using Qa.Core.Structure;
 
 namespace Qa.Core.Compare
@@ -18,11 +17,6 @@ namespace Qa.Core.Compare
         {
             Field = qaField;
             Numbers =  new List<CompareNumber>();
-        }
-
-        public CompareField GetNumberField(int periodId)
-        {
-            return new CompareField(Field, Numbers[periodId]);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using OfficeOpenXml;
-using Q2.Core.Compare;
+using Qa.Core.Compare;
 
-namespace Q2.Core.Excel
+namespace Qa.Core.Excel
 {
     public interface IExportPage
     {

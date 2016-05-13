@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using OfficeOpenXml;
-using Q2.Core.Compare;
+using Qa.Core.Compare;
 using Qa.Core.Excel;
 using Qa.Core.Structure;
 using Qa.Core.System;

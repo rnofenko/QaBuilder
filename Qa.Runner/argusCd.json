@@ -46,26 +46,26 @@
       "fields": [
         {
           "title": "Number of Contracts",
-          "type": "countUnique",
+          "calculation": "countUnique",
           "field": "Account Identifier"
         },
         {
           "title": "Unique Customer Count",
-          "type": "countUnique",
+          "calculation": "countUnique",
           "field": "Customer Identifier"
         },
         {
           "field": "Month End Balance"
         },
         {
-          "type": "weightedAverage",
+          "calculation": "weightedAverage",
           "field": "APY",
           "weightField": "Month End Balance"
         },
         { "field": "Interest Accrued" },
         {
           "title": "Total Monthly Interest",
-          "type": "custom",
+          "calculation": "custom",
           "numberFormat": "Money",
           "code": "totalMonthlyInterest"
         }
@@ -100,29 +100,29 @@
         {
           "title": "Total Transaction Amount of Renewal/Rollover",
           "field": "Transaction Amount",
-          "type": "sum",
+          "calculation": "sum",
           "filterExpression": "Transaction Code=Renewal/Rollover"
         },
         {
           "title": "Total Transaction Amount of Withdrawal",
           "field": "Transaction Amount",
-          "type": "sum",
+          "calculation": "sum",
           "filterExpression": "Transaction Code=Withdrawal-Full or Partial"
         },
         {
           "title": "Total Transaction Amount of New Account",
           "field": "Transaction Amount",
-          "type": "sum",
+          "calculation": "sum",
           "filterExpression": "Transaction Code=New Account"
         },
         {
           "title": "Number of contracts",
           "field": "Account Identifier",
-          "type": "countUnique"
+          "calculation": "countUnique"
         },
         {
           "field": "Credit/Debit Indicator",
-          "type": "count",
+          "calculation": "count",
           "group": true,
           "translate": {
             "C": "Credit",
@@ -131,7 +131,7 @@
         },
         {
           "field": "Transaction Code",
-          "type": "count",
+          "calculation": "count",
           "group": true
         }
       ]
@@ -161,12 +161,12 @@
         {
           "title": "Number of Customers",
           "field": "Customer Identifier",
-          "type": "countUnique"
+          "calculation": "countUnique"
         },
         {
           "title": "Number of Contracts",
           "field": "Account Identifier",
-          "type": "countUnique"
+          "calculation": "countUnique"
         }
       ]
     }

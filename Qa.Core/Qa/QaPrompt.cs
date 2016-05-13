@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using Q2.Core.Compare;
 using Q2.Core.Excel;
 using Q2.Core.Structure;
 using Qa.Core.Compare;

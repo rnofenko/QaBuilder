@@ -77,7 +77,6 @@
     <Compile Include="Combines\CombinePromt.cs" />
     <Compile Include="Combines\CombineSettings.cs" />
     <Compile Include="Combines\FileCombiner.cs" />
-    <Compile Include="Compare\CompareField.cs" />
     <Compile Include="Compare\CompareNumber.cs" />
     <Compile Include="Compare\ComparePacket.cs" />
     <Compile Include="Compare\Comparer.cs" />

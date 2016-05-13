@@ -1,4 +1,4 @@
-namespace Q2.Core.Excel
+namespace Qa.Core.Excel
 {
     public class CommonPageSettings
     {

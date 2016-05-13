@@ -1,4 +1,4 @@
-namespace Q2.Core.Compare
+namespace Qa.Core.Compare
 {
     public class KeyNumberPair
     {

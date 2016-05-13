@@ -1,10 +1,8 @@
 using System.Collections.Generic;
-using Q2.Core.Excel;
-using Q2.Core.Structure;
-using Qa.Core.Compare;
+using Qa.Core.Excel;
 using Qa.Core.Structure;
 
-namespace Q2.Core.Compare
+namespace Qa.Core.Compare
 {
     public class NumberField : QaField
     {
@@ -24,7 +22,12 @@ namespace Q2.Core.Compare
 
         public TypedValue GetChange(FileInformation report)
         {
-            return new TypedValue(Numbers[report.Index].Change, NumberFormat.Percent);
+            var number = Numbers[report.Index];
+            if (NumberFormat == NumberFormat.Rate)
+            {
+                return new TypedValue(number.AbsoluteChange, NumberFormat.Rate);
+            }
+            return new TypedValue(number.Change, NumberFormat.Percent);
         }
     }
 }

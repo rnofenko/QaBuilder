@@ -1,10 +1,9 @@
 ﻿using System.Linq;
 using OfficeOpenXml.Style;
-using Q2.Core.Compare;
+using Q2.Core.Excel;
 using Qa.Core.Compare;
-using Qa.Core.Excel;
 
-namespace Q2.Core.Excel
+namespace Qa.Core.Excel
 {
     public class GroupedFieldPrinter
     {
