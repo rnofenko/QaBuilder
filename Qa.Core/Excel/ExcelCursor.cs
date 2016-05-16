@@ -4,11 +4,9 @@ using System.Drawing;
 using System.Linq;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
-using Q2.Core.Structure;
-using Qa.Core.Excel;
 using Qa.Core.Structure;
 
-namespace Q2.Core.Excel
+namespace Qa.Core.Excel
 {
     public class ExcelCursor
     {

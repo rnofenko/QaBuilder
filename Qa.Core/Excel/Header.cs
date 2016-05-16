@@ -2,7 +2,7 @@
 using OfficeOpenXml.Style;
 using Qa.Core.System;
 
-namespace Q2.Core.Excel
+namespace Qa.Core.Excel
 {
     public class Header
     {
@@ -23,7 +23,7 @@ namespace Q2.Core.Excel
 
 
             var cell = cursor.Row(2).Column(4).Cell;
-            cursor.Sheet.Cells[2, 4, 2, 11].Merge = true;
+            cursor.Sheet.Cells[2, 4, 2, 14].Merge = true;
             cell.Value = reportName;
             cell.Style.Font.Size = 24;
             cell.Style.Font.Color.SetColor(Color.White);

@@ -1,34 +1,32 @@
 using System.Collections.Generic;
-using Q2.Core.Collectors;
-using Q2.Core.Collectors.CalcFields;
-using Q2.Core.Structure;
+using System.Linq;
 using Qa.Core.Structure;
 
 namespace Qa.Core.Parsers.CalcFields
 {
-    public class CalcGroupedSumField : CalcBaseField, ICalculationField
+    public class CalcGroupedSumField : CalcBaseGroupField, ICalculationField
     {
-        private readonly int _index;
         private readonly Dictionary<string, double> _groupedNumbers;
+        private readonly int _index;
 
         public CalcGroupedSumField(QaField field)
             :base(field)
         {
-            _index = field.FieldIndex;
             _groupedNumbers = new Dictionary<string, double>();
+            _index = field.FieldIndex;
         }
 
         public void Calc(string[] parts)
         {
-            var value = parts[_index];            
-            var parsed = NumberParser.Parse(value);
+            var key = GetKey(parts);
+            var parsed = NumberParser.Parse(parts[_index]);
             try
             {
-                _groupedNumbers[value] += parsed;
+                _groupedNumbers[key] += parsed;
             }
             catch
             {
-                _groupedNumbers.Add(value, parsed);
+                _groupedNumbers.Add(key, parsed);
             }
         }
 
@@ -39,7 +37,7 @@ namespace Qa.Core.Parsers.CalcFields
 
         public Dictionary<string, double> GetGroupedResult()
         {
-            return _groupedNumbers;
+            return _groupedNumbers.ToDictionary(x => x.Key.Replace(SEPARATOR, " / "), x => x.Value);
         }
     }
 }

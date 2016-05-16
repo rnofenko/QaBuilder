@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Q2.Core.Structure;
 
 namespace Qa.Core.Structure
 {
@@ -17,7 +16,10 @@ namespace Qa.Core.Structure
 
         public List<BinRange> Bins { get; set; }
 
-        public bool Group { get; set; }
+        public bool Group
+        {
+            get { return GroupByIndexes != null; }
+        }
 
         public int FieldIndex { get; set; }
 
@@ -25,7 +27,7 @@ namespace Qa.Core.Structure
 
         public int WeightFieldIndex { get; set; }
 
-        public int GroupByIndex { get; set; }
+        public int[] GroupByIndexes { get; set; }
 
         public string Code { get; set; }
 
@@ -42,7 +44,7 @@ namespace Qa.Core.Structure
             Translate = qa.Translate;
             Title = qa.Title;
             WeightFieldIndex = qa.WeightFieldIndex;
-            GroupByIndex = qa.GroupByIndex;
+            GroupByIndexes = qa.GroupByIndexes;
         }
 
         public QaField()

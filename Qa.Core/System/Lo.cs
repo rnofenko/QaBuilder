@@ -14,6 +14,16 @@ namespace Qa.Core.System
             return new Logger().Wl(message);
         }
 
+        public static Logger Wl(int count)
+        {
+            var logger = new Logger();
+            for (int i = 0; i < count; i++)
+            {
+                logger.Wl();
+            }
+            return logger;
+        }
+
         public static Logger Wl(string message, ConsoleColor color)
         {
             return new Logger().Wl(message, color);
@@ -22,12 +32,6 @@ namespace Qa.Core.System
         public static Logger WaitAnyKey()
         {
             return new Logger().WaitAnyKey();
-        }
-
-        public static Logger NewPage(string message = "")
-        {
-            Console.Clear();
-            return new Logger().Wl(message);
         }
     }
 }

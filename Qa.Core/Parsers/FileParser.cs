@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using Q2.Core.Collectors;
 using Qa.Core.Parsers.FileReaders;
 using Qa.Core.System;
 
@@ -12,7 +11,7 @@ namespace Qa.Core.Parsers
     public class FileParser
     {
         private static Stopwatch _watch;
-
+        
         public ParsedBatch Parse(FileParseArgs args, string splitBy)
         {
             Lo.Wl(string.Format("File: {0}", Path.GetFileNameWithoutExtension(args.Path)), ConsoleColor.Cyan);
@@ -66,14 +65,23 @@ namespace Qa.Core.Parsers
                     string[] parts;
                     while ((parts = reader.ReadRow()) != null)
                     {
-                        valueParser.Parse(parts);
-                        if ((valueParser.RowsCount % 250000) == 0)
+                        if ((valueParser.RowsCount % 20000) == 0)
                         {
-                            Lo.Wl(string.Format("Processed {0,5}k  Time:{1}", valueParser.RowsCount/1000, _watch.Elapsed));
+                            if ((valueParser.RowsCount % 1000000) == 0)
+                            {
+                                
+                                Lo.Wl().W(string.Format("Processed {0,2}m Time:{1:mm:ss.fff} ", valueParser.RowsCount / 1000000, new DateTime().AddTicks(_watch.ElapsedTicks)));
+                            }
+                            else
+                            {
+                                Lo.W(".");
+                            }
                         }
+                        valueParser.Parse(parts);
                     }
                 }
 
+                Lo.Wl().Wl(string.Format("Processed {0,5}k", valueParser.RowsCount / 1000));
                 return new ParsedFile {Fields = valueParser.GetResultFields(), Structure = args.Structure, Path = args.Path};
             }
         }

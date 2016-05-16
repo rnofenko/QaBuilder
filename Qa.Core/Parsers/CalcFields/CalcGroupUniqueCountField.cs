@@ -1,12 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using Q2.Core.Collectors.CalcFields;
-using Q2.Core.Structure;
 using Qa.Core.Structure;
 
 namespace Qa.Core.Parsers.CalcFields
 {
-    public class CalcGroupUniqueCountField : CalcBaseField, ICalculationField
+    public class CalcGroupUniqueCountField : CalcBaseGroupField, ICalculationField
     {
         private readonly Dictionary<string, HashSet<string>> _groupedUniqueValues;
         private readonly int _index;
@@ -19,13 +17,13 @@ namespace Qa.Core.Parsers.CalcFields
 
         public void Calc(string[] parts)
         {
-            var value = parts[_index];
+            var key = GetKey(parts);
 
             HashSet<string> set;
-            if (!_groupedUniqueValues.TryGetValue(value, out set))
+            if (!_groupedUniqueValues.TryGetValue(key, out set))
             {
                 set = new HashSet<string>();
-                _groupedUniqueValues.Add(value, set);
+                _groupedUniqueValues.Add(key, set);
             }
 
             var fieldValue = parts[_index];
@@ -42,7 +40,7 @@ namespace Qa.Core.Parsers.CalcFields
 
         public Dictionary<string, double> GetGroupedResult()
         {
-            return _groupedUniqueValues.ToDictionary(x => x.Key, x => (double)x.Value.Count);
+            return _groupedUniqueValues.ToDictionary(x => x.Key.Replace(SEPARATOR, " / "), x => (double)x.Value.Count);
         }
     }
 }

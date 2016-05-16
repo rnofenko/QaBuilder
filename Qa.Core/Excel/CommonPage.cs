@@ -1,6 +1,5 @@
 using System.Linq;
 using OfficeOpenXml;
-using Q2.Core.Excel;
 using Qa.Core.Compare;
 using Qa.Core.Structure;
 

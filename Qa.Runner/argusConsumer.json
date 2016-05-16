@@ -1,255 +1,244 @@
-﻿{
-  "structures": [
-    {
-      "name": "Argus Consumer Account Attributes",
+﻿[
+  {
+    "name": "Argus Consumer Account Attributes",
+    "rowsInHeader": 1,
+    "fields": [
+      { "name": "Account Identifier" },
+      { "name": "Product Type" },
+      { "name": "SubProduct Type" },
+      { "name": "Account Status" },
+      {
+        "name": "Open Date",
+        "type": "Date"
+      },
+      {
+        "name": "Close Date",
+        "type": "Date"
+      },
+      { "name": "City" },
+      { "name": "State" },
+      { "name": "Zip Code" },
+      { "name": "Month End Balance" },
+      { "name": "APY" },
+      { "name": "Current Branch" },
+      { "name": "Original Branch" },
+      { "name": "H1382_CDCANAL" },
+      { "name": "H1382_CDMOTCAN" },
+      { "name": "Overdraft Protection Indicator" },
+      { "name": "Overdraft Protection Reg E" },
+      { "name": "Electronic Billing Indicator" },
+      { "name": "Cycle Start Date" },
+      { "name": "Cycle End Date" },
+      { "name": "Cycle Balance" }
+    ],
+    "qa": {
       "rowsInHeader": 1,
       "delimiter": ",",
-      "textQualifier": "\"",
+      "fileMask": "*.csv",
       "fields": [
         {
-          "name": "Account Identifier",
-          "calculation": {
-            "type": "count"
-          }
-        },
-        { "name": "Product Type" },
-        { "name": "SubProduct Type" },
-        {
-          "name": "Account Status",
-          "calculation": {
-            "type": "countUnique"
-          }
+          "title": "Сount of accounts",
+          "calculation": "count"
         },
         {
-          "name": "Open Date",
-          "type": "Date"
+          "title": "Breakdown by product/subproduct type",
+          "calculation": "count",
+          "groupBy": "Product Type, SubProduct Type"
         },
         {
-          "name": "Close Date",
-          "type": "Date"
-        },
-        { "name": "City" },
-        {
-          "name": "State",
-          "calculation": {
-            "type": "countUnique"
-          }
-        },
-        { "name": "Zip Code" },
-        {
-          "name": "Month End Balance",
-          "calculation": {
-            "type": "sum"
-          }
-        },
-        { "name": "APY" },
-        { "name": "Current Branch" },
-        {
-          "name": "Original Branch",
-          "calculation": {
-            "type": "count",
-            "group": true
-          }
-        },
-        { "name": "H1382_CDCANAL" },
-        { "name": "H1382_CDMOTCAN" },
-        {
-          "name": "Overdraft Protection Indicator",
-          "calculation": {
-            "type": "countUnique"
-          }
+          "title": "Breakdown by product type",
+          "calculation": "sum",
+          "field": "Month End Balance",
+          "groupBy": "Product Type"
         },
         {
-          "name": "Overdraft Protection Reg E",
-          "calculation": {
-            "type": "countUnique"
-          }
+          "title": "Breakdown by State",
+          "calculation": "count",
+          "groupBy": "State"
         },
-        { "name": "Electronic Billing Indicator" },
-        { "name": "Cycle Start Date" },
-        { "name": "Cycle End Date" },
-        { "name": "Cycle Balance" }
+        {
+          "field": "Month End Balance",
+          "title": "Average Balance",
+          "calculation": "average"
+        }
       ]
-    },
-    {
-      "name": "Argus Consumer Posted Monetary Transaction Attributes",
-      "rowsInHeader": 1,
+    }
+  },
+  {
+    "name": "Argus Consumer Posted Monetary Transaction Attributes",
+    "rowsInHeader": 1,
+    "fields": [
+      { "name": "Account Identifier" },
+      { "name": "Transaction Post Date" },
+      {
+        "name": "Transaction Amount",
+        "numberFormat": "Money"
+      },
+      { "name": "Credit/debit Indicator" },
+      { "name": "Transaction Code" },
+      { "name": "Source System" },
+      {
+        "name": "Transaction Date",
+        "type": "Date"
+      },
+      { "name": "Transaction Description" },
+      { "name": "City" },
+      { "name": "State" },
+      { "name": "Transaction Identifier" },
+      { "name": "Running Balance" },
+      { "name": "Sequence Number" }
+    ],
+    "qa": {
       "delimiter": ",",
-      "textQualifier": "\"",
+      "fileMask": "*.csv",
       "fields": [
-        { "name": "Account Identifier" },
-        { "name": "Transaction Post Date" },
         {
-          "name": "Transaction Amount",
-          "numberFormat": "Money"
+          "title": "Number of transactions",
+          "calculation": "count"
         },
         {
-          "name": "Credit/debit Indicator",
-          "calculation": {
-            "type": "count",
-            "group": true
-          },
+          "title": "Total amount of transactions",
+          "calculation": "sum",
+          "field": "Transaction Amount"
+        },
+        {
+          "title": "Breakdown of count by credit/debit",
+          "calculation": "count",
+          "groupBy": "Credit/debit Indicator",
           "translate": {
             "C": "Credit",
             "D": "Debit"
           }
         },
         {
-          "name": "Transaction Code",
-          "calculation": {
-            "type": "count",
-            "group": true
+          "title": "Breakdown of amount by credit/debit",
+          "calculation": "sum",
+          "field": "Transaction Amount",
+          "groupBy": "Credit/debit Indicator",
+          "translate": {
+            "C": "Credit",
+            "D": "Debit"
           }
         },
         {
-          "name": "Source System",
-          "calculation": {
-            "type": "count",
-            "group": true
-          }
+          "calculation": "count",
+          "groupBy": "Transaction Code",
+          "title": "Breakdown of count by transaction code"
         },
         {
-          "name": "Transaction Date",
-          "type": "Date",
-          "calculation": {
-            "type": "count",
-            "group": true
-          }
-        },
-        { "name": "Transaction Description" },
-        { "name": "City" },
-        { "name": "State" },
-        { "name": "Transaction Identifier" },
-        { "name": "Running Balance" },
-        { "name": "Sequence Number" }
-      ]
-    },
-    {
-      "name": "Argus Consumer Card Attributes",
-      "rowsInHeader": 1,
-      "delimiter": ",",
-      "textQualifier": "\"",
-      "fields": [
-        { "name": "Account Identifier" },
-        {
-          "name": "Card Identifier",
-          "calculation": {
-            "type": "countUnique"
-          }
-        },
-        {
-          "name": "Card Product",
-          "calculation": {
-            "type": "count",
-            "group": true
-          }
-        },
-        {
-          "name": "Card Status",
-          "calculation": {
-            "type": "count",
-            "group": true
-          }
-        },
-        { "name": "Issue Date" },
-        { "name": "Blocked Reason Code" },
-        { "name": "Expiration Date" },
-        { "name": "PIN POS Purchase Limit" },
-        { "name": "SIG POS Purchase Limit" },
-        { "name": "ATM Withdrawal Limit" }
-      ]
-    },
-    {
-      "name": "Argus Consumer Customer Attributes",
-      "rowsInHeader": 1,
-      "delimiter": ",",
-      "textQualifier": "\"",
-      "fields": [
-        {
-          "name": "Customer Identifier",
-          "calculation": {
-            "type": "countUnique"
-          }
-        },
-        { "name": "Account Identifier" },
-        { "name": "City" },
-        {
-          "name": "State",
-          "calculation": {
-            "type": "count",
-            "group": true
-          }
-        },
-        { "name": "Zip Code" },
-        { "name": "Birth Date" },
-        {
-          "name": "Primary Customer Indicator",
-          "calculation": {
-            "type": "count",
-            "group": true
-          }
-        },
-        { "name": "Household Identifier" },
-        { "name": "Relationship Start Date" },
-        { "name": "Head Of Household Flag" }
-      ]
-    },
-    {
-      "name": "Argus Consumer Online SIG Transaction Attributes",
-      "rowsInHeader": 1,
-      "delimiter": ",",
-      "textQualifier": "\"",
-      "fields": [
-        { "name": "Card Identifier" },
-        { "name": "Deposit Account Number" },
-        {
-          "name": "Transaction Date",
-          "calculation": {
-            "type": "count",
-            "group": true
-          }
-        },
-        { "name": "Transaction PostDate" },
-        { "name": "Transaction Amount" },
-        { "name": "Cash Back Amount" },
-        {
-          "name": "Transaction Code",
-          "calculation": {
-            "type": "count",
-            "group": true
-          }
-        },
-        { "name": "Transaction Description" },
-        { "name": "SIC/MCC Code" },
-        {
-          "name": "Entry Mode Code",
-          "calculation": {
-            "type": "count",
-            "group": true
-          }
-        },
-        { "name": "Country Code" },
-        { "name": "Currency Code" },
-        {
-          "name": "Network Identifier",
-          "calculation": {
-            "type": "count",
-            "group": true
-          }
-        },
-        {
-          "name": "Transaction Type",
-          "calculation": {
-            "type": "count",
-            "group": true
-          }
-        },
-        { "name": "Response Code" },
-        { "name": "Message Code" },
-        { "name": "Standard Transaction Time" },
-        { "name": "Fee Assessed (ATM owner)" },
-        { "name": "Fee Assessed (account holder in)" }
+          "calculation": "sum",
+          "field": "Transaction Amount",
+          "groupBy": "Transaction Code",
+          "title": "Breakdown of amount by transaction code"
+        }
       ]
     }
-  ]
-}
+  },
+  {
+    "name": "Argus Consumer Card Attributes",
+    "rowsInHeader": 1,
+    "fields": [
+      { "name": "Account Identifier" },
+      { "name": "Card Identifier" },
+      { "name": "Card Product" },
+      { "name": "Card Status" },
+      { "name": "Issue Date" },
+      { "name": "Blocked Reason Code" },
+      { "name": "Expiration Date" },
+      { "name": "PIN POS Purchase Limit" },
+      { "name": "SIG POS Purchase Limit" },
+      { "name": "ATM Withdrawal Limit" }
+    ],
+    "qa": {
+      "delimiter": ",",
+      "fileMask": "*Card*.csv",
+      "fields": [
+        {
+          "title": "Count of cards",
+          "calculation": "count"
+        },
+        {
+          "title": "Breakdown by Product",
+          "calculation": "count",
+          "groupBy": "Card Product"
+        },
+        {
+          "title": "Breakdown by Status",
+          "calculation": "count",
+          "groupBy": "Card Status"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Argus Consumer Customer Attributes",
+    "rowsInHeader": 1,
+    "fields": [
+      { "name": "Customer Identifier" },
+      { "name": "Account Identifier" },
+      { "name": "City" },
+      { "name": "State" },
+      { "name": "Zip Code" },
+      { "name": "Birth Date" },
+      { "name": "Primary Customer Indicator" },
+      { "name": "Household Identifier" },
+      { "name": "Relationship Start Date" },
+      { "name": "Head Of Household Flag" }
+    ],
+    "qa": {
+      "delimiter": ",",
+      "fileMask": "*Customer*.csv",
+      "fields": [
+        {
+          "title": "Count of customers",
+          "calculation": "count"
+        },
+        {
+          "title": "Breakdown by State",
+          "calculation": "count",
+          "groupBy": "State"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Argus Consumer Online SIG Transaction Attributes",
+    "rowsInHeader": 1,
+    "fields": [
+      { "name": "Card Identifier" },
+      { "name": "Deposit Account Number" },
+      { "name": "Transaction Date" },
+      { "name": "Transaction PostDate" },
+      { "name": "Transaction Amount" },
+      { "name": "Cash Back Amount" },
+      { "name": "Transaction Code" },
+      { "name": "Transaction Description" },
+      { "name": "SIC/MCC Code" },
+      { "name": "Entry Mode Code" },
+      { "name": "Country Code" },
+      { "name": "Currency Code" },
+      { "name": "Network Identifier" },
+      { "name": "Transaction Type" },
+      { "name": "Response Code" },
+      { "name": "Message Code" },
+      { "name": "Standard Transaction Time" },
+      { "name": "Fee Assessed (ATM owner)" },
+      { "name": "Fee Assessed (account holder in)" }
+    ],
+    "qa": {
+      "delimiter": ",",
+      "fileMask": "*.csv",
+      "fields": [
+        {
+          "title": "Total count of transactions",
+          "calculation": "count"
+        },
+        {
+          "title": "Breakdown by Transaction Code",
+          "calculation": "count",
+          "groupBy": "Transaction Code"
+        }
+      ]
+    }
+  }
+]

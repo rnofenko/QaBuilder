@@ -16,7 +16,7 @@ namespace Qa.Core.Parsers
         public ValueParser(QaStructure structure)
         {
             var fieldFactory = ServiceLocator.CalculationFieldFactory;
-            _fields = structure.Fields.Select(x=>fieldFactory.Get(x, structure.SourceFields)).ToList();
+            _fields = structure.Fields.Select(x => fieldFactory.Get(x, structure.SourceFields)).ToList();
         }
 
         public List<CalculatedField> GetResultFields()

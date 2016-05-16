@@ -86,19 +86,17 @@
           }
         },
         {
-          "field": "PRODUCT_CODE",
           "title": "Product Code",
           "calculation": "count",
-          "group": true,
+          "groupBy": "PRODUCT_CODE",
           "style": {
             "alignment": "center"
           }
         },
         {
-          "field": "PRODUCT_TYPE",
           "title": "Product Type",
           "calculation": "count",
-          "group": true,
+          "groupBy": "PRODUCT_TYPE",
           "translate": {
             "C": "Commercial",
             "R": "Consumer"
@@ -151,10 +149,9 @@
           }
         },
         {
-          "field": "F_EMPLOYEE",
           "title": "Customer Employee Status",
           "calculation": "count",
-          "group": true,
+          "groupBy": "F_EMPLOYEE",
           "translate": {
             "Y": "Employee",
             "N": "Not Employee"
@@ -164,10 +161,9 @@
           }
         },
         {
-          "field": "F_DEBIT_CARD",
           "title": "Debit Card",
           "calculation": "count",
-          "group": true,
+          "groupBy": "F_DEBIT_CARD",
           "translate": {
             "Y": "Active",
             "N": "Inactive"
@@ -177,10 +173,9 @@
           }
         },
         {
-          "field": "CD_TERM",
           "title": "CD Term",
           "calculation": "count",
-          "group": true,
+          "groupBy": "CD_TERM",
           "sort": "stringasnumber",
           "bins": [
             {
@@ -247,10 +242,9 @@
           }
         },
         {
-          "field": "CUSTOMER_AGE",
           "title": "Customer Age",
           "calculation": "count",
-          "group": true,
+          "groupBy": "CUSTOMER_AGE",
           "sort": "stringasnumber",
           "bins": [
             {
@@ -359,10 +353,9 @@
           }
         },
         {
-          "field": "HOUSEHOLD_INCOME_TIER",
           "title": "Household Income Tier",
           "calculation": "count",
-          "group": true,
+          "groupBy": "HOUSEHOLD_INCOME_TIER",
           "sort": "numeric",
           "style": {
             "alignment": "center"

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using Q2.Core.Structure;
 using Qa.Core.Structure;
 using Qa.Core.System;
 
@@ -26,7 +25,7 @@ namespace Qa.Core.Format
 
         public void Start()
         {
-            Lo.NewPage("Formatting files");
+            Lo.Wl(2).Wl("Formatting files");
             showSettings();
 
             var files = _fileFinder.Find(_settings.WorkingFolder, SOURCE_FILE_MASK).ToList();

@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using Q2.Core.Excel;
-using Q2.Core.Structure;
 using Qa.Core.Excel;
 using Qa.Core.Structure;
 

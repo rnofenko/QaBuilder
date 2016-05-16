@@ -1,5 +1,4 @@
 ﻿using System;
-using Q2.Core.Excel;
 using Qa.Core.Excel;
 using Qa.Core.Format;
 using Qa.Core.Qa;
@@ -24,8 +23,7 @@ namespace Qa.Runner
             
             while (true)
             {
-                Console.Clear();
-                Lo.NewPage(string.Format("Santander - {0}", settings.Project))
+                Lo.Wl().Wl().Wl(string.Format("..................... Santander - {0} .........................", settings.Project))
                     .Wl(string.Format("Current folder is {0}", settings.WorkingFolder))
                     .Wl()
                     .Wl("Select command:")

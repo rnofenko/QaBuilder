@@ -53,6 +53,7 @@
     <Compile Include="Excel\XlsToCsvConverter.cs" />
     <Compile Include="Parsers\CalcFields\CalcAverageField.cs" />
     <Compile Include="Parsers\CalcFields\CalcBaseField.cs" />
+    <Compile Include="Parsers\CalcFields\CalcBaseGroupField.cs" />
     <Compile Include="Parsers\CalcFields\CalcCountField.cs" />
     <Compile Include="Parsers\CalcFields\CalcGroupCountField.cs" />
     <Compile Include="Parsers\CalcFields\CalcGroupedSumField.cs" />
@@ -89,7 +90,7 @@
     <Compile Include="Compare\ValuesComparer.cs" />
     <Compile Include="Excel\CommonPage.cs" />
     <Compile Include="Excel\CommonPageSettings.cs" />
-    <Compile Include="Excel\DateParser.cs" />
+    <Compile Include="Excel\FileDateParser.cs" />
     <Compile Include="Excel\ExcelCursor.cs" />
     <Compile Include="Excel\Exporter.cs" />
     <Compile Include="Excel\GroupedFieldPrinter.cs" />

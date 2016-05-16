@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Linq;
-using Q2.Core.Excel;
-using Q2.Core.Structure;
 using Qa.Core.Compare;
 using Qa.Core.Excel;
 using Qa.Core.Parsers;
@@ -32,7 +30,6 @@ namespace Qa.Core.Qa
 
         public void Start()
         {
-            Lo.NewPage("QA Reports");
             var files = _fileFinder
                 .Find(_settings.WorkingFolder, "*.*")
                 .Select(getParseArgs)
@@ -52,7 +49,6 @@ namespace Qa.Core.Qa
 
                 Lo.Wl().Wl("Comparing was finished.", ConsoleColor.Green);
             }
-            Console.ReadKey();
         }
 
         private FileParseArgs getParseArgs(string path)

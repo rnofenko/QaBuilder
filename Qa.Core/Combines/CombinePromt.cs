@@ -21,7 +21,7 @@ namespace Qa.Core.Combines
         {
             while (true)
             {
-                Lo.NewPage("Join files");
+                Lo.Wl().Wl();
                 showSettings(_settings);
 
                 Lo.Wl()
@@ -38,7 +38,7 @@ namespace Qa.Core.Combines
                 }
                 if (key == '2')
                 {
-                    Lo.NewPage("Files for join:");
+                    Lo.Wl().Wl().Wl("Files for join:");
                     _finder.Find(_settings.WorkingFolder, _settings.FileMask).ForEach(x => Lo.Wl(x));
                     Lo.WaitAnyKey();
                 }

@@ -1,6 +1,4 @@
-﻿using Q2.Core.Excel;
-
-namespace Qa.Core.Excel
+﻿namespace Qa.Core.Excel
 {
     public class StyleConditionArgs
     {

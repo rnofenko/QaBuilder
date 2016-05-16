@@ -24,7 +24,7 @@ namespace Qa.Core.Structure
             while (true)
             {
                 Console.Clear();
-                Lo.NewPage("Select project:");
+                Lo.Wl(2).Wl("Select project:");
                 for (var i = 0; i < files.Count; i++)
                 {
                     Lo.Wl($"{i + 1}. {files[i]}");

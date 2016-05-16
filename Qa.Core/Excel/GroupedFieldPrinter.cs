@@ -1,17 +1,16 @@
 ﻿using System.Linq;
 using OfficeOpenXml.Style;
-using Q2.Core.Excel;
 using Qa.Core.Compare;
 
 namespace Qa.Core.Excel
 {
     public class GroupedFieldPrinter
     {
-        private readonly DateParser _dateParser;
+        private readonly FileDateParser _dateParser;
 
         public GroupedFieldPrinter()
         {
-            _dateParser = new DateParser();
+            _dateParser = new FileDateParser();
         }
 
         public void Print(GroupedField field, ExcelCursor cursor, ComparePacket packet)

@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using Q2.Core.Structure;
 
 namespace Qa.Core.Structure.Json
 {
@@ -16,8 +15,6 @@ namespace Qa.Core.Structure.Json
         public string WeightField { get; set; }
 
         public string FilterExpression { get; set; }
-
-        public bool Group { get; set; }
 
         public string GroupBy { get; set; }
 
@@ -36,17 +33,13 @@ namespace Qa.Core.Structure.Json
                 Code = Code,
                 FieldIndex = fields.FindIndex(x => x.Name == Field),
                 FilterExpression = FilterExpression,
-                Group = Group,
                 NumberFormat = NumberFormat == NumberFormat.None ? field.NumberFormat : NumberFormat,
                 Title = Title ?? Field,
                 Translate = Translate,
-                GroupByIndex = fields.FindIndex(x => x.Name == GroupBy),
                 WeightFieldIndex = fields.FindIndex(x => x.Name == WeightField)
             };
-            if (qa.GroupByIndex >= 0)
-            {
-                qa.Group = true;
-            }
+            resolveGroupping(qa, fields);
+            
             if (field.Type == DType.Numeric)
             {
                 if (qa.Calculation == CalculationType.None)
@@ -59,6 +52,25 @@ namespace Qa.Core.Structure.Json
                 qa.NumberFormat = NumberFormat.Integer;
             }
             return qa;
+        }
+
+        private void resolveGroupping(QaField qa, List<Field> fields)
+        {
+            if (GroupBy.IsEmpty())
+            {
+                return;
+            }
+
+            qa.GroupByIndexes = GroupBy.Split(',')
+                .Select(x => x.Trim())
+                .Select(x => fields.FindIndex(f => f.Name == x))
+                .Where(x => x > -1)
+                .ToArray();
+
+            if (qa.GroupByIndexes.Length == 0)
+            {
+                qa.GroupByIndexes = null;
+            }
         }
 
         private Field getField(List<Field> fields)

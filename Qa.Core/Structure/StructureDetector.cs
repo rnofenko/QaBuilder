@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Qa.Core.Parsers.FileReaders;
@@ -37,7 +38,7 @@ namespace Qa.Core.Structure
             }
             if (structures.Count > 1)
             {
-                Lo.Wl().Wl(string.Format("ERROR  in {0}: There are {1} corresponding file structures.", filepath, structures.Count));
+                Lo.Wl().Wl(string.Format("ERROR  in {0}: There are {1} corresponding file structures.", filepath, structures.Count), ConsoleColor.Red);
                 return default(T);
             }
             return structures.First();

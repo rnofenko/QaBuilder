@@ -1,33 +1,29 @@
 using System.Collections.Generic;
-using Q2.Core.Structure;
-using Qa.Core.Parsers.CalcFields;
+using System.Linq;
 using Qa.Core.Structure;
 
-namespace Q2.Core.Collectors.CalcFields
+namespace Qa.Core.Parsers.CalcFields
 {
-    public class CalcGroupCountField : CalcBaseField, ICalculationField
+    public class CalcGroupCountField : CalcBaseGroupField, ICalculationField
     {
         private readonly Dictionary<string, double> _groupedNumbers;
-        private readonly int _index;
-
+        
         public CalcGroupCountField(QaField field)
             : base(field)
         {
-            _index = field.FieldIndex;
             _groupedNumbers = new Dictionary<string, double>();
         }
 
         public void Calc(string[] parts)
         {
-            var value = parts[_index];
-
+            var key = GetKey(parts);
             try
             {
-                _groupedNumbers[value]++;
+                _groupedNumbers[key]++;
             }
             catch
             {
-                _groupedNumbers.Add(value, 1);
+                _groupedNumbers.Add(key, 1);
             }
         }
 
@@ -38,7 +34,7 @@ namespace Q2.Core.Collectors.CalcFields
 
         public Dictionary<string, double> GetGroupedResult()
         {
-            return _groupedNumbers;
+            return _groupedNumbers.ToDictionary(x => x.Key.Replace(SEPARATOR, " / "), x => x.Value);
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Q2.Core.Structure;
 using Qa.Core;
 using Qa.Core.Compare;
 using Qa.Core.Excel;
@@ -30,7 +29,6 @@ namespace Qa.Bai.Pulse
 
         public void Start()
         {
-            Lo.NewPage("QA Reports");
             var batches = _fileFinder
                 .Find(_settings.WorkingFolder, "*.*")
                 .Select(getParseArgs)

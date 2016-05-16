@@ -222,7 +222,7 @@
     "qa": {
       "delimiter": ",",
       "rowsInHeader": 1,
-      "FileMask": "*.csv",
+      "fileMask": "*.csv",
       "fields": [
         {
           "field": "NIC",
@@ -297,21 +297,21 @@
         { "field": "HMA_NEW" },
         { "field": "IRA_NEW" },
         { "field": "CD_NEW" },
-        { "field": "RCD_NEW"},
-        {"field": "JCD_NEW"},
-        {"field": "TOTAL_CKG_ACCTS"},
-        {"field": "NEW_CKG_ACCTS"},
-        {"field": "CLOSED_CKG_ACCTS"},
-        {"field": "WAR"},
-        {"field": "ICK_WAR"},
-        {"field": "RSA_WAR"},
-        {"field": "MMDA_WAR"},
-        {"field": "RMA_WAR"},
-        {"field": "HMA_WAR"},
-        {"field": "IRA_WAR"},
-        {"field": "CD_WAR"},
-        {"field": "RCD_WAR"},
-        {"field": "JCD_WAR"}
+        { "field": "RCD_NEW" },
+        { "field": "JCD_NEW" },
+        { "field": "TOTAL_CKG_ACCTS" },
+        { "field": "NEW_CKG_ACCTS" },
+        { "field": "CLOSED_CKG_ACCTS" },
+        { "field": "WAR" },
+        { "field": "ICK_WAR" },
+        { "field": "RSA_WAR" },
+        { "field": "MMDA_WAR" },
+        { "field": "RMA_WAR" },
+        { "field": "HMA_WAR" },
+        { "field": "IRA_WAR" },
+        { "field": "CD_WAR" },
+        { "field": "RCD_WAR" },
+        { "field": "JCD_WAR" }
       ]
     }
   }
