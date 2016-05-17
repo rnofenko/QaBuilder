@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Qa.Core.Structure.Json;
+using Q2.Core.Structure.Json;
 
-namespace Q2.Core.Structure.Json
+namespace Qa.Core.Structure.Json
 {
     public class JsonFileStructure
     {

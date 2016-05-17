@@ -1,6 +1,45 @@
 ﻿[
   {
     "name": "Account Level Data",
+    "fields": [
+      { "name": "YEAR_MONTH" },
+      { "name": "CUST_ID" },
+      { "name": "CUST_COST_CENTER" },
+      { "name": "CUST_SINCE_DATE" },
+      { "name": "HH_ID" },
+      { "name": "HH_COST_CENTER" },
+      { "name": "HH_SINCE_DATE" },
+      { "name": "ACCT_ID" },
+      { "name": "ORIG_COST_CENTER" },
+      { "name": "ACCT_COST_CENTER" },
+      { "name": "ACCT_OPEN_DATE" },
+      { "name": "ACCT_CLOSE_DATE" },
+      { "name": "DATE_RENEWED" },
+      { "name": "LOB" },
+      { "name": "PROD_CODE1" },
+      { "name": "PROD_CODE2" },
+      { "name": "PROD_CODE3" },
+      {
+        "name": "TERM",
+        "type": "Numeric"
+      },
+      {
+        "name": "BAL_EOM",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "AVG_BAL",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "LINE_EOM",
+        "numberFormat": "Money"
+      },
+      {
+        "name": "FEE_INC",
+        "numberFormat": "Money"
+      }
+    ],
     "qa": {
       "fileMask": "ACCT*.txt",
       "rowsInHeader": 1,
@@ -9,9 +48,7 @@
         {
           "field": "CUST_ID",
           "title": "Customer ID",
-          "calculation": {
-            "type": "countUnique"
-          },
+          "calculation": "countUnique",
           "style": {
             "indent": 1
           }
@@ -19,9 +56,7 @@
         {
           "field": "CUST_COST_CENTER",
           "title": "Customer Cost Center",
-          "calculation": {
-            "type": "countUnique"
-          },
+          "calculation": "countUnique",
           "style": {
             "indent": 1
           }
@@ -29,9 +64,7 @@
         {
           "field": "HH_ID",
           "title": "Household ID",
-          "calculation": {
-            "type": "countUnique"
-          },
+          "calculation": "countUnique",
           "style": {
             "indent": 1
           }
@@ -39,9 +72,7 @@
         {
           "field": "HH_COST_CENTER",
           "title": "Household Cost Center",
-          "calculation": {
-            "type": "countUnique"
-          },
+          "calculation": "countUnique",
           "style": {
             "indent": 1
           }
@@ -49,9 +80,7 @@
         {
           "field": "ACCT_ID",
           "title": "Account ID",
-          "calculation": {
-            "type": "countUnique"
-          },
+          "calculation": "countUnique",
           "style": {
             "indent": 1
           }
@@ -59,9 +88,7 @@
         {
           "field": "ORIG_COST_CENTER",
           "title": "Original Cost Center",
-          "calculation": {
-            "type": "countUnique"
-          },
+          "calculation": "countUnique",
           "style": {
             "indent": 1
           }
@@ -69,27 +96,21 @@
         {
           "field": "ACCT_COST_CENTER",
           "title": "Account Cost Center",
-          "calculation": { "type": "countUnique" },
+          "calculation": "countUnique",
           "style": { "indent": 1 }
         },
         {
-          "field": "LOB",
+          "groupBy": "LOB",
           "title": "Line of Business",
-          "calculation": {
-            "type": "count",
-            "group": true
-          },
+          "calculation": "count",
           "style": {
             "indent": 5
           }
         },
         {
-          "field": "PROD_CODE1",
+          "groupBy": "PROD_CODE1",
           "title": "Product Code 1",
-          "calculation": {
-            "type": "count",
-            "group": true
-          },
+          "calculation": "count",
           "style": {
             "alignment": "center"
           }
@@ -97,12 +118,8 @@
         {
           "field": "TERM",
           "title": "CD Term",
-          "calculation": {
-            "type": "count",
-            "group": true
-          },
+          "calculation": "count",
           "sort": "stringasnumber",
-          "type": "Numeric",
           "bins": [
             { "hide": true },
             {
@@ -194,46 +211,8 @@
           }
         }
       ]
-    },    
-    "fields": [
-      { "name": "YEAR_MONTH" },
-      { "name": "CUST_ID" },
-      { "name": "CUST_COST_CENTER" },
-      { "name": "CUST_SINCE_DATE" },
-      { "name": "HH_ID" },
-      { "name": "HH_COST_CENTER" },
-      { "name": "HH_SINCE_DATE" },
-      { "name": "ACCT_ID" },
-      { "name": "ORIG_COST_CENTER" },
-      { "name": "ACCT_COST_CENTER" },
-      { "name": "ACCT_OPEN_DATE" },
-      { "name": "ACCT_CLOSE_DATE" },
-      { "name": "DATE_RENEWED" },
-      { "name": "LOB" },
-      { "name": "PROD_CODE1" },
-      { "name": "PROD_CODE2" },
-      { "name": "PROD_CODE3" },
-      { "name": "TERM",
-        "type": "Numeric"
-      },
-      {
-        "name": "BAL_EOM",
-        "numberFormat": "Money"
-      },
-      {
-        "name": "AVG_BAL",
-        "numberFormat": "Money"
-      },
-      {
-        "name": "LINE_EOM",
-        "numberFormat": "Money"
-      },
-      {
-        "name": "FEE_INC",
-        "numberFormat": "Money"
-      }
-    ]
-  },
+    }
+  },    
   {
     "name": "ATM Transactions",
     "fields": [
@@ -242,7 +221,7 @@
       { "name": "TRXN_TYPE" },
       {
         "name": "TRXN_COUNT",
-        "numberFormat": "Integer"
+        "type": "Numeric"
       }
     ],
     "qa": {
@@ -253,21 +232,16 @@
         {
           "field": "ATM_ID",
           "title": "ATM ID",
-          "calculation": {
-            "type": "countUnique"
-          },
+          "calculation": "countUnique",
           "style": {
             "indent": 6
           }
         },
         {
-          "field": "TRXN_TYPE",
+          "groupBy": "TRXN_TYPE",
+          "field": "TRXN_COUNT",
           "title": "Trxn Type",
-          "calculation": {
-            "type": "sum",
-            "field": "TRXN_COUNT",
-            "group": true
-          },
+          "calculation": "sum",
           "sort": "numeric",
           "style": {
             "indent": 4
@@ -291,7 +265,7 @@
       { "name": "TRXN_TYPE" },
       {
         "name": "TRXN_COUNT",
-        "numberFormat": "Integer"
+        "type": "Numeric"
       }
     ],
     "qa": {
@@ -302,21 +276,16 @@
         {
           "field": "BRANCH_ID",
           "title": "Branch ID",
-          "calculation": {
-            "type": "countUnique"
-          },
+          "calculation": "countUnique",
           "style": {
             "indent": 5
           }
         },
         {
-          "field": "TRXN_TYPE",
+          "groupBy": "TRXN_TYPE",
           "title": "Trxn Type",
-          "calculation": {
-            "type": "sum",
-            "field": "TRXN_COUNT",
-            "group": true
-          },
+          "field": "TRXN_COUNT",
+          "calculation": "sum",
           "sort": "numeric",
           "style": {
             "indent": 4

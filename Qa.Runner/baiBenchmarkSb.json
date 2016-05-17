@@ -62,31 +62,23 @@
         {
           "field": "BUSINESS_ID",
           "title": "Busuness ID",
-          "calculation": {
-            "type": "countUnique"
-          },
+          "calculation": "countUnique",
           "style": {
             "indent": 4
           }
         },
         {
-          "field": "PRODUCT_CODE",
+          "groupBy": "PRODUCT_CODE",
           "title": "Product Code",
-          "calculation": {
-            "type": "count",
-            "group": true
-          },
+          "calculation": "count",
           "style": {
             "alignment": "center"
           }
         },
         {
-          "field": "PRODUCT_TYPE",
+          "groupBy": "PRODUCT_TYPE",
           "title": "Product Type",
-          "calculation": {
-            "type": "count",
-            "group": true
-          },
+          "calculation": "count",
           "translate": {
             "C": "Commercial",
             "R": "Consumer"
@@ -112,20 +104,15 @@
         {
           "field": "BRANCH_ID",
           "title": "Branch ID",
-          "calculation": {
-            "type": "countUnique"
-          },
+          "calculation": "countUnique",
           "style": {
             "indent": 4
           }
         },
         {
-          "field": "F_MANAGED",
+          "groupBy": "F_MANAGED",
           "title": "Managed Account",
-          "calculation": {
-            "type": "count",
-            "group": true
-          },
+          "calculation": "count",
           "translate": {
             "Y": "Cust. with Managed Accts",
             "N": "Cust. w/o Managed Accts"
@@ -135,23 +122,17 @@
           }
         },
         {
-          "field": "ORIGINATION_CODE",
+          "groupBy": "ORIGINATION_CODE",
           "title": "Origination Code",
-          "calculation": {
-            "type": "count",
-            "group": true
-          },
+          "calculation": "count",
           "style": {
             "indent": 7
           }
         },
         {
-          "field": "F_DEBIT_CARD",
+          "groupBy": "F_DEBIT_CARD",
           "title": "Debit Card",
-          "calculation": {
-            "type": "count",
-            "group": true
-          },
+          "calculation": "count",
           "translate": {
             "Y": "Active",
             "N": "Inactive"
@@ -161,12 +142,9 @@
           }
         },
         {
-          "field": "F_ONLINE_BANKING",
+          "groupBy": "F_ONLINE_BANKING",
           "title": "Online Banking",
-          "calculation": {
-            "type": "count",
-            "group": true
-          },
+          "calculation": "count",
           "translate": {
             "Y": "Active",
             "N": "Inactive"
@@ -176,12 +154,9 @@
           }
         },
         {
-          "field": "F_ONLINE_BILLPAY",
+          "groupBy": "F_ONLINE_BILLPAY",
           "title": "Online Billpay",
-          "calculation": {
-            "type": "count",
-            "group": true
-          },
+          "calculation": "count",
           "translate": {
             "Y": "Active",
             "N": "Inactive"
@@ -191,12 +166,9 @@
           }
         },
         {
-          "field": "F_ACH_ACCOUNT",
+          "groupBy": "F_ACH_ACCOUNT",
           "title": "ACH Account",
-          "calculation": {
-            "type": "count",
-            "group": true
-          },
+          "calculation": "count",
           "translate": {
             "Y": "ACH",
             "N": "Not ACH"
@@ -206,14 +178,10 @@
           }
         },
         {
-          "field": "CD_TERM",
+          "groupBy": "CD_TERM",
           "title": "CD Term",
-          "calculation": {
-            "type": "count",
-            "group": true
-          },
+          "calculation": "count",
           "sort": "stringasnumber",
-          "type": "Numeric",
           "bins": [
             { "hide": true },
             {
@@ -279,9 +247,7 @@
         {
           "field": "HOUSEHOLD_ID",
           "title": "Household ID",
-          "calculation": {
-            "type": "countUnique"
-          },
+          "calculation": "countUnique",
           "style": {
             "indent": 4
           }
@@ -289,20 +255,15 @@
         {
           "field": "HOME_BRANCH_ID",
           "title": "Home Branch ID",
-          "calculation": {
-            "type": "countUnique"
-          },
+          "calculation": "countUnique",
           "style": {
             "indent": 4
           }
         },
         {
-          "field": "F_ACTIVE_CHECKING",
+          "groupBy": "F_ACTIVE_CHECKING",
           "title": "Active Checking",
-          "calculation": {
-            "type": "count",
-            "group": true
-          },
+          "calculation": "count",
           "translate": {
             "Y": "Active",
             "N": "Inactive"
@@ -319,23 +280,17 @@
           }
         },
         {
-          "field": "ORIGINATION_CHANNEL",
+          "groupBy": "ORIGINATION_CHANNEL",
           "title": "Origination Channel",
-          "calculation": {
-            "type": "count",
-            "group": true
-          },
+          "calculation": "count",
           "style": {
             "alignment": "center"
           }
         },
         {
-          "field": "F_REMOTE_DEPOSIT_CAPTURE",
+          "groupBy": "F_REMOTE_DEPOSIT_CAPTURE",
           "title": "Remote Deposit Capture",
-          "calculation": {
-            "type": "count",
-            "group": true
-          },
+          "calculation": "count",
           "translate": {
             "Y": "Active",
             "N": "Inactive"
@@ -345,12 +300,9 @@
           }
         },
         {
-          "field": "F_PRIMARY_CHECKING",
+          "groupBy": "F_PRIMARY_CHECKING",
           "title": "Primary Checking",
-          "calculation": {
-            "type": "count",
-            "group": true
-          },
+          "calculation": "count",
           "translate": {
             "Y": "Active",
             "N": "Inactive"

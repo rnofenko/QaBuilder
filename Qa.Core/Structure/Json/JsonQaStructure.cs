@@ -9,5 +9,7 @@ namespace Qa.Core.Structure.Json
         public List<JsonQaField> Fields { get; set; }
 
         public string FileMask { get; set; }
+
+        public int? RowsInHeader { get; set; }
     }
 }

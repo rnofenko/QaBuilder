@@ -32,7 +32,7 @@ namespace Qa.Core.Structure
         public string Code { get; set; }
 
         public string FilterExpression { get; set; }
-
+        
         public QaField(QaField qa)
         {
             Calculation = qa.Calculation;

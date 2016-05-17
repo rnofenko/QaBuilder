@@ -86,17 +86,17 @@
           }
         },
         {
+          "groupBy": "PRODUCT_CODE",
           "title": "Product Code",
           "calculation": "count",
-          "groupBy": "PRODUCT_CODE",
           "style": {
             "alignment": "center"
           }
         },
         {
+          "groupBy": "PRODUCT_TYPE",
           "title": "Product Type",
           "calculation": "count",
-          "groupBy": "PRODUCT_TYPE",
           "translate": {
             "C": "Commercial",
             "R": "Consumer"
@@ -136,9 +136,9 @@
           }
         },
         {
+          "groupBy": "F_MANAGED_ACCOUNT",
           "field": "CUSTOMER_ID",
           "title": "Managed Account",
-          "groupBy": "F_MANAGED_ACCOUNT",
           "calculation": "countUnique",
           "translate": {
             "Y": "Cust. with Managed Accts",
@@ -149,9 +149,9 @@
           }
         },
         {
+          "groupBy": "F_EMPLOYEE",
           "title": "Customer Employee Status",
           "calculation": "count",
-          "groupBy": "F_EMPLOYEE",
           "translate": {
             "Y": "Employee",
             "N": "Not Employee"
@@ -161,9 +161,9 @@
           }
         },
         {
+          "groupBy": "F_DEBIT_CARD",
           "title": "Debit Card",
           "calculation": "count",
-          "groupBy": "F_DEBIT_CARD",
           "translate": {
             "Y": "Active",
             "N": "Inactive"
@@ -173,9 +173,9 @@
           }
         },
         {
+          "groupBy": "CD_TERM",
           "title": "CD Term",
           "calculation": "count",
-          "groupBy": "CD_TERM",
           "sort": "stringasnumber",
           "bins": [
             {
@@ -242,9 +242,9 @@
           }
         },
         {
+          "groupBy": "CUSTOMER_AGE",
           "title": "Customer Age",
           "calculation": "count",
-          "groupBy": "CUSTOMER_AGE",
           "sort": "stringasnumber",
           "bins": [
             {
@@ -353,9 +353,9 @@
           }
         },
         {
+          "groupBy": "HOUSEHOLD_INCOME_TIER",
           "title": "Household Income Tier",
           "calculation": "count",
-          "groupBy": "HOUSEHOLD_INCOME_TIER",
           "sort": "numeric",
           "style": {
             "alignment": "center"

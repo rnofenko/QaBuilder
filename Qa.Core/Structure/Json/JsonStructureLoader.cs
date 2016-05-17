@@ -38,7 +38,7 @@ namespace Qa.Core.Structure.Json
                 {
                     Name = json.Name,
                     SourceFields = fields,
-                    RowsInHeader = json.RowsInHeader ?? 0,
+                    RowsInHeader = json.Qa.RowsInHeader ?? json.RowsInHeader ?? 0,
                     FileMask = json.Qa.FileMask ?? "*.txt",
                     Delimiter = json.Qa.Delimiter ?? "|",
                     Fields = json.Qa.Fields.Select(x => x.Convert(fields)).ToList(),
