@@ -30,6 +30,7 @@ namespace Qa.Runner
                     .Wl("1. Format")
                     .Wl("2. Create QA report");
                 var key = Console.ReadKey();
+                Lo.Wl();
                 if (key.KeyChar == '1')
                 {
                     new FormatPrompt(settings).Start();

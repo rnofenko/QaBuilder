@@ -29,6 +29,11 @@ namespace Qa.Core.System
             return new Logger().Wl(message, color);
         }
 
+        public static Logger W(string message, ConsoleColor color)
+        {
+            return new Logger().W(message, color);
+        }
+
         public static Logger WaitAnyKey()
         {
             return new Logger().WaitAnyKey();

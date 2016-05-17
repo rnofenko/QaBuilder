@@ -30,6 +30,14 @@ namespace Qa.Core.System
             return this;
         }
 
+        public Logger W(string message, ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+            Console.Write(message);
+            Console.ResetColor();
+            return this;
+        }
+
         public Logger WaitAnyKey()
         {
             Wl("Press any key to continue");

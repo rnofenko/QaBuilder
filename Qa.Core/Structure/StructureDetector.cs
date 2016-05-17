@@ -32,16 +32,26 @@ namespace Qa.Core.Structure
                 }
             }
 
+            var filename = Path.GetFileName(filepath);
             if (!structures.Any())
             {
+                prefix(filename).Wl(" structure wasn't found", ConsoleColor.Yellow);
                 return default(T);
             }
             if (structures.Count > 1)
             {
-                Lo.Wl().Wl(string.Format("ERROR  in {0}: There are {1} corresponding file structures.", filepath, structures.Count), ConsoleColor.Red);
+                prefix(filename).Wl(string.Format(" There are {0} corresponding file structures.", structures.Count), ConsoleColor.Red);
                 return default(T);
             }
-            return structures.First();
+
+            var first = structures.First();
+            prefix(filename).Wl(string.Format("{0}", first.Name), ConsoleColor.Green);
+            return first;
+        }
+
+        private Logger prefix(string file)
+        {
+            return Lo.W("Detect structure: ", ConsoleColor.Cyan).W(file).W(" - ");
         }
     }
 }

@@ -2,6 +2,8 @@
 {
     public interface IStructure
     {
+        string Name { get; }
+
         string Delimiter { get; }
 
         string TextQualifier { get; }

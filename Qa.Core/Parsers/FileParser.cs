@@ -51,7 +51,7 @@ namespace Qa.Core.Parsers
 
         public ParsedFile Parse(FileParseArgs args)
         {
-            Lo.Wl(string.Format("File: {0}", Path.GetFileNameWithoutExtension(args.Path)), ConsoleColor.Cyan);
+            Lo.W("Parse file: ", ConsoleColor.Cyan).Wl(Path.GetFileNameWithoutExtension(args.Path), ConsoleColor.Green);
             if (_watch == null)
             {
                 _watch = Stopwatch.StartNew();
