@@ -79,7 +79,12 @@ namespace Qa.Core.Structure
 
         private string get(string name)
         {
-            return getSettings()[name]?.Value;
+            var parameter = getSettings()[name];
+            if (parameter != null)
+            {
+                return parameter.Value;
+            }
+            return null;
         }
     }
 }
