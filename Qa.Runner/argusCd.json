@@ -43,6 +43,7 @@
     },
     "qa": {
       "delimiter": "|",
+      "fileMask": "*.txt",
       "fields": [
         {
           "title": "Number of Contracts",
@@ -96,6 +97,7 @@
     ],
     "qa": {
       "delimiter": "|",
+      "fileMask": "*.txt",
       "fields": [
         {
           "title": "Total Transaction Amount of Renewal/Rollover",
@@ -121,18 +123,19 @@
           "calculation": "countUnique"
         },
         {
-          "field": "Credit/Debit Indicator",
+          "groupBy": "Credit/Debit Indicator",
+          "title": "Count of transactions by Credit/Debit Indicator",
           "calculation": "count",
-          "group": true,
           "translate": {
             "C": "Credit",
             "D": "Debit"
           }
         },
         {
-          "field": "Transaction Code",
-          "calculation": "count",
-          "group": true
+          "groupBy": "Transaction Code",
+          "field": "Account Identifier",
+          "calculation": "countUnique",
+          "title": "Count of contracts by Transaction Code"
         }
       ]
     }
@@ -157,6 +160,7 @@
     ],
     "qa": {
       "delimiter": "|",
+      "fileMask": "*.txt",
       "fields": [
         {
           "title": "Number of Customers",

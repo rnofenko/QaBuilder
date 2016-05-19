@@ -8,7 +8,7 @@ namespace Qa.Core.System
     {
         private readonly List<string> _exceptions = new List<string> {".exe", ".config", ".json", ".dll", ".xml", ".pdb", ".xlsx" };
 
-        public List<string> Find(string folder, string mask)
+        public List<string> Find(string folder, string mask = "*.*")
         {
             return Directory.GetFiles(folder, mask)
                 .Where(x => !_exceptions.Contains(Path.GetExtension(x)))

@@ -1,4 +1,4 @@
-namespace Q2.Core.Structure.Json
+namespace Qa.Core.Structure.Json
 {
     public class JsonFormatStructure
     {

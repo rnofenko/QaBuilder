@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Q2.Core.Structure;
 using Qa.Core.Parsers.CalcFields;
 
 namespace Qa.Core.Structure

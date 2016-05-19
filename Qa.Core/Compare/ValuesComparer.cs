@@ -41,7 +41,7 @@ namespace Qa.Core.Compare
         private void fillKeys(GroupedValuesSet set, SortType sort)
         {
             var keys = set.Lists
-                .SelectMany(x => x.Values.Select(l => l.Value))
+                .SelectMany(x => x.Values.Select(l => l.Key))
                 .Distinct();
 
             if (sort == SortType.Numeric)
@@ -71,7 +71,7 @@ namespace Qa.Core.Compare
                     prevCount = previous[pair.Key];
                 }
 
-                row.Add(new KeyNumberPair { Value = pair.Key, Count = new CompareNumber(pair.Value, prevCount) });
+                row.Add(new KeyNumberPair { Key = pair.Key, Count = new CompareNumber(pair.Value, prevCount) });
             }
             return row;
         }

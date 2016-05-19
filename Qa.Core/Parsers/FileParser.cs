@@ -67,9 +67,13 @@ namespace Qa.Core.Parsers
                     {
                         if ((valueParser.RowsCount % 20000) == 0)
                         {
+                            if (valueParser.RowsCount == 200000)
+                            {
+                                break;
+                            }
+
                             if ((valueParser.RowsCount % 1000000) == 0)
                             {
-                                
                                 Lo.Wl().W(string.Format("Processed {0,2}m Time:{1:mm:ss.fff} ", valueParser.RowsCount / 1000000, new DateTime().AddTicks(_watch.ElapsedTicks)));
                             }
                             else

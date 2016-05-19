@@ -66,6 +66,7 @@ namespace Qa.Core.Structure.Json
             {
                 return;
             }
+            qa.Title = qa.Title ?? GroupBy;
 
             qa.GroupByIndexes = GroupBy.Split(',')
                 .Select(x => x.Trim())

@@ -2,8 +2,6 @@
 using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
-using Q2.Core.Structure;
-using Q2.Core.Structure.Json;
 
 namespace Qa.Core.Structure.Json
 {

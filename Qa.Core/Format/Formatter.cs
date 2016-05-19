@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Q2.Core.Structure;
 using Qa.Core.Parsers;
 using Qa.Core.Structure;
 using Qa.Core.System;

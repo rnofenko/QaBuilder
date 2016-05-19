@@ -23,7 +23,7 @@ namespace Qa.Core.Compare
 
         public TypedValue GetCurrent(string key)
         {
-            var value = Values.FirstOrDefault(x => x.Value == key);
+            var value = Values.FirstOrDefault(x => x.Key == key);
             if (value == null)
             {
                 return new TypedValue(0, NumberFormat.Integer);
@@ -33,7 +33,7 @@ namespace Qa.Core.Compare
 
         public TypedValue GetChange(string key)
         {
-            var value = Values.FirstOrDefault(x => x.Value == key);
+            var value = Values.FirstOrDefault(x => x.Key == key);
             if (value == null)
             {
                 return new TypedValue(0, NumberFormat.Percent);

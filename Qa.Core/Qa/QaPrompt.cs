@@ -17,6 +17,7 @@ namespace Qa.Core.Qa
         private readonly Comparer _comparer;
         private readonly BinCombiner _binCombiner;
         private readonly StructureDetector _detector;
+        private Sorter _sorter;
 
         public QaPrompt(Settings settings, IExporter exporter)
         {
@@ -24,6 +25,7 @@ namespace Qa.Core.Qa
             _fileFinder = new FileFinder();
             _excelExporter = exporter;
             _comparer = new Comparer();
+            _sorter = new Sorter();
             _binCombiner = new BinCombiner();
             _detector = new StructureDetector();
         }
@@ -31,7 +33,7 @@ namespace Qa.Core.Qa
         public void Start()
         {
             var files = _fileFinder
-                .Find(_settings.WorkingFolder, "*.*")
+                .Find(_settings.WorkingFolder)
                 .Select(getParseArgs)
                 .Where(x => x != null)
                 .Select(x => new FileParser().Parse(x))
@@ -45,6 +47,7 @@ namespace Qa.Core.Qa
             {
                 _binCombiner.Combine(files);
                 var result = _comparer.Compare(files);
+                result = _sorter.Sort(result);
                 _excelExporter.Export(result, _settings);
 
                 Lo.Wl().Wl("Comparing was finished.", ConsoleColor.Green);

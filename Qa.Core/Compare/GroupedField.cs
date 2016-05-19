@@ -6,20 +6,21 @@ namespace Qa.Core.Compare
 {
     public class GroupedField
     {
+        private const string NO_VALUES = "No Values";
         private readonly Dictionary<string, string> _translate;
 
         public GroupedField(FieldPack pack)
         {
             _translate = pack.Field.Translate ?? new Dictionary<string, string>();
             Keys = pack.GroupedNumbers.Keys;
-            ValueLists = pack.GroupedNumbers.Lists;
+            FileValues = pack.GroupedNumbers.Lists;
             Title = pack.Field.Title;
             Style = pack.Field.Style;
         }
 
         public string Title { get; private set; }
 
-        public List<GroupedValuesList> ValueLists { get; set; }
+        public List<GroupedValuesList> FileValues { get; set; }
 
         public List<string> Keys { get; set; }
 
@@ -29,7 +30,7 @@ namespace Qa.Core.Compare
         {
             if (key.IsEmpty())
             {
-                return "No Values";
+                return NO_VALUES;
             }
 
             if (_translate.ContainsKey(key))
@@ -42,12 +43,17 @@ namespace Qa.Core.Compare
 
         public TypedValue GetCurrent(FileInformation file, string key)
         {
-            return ValueLists[file.Index].GetCurrent(key);
+            return FileValues[file.Index].GetCurrent(key);
         }
 
         public TypedValue GetChange(FileInformation file, string key)
         {
-            return ValueLists[file.Index].GetChange(key);
+            return FileValues[file.Index].GetChange(key);
+        }
+
+        public override string ToString()
+        {
+            return Title;
         }
     }
 }

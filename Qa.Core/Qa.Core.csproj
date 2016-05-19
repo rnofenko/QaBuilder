@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Calculations\Calculator.cs" />
     <Compile Include="Excel\XlsToCsvConverter.cs" />
+    <Compile Include="Format\AskFileResult.cs" />
     <Compile Include="Parsers\CalcFields\CalcAverageField.cs" />
     <Compile Include="Parsers\CalcFields\CalcBaseField.cs" />
     <Compile Include="Parsers\CalcFields\CalcBaseGroupField.cs" />
@@ -121,6 +122,7 @@
     </Compile>
     <Compile Include="Parsers\FileParseArgs.cs" />
     <Compile Include="Qa\QaPrompt.cs" />
+    <Compile Include="Qa\Sorter.cs" />
     <Compile Include="Structure\BaseBinRange.cs" />
     <Compile Include="Structure\BinRange.cs" />
     <Compile Include="Structure\CalculationType.cs" />
