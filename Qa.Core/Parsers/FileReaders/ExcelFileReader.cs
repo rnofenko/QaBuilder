@@ -21,7 +21,10 @@ namespace Qa.Core.Parsers.FileReaders
 
         public void Dispose()
         {
-            _excel?.Dispose();
+            if (_excel != null)
+            {
+                _excel.Dispose();
+            }
         }
 
         public void Skip(int lines)

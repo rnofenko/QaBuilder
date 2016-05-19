@@ -17,7 +17,10 @@ namespace Qa.Core.Parsers.FileReaders
         
         public void Dispose()
         {
-            _stream?.Dispose();
+            if (_stream != null)
+            {
+                _stream.Dispose();
+            }
         }
 
         public void Skip(int lines)
