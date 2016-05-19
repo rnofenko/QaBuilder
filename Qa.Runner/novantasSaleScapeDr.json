@@ -36,6 +36,10 @@
         "numberFormat": "Money"
       },
       {
+        "name": "INTEREST_RATE",
+        "type": "Numeric"
+      },
+      {
         "name": "FEE_INC",
         "numberFormat": "Money"
       }
@@ -212,7 +216,7 @@
         }
       ]
     }
-  },    
+  },
   {
     "name": "ATM Transactions",
     "fields": [

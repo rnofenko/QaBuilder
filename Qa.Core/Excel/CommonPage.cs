@@ -47,6 +47,11 @@ namespace Qa.Core.Excel
             {
                 cursor.Sheet.View.FreezePanes(4, 3);
             }
+
+            sheet.Cells[1,1, sheet.Cells.Rows,sheet.Cells.Columns].AutoFitColumns(3,30);
+
+            //sheet.Cells[sheet.Dimension.Rows + 4, 2].Value = sheet.Cells.Rows;
+            //sheet.Cells[sheet.Dimension.Rows + 5, 2].Value = sheet.Cells.Columns;
         }
     }
 }
