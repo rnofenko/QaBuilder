@@ -41,9 +41,30 @@
           "calculation": "count"
         },
         {
-          "title": "Breakdown by product/subproduct type",
+          "title": "Breakdown by product/subproduct type1",
           "calculation": "count",
           "groupBy": "Product Type, SubProduct Type"
+        },
+        {
+          "title": "Breakdown by product/subproduct type2",
+          "calculation": "count",
+          "groupBy": "Product Type, SubProduct Type",
+          "bins": {
+            "method": "proportional",
+            "source": "value",
+            "ranges": [
+              {
+                "from": "0",
+                "to": "1000",
+                "name": "No term provided"
+              },
+              {
+                "from": "1001",
+                "to": "1234567890",
+                "name": "1-3 months"
+              }
+            ]
+          }
         },
         {
           "title": "Breakdown by product type",

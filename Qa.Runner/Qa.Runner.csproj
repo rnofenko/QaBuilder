@@ -59,6 +59,7 @@
     <None Include="argusCd.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="example.json" />
     <None Include="novantasSaleScapeDr.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

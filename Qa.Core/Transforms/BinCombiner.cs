@@ -11,53 +11,28 @@ namespace Qa.Core.Transforms
         {
             foreach (var rawReport in files)
             {
-                foreach (var field in rawReport.Fields.Where(x=>x.Field.Group && x.Field.Bins.IsNotEmpty()))
+                foreach (var field in rawReport.Fields.Where(x=>x.Field.Bins != null))
                 {
-                    if (field.Field.Sort == SortType.Numeric)
-                    {
-                        field.GroupedNumbers = fillNumericBins(field);
-                    }
-                    else
-                    {
-                        field.GroupedNumbers = fillStringBins(field);
-                    }
+                    field.GroupedNumbers = fillBins(field);
                 }
             }
         }
 
-        private Dictionary<string, double> fillStringBins(CalculatedField field)
+        private Dictionary<string, double> fillBins(CalculatedField field)
         {
-            var ranges = field.Field.Bins;
+            var settings = field.Field.Bins;
+            var ranges = settings.Ranges;
             var bins = new Dictionary<string, double>();
             foreach (var old in field.GroupedNumbers)
             {
-                var range = ranges.First(x => string.CompareOrdinal(old.Key, x.From) >= 0 && string.CompareOrdinal(old.Key, x.To) <= 0);
-                if (!bins.ContainsKey(range.Name))
-                {
-                    bins.Add(range.Name, 0d);
-                }
-                bins[range.Name] += old.Value;
-            }
-            return bins;
-        }
+                var fieldValue = settings.Source == BinSource.Key ? old.Key : old.Value.ToStr();
 
-        private Dictionary<string, double> fillNumericBins(CalculatedField field)
-        {
-            var ranges = field.Field.Bins.Select(x => x.ToNumeric()).ToList();
-            var bins = new Dictionary<string, double>();
-            foreach (var old in field.GroupedNumbers)
-            {
-                NumericBinRange range;
-                double key;
-                if (double.TryParse(old.Key, out key))
+                var range = ranges.FirstOrDefault(x => fieldValue.BiggerOrEqualThan(x.From) && fieldValue.LessOrEqualThan(x.To));
+                if (range == null)
                 {
-                    range = ranges.First(x => key >= x.From && key <= x.To);
+                    range = ranges.First(x => x.From == null && x.To == null);
                 }
-                else
-                {
-                    range = ranges.First(x => x.From == null);
-                }
-
+                
                 if (!range.Hide)
                 {
                     if (!bins.ContainsKey(range.Name))

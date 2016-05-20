@@ -176,7 +176,6 @@
           "groupBy": "CD_TERM",
           "title": "CD Term",
           "calculation": "count",
-          "sort": "stringasnumber",
           "bins": [
             {
               "hide": true
@@ -245,7 +244,6 @@
           "groupBy": "CUSTOMER_AGE",
           "title": "Customer Age",
           "calculation": "count",
-          "sort": "stringasnumber",
           "bins": [
             {
               "from": 1,
@@ -356,7 +354,6 @@
           "groupBy": "HOUSEHOLD_INCOME_TIER",
           "title": "Household Income Tier",
           "calculation": "count",
-          "sort": "numeric",
           "style": {
             "alignment": "center"
           }

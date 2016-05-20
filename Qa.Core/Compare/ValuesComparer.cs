@@ -15,8 +15,7 @@ namespace Qa.Core.Compare
                 set.Add(compare(current, previous));
                 previous = current;
             }
-            var sort = field.Sort;
-            fillKeys(set, sort);
+            fillKeys(set);
 
             return set;
         }
@@ -38,26 +37,13 @@ namespace Qa.Core.Compare
             return numbers;
         }
 
-        private void fillKeys(GroupedValuesSet set, SortType sort)
+        private void fillKeys(GroupedValuesSet set)
         {
-            var keys = set.Lists
+            set.Keys = set.Lists
                 .SelectMany(x => x.Values.Select(l => l.Key))
-                .Distinct();
-
-            if (sort == SortType.Numeric)
-            {
-                keys = keys.OrderBy(x => x, new NumericComparer());
-            }
-            else if (sort == SortType.StringAsNumber)
-            {
-                keys = keys.OrderBy(x => x, new StringsAsNumbersComparer());
-            }
-            else
-            {
-                keys = keys.OrderBy(x => x);
-            }
-
-            set.Keys = keys.ToList();
+                .Distinct()
+                .OrderBy(x => x, new StringsAsNumbersComparer())
+                .ToList();
         }
 
         private GroupedValuesList compare(Dictionary<string, double> current, Dictionary<string, double> previous)

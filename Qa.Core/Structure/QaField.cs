@@ -4,17 +4,32 @@ namespace Qa.Core.Structure
 {
     public class QaField
     {
+        public QaField()
+        {
+        }
+
+        public QaField(QaField qa)
+        {
+            Calculation = qa.Calculation;
+            Code = qa.Code;
+            FieldIndex = qa.FieldIndex;
+            NumberFormat = qa.NumberFormat;
+            Style = qa.Style;
+            Translate = qa.Translate;
+            Title = qa.Title;
+            WeightFieldIndex = qa.WeightFieldIndex;
+            GroupByIndexes = qa.GroupByIndexes;
+        }
+
         public string Title { get; set; }
 
         public NumberFormat NumberFormat { get; set; }
-
-        public SortType Sort { get; set; }
 
         public Dictionary<string, string> Translate { get; set; }
 
         public FieldStyle Style { get; set; }
 
-        public List<BinRange> Bins { get; set; }
+        public BinSettings Bins { get; set; }
 
         public bool Group
         {
@@ -33,22 +48,9 @@ namespace Qa.Core.Structure
 
         public string FilterExpression { get; set; }
         
-        public QaField(QaField qa)
+        public override string ToString()
         {
-            Calculation = qa.Calculation;
-            Code = qa.Code;
-            FieldIndex = qa.FieldIndex;
-            NumberFormat = qa.NumberFormat;
-            Sort = qa.Sort;
-            Style = qa.Style;
-            Translate = qa.Translate;
-            Title = qa.Title;
-            WeightFieldIndex = qa.WeightFieldIndex;
-            GroupByIndexes = qa.GroupByIndexes;
-        }
-
-        public QaField()
-        {
+            return Title;
         }
     }
 }

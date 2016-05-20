@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Calculations\Calculator.cs" />
     <Compile Include="Excel\XlsToCsvConverter.cs" />
+    <Compile Include="Extensions\DoubleExtension.cs" />
     <Compile Include="Format\AskFileResult.cs" />
     <Compile Include="Parsers\CalcFields\CalcAverageField.cs" />
     <Compile Include="Parsers\CalcFields\CalcBaseField.cs" />
@@ -106,7 +107,6 @@
     <Compile Include="Excel\StyleConditions.cs" />
     <Compile Include="Excel\TypedValue.cs" />
     <Compile Include="Extensions\EnumerableExtension.cs" />
-    <Compile Include="Extensions\NumericComparer.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Extensions\StringsAsNumbersComparer.cs" />
     <Compile Include="Extensions\StructureExtension.cs" />
@@ -124,7 +124,10 @@
     <Compile Include="Qa\QaPrompt.cs" />
     <Compile Include="Qa\Sorter.cs" />
     <Compile Include="Structure\BaseBinRange.cs" />
+    <Compile Include="Structure\BinMethod.cs" />
     <Compile Include="Structure\BinRange.cs" />
+    <Compile Include="Structure\BinSettings.cs" />
+    <Compile Include="Structure\BinSource.cs" />
     <Compile Include="Structure\CalculationType.cs" />
     <Compile Include="Structure\DType.cs" />
     <Compile Include="Structure\Field.cs" />
@@ -141,14 +144,12 @@
     <Compile Include="Structure\Json\JsonQaStructure.cs" />
     <Compile Include="Structure\Json\JsonFileStructure.cs" />
     <Compile Include="Structure\NumberFormat.cs" />
-    <Compile Include="Structure\NumericBinRange.cs" />
     <Compile Include="Structure\ProjectSelector.cs" />
     <Compile Include="Structure\QaField.cs" />
     <Compile Include="Structure\QaStructure.cs" />
     <Compile Include="Structure\CalculatedField.cs" />
     <Compile Include="Structure\Settings.cs" />
     <Compile Include="Structure\SettingsProvider.cs" />
-    <Compile Include="Structure\SortType.cs" />
     <Compile Include="Structure\StructureDetector.cs" />
     <Compile Include="Structure\Json\JsonStructureLoader.cs" />
     <Compile Include="Structure\StyleType.cs" />

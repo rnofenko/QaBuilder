@@ -14,6 +14,8 @@ namespace Qa.Core.Structure.Json
 
         public string WeightField { get; set; }
 
+        public BinSettings Bins { get; set; }
+
         public string FilterExpression { get; set; }
 
         public string GroupBy { get; set; }
@@ -24,8 +26,6 @@ namespace Qa.Core.Structure.Json
 
         public FieldStyle Style { get; set; }
 
-        public SortType Sort { get; set; }
-
         public Dictionary<string, string> Translate { get; set; }
 
         public QaField Convert(List<Field> fields)
@@ -35,11 +35,11 @@ namespace Qa.Core.Structure.Json
             {
                 Calculation = Calculation,
                 Code = Code,
+                Bins = Bins,
                 FieldIndex = fields.FindIndex(x => x.Name == Field),
                 FilterExpression = FilterExpression,
                 NumberFormat = NumberFormat == NumberFormat.None ? field.NumberFormat : NumberFormat,
                 Style = Style,
-                Sort = Sort,
                 Title = Title ?? Field,
                 Translate = Translate,
                 WeightFieldIndex = fields.FindIndex(x => x.Name == WeightField)

@@ -14,6 +14,14 @@ namespace Qa.Core
             {
                 return string.Compare(s1, s2, CultureInfo.InvariantCulture, CompareOptions.IgnoreCase);
             }
+            if (value2 == null)//it means that value1 is number and value2 is string. number is always less then string.
+            {
+                return -1;
+            }
+            if (value1 == null)
+            {
+                return 1;
+            }
             if (value1 > value2)
             {
                 return 1;

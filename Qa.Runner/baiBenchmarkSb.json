@@ -181,7 +181,6 @@
           "groupBy": "CD_TERM",
           "title": "CD Term",
           "calculation": "count",
-          "sort": "stringasnumber",
           "bins": [
             { "hide": true },
             {
