@@ -22,6 +22,8 @@ namespace Qa.Core.Structure.Json
 
         public NumberFormat NumberFormat { get; set; }
 
+        public string TranslateFunction { get; set; }
+
         public CalculationType Calculation { get; set; }
 
         public FieldStyle Style { get; set; }
@@ -41,8 +43,9 @@ namespace Qa.Core.Structure.Json
                 NumberFormat = NumberFormat == NumberFormat.None ? field.NumberFormat : NumberFormat,
                 Style = Style,
                 Title = Title ?? Field,
-                Translate = Translate,
-                WeightFieldIndex = fields.FindIndex(x => x.Name == WeightField)
+                Translate = Translate ?? new Dictionary<string, string>(),
+                WeightFieldIndex = fields.FindIndex(x => x.Name == WeightField),
+                TranslateFunction = TranslateFunction != null ? TranslateFunction.ToUpper() : null
             };
             resolveGroupping(qa, fields);
             

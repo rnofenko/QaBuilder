@@ -41,12 +41,7 @@
           "calculation": "count"
         },
         {
-          "title": "Breakdown by product/subproduct type1",
-          "calculation": "count",
-          "groupBy": "Product Type, SubProduct Type"
-        },
-        {
-          "title": "Breakdown by product/subproduct type2",
+          "title": "Breakdown of balance by product/subproduct type",
           "calculation": "count",
           "groupBy": "Product Type, SubProduct Type",
           "bins": {
@@ -54,28 +49,48 @@
             "source": "value",
             "ranges": [
               {
-                "from": "0",
-                "to": "1000",
-                "name": "No term provided"
+                "upto": "2",
+                "name": "Other",
+                "last": true
               },
               {
-                "from": "1001",
-                "to": "1234567890",
-                "name": "1-3 months"
+                "upto": "110",
+                "splitToItems": true
               }
             ]
           }
         },
         {
-          "title": "Breakdown by product type",
+          "title": "Breakdown of count by product/subproduct type",
+          "calculation": "count",
+          "groupBy": "Product Type, SubProduct Type",
+          "bins": {
+            "method": "proportional",
+            "source": "value",
+            "ranges": [
+              {
+                "upto": "2",
+                "name": "Other",
+                "last": true
+              },
+              {
+                "upto": "110",
+                "splitToItems": true
+              }
+            ]
+          }
+        },
+        {
+          "title": "Balances by product type",
           "calculation": "sum",
           "field": "Month End Balance",
           "groupBy": "Product Type"
         },
         {
-          "title": "Breakdown by State",
+          "title": "Account Count by State",
           "calculation": "count",
-          "groupBy": "State"
+          "groupBy": "State",
+          "translateFunction": "USA50States"
         },
         {
           "field": "Month End Balance",
@@ -118,7 +133,7 @@
           "calculation": "count"
         },
         {
-          "title": "Total amount of transactions",
+          "title": "Net amount of transactions",
           "calculation": "sum",
           "field": "Transaction Amount"
         },
@@ -140,17 +155,6 @@
             "C": "Credit",
             "D": "Debit"
           }
-        },
-        {
-          "calculation": "count",
-          "groupBy": "Transaction Code",
-          "title": "Breakdown of count by transaction code"
-        },
-        {
-          "calculation": "sum",
-          "field": "Transaction Amount",
-          "groupBy": "Transaction Code",
-          "title": "Breakdown of amount by transaction code"
         }
       ]
     }
@@ -211,13 +215,25 @@
       "fileMask": "*Customer*.csv",
       "fields": [
         {
-          "title": "Count of customers",
-          "calculation": "count"
-        },
-        {
           "title": "Breakdown by State",
           "calculation": "count",
-          "groupBy": "State"
+          "groupBy": "State",
+          "translateFunction": "USA50States",
+          "bins": {
+            "method": "proportional",
+            "source": "value",
+            "ranges": [
+              {
+                "upto": "0.5",
+                "name": "Other",
+                "last": true
+              },
+              {
+                "upto": "110",
+                "splitToItems": true
+              }
+            ]
+          }
         }
       ]
     }
@@ -253,11 +269,6 @@
         {
           "title": "Total count of transactions",
           "calculation": "count"
-        },
-        {
-          "title": "Breakdown by Transaction Code",
-          "calculation": "count",
-          "groupBy": "Transaction Code"
         }
       ]
     }

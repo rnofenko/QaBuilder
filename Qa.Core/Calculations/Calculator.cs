@@ -6,7 +6,7 @@ namespace Qa.Core.Calculations
     {
         public static double? ChangeInPercent(double current, double previous)
         {
-            if (!(Math.Abs(previous) > 0.0001d) && !(Math.Abs(current) > 0.0001d))
+            if (Math.Abs(previous) < 0.0001d && Math.Abs(current) < 0.0001d)
             {
                 return 0;
             }
@@ -20,6 +20,15 @@ namespace Qa.Core.Calculations
                 return -1;
             }
             return current * 1.0/ previous - 1;
+        }
+
+        public static double Portion(double value, double total)
+        {
+            if (Math.Abs(value) < 0.0001d || Math.Abs(total) < 0.0001d)
+            {
+                return 0;
+            }
+            return value * 1.0 / total * 100;
         }
 
         public static double AbsoluteChange(double current, double previous)

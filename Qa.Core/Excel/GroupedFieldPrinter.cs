@@ -44,7 +44,7 @@ namespace Qa.Core.Excel
             {
                 cursor.Down()
                     .Column(startColumn)
-                    .Print(field.GetTranslate(key), field.Style)
+                    .Print(key, field.Qa.Style)
                     .Right();
 
                 foreach (var file in packet.Files)

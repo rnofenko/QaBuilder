@@ -23,6 +23,8 @@ namespace Qa.Core.Structure
 
         public string Title { get; set; }
 
+        public string TranslateFunction { get; set; }
+
         public NumberFormat NumberFormat { get; set; }
 
         public Dictionary<string, string> Translate { get; set; }
@@ -47,7 +49,7 @@ namespace Qa.Core.Structure
         public string Code { get; set; }
 
         public string FilterExpression { get; set; }
-        
+
         public override string ToString()
         {
             return Title;

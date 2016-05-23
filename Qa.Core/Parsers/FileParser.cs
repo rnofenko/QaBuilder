@@ -67,9 +67,9 @@ namespace Qa.Core.Parsers
                     {
                         if ((valueParser.RowsCount % 20000) == 0)
                         {
-                            if (valueParser.RowsCount == 100000)
+                            if (valueParser.RowsCount == 20000)
                             {
-                                break;
+                                //break;
                             }
 
                             if ((valueParser.RowsCount % 1000000) == 0)

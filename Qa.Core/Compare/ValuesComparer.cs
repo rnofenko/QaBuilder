@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Qa.Core.Structure;
+using Qa.Core.System;
 
 namespace Qa.Core.Compare
 {
@@ -16,7 +19,7 @@ namespace Qa.Core.Compare
                 previous = current;
             }
             fillKeys(set);
-
+            
             return set;
         }
 
@@ -42,7 +45,6 @@ namespace Qa.Core.Compare
             set.Keys = set.Lists
                 .SelectMany(x => x.Values.Select(l => l.Key))
                 .Distinct()
-                .OrderBy(x => x, new StringsAsNumbersComparer())
                 .ToList();
         }
 

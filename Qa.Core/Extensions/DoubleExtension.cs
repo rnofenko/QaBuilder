@@ -8,5 +8,15 @@ namespace Qa.Core
         {
             return value.ToString(CultureInfo.InvariantCulture);
         }
+
+        public static bool BiggerOrEqualThan(this double value1, string value2)
+        {
+            return new StringsAsNumbersComparer().Compare(value1, value2) > -1;
+        }
+
+        public static bool LessOrEqualThan(this double value1, string value2)
+        {
+            return new StringsAsNumbersComparer().Compare(value1, value2) < 1;
+        }
     }
 }

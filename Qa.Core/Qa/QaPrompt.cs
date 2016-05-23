@@ -6,6 +6,7 @@ using Qa.Core.Parsers;
 using Qa.Core.Structure;
 using Qa.Core.System;
 using Qa.Core.Transforms;
+using Qa.Core.Translates;
 
 namespace Qa.Core.Qa
 {
@@ -17,7 +18,8 @@ namespace Qa.Core.Qa
         private readonly Comparer _comparer;
         private readonly BinCombiner _binCombiner;
         private readonly StructureDetector _detector;
-        private Sorter _sorter;
+        private readonly Sorter _sorter;
+        private readonly Translator _translator;
 
         public QaPrompt(Settings settings, IExporter exporter)
         {
@@ -26,6 +28,7 @@ namespace Qa.Core.Qa
             _excelExporter = exporter;
             _comparer = new Comparer();
             _sorter = new Sorter();
+            _translator = new Translator();
             _binCombiner = new BinCombiner();
             _detector = new StructureDetector();
         }
@@ -38,18 +41,18 @@ namespace Qa.Core.Qa
                 .Where(x => x != null)
                 .Select(x => new FileParser().Parse(x))
                 .ToList();
-
+            
             if (files.IsEmpty())
             {
                 Lo.Wl("No files were detected as QA report", ConsoleColor.Red);
             }
             else
             {
-                _binCombiner.Combine(files);
+                files = _binCombiner.Combine(files);
+                files = _translator.Translate(files);
                 var result = _comparer.Compare(files);
                 result = _sorter.Sort(result);
                 _excelExporter.Export(result, _settings);
-
                 Lo.Wl().Wl("Comparing was finished.", ConsoleColor.Green);
             }
         }

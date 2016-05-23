@@ -21,6 +21,7 @@ namespace Qa.Core.Compare
                 .GroupBy(x => x.Structure.Name)
                 .Select(compare)
                 .ToList();
+
             return packets;
         }
 
@@ -38,35 +39,34 @@ namespace Qa.Core.Compare
             return packets;
         }
 
-        private ComparePacket compare(IEnumerable<ParsedFile> rawReports)
+        private ComparePacket compare(IEnumerable<ParsedFile> filesForCompare)
         {
-            var reports = rawReports.OrderBy(x => x.Path).ToList();
-            var first = reports.First();
+            var files = filesForCompare.OrderBy(x => x.Path).ToList();
+            var first = files.First();
 
             var fieldPacks = new List<FieldPack>();
             for (var i = 0; i < first.Fields.Count; i++)
             {
-                var rawFields = reports.Select(x => x.Fields[i]).ToList();
-                fieldPacks.Add(getFieldPack(rawFields));
+                var fields = files.Select(x => x.Fields[i]).ToList();
+                fieldPacks.Add(getFieldPack(fields));
             }
-            var fileInformations = compareFiles(reports);
 
-            return new ComparePacket(fileInformations, fieldPacks, first.Structure);
+            return new ComparePacket(getFileInfo(files), fieldPacks, first.Structure);
         }
 
-        private List<FileInformation> compareFiles(IEnumerable<ParsedFile> rawReports)
+        private List<FileInformation> getFileInfo(IEnumerable<ParsedFile> files)
         {
             var i = 0;
-            return rawReports.Select(x => new FileInformation { FileName = Path.GetFileNameWithoutExtension(x.Path), Index = i++ }).ToList();
+            return files.Select(x => new FileInformation { FileName = Path.GetFileNameWithoutExtension(x.Path), Index = i++ }).ToList();
         }
 
-        private FieldPack getFieldPack(IList<CalculatedField> rawFields)
+        private FieldPack getFieldPack(IList<CalculatedField> fields)
         {
-            var field = rawFields.First().Field;
-            var pack = new FieldPack(field)
+            var qa = fields.First().Field;
+            var pack = new FieldPack(qa)
             {
-                GroupedNumbers = _valuesComparer.Compare(rawFields.Select(x => x.GroupedNumbers), field),
-                Numbers = _valuesComparer.Compare(rawFields.Select(x => x.Number))
+                GroupedNumbers = _valuesComparer.Compare(fields.Select(x => x.GroupedNumbers), qa),
+                Numbers = _valuesComparer.Compare(fields.Select(x => x.Number))
             };
             
             return pack;
