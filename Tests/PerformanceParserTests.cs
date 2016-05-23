@@ -10,7 +10,7 @@ namespace Qa.Tests
         [Fact]
         public void PerformanceLineParser()
         {
-            var parser = new LineParser(",", "\"");
+            var parser = new CsvParser(",", "\"");
             var w = Stopwatch.StartNew();
             for (int i = 0; i < 1000000; i++)
             {

@@ -5,9 +5,9 @@ namespace Qa.Core
 {
     public static class StructureExtension
     {
-        public static LineParser GetLineParser(this IStructure structure)
+        public static CsvParser GetLineParser(this IStructure structure)
         {
-            return new LineParser(structure.Delimiter, structure.TextQualifier);
+            return new CsvParser(structure.Delimiter, structure.TextQualifier);
         }
     }
 }

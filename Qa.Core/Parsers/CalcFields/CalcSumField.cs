@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Qa.Core.Parsers.Filters;
 using Qa.Core.Structure;
 
 namespace Qa.Core.Parsers.CalcFields
@@ -7,12 +8,12 @@ namespace Qa.Core.Parsers.CalcFields
     {
         private double _sum;
         private readonly int _index;
-        private readonly ExpressionFilter _filter;
+        private readonly IExpressionFilter _filter;
 
         public CalcSumField(QaField field, List<Field> sourceFields) : base(field)
         {
             _index = field.FieldIndex;
-            _filter = new ExpressionFilter(field.FilterExpression, sourceFields);
+            _filter = ExpressionFilterFactory.Create(field.FilterExpression, sourceFields);
         }
 
         public void Calc(string[] parts)

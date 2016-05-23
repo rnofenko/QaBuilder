@@ -41,26 +41,6 @@
           "calculation": "count"
         },
         {
-          "title": "Breakdown of balance by product/subproduct type",
-          "calculation": "count",
-          "groupBy": "Product Type, SubProduct Type",
-          "bins": {
-            "method": "proportional",
-            "source": "value",
-            "ranges": [
-              {
-                "upto": "2",
-                "name": "Other",
-                "last": true
-              },
-              {
-                "upto": "110",
-                "splitToItems": true
-              }
-            ]
-          }
-        },
-        {
           "title": "Breakdown of count by product/subproduct type",
           "calculation": "count",
           "groupBy": "Product Type, SubProduct Type",
@@ -84,7 +64,9 @@
           "title": "Balances by product type",
           "calculation": "sum",
           "field": "Month End Balance",
-          "groupBy": "Product Type"
+          "groupBy": "Product Type",
+          "invert": true,
+          "filterExpression": "Product Type in ['CHECKING (INTEREST BEARING)','CHECKING (NON-INTEREST)','MONEY MARKET','SAVINGS']"
         },
         {
           "title": "Account Count by State",
@@ -95,7 +77,8 @@
         {
           "field": "Month End Balance",
           "title": "Average Balance",
-          "calculation": "average"
+          "calculation": "average",
+          "invert": true
         }
       ]
     }
@@ -216,7 +199,8 @@
       "fields": [
         {
           "title": "Breakdown by State",
-          "calculation": "count",
+          "field": "Customer Identifier",
+          "calculation": "countUnique",
           "groupBy": "State",
           "translateFunction": "USA50States",
           "bins": {

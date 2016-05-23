@@ -6,7 +6,7 @@ namespace Qa.Core.Parsers.FileReaders
     public class TextFileReader: IFileReader
     {
         private StreamReader _stream;
-        private readonly LineParser _parser;
+        private readonly CsvParser _parser;
         private readonly string _path;
 
         public TextFileReader(string path, IStructure structure)

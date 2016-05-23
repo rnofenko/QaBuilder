@@ -50,6 +50,8 @@ namespace Qa.Core.Structure
 
         public string FilterExpression { get; set; }
 
+        public bool Invert { get; set; }
+
         public override string ToString()
         {
             return Title;

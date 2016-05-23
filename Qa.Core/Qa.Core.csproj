@@ -63,16 +63,20 @@
     <Compile Include="Parsers\CalcFields\CalcSumField.cs" />
     <Compile Include="Parsers\CalcFields\CalcUniqueCountField.cs" />
     <Compile Include="Parsers\CalcFields\CalcWeightedAverageField.cs" />
-    <Compile Include="Parsers\ExpressionFilter.cs" />
+    <Compile Include="Parsers\Filters\AlwaysTrueExpressionFilter.cs" />
+    <Compile Include="Parsers\Filters\EqualExpressionFilter.cs" />
     <Compile Include="Parsers\CalcFields\ICalculationField.cs" />
+    <Compile Include="Parsers\Filters\ExpressionFilterFactory.cs" />
     <Compile Include="Parsers\FileReaders\ExcelFileReader.cs" />
     <Compile Include="Parsers\FileReaders\FileReaderFactory.cs" />
     <Compile Include="Parsers\FileReaders\IFileReader.cs" />
     <Compile Include="Parsers\FileReaders\TextFileReader.cs" />
+    <Compile Include="Parsers\Filters\IExpressionFilter.cs" />
+    <Compile Include="Parsers\Filters\InExpressionFilter.cs" />
     <Compile Include="Parsers\NumberParser.cs" />
     <Compile Include="Parsers\CalcFields\DefaultCalculationFieldFactory.cs" />
     <Compile Include="Parsers\CalcFields\ICalculationFieldFactory.cs" />
-    <Compile Include="Parsers\LineParser.cs" />
+    <Compile Include="Parsers\CsvParser.cs" />
     <Compile Include="Parsers\FileParser.cs" />
     <Compile Include="Parsers\ParsedBatch.cs" />
     <Compile Include="Parsers\ParsedFile.cs" />
@@ -121,6 +125,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Parsers\FileParseArgs.cs" />
+    <Compile Include="Qa\Invertor.cs" />
     <Compile Include="Translates\ITranslator.cs" />
     <Compile Include="Qa\QaPrompt.cs" />
     <Compile Include="Qa\Sorter.cs" />

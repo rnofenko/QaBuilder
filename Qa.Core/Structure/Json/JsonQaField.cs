@@ -14,6 +14,8 @@ namespace Qa.Core.Structure.Json
 
         public string WeightField { get; set; }
 
+        public bool Invert { get; set; }
+
         public BinSettings Bins { get; set; }
 
         public string FilterExpression { get; set; }
@@ -41,6 +43,7 @@ namespace Qa.Core.Structure.Json
                 FieldIndex = fields.FindIndex(x => x.Name == Field),
                 FilterExpression = FilterExpression,
                 NumberFormat = NumberFormat == NumberFormat.None ? field.NumberFormat : NumberFormat,
+                Invert = Invert,
                 Style = Style,
                 Title = Title ?? Field,
                 Translate = Translate ?? new Dictionary<string, string>(),

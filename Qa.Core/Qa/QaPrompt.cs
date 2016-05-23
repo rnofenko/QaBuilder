@@ -20,6 +20,7 @@ namespace Qa.Core.Qa
         private readonly StructureDetector _detector;
         private readonly Sorter _sorter;
         private readonly Translator _translator;
+        private readonly Invertor _invertor;
 
         public QaPrompt(Settings settings, IExporter exporter)
         {
@@ -31,6 +32,7 @@ namespace Qa.Core.Qa
             _translator = new Translator();
             _binCombiner = new BinCombiner();
             _detector = new StructureDetector();
+            _invertor = new Invertor();
         }
 
         public void Start()
@@ -48,6 +50,7 @@ namespace Qa.Core.Qa
             }
             else
             {
+                files = _invertor.Invert(files);
                 files = _binCombiner.Combine(files);
                 files = _translator.Translate(files);
                 var result = _comparer.Compare(files);

@@ -3,14 +3,14 @@ using System.Text.RegularExpressions;
 
 namespace Qa.Core.Parsers
 {
-    public class LineParser
+    public class CsvParser
     {
         private readonly Regex _regex;
         private readonly char _delimiter;
         private readonly char _textQualifier;
         private readonly char[] _buffer = new char[1000];
 
-        public LineParser(string delimiter, string textQualifier)
+        public CsvParser(string delimiter, string textQualifier)
         {
             _delimiter = delimiter[0];
             if (textQualifier.IsEmpty())

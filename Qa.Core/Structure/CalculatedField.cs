@@ -7,7 +7,7 @@ namespace Qa.Core.Structure
     {
         public QaField Field { get; private set; }
 
-        public double Number { get; private set; }
+        public double Number { get; set; }
 
         public Dictionary<string, double> GroupedNumbers { get; set; }
 

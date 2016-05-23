@@ -28,7 +28,7 @@ namespace Qa.Core.Parsers.CalcFields
             {
                 if (field.Group)
                 {
-                    return new CalcGroupedSumField(field);
+                    return new CalcGroupedSumField(field, allFields);
                 }
                 return new CalcSumField(field, allFields);
             }

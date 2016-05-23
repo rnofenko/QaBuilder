@@ -11,14 +11,14 @@ namespace Qa.Core.Format
     public class Formatter
     {
         private List<Field> _fields;
-        private LineParser _lineParser;
+        private CsvParser _csvParser;
         private string _destinationDelimeter;
         
         public void Format(FormattingFile file)
         {
             _destinationDelimeter = file.FormatStructure.DestinationDelimiter;
             var formatStructure = file.FormatStructure;
-            _lineParser = formatStructure.GetLineParser();
+            _csvParser = formatStructure.GetLineParser();
             _fields = file.FormatStructure.Fields;
             var rowCount = 1;
             using (var reader = new StreamReader(file.SourcePath))
@@ -47,7 +47,7 @@ namespace Qa.Core.Format
         private string processLine(string line)
         {
             var parts = new string[_fields.Count];
-            var matches = _lineParser.Parse(line);
+            var matches = _csvParser.Parse(line);
 
             for (var i = 0; i < _fields.Count; i++)
             {
