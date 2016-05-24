@@ -27,7 +27,7 @@ namespace Qa.Core.Structure
                 Lo.Wl(2).Wl("Select project:");
                 for (var i = 0; i < files.Count; i++)
                 {
-                    Lo.Wl($"{i + 1}. {files[i]}");
+                    Lo.Wl(string.Format("{0}. {1}", i + 1, files[i]));
                 }
                 var key = Console.ReadKey();
                 int index;
