@@ -173,168 +173,170 @@
           }
         },
         {
-          "groupBy": "CD_TERM",
           "title": "CD Term",
           "calculation": "count",
-          "bins": [
-            {
-              "hide": true
-            },
-            {
-              "upto": "0",
-              "name": "No term provided"
-            },
-            {
-              "upto": "3",
-              "name": "1-3 months"
-            },
-            {
-              "upto": "6",
-              "name": "4-6 months"
-            },
-            {
-              "upto": "9",
-              "name": "7-9 months"
-            },
-            {
-              "upto": "12",
-              "name": "10-12 months"
-            },
-            {
-              "upto": "18",
-              "name": "13-18 months"
-            },
-            {
-              "upto": "24",
-              "name": "19-24 months"
-            },
-            {
-              "upto": "36",
-              "name": "25-36 months"
-            },
-            {
-              "upto": "48",
-              "name": "37-48 months"
-            },
-            {
-              "upto": "60",
-              "name": "49-60 months"
-            },
-            {
-              "upto": "99999",
-              "name": "60+ months"
-            }
-          ],
+          "groupBy": "CD_TERM",
+          "bins": {
+            "ranges": [
+              { "hide": true },
+              {
+                "upto": "0",
+                "name": "No term provided"
+              },
+              {
+                "upto": "3",
+                "name": "1-3 months"
+              },
+              {
+                "upto": "6",
+                "name": "4-6 months"
+              },
+              {
+                "upto": "9",
+                "name": "7-9 months"
+              },
+              {
+                "upto": "12",
+                "name": "10-12 months"
+              },
+              {
+                "upto": "18",
+                "name": "13-18 months"
+              },
+              {
+                "upto": "24",
+                "name": "19-24 months"
+              },
+              {
+                "upto": "36",
+                "name": "25-36 months"
+              },
+              {
+                "upto": "48",
+                "name": "37-48 months"
+              },
+              {
+                "upto": "60",
+                "name": "49-60 months"
+              },
+              {
+                "upto": "99999",
+                "name": "60+ months"
+              }
+            ]
+          },
           "style": {
-            "indent": 5
-          }
-        },
+              "indent": 5
+            }
+          },
         {
-          "groupBy": "CUSTOMER_AGE",
           "title": "Customer Age",
           "calculation": "count",
-          "bins": [
-            {
-              "upto": 4,
-              "name": "1-4 years"
-            },
-            {
-              "upto": 9,
-              "name": "5-9 years"
-            },
-            {
-              "upto": 14,
-              "name": "10-14 years"
-            },
-            {
-              "upto": 19,
-              "name": "15-19 years"
-            },
-            {
-              "upto": 24,
-              "name": "20-24 years"
-            },
-            {
-              "upto": 29,
-              "name": "25-29 years"
-            },
-            {
-              "upto": 34,
-              "name": "30-34 years"
-            },
-            {
-              "upto": 39,
-              "name": "35-39 years"
-            },
-            {
-              "upto": 44,
-              "name": "40-44 years"
-            },
-            {
-              "upto": 49,
-              "name": "45-49 years"
-            },
-            {
-              "upto": 54,
-              "name": "50-54 years"
-            },
-            {
-              "upto": 59,
-              "name": "55-59 years"
-            },
-            {
-              "upto": 64,
-              "name": "60-64 years"
-            },
-            {
-              "upto": 69,
-              "name": "65-69 years"
-            },
-            {
-              "upto": 74,
-              "name": "70-74 years"
-            },
-            {
-              "upto": 79,
-              "name": "75-79 years"
-            },
-            {
-              "upto": 84,
-              "name": "80-84 years"
-            },
-            {
-              "upto": 110,
-              "name": "85+ years"
-            },
-            {
-              "upto": 999,
-              "name": "Not Available"
-            },
-            {
-              "upto": 0,
-              "name": "Not Available"
+          "groupBy": "CUSTOMER_AGE",
+          "bins": {
+            "ranges": [
+              {
+                "upto": 4,
+                "name": "1-4 years"
+              },
+              {
+                "upto": 9,
+                "name": "5-9 years"
+              },
+              {
+                "upto": 14,
+                "name": "10-14 years"
+              },
+              {
+                "upto": 19,
+                "name": "15-19 years"
+              },
+              {
+                "upto": 24,
+                "name": "20-24 years"
+              },
+              {
+                "upto": 29,
+                "name": "25-29 years"
+              },
+              {
+                "upto": 34,
+                "name": "30-34 years"
+              },
+              {
+                "upto": 39,
+                "name": "35-39 years"
+              },
+              {
+                "upto": 44,
+                "name": "40-44 years"
+              },
+              {
+                "upto": 49,
+                "name": "45-49 years"
+              },
+              {
+                "upto": 54,
+                "name": "50-54 years"
+              },
+              {
+                "upto": 59,
+                "name": "55-59 years"
+              },
+              {
+                "upto": 64,
+                "name": "60-64 years"
+              },
+              {
+                "upto": 69,
+                "name": "65-69 years"
+              },
+              {
+                "upto": 74,
+                "name": "70-74 years"
+              },
+              {
+                "upto": 79,
+                "name": "75-79 years"
+              },
+              {
+                "upto": 84,
+                "name": "80-84 years"
+              },
+              {
+                "upto": 110,
+                "name": "85+ years"
+              },
+              {
+                "upto": 999,
+                "name": "Not Available"
+              },
+              {
+                "upto": 0,
+                "name": "Not Available"
+              }
+            ]
+         },
+         "style": {
+              "indent": 6
+          }
+        },
+        {
+            "groupBy": "HOUSEHOLD_INCOME_TIER",
+            "title": "Household Income Tier",
+            "calculation": "count",
+            "style": {
+              "alignment": "center"
             }
-          ],
-          "style": {
-            "indent": 6
+          },
+          {
+            "field": "TOTAL_FEES",
+            "title": "Total Fees",
+            "style": {
+              "indent": 4
+            }
           }
-        },
-        {
-          "groupBy": "HOUSEHOLD_INCOME_TIER",
-          "title": "Household Income Tier",
-          "calculation": "count",
-          "style": {
-            "alignment": "center"
-          }
-        },
-        {
-          "field": "TOTAL_FEES",
-          "title": "Total Fees",
-          "style": {
-            "indent": 4
-          }
+          ]
         }
-      ]
-    }
-  }
+        }
 ]
