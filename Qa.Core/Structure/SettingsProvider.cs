@@ -2,6 +2,7 @@ using System;
 using System.Configuration;
 using System.Diagnostics;
 using System.IO;
+using Qa.Core.Parsers;
 using Qa.Core.Structure.Json;
 using Qa.Core.System;
 
@@ -26,6 +27,7 @@ namespace Qa.Core.Structure
 
             var config = new Settings
             {
+                FileParserRowsLimit = getInt("fileParserRowsLimit"),
                 Project = projectName,
                 WorkingFolder = getWorkingFolder(projectName),
                 FileStructures = new JsonStructureLoader().Load(getProjectFilePath(projectName)),
@@ -85,6 +87,13 @@ namespace Qa.Core.Structure
                 return parameter.Value;
             }
             return null;
+        }
+
+        private int getInt(string name)
+        {
+            var strVal = get(name);
+            var intVal = Convert.ToInt32(NumberParser.SafeParse(strVal));
+            return intVal;
         }
     }
 }

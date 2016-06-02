@@ -189,53 +189,43 @@
               "name": "No term provided"
             },
             {
-              "from": "1",
-              "to": "3",
+              "upto": "3",
               "name": "1-3 months"
             },
             {
-              "from": "4",
-              "to": "6",
+              "upto": "6",
               "name": "4-6 months"
             },
             {
-              "from": "7",
-              "to": "9",
+              "upto": "9",
               "name": "7-9 months"
             },
             {
-              "from": "10",
-              "to": "12",
+              "upto": "12",
               "name": "10-12 months"
             },
             {
-              "from": "13",
-              "to": "18",
+              "upto": "18",
               "name": "13-18 months"
             },
             {
-              "from": "19",
-              "to": "24",
+              "upto": "24",
               "name": "19-24 months"
             },
             {
-              "from": "25",
-              "to": "36",
+              "upto": "36",
               "name": "25-36 months"
             },
             {
-              "from": "37",
-              "to": "48",
+              "upto": "48",
               "name": "37-48 months"
             },
             {
-              "from": "49",
-              "to": "60",
+              "upto": "60",
               "name": "49-60 months"
             },
             {
-              "from": "61",
-              "to": "99999",
+              "upto": "99999",
               "name": "60+ months"
             }
           ],

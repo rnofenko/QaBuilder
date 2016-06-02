@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Qa.Core.Parsers.FileReaders;
+using Qa.Core.Structure;
 using Qa.Core.System;
 
 namespace Qa.Core.Parsers
@@ -11,7 +12,17 @@ namespace Qa.Core.Parsers
     public class FileParser
     {
         private static Stopwatch _watch;
-        
+        private readonly int _rowsLimit;
+
+        public FileParser(Settings settings)
+        {
+            _rowsLimit = settings.FileParserRowsLimit;
+            if (_rowsLimit == 0)
+            {
+                _rowsLimit = int.MaxValue;
+            }
+        }
+
         public ParsedBatch Parse(FileParseArgs args, string splitBy)
         {
             Lo.Wl(string.Format("File: {0}", Path.GetFileNameWithoutExtension(args.Path)), ConsoleColor.Cyan);
@@ -65,6 +76,10 @@ namespace Qa.Core.Parsers
                     string[] parts;
                     while ((parts = reader.ReadRow()) != null)
                     {
+                        if (valueParser.RowsCount > _rowsLimit)
+                        {
+                            break;
+                        }
                         if ((valueParser.RowsCount % 20000) == 0)
                         {
                             if ((valueParser.RowsCount % 1000000) == 0)

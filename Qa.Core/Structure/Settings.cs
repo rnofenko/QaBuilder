@@ -11,5 +11,7 @@ namespace Qa.Core.Structure
         public string QaFileName { get; set; }
 
         public string Project { get; set; }
+
+        public int FileParserRowsLimit { get; set; }
     }
 }

@@ -181,58 +181,47 @@
               "hide": true
             },
             {
-              "from": "0",
-              "to": "0",
+              "upto": "0",
               "name": "No term provided"
             },
             {
-              "from": "1",
-              "to": "3",
+              "upto": "3",
               "name": "1-3 months"
             },
             {
-              "from": "4",
-              "to": "6",
+              "upto": "6",
               "name": "4-6 months"
             },
             {
-              "from": "7",
-              "to": "9",
+              "upto": "9",
               "name": "7-9 months"
             },
             {
-              "from": "10",
-              "to": "12",
+              "upto": "12",
               "name": "10-12 months"
             },
             {
-              "from": "13",
-              "to": "18",
+              "upto": "18",
               "name": "13-18 months"
             },
             {
-              "from": "19",
-              "to": "24",
+              "upto": "24",
               "name": "19-24 months"
             },
             {
-              "from": "25",
-              "to": "36",
+              "upto": "36",
               "name": "25-36 months"
             },
             {
-              "from": "37",
-              "to": "48",
+              "upto": "48",
               "name": "37-48 months"
             },
             {
-              "from": "49",
-              "to": "60",
+              "upto": "60",
               "name": "49-60 months"
             },
             {
-              "from": "61",
-              "to": "99999",
+              "upto": "99999",
               "name": "60+ months"
             }
           ],
@@ -246,103 +235,83 @@
           "calculation": "count",
           "bins": [
             {
-              "from": 1,
-              "to": 4,
+              "upto": 4,
               "name": "1-4 years"
             },
             {
-              "from": 5,
-              "to": 9,
+              "upto": 9,
               "name": "5-9 years"
             },
             {
-              "from": 10,
-              "to": 14,
+              "upto": 14,
               "name": "10-14 years"
             },
             {
-              "from": 15,
-              "to": 19,
+              "upto": 19,
               "name": "15-19 years"
             },
             {
-              "from": 20,
-              "to": 24,
+              "upto": 24,
               "name": "20-24 years"
             },
             {
-              "from": 25,
-              "to": 29,
+              "upto": 29,
               "name": "25-29 years"
             },
             {
-              "from": 30,
-              "to": 34,
+              "upto": 34,
               "name": "30-34 years"
             },
             {
-              "from": 35,
-              "to": 39,
+              "upto": 39,
               "name": "35-39 years"
             },
             {
-              "from": 40,
-              "to": 44,
+              "upto": 44,
               "name": "40-44 years"
             },
             {
-              "from": 45,
-              "to": 49,
+              "upto": 49,
               "name": "45-49 years"
             },
             {
-              "from": 50,
-              "to": 54,
+              "upto": 54,
               "name": "50-54 years"
             },
             {
-              "from": 55,
-              "to": 59,
+              "upto": 59,
               "name": "55-59 years"
             },
             {
-              "from": 60,
-              "to": 64,
+              "upto": 64,
               "name": "60-64 years"
             },
             {
-              "from": 65,
-              "to": 69,
+              "upto": 69,
               "name": "65-69 years"
             },
             {
-              "from": 70,
-              "to": 74,
+              "upto": 74,
               "name": "70-74 years"
             },
             {
-              "from": 75,
-              "to": 79,
+              "upto": 79,
               "name": "75-79 years"
             },
             {
-              "from": 80,
-              "to": 84,
+              "upto": 84,
               "name": "80-84 years"
             },
             {
-              "from": 85,
-              "to": 110,
+              "upto": 110,
               "name": "85+ years"
             },
             {
-              "from": 111,
-              "to": 999,
+              "upto": 999,
               "name": "Not Available"
             },
             {
-              "from": 0,
-              "to": 0,
+              "upto": 0,
               "name": "Not Available"
             }
           ],

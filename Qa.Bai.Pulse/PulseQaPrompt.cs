@@ -33,7 +33,7 @@ namespace Qa.Bai.Pulse
                 .Find(_settings.WorkingFolder, "*.*")
                 .Select(getParseArgs)
                 .Where(x => x != null)
-                .Select(x => new FileParser().Parse(x, "STATE"))
+                .Select(x => new FileParser(_settings).Parse(x, "STATE"))
                 .ToList();
             alignFiles(batches);
 

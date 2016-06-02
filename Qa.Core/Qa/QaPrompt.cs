@@ -41,7 +41,7 @@ namespace Qa.Core.Qa
                 .Find(_settings.WorkingFolder)
                 .Select(getParseArgs)
                 .Where(x => x != null)
-                .Select(x => new FileParser().Parse(x))
+                .Select(x => new FileParser(_settings).Parse(x))
                 .ToList();
             
             if (files.IsEmpty())

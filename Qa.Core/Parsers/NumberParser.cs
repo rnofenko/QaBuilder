@@ -41,6 +41,11 @@ namespace Qa.Core.Parsers
         
         public static double? ExtractNumber(string str)
         {
+            if (str == null)
+            {
+                return null;
+            }
+
             try
             {
                 return Parse(str);
