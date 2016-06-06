@@ -20,6 +20,13 @@ namespace Qa.Tests
         }
 
         [Fact]
+        public void EmptyString()
+        {
+            var result = new CsvParser(",", "\"").Parse("");
+            Assert.Equal(new[] { "" }, result);
+        }
+
+        [Fact]
         public void ManyFields()
         {
             var result = new CsvParser("|", "\"").Parse("C-F000878815-0000|F000878814|04013000000963||030332030|300|124|0000001|R|2298.91|2298.91|19000228|0401||Y|N||||||0.00030|N|Y|N|Y||||||71||6|N|Y||||N||B||||||");

@@ -25,9 +25,10 @@ namespace Qa.Core.Parsers.FileReaders
 
         public void Skip(int lines)
         {
+            var reader = getReader();
             for (var i = 0; i < lines; i++)
             {
-                getReader().ReadLine();
+                reader.ReadLine();
             }
         }
 

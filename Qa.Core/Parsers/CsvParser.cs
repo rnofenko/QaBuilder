@@ -8,7 +8,7 @@ namespace Qa.Core.Parsers
         private readonly Regex _regex;
         private readonly char _delimiter;
         private readonly char _textQualifier;
-        private readonly char[] _buffer = new char[1000];
+        private readonly char[] _buffer = new char[10000];
 
         public CsvParser(string delimiter, string textQualifier)
         {
