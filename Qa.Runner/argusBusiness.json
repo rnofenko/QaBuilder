@@ -1,0 +1,260 @@
+﻿[
+  {
+    "name": "Argus Business Account Attributes",
+    "rowsInHeader": 1,
+    "fields": [
+      { "name": "Account Identifier" },
+      { "name": "Product Type" },
+      { "name": "SubProduct Type" },
+      { "name": "Account Status" },
+      {
+        "name": "Open Date",
+        "type": "Date"
+      },
+      {
+        "name": "Close Date",
+        "type": "Date"
+      },
+      { "name": "City" },
+      { "name": "State" },
+      { "name": "Zip Code" },
+      { "name": "Month End Balance" },
+      { "name": "APY" },
+      { "name": "Current Branch" },
+      { "name": "Original Branch" },
+      { "name": "H1382_CDCANAL" },
+      { "name": "H1382_CDMOTCAN" },
+      { "name": "Overdraft Protection Indicator" },
+      { "name": "Overdraft Protection Reg E" },
+      { "name": "Electronic Billing Indicator" },
+      { "name": "Cycle Start Date" },
+      { "name": "Cycle End Date" },
+      { "name": "Cycle Balance" }
+    ],
+    "qa": {
+      "rowsInHeader": 1,
+      "delimiter": ",",
+      "fileMask": "*.csv",
+      "fields": [
+        {
+          "title": "Сount of accounts",
+          "calculation": "count"
+        },
+        {
+          "title": "Breakdown of count by product/subproduct type",
+          "calculation": "count",
+          "groupBy": "Product Type, SubProduct Type",
+          "bins": {
+            "method": "proportional",
+            "source": "value",
+            "ranges": [
+              {
+                "upto": "2",
+                "name": "Other",
+                "last": true
+              },
+              {
+                "upto": "110",
+                "splitToItems": true
+              }
+            ]
+          }
+        },
+        {
+          "title": "Balances by product type",
+          "calculation": "sum",
+          "field": "Month End Balance",
+          "groupBy": "Product Type",
+          "invert": true,
+          "filterExpression": "Product Type in ['CHECKING (INTEREST BEARING)','CHECKING (NON-INTEREST)','MONEY MARKET','SAVINGS']"
+        },
+        {
+          "title": "Account Count by State",
+          "calculation": "count",
+          "groupBy": "State",
+          "translateFunction": "USA50States"
+        },
+        {
+          "field": "Month End Balance",
+          "title": "Average Balance",
+          "calculation": "average",
+          "invert": true
+        }
+      ]
+    }
+  },
+  {
+    "name": "Argus Business Posted Monetary Transaction Attributes",
+    "rowsInHeader": 1,
+    "fields": [
+      { "name": "Account Identifier" },
+      { "name": "Transaction Post Date" },
+      {
+        "name": "Transaction Amount",
+        "numberFormat": "Money"
+      },
+      { "name": "Credit/debit Indicator" },
+      { "name": "Transaction Code" },
+      { "name": "Source System" },
+      {
+        "name": "Transaction Date",
+        "type": "Date"
+      },
+      { "name": "Transaction Description" },
+      { "name": "City" },
+      { "name": "State" },
+      { "name": "Transaction Identifier" },
+      { "name": "Running Balance" },
+      { "name": "Sequence Number" }
+    ],
+    "qa": {
+      "delimiter": ",",
+      "fileMask": "*.csv",
+      "fields": [
+        {
+          "title": "Number of transactions",
+          "calculation": "count"
+        },
+        {
+          "title": "Net amount of transactions",
+          "calculation": "sum",
+          "field": "Transaction Amount"
+        },
+        {
+          "title": "Breakdown of count by credit/debit",
+          "calculation": "count",
+          "groupBy": "Credit/debit Indicator",
+          "translate": {
+            "C": "Credit",
+            "D": "Debit"
+          }
+        },
+        {
+          "title": "Breakdown of amount by credit/debit",
+          "calculation": "sum",
+          "field": "Transaction Amount",
+          "groupBy": "Credit/debit Indicator",
+          "translate": {
+            "C": "Credit",
+            "D": "Debit"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "Argus Business Card Attributes",
+    "rowsInHeader": 1,
+    "fields": [
+      { "name": "Account Identifier" },
+      { "name": "Card Identifier" },
+      { "name": "Card Product" },
+      { "name": "Card Status" },
+      { "name": "Issue Date" },
+      { "name": "Blocked Reason Code" },
+      { "name": "Expiration Date" },
+      { "name": "PIN POS Purchase Limit" },
+      { "name": "SIG POS Purchase Limit" },
+      { "name": "ATM Withdrawal Limit" }
+    ],
+    "qa": {
+      "delimiter": ",",
+      "fileMask": "*Card*.csv",
+      "fields": [
+        {
+          "title": "Count of cards",
+          "calculation": "count"
+        },
+        {
+          "title": "Breakdown by Product",
+          "calculation": "count",
+          "groupBy": "Card Product"
+        },
+        {
+          "title": "Breakdown by Status",
+          "calculation": "count",
+          "groupBy": "Card Status"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Argus Business Customer Attributes",
+    "rowsInHeader": 1,
+    "fields": [
+      { "name": "Customer Identifier" },
+      { "name": "Account Identifier" },
+      { "name": "City" },
+      { "name": "State" },
+      { "name": "Zip Code" },
+      { "name": "Birth Date" },
+      { "name": "Primary Customer Indicator" },
+      { "name": "Household Identifier" },
+      { "name": "Relationship Start Date" },
+      { "name": "Head Of Household Flag" }
+    ],
+    "qa": {
+      "delimiter": ",",
+      "fileMask": "*Customer*.csv",
+      "fields": [
+        {
+          "title": "Breakdown by State",
+          "field": "Customer Identifier",
+          "calculation": "countUnique",
+          "groupBy": "State",
+          "translateFunction": "USA50States",
+          "bins": {
+            "method": "proportional",
+            "source": "value",
+            "ranges": [
+              {
+                "upto": "0.5",
+                "name": "Other",
+                "last": true
+              },
+              {
+                "upto": "110",
+                "splitToItems": true
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "Argus Business Online SIG Transaction Attributes",
+    "rowsInHeader": 1,
+    "fields": [
+      { "name": "Card Identifier" },
+      { "name": "Deposit Account Number" },
+      { "name": "Transaction Date" },
+      { "name": "Transaction PostDate" },
+      { "name": "Transaction Amount" },
+      { "name": "Cash Back Amount" },
+      { "name": "Transaction Code" },
+      { "name": "Transaction Description" },
+      { "name": "SIC/MCC Code" },
+      { "name": "Entry Mode Code" },
+      { "name": "Country Code" },
+      { "name": "Currency Code" },
+      { "name": "Network Identifier" },
+      { "name": "Transaction Type" },
+      { "name": "Response Code" },
+      { "name": "Message Code" },
+      { "name": "Standard Transaction Time" },
+      { "name": "Fee Assessed (ATM owner)" },
+      { "name": "Fee Assessed (account holder in)" }
+    ],
+    "qa": {
+      "delimiter": ",",
+      "fileMask": "*.csv",
+      "fields": [
+        {
+          "title": "Total count of transactions",
+          "calculation": "count"
+        }
+      ]
+    }
+  }
+]
