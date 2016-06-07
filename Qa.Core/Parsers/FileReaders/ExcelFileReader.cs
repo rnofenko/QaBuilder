@@ -47,5 +47,10 @@ namespace Qa.Core.Parsers.FileReaders
         {
             return _width;
         }
+
+        public string GetLastLine()
+        {
+            return "Row number "+ _currentRow;
+        }
     }
 }

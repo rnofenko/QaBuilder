@@ -8,6 +8,7 @@ namespace Qa.Core.Parsers.FileReaders
         private StreamReader _stream;
         private readonly CsvParser _parser;
         private readonly string _path;
+        private string _lastLine;
 
         public TextFileReader(string path, IStructure structure)
         {
@@ -34,18 +35,23 @@ namespace Qa.Core.Parsers.FileReaders
 
         public string[] ReadRow()
         {
-            var line = getReader().ReadLine();
-            if (line == null)
+            _lastLine = getReader().ReadLine();
+            if (_lastLine == null)
             {
                 return null;
             }
-            return _parser.Parse(line);
+            return _parser.Parse(_lastLine);
         }
 
         public int GetFieldsCount()
         {
             var row = ReadRow();
             return row.Length;
+        }
+
+        public string GetLastLine()
+        {
+            return _lastLine;
         }
 
         private StreamReader getReader()

@@ -67,37 +67,67 @@ namespace Qa.Core.Parsers
             {
                 _watch = Stopwatch.StartNew();
             }
-
+            
             using (var valueParser = new ValueParser(args.Structure))
             {
                 using (var reader = FileReaderFactory.Create(args.Path, args.Structure))
                 {
-                    reader.Skip(args.Structure.RowsInHeader);
-                    string[] parts;
-                    while ((parts = reader.ReadRow()) != null)
+                    try
                     {
-                        if (valueParser.RowsCount > _rowsLimit)
+                        reader.Skip(args.Structure.RowsInHeader);
+                        string[] parts;
+                        while ((parts = reader.ReadRow()) != null)
                         {
-                            break;
-                        }
-                        if ((valueParser.RowsCount % 20000) == 0)
-                        {
-                            if ((valueParser.RowsCount % 1000000) == 0)
+                            if (valueParser.RowsCount > _rowsLimit)
                             {
-                                Lo.Wl().W(string.Format("Processed {0,2}m Time:{1:mm:ss.fff} ", valueParser.RowsCount / 1000000, new DateTime().AddMilliseconds(_watch.ElapsedMilliseconds)));
+                                break;
                             }
-                            else
+                            if ((valueParser.RowsCount%20000) == 0)
                             {
-                                Lo.W(".");
+                                if ((valueParser.RowsCount%1000000) == 0)
+                                {
+                                    Lo.Wl()
+                                        .W(string.Format("Processed {0,2}m Time:{1:mm:ss.fff} ", valueParser.RowsCount/1000000,
+                                            new DateTime().AddMilliseconds(_watch.ElapsedMilliseconds)));
+                                }
+                                else
+                                {
+                                    Lo.W(".");
+                                }
                             }
+                            valueParser.Parse(parts);
                         }
-                        valueParser.Parse(parts);
+                    }
+                    catch (Exception e)
+                    {
+                        showError(reader, valueParser, e);
                     }
                 }
 
                 Lo.Wl().Wl(string.Format("Processed {0,5}k", valueParser.RowsCount / 1000));
                 return new ParsedFile {Fields = valueParser.GetResultFields(), Structure = args.Structure, Path = args.Path};
             }
+        }
+
+        private void showError(IFileReader reader, ValueParser valueParser, Exception e)
+        {
+            var lastLine = reader.GetLastLine();
+
+            Lo.Wl()
+                .Wl(string.Format("Error in row {0}.", valueParser.RowsCount), ConsoleColor.Red)
+                .Wl(e.Message, ConsoleColor.Red)
+                .Wl(e.StackTrace)
+                .W("Last line is:");
+            if (lastLine == null || lastLine.Length < 500)
+            {
+                Lo.Wl(lastLine);
+            }
+            else
+            {
+                Lo.Wl("Length is " + lastLine);
+            }
+
+            Console.ReadLine();
         }
     }
 }
