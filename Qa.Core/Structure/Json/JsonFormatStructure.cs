@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Qa.Core.Structure.Json
 {
     public class JsonFormatStructure
@@ -7,5 +9,11 @@ namespace Qa.Core.Structure.Json
         public string FileMask { get; set; }
 
         public string TextQualifier { get; set; }
+
+        public List<JsonFormatField> Fields { get; set; }
+
+        public int? RowsInHeader { get; set; }
+
+        public string DestinationDelimiter { get; set; }
     }
 }

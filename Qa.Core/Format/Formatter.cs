@@ -19,7 +19,7 @@ namespace Qa.Core.Format
             _destinationDelimeter = file.FormatStructure.DestinationDelimiter;
             var formatStructure = file.FormatStructure;
             _csvParser = formatStructure.GetLineParser();
-            _fields = file.FormatStructure.Fields;
+            _fields = file.FormatStructure.SourceFields;
             var rowCount = 1;
             using (var reader = new StreamReader(file.SourcePath))
             {

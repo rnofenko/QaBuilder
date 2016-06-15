@@ -1,7 +1,7 @@
 ﻿[
   {
     "name": "Account Level Data",
-    "fields": [
+    "fileFields": [
       { "name": "YEAR_MONTH" },
       { "name": "CUST_ID" },
       { "name": "CUST_COST_CENTER" },
@@ -210,7 +210,7 @@
   },
   {
     "name": "ATM Transactions",
-    "fields": [
+    "fileFields": [
       { "name": "YEAR_MONTH" },
       { "name": "ATM_ID" },
       { "name": "TRXN_TYPE" },
@@ -253,7 +253,7 @@
   },
   {
     "name": "Branch Customer Facing Trxn",
-    "fields": [
+    "fileFields": [
       { "name": "YEAR_MONTH" },
       { "name": "BRANCH_ID" },
       { "name": "TRXN_TYPE" },

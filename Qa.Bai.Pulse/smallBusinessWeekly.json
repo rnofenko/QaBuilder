@@ -2,7 +2,7 @@
   {
     "name": "BAI SB Pulse Weekly",
     "rowsInHeader": 1,
-    "fields": [
+    "fileFields": [
       { "name": "BANK_CODE" },
       { "name": "CYCLE_TYPE" },
       { "name": "STATE" },

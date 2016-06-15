@@ -2,7 +2,7 @@
   {
     "name": "Argus Consumer Account Attributes",
     "rowsInHeader": 1,
-    "fields": [
+    "fileFields": [
       { "name": "Account Identifier" },
       { "name": "Product Type" },
       { "name": "SubProduct Type" },
@@ -86,7 +86,7 @@
   {
     "name": "Argus Consumer Posted Monetary Transaction Attributes",
     "rowsInHeader": 1,
-    "fields": [
+    "fileFields": [
       { "name": "Account Identifier" },
       { "name": "Transaction Post Date" },
       {
@@ -145,7 +145,7 @@
   {
     "name": "Argus Consumer Card Attributes",
     "rowsInHeader": 1,
-    "fields": [
+    "fileFields": [
       { "name": "Account Identifier" },
       { "name": "Card Identifier" },
       { "name": "Card Product" },
@@ -181,7 +181,7 @@
   {
     "name": "Argus Consumer Customer Attributes",
     "rowsInHeader": 1,
-    "fields": [
+    "fileFields": [
       { "name": "Customer Identifier" },
       { "name": "Account Identifier" },
       { "name": "City" },
@@ -225,7 +225,7 @@
   {
     "name": "Argus Consumer Online SIG Transaction Attributes",
     "rowsInHeader": 1,
-    "fields": [
+    "fileFields": [
       { "name": "Card Identifier" },
       { "name": "Deposit Account Number" },
       { "name": "Transaction Date" },

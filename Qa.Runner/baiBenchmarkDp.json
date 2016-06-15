@@ -1,7 +1,7 @@
 ﻿[
   {
     "name": "BAI DPB",
-    "fields": [
+    "fileFields": [
       { "name": "HOUSEHOLD_ID" },
       { "name": "CUSTOMER_ID" },
       { "name": "ACCOUNT_ID" },
@@ -226,9 +226,9 @@
             ]
           },
           "style": {
-              "indent": 5
-            }
-          },
+            "indent": 5
+          }
+        },
         {
           "title": "Customer Age",
           "calculation": "count",
@@ -316,27 +316,27 @@
                 "name": "Not Available"
               }
             ]
-         },
-         "style": {
-              "indent": 6
+          },
+          "style": {
+            "indent": 6
           }
         },
         {
-            "groupBy": "HOUSEHOLD_INCOME_TIER",
-            "title": "Household Income Tier",
-            "calculation": "count",
-            "style": {
-              "alignment": "center"
-            }
-          },
-          {
-            "field": "TOTAL_FEES",
-            "title": "Total Fees",
-            "style": {
-              "indent": 4
-            }
+          "groupBy": "HOUSEHOLD_INCOME_TIER",
+          "title": "Household Income Tier",
+          "calculation": "count",
+          "style": {
+            "alignment": "center"
           }
-          ]
+        },
+        {
+          "field": "TOTAL_FEES",
+          "title": "Total Fees",
+          "style": {
+            "indent": 4
+          }
         }
-        }
+      ]
+    }
+  }
 ]

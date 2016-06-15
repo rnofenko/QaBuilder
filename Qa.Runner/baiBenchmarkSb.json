@@ -1,7 +1,7 @@
 ﻿[
   {
     "name": "BAI SBB",
-    "fields": [
+    "fileFields": [
       { "name": "ENTERPRISE_ID" },
       { "name": "BUSINESS_ID" },
       { "name": "ACCOUNT_ID" },

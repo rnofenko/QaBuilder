@@ -126,6 +126,7 @@
     </Compile>
     <Compile Include="Parsers\FileParseArgs.cs" />
     <Compile Include="Qa\Invertor.cs" />
+    <Compile Include="Structure\Json\JsonFormatField.cs" />
     <Compile Include="Translates\ITranslator.cs" />
     <Compile Include="Qa\QaPrompt.cs" />
     <Compile Include="Qa\Sorter.cs" />

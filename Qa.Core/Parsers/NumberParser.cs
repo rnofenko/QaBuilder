@@ -24,7 +24,7 @@ namespace Qa.Core.Parsers
 
         public static double SafeParse(string value)
         {
-            if (value.Length == 0)
+            if (string.IsNullOrEmpty(value))
             {
                 return 0;
             }

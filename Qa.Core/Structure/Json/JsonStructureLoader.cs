@@ -18,33 +18,56 @@ namespace Qa.Core.Structure.Json
         {
             json.Format = json.Format ?? new JsonFormatStructure();
 
-            var fields = json.Fields.Select(x => x.Convert()).ToList();
+            var fields = json.FileFields.Select(x => x.Convert()).ToList();
             var structure = new FileStructure
             {
-                Fields = fields,
-                Format = new FormatStructure
-                {
-                    Name = json.Name,
-                    Fields = fields,
-                    RowsInHeader = json.RowsInHeader ?? 0,
-                    FileMask = json.Format.FileMask ?? "*.csv",
-                    Delimiter = json.Format.Delimiter ?? ",",
-                    TextQualifier = json.Format.TextQualifier ?? "\"",
-                    CountOfFieldsInFile = fields.Count
-                },
-                Qa = new QaStructure
-                {
-                    Name = json.Name,
-                    SourceFields = fields,
-                    RowsInHeader = json.Qa.RowsInHeader ?? json.RowsInHeader ?? 0,
-                    FileMask = json.Qa.FileMask ?? "*.txt",
-                    Delimiter = json.Qa.Delimiter ?? "|",
-                    Fields = json.Qa.Fields.Select(x => x.Convert(fields)).ToList(),
-                    CountOfFieldsInFile = fields.Count
-                }
+                Fields = fields
             };
-            structure.Format.DestinationDelimiter = structure.Qa.Delimiter;
+            structure.Qa = getQa(json, structure);
+            structure.Format = getFormat(json, structure);
+            
             return structure;
+        }
+
+        private FormatStructure getFormat(JsonFileStructure json, FileStructure structure)
+        {
+            if (json.Qa != null)
+            {
+                return new FormatStructure();
+            }
+
+            var delimiter = json.Format.Delimiter ?? ",";
+            var format = new FormatStructure
+            {
+                Name = json.Name,
+                SourceFields = structure.Fields,
+                RowsInHeader = json.Format.RowsInHeader ?? json.RowsInHeader ?? 0,
+                FileMask = json.Format.FileMask ?? "*.csv",
+                Delimiter = delimiter,
+                TextQualifier = json.Format.TextQualifier ?? "\"",
+                CountOfFieldsInFile = structure.Fields.Count,
+                DestinationDelimiter = json.Format.DestinationDelimiter ?? structure.Qa.Delimiter ?? delimiter
+            };
+            return format;
+        }
+
+        private QaStructure getQa(JsonFileStructure json, FileStructure structure)
+        {
+            if (json.Qa == null)
+            {
+                return new QaStructure();
+            }
+
+            return new QaStructure
+            {
+                Name = json.Name,
+                SourceFields = structure.Fields,
+                RowsInHeader = json.Qa.RowsInHeader ?? json.RowsInHeader ?? 0,
+                FileMask = json.Qa.FileMask ?? "*.txt",
+                Delimiter = json.Qa.Delimiter ?? "|",
+                Fields = json.Qa.Fields.Select(x => x.Convert(structure.Fields)).ToList(),
+                CountOfFieldsInFile = structure.Fields.Count
+            };
         }
     }
 }

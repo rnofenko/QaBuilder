@@ -8,7 +8,7 @@ namespace Qa.Core.Structure.Json
         
         public int? RowsInHeader { get; set; }
 
-        public List<JsonField> Fields { get; set; }
+        public List<JsonField> FileFields { get; set; }
         
         public JsonQaStructure Qa { get; set; }
 

@@ -2,7 +2,7 @@
   {
     "name": "BAI SB Pulse Monthly",
     "rowsInHeader": 1,
-    "fields": [
+    "fileFields": [
       { "name": "BANK_CODE" },
       { "name": "CYCLE_TYPE" },
       { "name": "STATE" },
@@ -96,84 +96,94 @@
       "delimiter": ","
     },
     "qa": {
-        "delimiter": "|",
-        "rowsInHeader": 1,
-        "fields": [
-          { "field": "NACH", "title": "Non-Analysis Checking" },
-          { "field": "FBC", "title": "Free Business Checking" },
-          { "field": "NNC", "title": "Non-Interest Non-Analysis Checking" },
-          { "field": "INC",
-            "title": "Interest Non Analysis Checking"
-          },
-          {
-            "field": "NAC",
-            "title": "Non-Interest Analysis Checking"
-          },
-          {
-            "field": "SWP",
-            "title": "Commercial Sweep (On Balance Sheet)"
-          },
-          {
-            "field": "SWO",
-            "title": "Commercial Sweep (Off Balance Sheet)"
-          },
-          {
-            "field": "BSV",
-            "title": "Business Savings"
-          },
-          {
-            "field": "MMA",
-            "title": "Money Market"
-          },
-          {
-            "field": "RMA",
-            "title": "Regular MMDA"
-          },
-          {
-            "field": "HMA",
-            "title": "High Rate MMDA"
-          },
-          {
-            "field": "BCD",
-            "title": "Business CDs"
-          },
-          {
-            "field": "TOTAL_CKG_ACCTS",
-            "title": "Total Checking Accounts"
-          },
-          {
-            "field": "TOTAL_NACH_CKG_ACCTS",
-            "title": "Total Non-Analysis Checking Accounts"
-          },
-          {
-            "field": "TOTAL_NAC_CKG_ACCTS",
-            "title": "Total Analysis Checking Accounts"
-          },
-          {
-            "field": "NEW_CKG_ACCTS",
-            "title": "New Checking Accounts"
-          },
-          {
-            "field": "NEW_NACH_CKG_ACCTS",
-            "title": "New Non-Analysis Checking Accounts"
-          },
-          {
-            "field": "NEW_NAC_CKG_ACCTS",
-            "title": "New Analysis Checking Accounts"
-          },
-          {
-            "field": "CLOSED_CKG_ACCTS",
-            "title": "Closed Checking Accounts"
-          },
-          {
-            "field": "CLOSED_NACH_CKG_ACCTS",
-            "title": "Closed Non-Analysis Checking Accounts"
-          },
-          {
-            "field": "CLOSED_NAC_CKG_ACCTS",
-            "title": "Closed Analysis Checking Accounts"
-          }
-        ]
-      }
+      "delimiter": "|",
+      "rowsInHeader": 1,
+      "fields": [
+        {
+          "field": "NACH",
+          "title": "Non-Analysis Checking"
+        },
+        {
+          "field": "FBC",
+          "title": "Free Business Checking"
+        },
+        {
+          "field": "NNC",
+          "title": "Non-Interest Non-Analysis Checking"
+        },
+        {
+          "field": "INC",
+          "title": "Interest Non Analysis Checking"
+        },
+        {
+          "field": "NAC",
+          "title": "Non-Interest Analysis Checking"
+        },
+        {
+          "field": "SWP",
+          "title": "Commercial Sweep (On Balance Sheet)"
+        },
+        {
+          "field": "SWO",
+          "title": "Commercial Sweep (Off Balance Sheet)"
+        },
+        {
+          "field": "BSV",
+          "title": "Business Savings"
+        },
+        {
+          "field": "MMA",
+          "title": "Money Market"
+        },
+        {
+          "field": "RMA",
+          "title": "Regular MMDA"
+        },
+        {
+          "field": "HMA",
+          "title": "High Rate MMDA"
+        },
+        {
+          "field": "BCD",
+          "title": "Business CDs"
+        },
+        {
+          "field": "TOTAL_CKG_ACCTS",
+          "title": "Total Checking Accounts"
+        },
+        {
+          "field": "TOTAL_NACH_CKG_ACCTS",
+          "title": "Total Non-Analysis Checking Accounts"
+        },
+        {
+          "field": "TOTAL_NAC_CKG_ACCTS",
+          "title": "Total Analysis Checking Accounts"
+        },
+        {
+          "field": "NEW_CKG_ACCTS",
+          "title": "New Checking Accounts"
+        },
+        {
+          "field": "NEW_NACH_CKG_ACCTS",
+          "title": "New Non-Analysis Checking Accounts"
+        },
+        {
+          "field": "NEW_NAC_CKG_ACCTS",
+          "title": "New Analysis Checking Accounts"
+        },
+        {
+          "field": "CLOSED_CKG_ACCTS",
+          "title": "Closed Checking Accounts"
+        },
+        {
+          "field": "CLOSED_NACH_CKG_ACCTS",
+          "title": "Closed Non-Analysis Checking Accounts"
+        },
+        {
+          "field": "CLOSED_NAC_CKG_ACCTS",
+          "title": "Closed Analysis Checking Accounts"
+        }
+      ]
+    }
   }
 ]

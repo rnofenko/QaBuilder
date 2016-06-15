@@ -2,7 +2,7 @@
   {
     "name": "BAI Consumer Pulse Monthly",
     "rowsInHeader": 1,
-    "fields": [
+    "fileFields": [
       { "name": "BANK_CODE" },
       { "name": "CYCLE_TYPE" },
       { "name": "STATE" },

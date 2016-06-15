@@ -2,7 +2,7 @@
   {
     "name": "Argus CD - Account Attributes",
     "rowsInHeader": 1,
-    "fields": [ 
+    "fileFields": [
       { "name": "Account Identifier" },
       { "name": "Customer Identifier" },
       { "name": "Product Type" },
@@ -79,7 +79,7 @@
     "format": {
       "delimiter": ","
     },
-    "fields": [
+    "fileFields": [
       { "name": "Account Identifier" },
       { "name": "Transaction Post Date" },
       {
@@ -146,7 +146,7 @@
     "format": {
       "delimiter": ","
     },
-    "fields": [
+    "fileFields": [
       { "name": "Customer Identifier" },
       { "name": "Account Identifier" },
       { "name": "City" },

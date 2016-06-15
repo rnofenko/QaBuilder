@@ -1,0 +1,17 @@
+﻿[
+  {
+    "name": "Format transactions",
+    "fileFields": [
+      { "name": "BRANCH_ID" },
+      { "name": "TYPE" },
+      { "name": "CONTRACT_ID" },
+      { "name": "DATE", "dateFormat": "MM/dd/yyyy" },
+      { "name": "TRANSACTION_CODE" },
+      { "name": "AMOUNT" }
+    ],
+    "format": {
+      "rowsInHeader": 1,
+      "fileMask": "*tran*.csv"
+    }
+  }
+]

@@ -1,6 +1,12 @@
 ﻿[
   {
     "name": "Argus Consumer", /*name of data request*/
+    "fileFields": [ /*list of all fields in a file*/
+      {
+        "name": "BAL_EOM", /* this name doesn't have impact on a data. But it's important name for JSON structure. QA field can  reference to this name.*/
+        "numberFormat": "Money" /* format for numeric fields. */
+      }
+    ],
     "qa": {
       "fields": [ /*These fields will be displayed in excel.*/
         {
