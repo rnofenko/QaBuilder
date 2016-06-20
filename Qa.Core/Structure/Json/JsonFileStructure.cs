@@ -5,6 +5,8 @@ namespace Qa.Core.Structure.Json
     public class JsonFileStructure
     {
         public string Name { get; set; }
+
+        public string Delimiter { get; set; }
         
         public int? RowsInHeader { get; set; }
 

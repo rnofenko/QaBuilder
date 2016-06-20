@@ -25,9 +25,15 @@ namespace Qa.Core.Structure
                 using (var reader = FileReaderFactory.Create(filepath, structure))
                 {
                     reader.Skip(structure.SkipRows + structure.RowsInHeader);
-                    if (reader.GetFieldsCount() == structure.CountOfFieldsInFile)
+                    var fields = reader.ReadRow();
+                    if (fields.Length == structure.CountOfFieldsInFile)
                     {
                         structures.Add(structure);
+                    }
+                    else
+                    {
+                        Lo.Wl("Structure " + structure.Name + " and file " + Path.GetFileName(filepath) + " are incompatible. Fields count = " +
+                              fields.Length + " structure's fields count=" + structure.CountOfFieldsInFile);
                     }
                 }
             }

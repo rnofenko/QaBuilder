@@ -36,7 +36,7 @@ namespace Qa.Core.Structure.Json
                 return new FormatStructure();
             }
 
-            var delimiter = json.Format.Delimiter ?? ",";
+            var delimiter = json.Format.Delimiter ?? json.Delimiter ?? ",";
             var format = new FormatStructure
             {
                 Name = json.Name,
@@ -57,14 +57,14 @@ namespace Qa.Core.Structure.Json
             {
                 return new QaStructure();
             }
-
+            
             return new QaStructure
             {
                 Name = json.Name,
                 SourceFields = structure.Fields,
                 RowsInHeader = json.Qa.RowsInHeader ?? json.RowsInHeader ?? 0,
-                FileMask = json.Qa.FileMask ?? "*.txt",
-                Delimiter = json.Qa.Delimiter ?? "|",
+                FileMask = json.Qa.FileMask ?? "*.csv",
+                Delimiter = json.Qa.Delimiter ?? json.Delimiter ?? ",",
                 Fields = json.Qa.Fields.Select(x => x.Convert(structure.Fields)).ToList(),
                 CountOfFieldsInFile = structure.Fields.Count
             };

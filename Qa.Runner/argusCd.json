@@ -1,6 +1,7 @@
 ﻿[
   {
     "name": "Argus CD - Account Attributes",
+    "delimiter": ",",
     "rowsInHeader": 1,
     "fileFields": [
       { "name": "Account Identifier" },
@@ -38,12 +39,9 @@
       { "name": "Cycle End Date" },
       { "name": "Cycle Balance" }
     ],
-    "format": {
-      "delimiter": ","
-    },
+    "format": { },
     "qa": {
-      "delimiter": "|",
-      "fileMask": "*.txt",
+      "fileMask": "*.csv",
       "fields": [
         {
           "title": "Number of Contracts",
@@ -76,9 +74,7 @@
   {
     "name": "Argus CD - Transactios Attributes",
     "rowsInHeader": 1,
-    "format": {
-      "delimiter": ","
-    },
+    "format": { },
     "fileFields": [
       { "name": "Account Identifier" },
       { "name": "Transaction Post Date" },
@@ -96,8 +92,7 @@
       { "name": "Sequence number" }
     ],
     "qa": {
-      "delimiter": "|",
-      "fileMask": "*.txt",
+      "fileMask": "*.csv",
       "fields": [
         {
           "title": "Total Transaction Amount of Renewal/Rollover",
@@ -143,9 +138,7 @@
   {
     "name": "Argus CD - Customer Attributes",
     "rowsInHeader": 1,
-    "format": {
-      "delimiter": ","
-    },
+    "format": { },
     "fileFields": [
       { "name": "Customer Identifier" },
       { "name": "Account Identifier" },
@@ -159,8 +152,7 @@
       { "name": "Head Of Household Flag" }
     ],
     "qa": {
-      "delimiter": "|",
-      "fileMask": "*.txt",
+      "fileMask": "*.csv",
       "fields": [
         {
           "title": "Number of Customers",

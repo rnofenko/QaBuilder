@@ -12,6 +12,7 @@ namespace Qa.Core.Parsers
 
         public CsvParser(string delimiter, string textQualifier)
         {
+            delimiter = delimiter ?? ",";
             _delimiter = delimiter[0];
             if (textQualifier.IsEmpty())
             {

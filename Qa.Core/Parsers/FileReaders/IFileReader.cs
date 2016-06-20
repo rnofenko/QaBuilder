@@ -8,8 +8,6 @@ namespace Qa.Core.Parsers.FileReaders
 
         string[] ReadRow();
 
-        int GetFieldsCount();
-
         string GetLastLine();
     }
 }

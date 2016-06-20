@@ -43,12 +43,6 @@ namespace Qa.Core.Parsers.FileReaders
             return _parser.Parse(_lastLine);
         }
 
-        public int GetFieldsCount()
-        {
-            var row = ReadRow();
-            return row.Length;
-        }
-
         public string GetLastLine()
         {
             return _lastLine;

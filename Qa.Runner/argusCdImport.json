@@ -7,7 +7,10 @@
       { "name": "CONTRACT_ID" },
       { "name": "DATE", "dateFormat": "MM/dd/yyyy" },
       { "name": "TRANSACTION_CODE" },
-      { "name": "AMOUNT" }
+      {
+        "name": "AMOUNT",
+        "numberFormat": "Money"
+      }
     ],
     "format": {
       "rowsInHeader": 1,
