@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Qa.Core.System
 {
-    public class FileFinder
+    public class PathFinder
     {
         private readonly List<string> _exceptions = new List<string> {".exe", ".config", ".json", ".dll", ".xml", ".pdb", ".xlsx" };
 

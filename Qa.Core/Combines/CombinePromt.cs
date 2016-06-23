@@ -7,13 +7,13 @@ namespace Qa.Core.Combines
     public class CombinePromt
     {
         private readonly CombineSettings _settings;
-        private readonly FileFinder _finder;
+        private readonly PathFinder _finder;
         private readonly FileCombiner _combiner;
 
         public CombinePromt(Settings settings)
         {
             _settings = new CombineSettings(settings);
-            _finder = new FileFinder();
+            _finder = new PathFinder();
             _combiner = new FileCombiner();
         }
 

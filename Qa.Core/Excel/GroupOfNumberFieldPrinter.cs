@@ -2,16 +2,17 @@ using System.Collections.Generic;
 using System.Linq;
 using OfficeOpenXml.Style;
 using Qa.Core.Compare;
+using Qa.Core.Parsers;
 
 namespace Qa.Core.Excel
 {
     public class GroupOfNumberFieldPrinter
     {
-        private readonly FileDateParser _dateParser;
+        private readonly FileDateFormatter _dateParser;
 
         public GroupOfNumberFieldPrinter()
         {
-            _dateParser = new FileDateParser();
+            _dateParser = new FileDateFormatter();
         }
         
         public void Print(IEnumerable<NumberField> fields, ExcelCursor cursor, ComparePacket packet)
@@ -30,14 +31,14 @@ namespace Qa.Core.Excel
                 .TopLeftBorderCorner()
                 .MergeDown(2)
                 .Right()
-                .HeaderDown(_dateParser.ExtractDate(first.FileName), "Values")
+                .HeaderDown(_dateParser.Format(first.FileName), "Values")
                 .Right();
 
             foreach (var file in packet.Files.Skip(1))
             {
                 cursor
                     .TopLeftBorderCorner()
-                    .Header(_dateParser.ExtractDate(file.FileName))
+                    .Header(_dateParser.Format(file.FileName))
                     .Merge(2)
                     .Down()
                     .Header("Values", "Change")

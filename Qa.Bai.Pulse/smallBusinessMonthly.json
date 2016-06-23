@@ -97,6 +97,8 @@
     },
     "qa": {
       "delimiter": "|",
+      "fileMask": "*.txt",
+      "compareFilesMethod": "fourMonths",
       "rowsInHeader": 1,
       "fields": [
         {

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Qa.Core.Compare;
 
 namespace Qa.Core.Structure
 {
@@ -21,5 +22,12 @@ namespace Qa.Core.Structure
         public List<QaField> Fields { get; set; }
 
         public List<Field> SourceFields { get; set; }
+
+        public CompareFilesMethod CompareFilesMethod { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

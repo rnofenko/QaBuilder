@@ -13,26 +13,23 @@ namespace Qa.Bai.Pulse
     public class PulseQaPrompt
     {
         private readonly Settings _settings;
-        private readonly FileFinder _fileFinder;
         private readonly IExporter _excelExporter;
         private readonly Comparer _comparer;
-        private readonly StructureDetector _detector;
+        private readonly QaFileFinder _qaFileFinder;
 
         public PulseQaPrompt(Settings settings, IExporter exporter)
         {
             _settings = settings;
-            _fileFinder = new FileFinder();
+            _qaFileFinder = new QaFileFinder();
             _excelExporter = exporter;
             _comparer = new Comparer();
-            _detector = new StructureDetector();
         }
 
         public void Start()
         {
-            var batches = _fileFinder
-                .Find(_settings.WorkingFolder, "*.*")
-                .Select(getParseArgs)
-                .Where(x => x != null)
+            var qaFiles = _qaFileFinder.Find(_settings);
+            
+            var batches = qaFiles
                 .Select(x => new FileParser(_settings).Parse(x, "STATE"))
                 .ToList();
             alignFiles(batches);
@@ -49,16 +46,6 @@ namespace Qa.Bai.Pulse
                 Lo.Wl().Wl("Comparing was finished.", ConsoleColor.Green);
             }
             Console.ReadKey();
-        }
-
-        private FileParseArgs getParseArgs(string path)
-        {
-            var structure = _detector.Detect(path, _settings.FileStructures.Select(x => x.Qa));
-            if (structure == null)
-            {
-                return null;
-            }
-            return new FileParseArgs { Path = path, Structure = structure };
         }
 
         private void alignFiles(List<ParsedBatch> batches)

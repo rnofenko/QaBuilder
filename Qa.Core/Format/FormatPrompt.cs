@@ -12,7 +12,7 @@ namespace Qa.Core.Format
         private const string DESTINATION_FILE_EXTENSION = "txt";
         private readonly StructureDetector _structureDetector;
         private readonly Formatter _formatter;
-        private readonly FileFinder _fileFinder;
+        private readonly PathFinder _pathFinder;
         private readonly Settings _settings;
 
         public FormatPrompt(Settings settings)
@@ -20,7 +20,7 @@ namespace Qa.Core.Format
             _settings = settings;
             _formatter = new Formatter();
             _structureDetector = new StructureDetector();
-            _fileFinder = new FileFinder();
+            _pathFinder = new PathFinder();
         }
 
         public void Start()
@@ -28,7 +28,7 @@ namespace Qa.Core.Format
             Lo.Wl(2).Wl("Formatting files");
             showSettings();
 
-            var files = _fileFinder.Find(_settings.WorkingFolder, SOURCE_FILE_MASK).ToList();
+            var files = _pathFinder.Find(_settings.WorkingFolder, SOURCE_FILE_MASK).ToList();
             Lo.Wl().Wl(string.Format("Found {0} files:", files.Count));
 
             var ask = AskFileResult.None;

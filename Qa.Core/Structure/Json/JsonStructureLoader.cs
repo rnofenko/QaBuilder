@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
+using Qa.Core.Compare;
+using Qa.Core.Parsers;
 
 namespace Qa.Core.Structure.Json
 {
@@ -31,12 +34,16 @@ namespace Qa.Core.Structure.Json
 
         private FormatStructure getFormat(JsonFileStructure json, FileStructure structure)
         {
-            if (json.Qa != null)
+            if (json.Format == null)
             {
-                return new FormatStructure();
+                return new FormatStructure {Delimiter = CsvParser.DEFAULT_DELIMITER, DestinationDelimiter = CsvParser.DEFAULT_DELIMITER};
             }
 
-            var delimiter = json.Format.Delimiter ?? json.Delimiter ?? ",";
+            var delimiter = json.Format.Delimiter.IfEmpty(json.Delimiter).IfEmpty(",");
+            if (delimiter.IsEmpty())
+            {
+                throw new WarningException(string.Format("Structure " + json.Name + " doesn't have delimiter for formatting."));
+            }
             var format = new FormatStructure
             {
                 Name = json.Name,
@@ -55,7 +62,7 @@ namespace Qa.Core.Structure.Json
         {
             if (json.Qa == null)
             {
-                return new QaStructure();
+                return new QaStructure {Delimiter = CsvParser.DEFAULT_DELIMITER};
             }
             
             return new QaStructure
@@ -64,9 +71,10 @@ namespace Qa.Core.Structure.Json
                 SourceFields = structure.Fields,
                 RowsInHeader = json.Qa.RowsInHeader ?? json.RowsInHeader ?? 0,
                 FileMask = json.Qa.FileMask ?? "*.csv",
-                Delimiter = json.Qa.Delimiter ?? json.Delimiter ?? ",",
+                Delimiter = json.Qa.Delimiter.IfEmpty(json.Delimiter).IfEmpty(","),
                 Fields = json.Qa.Fields.Select(x => x.Convert(structure.Fields)).ToList(),
-                CountOfFieldsInFile = structure.Fields.Count
+                CountOfFieldsInFile = structure.Fields.Count,
+                CompareFilesMethod = json.Qa.CompareFilesMethod == CompareFilesMethod.None ? CompareFilesMethod.MonthByMonth : json.Qa.CompareFilesMethod
             };
         }
     }

@@ -13,34 +13,31 @@ namespace Qa.Core.Qa
     public class QaPrompt
     {
         private readonly Settings _settings;
-        private readonly FileFinder _fileFinder;
         private readonly IExporter _excelExporter;
         private readonly Comparer _comparer;
         private readonly BinCombiner _binCombiner;
-        private readonly StructureDetector _detector;
         private readonly Sorter _sorter;
         private readonly Translator _translator;
         private readonly Invertor _invertor;
+        private readonly QaFileFinder _qaFileFinder;
 
         public QaPrompt(Settings settings, IExporter exporter)
         {
             _settings = settings;
-            _fileFinder = new FileFinder();
+            _qaFileFinder = new QaFileFinder();
             _excelExporter = exporter;
             _comparer = new Comparer();
             _sorter = new Sorter();
             _translator = new Translator();
             _binCombiner = new BinCombiner();
-            _detector = new StructureDetector();
             _invertor = new Invertor();
         }
 
         public void Start()
         {
-            var files = _fileFinder
-                .Find(_settings.WorkingFolder)
-                .Select(getParseArgs)
-                .Where(x => x != null)
+            var qaFiles = _qaFileFinder.Find(_settings);
+
+            var files = qaFiles
                 .Select(x => new FileParser(_settings).Parse(x))
                 .ToList();
             
@@ -58,16 +55,6 @@ namespace Qa.Core.Qa
                 _excelExporter.Export(result, _settings);
                 Lo.Wl().Wl("Comparing was finished.", ConsoleColor.Green);
             }
-        }
-
-        private FileParseArgs getParseArgs(string path)
-        {
-            var structure = _detector.Detect(path, _settings.FileStructures.Select(x => x.Qa));
-            if (structure == null)
-            {
-                return null;
-            }
-            return new FileParseArgs { Path = path, Structure = structure};
         }
     }
 }

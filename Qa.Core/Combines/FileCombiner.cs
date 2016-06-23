@@ -6,11 +6,11 @@ namespace Qa.Core.Combines
 {
     public class FileCombiner
     {
-        private readonly FileFinder _finder;
+        private readonly PathFinder _finder;
 
         public FileCombiner()
         {
-            _finder = new FileFinder();
+            _finder = new PathFinder();
         }
 
         public void Combine(CombineSettings settings)

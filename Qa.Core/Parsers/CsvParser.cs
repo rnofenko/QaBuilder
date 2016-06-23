@@ -5,6 +5,8 @@ namespace Qa.Core.Parsers
 {
     public class CsvParser
     {
+        public const string DEFAULT_DELIMITER = ",";
+
         private readonly Regex _regex;
         private readonly char _delimiter;
         private readonly char _textQualifier;
@@ -12,7 +14,7 @@ namespace Qa.Core.Parsers
 
         public CsvParser(string delimiter, string textQualifier)
         {
-            delimiter = delimiter ?? ",";
+            delimiter = delimiter ?? DEFAULT_DELIMITER;
             _delimiter = delimiter[0];
             if (textQualifier.IsEmpty())
             {

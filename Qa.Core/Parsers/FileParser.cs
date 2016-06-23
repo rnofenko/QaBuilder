@@ -23,7 +23,7 @@ namespace Qa.Core.Parsers
             }
         }
 
-        public ParsedBatch Parse(FileParseArgs args, string splitBy)
+        public ParsedBatch Parse(QaFile args, string splitBy)
         {
             Lo.Wl(string.Format("File: {0}", Path.GetFileNameWithoutExtension(args.Path)), ConsoleColor.Cyan);
             var splitByIndex = args.Structure.SourceFields.FindIndex(x => x.Name == splitBy);
@@ -60,7 +60,7 @@ namespace Qa.Core.Parsers
             };
         }
 
-        public ParsedFile Parse(FileParseArgs args)
+        public ParsedFile Parse(QaFile args)
         {
             Lo.W("Parse file: ", ConsoleColor.Cyan).Wl(Path.GetFileNameWithoutExtension(args.Path), ConsoleColor.Green);
             if (_watch == null)

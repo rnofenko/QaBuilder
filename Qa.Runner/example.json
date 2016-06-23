@@ -8,6 +8,7 @@
       }
     ],
     "qa": {
+      "compareFilesMethod": "fourMonths",/* Possible values monthByMonth, fourMonths */
       "fields": [ /*These fields will be displayed in excel.*/
         {
           "title": "Breakdown by product/subproduct type2",

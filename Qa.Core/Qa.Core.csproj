@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Calculations\Calculator.cs" />
+    <Compile Include="Compare\CompareFilesMethod.cs" />
     <Compile Include="Excel\XlsToCsvConverter.cs" />
     <Compile Include="Extensions\DoubleExtension.cs" />
     <Compile Include="Format\AskFileResult.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Parsers\CalcFields\CalcSumField.cs" />
     <Compile Include="Parsers\CalcFields\CalcUniqueCountField.cs" />
     <Compile Include="Parsers\CalcFields\CalcWeightedAverageField.cs" />
+    <Compile Include="Parsers\FileDateExtractor.cs" />
     <Compile Include="Parsers\Filters\AlwaysTrueExpressionFilter.cs" />
     <Compile Include="Parsers\Filters\EqualExpressionFilter.cs" />
     <Compile Include="Parsers\CalcFields\ICalculationField.cs" />
@@ -96,7 +98,7 @@
     <Compile Include="Compare\ValuesComparer.cs" />
     <Compile Include="Excel\CommonPage.cs" />
     <Compile Include="Excel\CommonPageSettings.cs" />
-    <Compile Include="Excel\FileDateParser.cs" />
+    <Compile Include="Parsers\FileDateFormatter.cs" />
     <Compile Include="Excel\ExcelCursor.cs" />
     <Compile Include="Excel\Exporter.cs" />
     <Compile Include="Excel\GroupedFieldPrinter.cs" />
@@ -124,8 +126,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Parsers\FileParseArgs.cs" />
     <Compile Include="Qa\Invertor.cs" />
+    <Compile Include="Structure\QaFile.cs" />
+    <Compile Include="Structure\QaFileFinder.cs" />
     <Compile Include="Structure\Json\JsonFormatField.cs" />
     <Compile Include="Translates\ITranslator.cs" />
     <Compile Include="Qa\QaPrompt.cs" />
@@ -162,7 +165,7 @@
     <Compile Include="Structure\Json\JsonStructureLoader.cs" />
     <Compile Include="Structure\StyleType.cs" />
     <Compile Include="System\CommonResources.cs" />
-    <Compile Include="System\FileFinder.cs" />
+    <Compile Include="System\PathFinder.cs" />
     <Compile Include="System\FileMaskFilter.cs" />
     <Compile Include="System\Lo.cs" />
     <Compile Include="System\Logger.cs" />
