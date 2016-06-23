@@ -9,8 +9,6 @@ namespace Qa.Core.Parsers
 
         public string Path { get; set; }
 
-        public QaStructure Structure { get; set; }
-
         public List<CalculatedField> Fields { get; set; }
     }
 }

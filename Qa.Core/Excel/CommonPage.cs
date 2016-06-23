@@ -25,10 +25,10 @@ namespace Qa.Core.Excel
             _settings = settings;
         }
 
-        public void Print(ComparePacket packet, ExcelWorksheet sheet)
+        public void Print(string structureName, ComparePacket packet, ExcelWorksheet sheet)
         {
             var cursor = new ExcelCursor(sheet);
-            new Header().Print(cursor, packet.Structure.Name);
+            new Header().Print(cursor, structureName);
             cursor.Column(INIT_COLUMN).Row(5);
             
             _groupOfNumberFieldPrinter.Print(packet.NumberFields.Where(x => x.Calculation != CalculationType.CountUnique), cursor, packet);

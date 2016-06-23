@@ -9,12 +9,12 @@ using Qa.Core.System;
 
 namespace Qa.Core.Parsers
 {
-    public class FileParser
+    public class QaFileParser
     {
         private static Stopwatch _watch;
         private readonly int _rowsLimit;
 
-        public FileParser(Settings settings)
+        public QaFileParser(Settings settings)
         {
             _rowsLimit = settings.FileParserRowsLimit;
             if (_rowsLimit == 0)
@@ -23,22 +23,22 @@ namespace Qa.Core.Parsers
             }
         }
 
-        public ParsedBatch Parse(QaFile args, string splitBy)
+        public ParsedBatch Parse(string filepath, QaStructure structure, string splitBy)
         {
-            Lo.Wl(string.Format("File: {0}", Path.GetFileNameWithoutExtension(args.Path)), ConsoleColor.Cyan);
-            var splitByIndex = args.Structure.SourceFields.FindIndex(x => x.Name == splitBy);
+            Lo.Wl(string.Format("File: {0}", Path.GetFileNameWithoutExtension(filepath)), ConsoleColor.Cyan);
+            var splitByIndex = structure.SourceFields.FindIndex(x => x.Name == splitBy);
 
             var parsers = new Dictionary<string, ValueParser>();
-            using (var reader = FileReaderFactory.Create(args.Path, args.Structure))
+            using (var reader = FileReaderFactory.Create(filepath, structure))
             {
-                reader.Skip(args.Structure.RowsInHeader);
+                reader.Skip(structure.RowsInHeader);
                 string[] parts;
                 while ((parts = reader.ReadRow()) != null)
                 {
                     var splitValue = parts[splitByIndex];
                     if (!parsers.ContainsKey(splitValue))
                     {
-                        parsers.Add(splitValue, new ValueParser(args.Structure));
+                        parsers.Add(splitValue, new ValueParser(structure));
                     }
                     parsers[splitValue].Parse(parts);
                 }
@@ -46,35 +46,34 @@ namespace Qa.Core.Parsers
 
             return new ParsedBatch
             {
-                Structure = args.Structure,
-                Path = args.Path,
+                Structure = structure,
+                Path = filepath,
                 Files = parsers.Select(
                     x => new ParsedFile
                     {
                         Fields = x.Value.GetResultFields(),
-                        Structure = args.Structure,
-                        Path = args.Path,
+                        Path = filepath,
                         SplitValue = x.Key
                     })
                     .ToList()
             };
         }
 
-        public ParsedFile Parse(QaFile args)
+        public ParsedFile Parse(string filepath, QaStructure structure)
         {
-            Lo.W("Parse file: ", ConsoleColor.Cyan).Wl(Path.GetFileNameWithoutExtension(args.Path), ConsoleColor.Green);
+            Lo.W("Parse file: ", ConsoleColor.Cyan).Wl(Path.GetFileNameWithoutExtension(filepath), ConsoleColor.Green);
             if (_watch == null)
             {
                 _watch = Stopwatch.StartNew();
             }
             
-            using (var valueParser = new ValueParser(args.Structure))
+            using (var valueParser = new ValueParser(structure))
             {
-                using (var reader = FileReaderFactory.Create(args.Path, args.Structure))
+                using (var reader = FileReaderFactory.Create(filepath, structure))
                 {
                     try
                     {
-                        reader.Skip(args.Structure.RowsInHeader);
+                        reader.Skip(structure.RowsInHeader);
                         string[] parts;
                         while ((parts = reader.ReadRow()) != null)
                         {
@@ -105,7 +104,7 @@ namespace Qa.Core.Parsers
                 }
 
                 Lo.Wl().Wl(string.Format("Processed {0,5}k", valueParser.RowsCount / 1000));
-                return new ParsedFile {Fields = valueParser.GetResultFields(), Structure = args.Structure, Path = args.Path};
+                return new ParsedFile {Fields = valueParser.GetResultFields(), Path = filepath };
             }
         }
 

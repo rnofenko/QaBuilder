@@ -15,16 +15,6 @@ namespace Qa.Core.Compare
             _valuesComparer = new ValuesComparer();
         }
 
-        public List<ComparePacket> Compare(IEnumerable<ParsedFile> statistics)
-        {
-            var packets = statistics
-                .GroupBy(x => x.Structure.Name)
-                .Select(compare)
-                .ToList();
-
-            return packets;
-        }
-
         public List<ComparePacket> Compare(List<ParsedBatch> batches)
         {
             var packets = new List<ComparePacket>();
@@ -32,14 +22,14 @@ namespace Qa.Core.Compare
             {
                 var index = i;
                 var files = batches.Select(x => x.Files[index]).ToList();
-                var packet = compare(files);
+                var packet = Compare(files);
                 packet.SplitValue = files.First().SplitValue;
                 packets.Add(packet);
             }
             return packets;
         }
 
-        private ComparePacket compare(IEnumerable<ParsedFile> filesForCompare)
+        public ComparePacket Compare(IEnumerable<ParsedFile> filesForCompare)
         {
             var files = filesForCompare.OrderBy(x => x.Path).ToList();
             var first = files.First();
@@ -51,10 +41,10 @@ namespace Qa.Core.Compare
                 fieldPacks.Add(getFieldPack(fields));
             }
 
-            return new ComparePacket(getFileInfo(files), fieldPacks, first.Structure);
+            return new ComparePacket(getFileInfo(files), fieldPacks);
         }
 
-        private List<FileInformation> getFileInfo(IEnumerable<ParsedFile> files)
+        private IEnumerable<FileInformation> getFileInfo(IEnumerable<ParsedFile> files)
         {
             var i = 0;
             return files.Select(x => new FileInformation { FileName = Path.GetFileNameWithoutExtension(x.Path), Index = i++ }).ToList();

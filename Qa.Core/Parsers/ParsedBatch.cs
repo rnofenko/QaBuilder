@@ -26,7 +26,6 @@ namespace Qa.Core.Parsers
             Files.Add(new ParsedFile
             {
                 SplitValue = splitValue,
-                Structure = Structure,
                 Path = Path,
                 Fields = Structure.Fields.Select(x => new CalculatedField(x, 0)).ToList()
             });

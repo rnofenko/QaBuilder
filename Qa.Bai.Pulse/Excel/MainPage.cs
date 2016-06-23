@@ -20,10 +20,10 @@ namespace Qa.Bai.Pulse.Excel
             _groupOfNumberFieldPrinter = new GroupOfNumberFieldPrinter();
         }
 
-        public void Print(ComparePacket packet, ExcelWorksheet sheet)
+        public void Print(string structureName, ComparePacket packet, ExcelWorksheet sheet)
         {
             _cursor = new ExcelCursor(sheet);
-            new Header().Print(_cursor, packet.Structure.Name);
+            new Header().Print(_cursor, structureName);
             _cursor.Column(INIT_COLUMN).Row(5);
 
             _groupOfNumberFieldPrinter.Print(packet.NumberFields.Where(x => x.Calculation != CalculationType.CountUnique), _cursor, packet);

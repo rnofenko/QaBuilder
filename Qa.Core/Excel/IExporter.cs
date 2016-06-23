@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using Qa.Core.Compare;
 using Qa.Core.Structure;
 
 namespace Qa.Core.Excel
 {
-    public interface IExporter
+    public interface IExporter : IDisposable
     {
-        void Export(List<ComparePacket> packets, Settings settings);
+        void AddData(string structureName, ComparePacket packet, Settings settings);
+
+        void Export();
     }
 }

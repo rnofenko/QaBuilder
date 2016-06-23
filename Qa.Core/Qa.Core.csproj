@@ -79,7 +79,7 @@
     <Compile Include="Parsers\CalcFields\DefaultCalculationFieldFactory.cs" />
     <Compile Include="Parsers\CalcFields\ICalculationFieldFactory.cs" />
     <Compile Include="Parsers\CsvParser.cs" />
-    <Compile Include="Parsers\FileParser.cs" />
+    <Compile Include="Parsers\QaFileParser.cs" />
     <Compile Include="Parsers\ParsedBatch.cs" />
     <Compile Include="Parsers\ParsedFile.cs" />
     <Compile Include="Parsers\ValueParser.cs" />
@@ -127,7 +127,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Qa\Invertor.cs" />
-    <Compile Include="Structure\QaFile.cs" />
     <Compile Include="Structure\QaFileFinder.cs" />
     <Compile Include="Structure\Json\JsonFormatField.cs" />
     <Compile Include="Translates\ITranslator.cs" />

@@ -27,25 +27,29 @@ namespace Qa.Bai.Pulse
 
         public void Start()
         {
-            var qaFiles = _qaFileFinder.Find(_settings);
-            
-            var batches = qaFiles
-                .Select(x => new FileParser(_settings).Parse(x, "STATE"))
+            var structure = _settings.FileStructures.First().Qa;
+            var batches = _qaFileFinder
+                .Find(_settings.WorkingFolder, structure)
+                .Select(x => new QaFileParser(_settings).Parse(x, structure, "STATE"))
                 .ToList();
             alignFiles(batches);
 
             if (batches.IsEmpty())
             {
-                Lo.Wl("No files were detected as QA report", ConsoleColor.Red);
+                Lo.Wl("No files were detected as QA report for structure=" + structure.Name, ConsoleColor.Yellow);
             }
             else
             {
                 var result = _comparer.Compare(batches);
-                _excelExporter.Export(result, _settings);
-
-                Lo.Wl().Wl("Comparing was finished.", ConsoleColor.Green);
+                _excelExporter.AddData(structure.Name, result.First(x => x.SplitValue == PulseConsts.NATIONAL), _settings);
+                foreach (var packet in result.Where(x => x.SplitValue != PulseConsts.NATIONAL))
+                {
+                    _excelExporter.AddData(structure.Name, packet, _settings);
+                }
             }
-            Console.ReadKey();
+            
+            _excelExporter.Export();
+            Lo.Wl().Wl("Comparing was finished.", ConsoleColor.Green);
         }
 
         private void alignFiles(List<ParsedBatch> batches)

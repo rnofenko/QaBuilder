@@ -55,6 +55,29 @@ namespace Qa.Core.Structure
             return first;
         }
 
+        public bool Match(string filepath, IStructure structure)
+        {
+            if (!_fileMaskFilter.IsMatch(structure.FileMask, filepath))
+            {
+                return false;
+            }
+            using (var reader = FileReaderFactory.Create(filepath, structure))
+            {
+                reader.Skip(structure.SkipRows + structure.RowsInHeader);
+                var fields = reader.ReadRow();
+                if (fields.Length != structure.CountOfFieldsInFile)
+                {
+                    Lo.Wl("Structure " + structure.Name + " and file " + Path.GetFileName(filepath) + " are incompatible. Fields count = " +
+                          fields.Length + " structure's fields count=" + structure.CountOfFieldsInFile);
+                    return false;
+                }
+            }
+
+            var filename = Path.GetFileName(filepath);
+            prefix(filename).Wl(string.Format("{0}", structure.Name), ConsoleColor.Green);
+            return true;
+        }
+
         private Logger prefix(string file)
         {
             return Lo.W("Detect structure: ", ConsoleColor.Cyan).W(file).W(" - ");

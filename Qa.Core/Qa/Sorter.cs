@@ -8,22 +8,14 @@ namespace Qa.Core.Qa
 {
     public class Sorter
     {
-        public List<ComparePacket> Sort(List<ComparePacket> result)
-        {
-            foreach (var comparePacket in result)
-            {
-                sort(comparePacket);
-            }
-
-            return result;
-        }
-
-        private void sort(ComparePacket packet)
+        public ComparePacket Sort(ComparePacket packet)
         {
             foreach (var groupedField in packet.GroupedFields)
             {
                 sort(groupedField);
             }
+
+            return packet;
         }
 
         private void sort(GroupedField field)

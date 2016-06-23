@@ -35,26 +35,31 @@ namespace Qa.Core.Qa
 
         public void Start()
         {
-            var qaFiles = _qaFileFinder.Find(_settings);
+            foreach (var structure in _settings.FileStructures)
+            {
+                var qaFiles = _qaFileFinder.Find(_settings.WorkingFolder, structure.Qa);
 
-            var files = qaFiles
-                .Select(x => new FileParser(_settings).Parse(x))
-                .ToList();
-            
-            if (files.IsEmpty())
-            {
-                Lo.Wl("No files were detected as QA report", ConsoleColor.Red);
+                var files = qaFiles
+                    .Select(x => new QaFileParser(_settings).Parse(x, structure.Qa))
+                    .ToList();
+
+                if (files.IsEmpty())
+                {
+                    Lo.Wl("No files were detected as QA report for structure=" + structure.Qa.Name, ConsoleColor.Yellow);
+                }
+                else
+                {
+                    files = _invertor.Invert(files);
+                    files = _binCombiner.Combine(files);
+                    files = _translator.Translate(files);
+                    var result = _comparer.Compare(files);
+                    result = _sorter.Sort(result);
+                    _excelExporter.AddData(structure.Qa.Name, result, _settings);
+                }
             }
-            else
-            {
-                files = _invertor.Invert(files);
-                files = _binCombiner.Combine(files);
-                files = _translator.Translate(files);
-                var result = _comparer.Compare(files);
-                result = _sorter.Sort(result);
-                _excelExporter.Export(result, _settings);
-                Lo.Wl().Wl("Comparing was finished.", ConsoleColor.Green);
-            }
+
+            _excelExporter.Export();
+            Lo.Wl().Wl("Comparing was finished.", ConsoleColor.Green);
         }
     }
 }
