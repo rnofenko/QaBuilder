@@ -20,6 +20,7 @@ namespace Qa.Core.Qa
         private readonly Translator _translator;
         private readonly Invertor _invertor;
         private readonly QaFileFinder _qaFileFinder;
+        private readonly FourMonthsFileRebuilder _fourMonthsFileRebuilder;
 
         public QaPrompt(Settings settings, IExporter exporter)
         {
@@ -31,6 +32,7 @@ namespace Qa.Core.Qa
             _translator = new Translator();
             _binCombiner = new BinCombiner();
             _invertor = new Invertor();
+            _fourMonthsFileRebuilder = new FourMonthsFileRebuilder();
         }
 
         public void Start()
@@ -53,6 +55,7 @@ namespace Qa.Core.Qa
                     files = _binCombiner.Combine(files);
                     files = _translator.Translate(files);
                     var result = _comparer.Compare(files, structure.Qa.CompareFilesMethod);
+                    _fourMonthsFileRebuilder.Rebuild(result);
                     result = _sorter.Sort(result);
                     _excelExporter.AddData(structure.Qa.Name, result, _settings);
                 }

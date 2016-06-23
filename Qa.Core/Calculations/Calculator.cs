@@ -4,14 +4,19 @@ namespace Qa.Core.Calculations
 {
     public static class Calculator
     {
-        public static double? ChangeInPercent(double current, double previous)
+        public static double? ChangeInPercent(double current, double? previous)
         {
-            if (Math.Abs(previous) < 0.0001d && Math.Abs(current) < 0.0001d)
+            if (previous == null)
+            {
+                return null;
+            }
+
+            if (Math.Abs(previous.Value) < 0.0001d && Math.Abs(current) < 0.0001d)
             {
                 return 0;
             }
 
-            if (Math.Abs(previous) < 0.0001d)
+            if (Math.Abs(previous.Value) < 0.0001d)
             {
                 return null;
             }
@@ -31,9 +36,13 @@ namespace Qa.Core.Calculations
             return value * 1.0 / total * 100;
         }
 
-        public static double AbsoluteChange(double current, double previous)
+        public static double? AbsoluteChange(double current, double? previous)
         {
-            return Math.Abs(current - previous);
+            if (previous == null)
+            {
+                return null;
+            }
+            return Math.Abs(current - previous.Value);
         }
     }
 }

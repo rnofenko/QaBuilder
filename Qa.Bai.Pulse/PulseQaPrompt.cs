@@ -16,6 +16,7 @@ namespace Qa.Bai.Pulse
         private readonly IExporter _excelExporter;
         private readonly Comparer _comparer;
         private readonly QaFileFinder _qaFileFinder;
+        private FourMonthsFileRebuilder _fourMonthsFileRebuilder;
 
         public PulseQaPrompt(Settings settings, IExporter exporter)
         {
@@ -23,6 +24,7 @@ namespace Qa.Bai.Pulse
             _qaFileFinder = new QaFileFinder();
             _excelExporter = exporter;
             _comparer = new Comparer();
+            _fourMonthsFileRebuilder = new FourMonthsFileRebuilder();
         }
 
         public void Start()
@@ -41,9 +43,13 @@ namespace Qa.Bai.Pulse
             else
             {
                 var result = _comparer.Compare(batches, structure.CompareFilesMethod);
-                _excelExporter.AddData(structure.Name, result.First(x => x.SplitValue == PulseConsts.NATIONAL), _settings);
+
+                var nationalPacket = result.First(x => x.SplitValue == PulseConsts.NATIONAL);
+                _fourMonthsFileRebuilder.Rebuild(nationalPacket);
+                _excelExporter.AddData(structure.Name, nationalPacket, _settings);
                 foreach (var packet in result.Where(x => x.SplitValue != PulseConsts.NATIONAL))
                 {
+                    _fourMonthsFileRebuilder.Rebuild(packet);
                     _excelExporter.AddData(structure.Name, packet, _settings);
                 }
             }
@@ -54,16 +60,16 @@ namespace Qa.Bai.Pulse
 
         private void alignFiles(List<ParsedBatch> batches, QaStructure structure)
         {
-            foreach (var parsedBatch in batches)
+            foreach (var parsedBatch in batches.Where(x=>x!=null))
             {
                 parsedBatch.Sort();
             }
 
-            foreach (var parsedBatch in batches)
+            foreach (var parsedBatch in batches.Where(x => x != null))
             {
                 foreach (var parsedFile in parsedBatch.Files)
                 {
-                    foreach (var batch in batches)
+                    foreach (var batch in batches.Where(x => x != null))
                     {
                         batch.CreateIfAbsent(parsedFile.SplitValue, structure);
                     }

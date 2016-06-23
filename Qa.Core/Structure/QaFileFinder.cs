@@ -40,7 +40,7 @@ namespace Qa.Core.Structure
             //filter out wrong files
             list = list.Select(x =>
             {
-                if (_dateExtractor.Extract(x) == null)
+                if (_dateExtractor.ExtractMonth(x) == null)
                 {
                     Lo.Wl("File '" + x + "' doesn't have date in file name");
                     return null;
@@ -48,16 +48,16 @@ namespace Qa.Core.Structure
                 return x;
             }).Where(x => x != null).ToList();
 
-            var maxDate = list.Max(x => _dateExtractor.Extract(x));
+            var maxDate = list.Max(x => _dateExtractor.ExtractMonth(x));
             if (maxDate == null)
             {
                 return list;
             }
 
-            var currentMonth = list.First(x => _dateExtractor.Extract(x) == maxDate.Value);
-            var previousMonth = list.FirstOrDefault(x => _dateExtractor.Extract(x) == maxDate.Value.AddMonths(-1));
-            var previousYear = list.FirstOrDefault(x => _dateExtractor.Extract(x) == maxDate.Value.AddYears(-1));
-            var lastDecember = list.FirstOrDefault(x => _dateExtractor.Extract(x) == new DateTime(maxDate.Value.Year - 1, 12, 1));
+            var currentMonth = list.First(x => _dateExtractor.ExtractMonth(x) == maxDate.Value);
+            var previousMonth = list.FirstOrDefault(x => _dateExtractor.ExtractMonth(x) == maxDate.Value.AddMonths(-1));
+            var previousYear = list.FirstOrDefault(x => _dateExtractor.ExtractMonth(x) == maxDate.Value.AddYears(-1));
+            var lastDecember = list.FirstOrDefault(x => _dateExtractor.ExtractMonth(x) == new DateTime(maxDate.Value.Year - 1, 12, 1));
 
             return new[] {currentMonth, previousMonth, lastDecember, previousYear}.Where(x => x != null).ToList();
         }

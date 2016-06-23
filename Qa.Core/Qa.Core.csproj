@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Calculations\Calculator.cs" />
     <Compile Include="Compare\CompareFilesMethod.cs" />
+    <Compile Include="Compare\FourMonthsFileRebuilder.cs" />
     <Compile Include="Compare\FourMonthsValueComparer.cs" />
     <Compile Include="Compare\ValueComparerFactory.cs" />
     <Compile Include="Compare\IValueComparer.cs" />

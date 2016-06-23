@@ -11,13 +11,18 @@ namespace Qa.Core.Parsers
 
         public string Format(string fileName)
         {
-            var date = _extractor.Extract(fileName);
-            if (date == null)
+            var date = _extractor.ExtractDate(fileName);
+            if (date != null)
             {
-                return fileName;
+                return string.Format("{0:MMMM d, yyyy}", date);
+            }
+            date = _extractor.ExtractMonth(fileName);
+            if (date != null)
+            {
+                return string.Format("{0:MMMM, yyyy}", date);
             }
 
-            return string.Format("{0:MMMM d, yyyy}", date);
+            return fileName;
         }
     }
 }

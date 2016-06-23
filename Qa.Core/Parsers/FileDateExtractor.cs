@@ -6,7 +6,7 @@ namespace Qa.Core.Parsers
 {
     public class FileDateExtractor
     {
-        public DateTime? Extract(string fileName)
+        public DateTime? ExtractDate(string fileName)
         {
             var match = new Regex(@"\d{8}").Match(fileName);
             if (match.Success)
@@ -14,7 +14,12 @@ namespace Qa.Core.Parsers
                 return parseFullDate(match.Value, "yyyyMMdd");
             }
 
-            match = new Regex(@"\d{6}").Match(fileName);
+            return null;
+        }
+
+        public DateTime? ExtractMonth(string fileName)
+        {
+            var match = new Regex(@"\d{6}").Match(fileName);
             if (match.Success)
             {
                 return parseMonth(match.Value, "yyyyMM");
