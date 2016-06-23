@@ -10,8 +10,8 @@ namespace Qa.Core.Compare
             if (previous != null)
             {
                 Previous = previous.Value;
-                Change = Calculator.ChangeInPercent(current, Previous);
-                AbsoluteChange = Calculator.AbsoluteChange(current, Previous);
+                PercentChange = Calculator.ChangeInPercent(current, Previous);
+                AbsChange = Calculator.AbsoluteChange(current, Previous);
             }
         }
 
@@ -19,8 +19,8 @@ namespace Qa.Core.Compare
 
         public double Current { get; set; }
         
-        public double? Change { get; set; }
+        public double? PercentChange { get; set; }
 
-        public double AbsoluteChange { get; set; }
+        public double AbsChange { get; set; }
     }
 }

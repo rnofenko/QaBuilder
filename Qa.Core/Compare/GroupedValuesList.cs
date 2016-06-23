@@ -26,19 +26,29 @@ namespace Qa.Core.Compare
             var value = Values.FirstOrDefault(x => x.Key == key);
             if (value == null)
             {
-                return new TypedValue(0, NumberFormat.Integer);
+                return new TypedValue(0, Field.NumberFormat);
             }
-            return new TypedValue(value.Count.Current, NumberFormat.Integer);
+            return new TypedValue(value.Count.Current, Field.NumberFormat);
         }
 
-        public TypedValue GetChange(string key)
+        public TypedValue GetPercentChange(string key)
         {
             var value = Values.FirstOrDefault(x => x.Key == key);
             if (value == null)
             {
                 return new TypedValue(0, NumberFormat.Percent);
             }
-            return new TypedValue(value.Count.Change, NumberFormat.Percent);
+            return new TypedValue(value.Count.PercentChange, NumberFormat.Percent);
+        }
+
+        public TypedValue GetAbsChange(string key)
+        {
+            var value = Values.FirstOrDefault(x => x.Key == key);
+            if (value == null)
+            {
+                return new TypedValue(0, Field.NumberFormat);
+            }
+            return new TypedValue(value.Count.AbsChange, Field.NumberFormat);
         }
     }
 }

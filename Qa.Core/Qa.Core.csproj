@@ -51,6 +51,14 @@
   <ItemGroup>
     <Compile Include="Calculations\Calculator.cs" />
     <Compile Include="Compare\CompareFilesMethod.cs" />
+    <Compile Include="Compare\FourMonthsValueComparer.cs" />
+    <Compile Include="Compare\ValueComparerFactory.cs" />
+    <Compile Include="Compare\IValueComparer.cs" />
+    <Compile Include="Excel\FieldPrinterFactory.cs" />
+    <Compile Include="Excel\FourMonthsGroupedFieldPrinter.cs" />
+    <Compile Include="Excel\FourMonthsNumberFieldPrinter.cs" />
+    <Compile Include="Excel\IGroupedFieldPrinter.cs" />
+    <Compile Include="Excel\INumberFieldPrinter.cs" />
     <Compile Include="Excel\XlsToCsvConverter.cs" />
     <Compile Include="Extensions\DoubleExtension.cs" />
     <Compile Include="Format\AskFileResult.cs" />
@@ -95,14 +103,14 @@
     <Compile Include="Compare\GroupedValuesSet.cs" />
     <Compile Include="Compare\KeyNumberPair.cs" />
     <Compile Include="Compare\NumberField.cs" />
-    <Compile Include="Compare\ValuesComparer.cs" />
+    <Compile Include="Compare\OneByOneValueComparer.cs" />
     <Compile Include="Excel\CommonPage.cs" />
     <Compile Include="Excel\CommonPageSettings.cs" />
     <Compile Include="Parsers\FileDateFormatter.cs" />
     <Compile Include="Excel\ExcelCursor.cs" />
     <Compile Include="Excel\Exporter.cs" />
-    <Compile Include="Excel\GroupedFieldPrinter.cs" />
-    <Compile Include="Excel\GroupOfNumberFieldPrinter.cs" />
+    <Compile Include="Excel\DefaultGroupedFieldPrinter.cs" />
+    <Compile Include="Excel\NumberFieldPrinter.cs" />
     <Compile Include="Excel\Header.cs" />
     <Compile Include="Excel\HeaderStyle.cs" />
     <Compile Include="Excel\IExporter.cs" />

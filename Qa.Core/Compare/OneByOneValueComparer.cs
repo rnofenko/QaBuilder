@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Qa.Core.Structure;
-using Qa.Core.System;
 
 namespace Qa.Core.Compare
 {
-    public class ValuesComparer
+    public class OneByOneValueComparer : IValueComparer
     {
         public GroupedValuesSet Compare(IEnumerable<Dictionary<string, double>> values, QaField field)
         {
@@ -21,11 +18,6 @@ namespace Qa.Core.Compare
             fillKeys(set);
             
             return set;
-        }
-
-        public List<CompareNumber> Compare(IEnumerable<int> values)
-        {
-            return Compare(values.Select(x => (double) x));
         }
 
         public List<CompareNumber> Compare(IEnumerable<double> values)

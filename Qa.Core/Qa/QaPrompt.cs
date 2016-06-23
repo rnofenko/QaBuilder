@@ -52,7 +52,7 @@ namespace Qa.Core.Qa
                     files = _invertor.Invert(files);
                     files = _binCombiner.Combine(files);
                     files = _translator.Translate(files);
-                    var result = _comparer.Compare(files);
+                    var result = _comparer.Compare(files, structure.Qa.CompareFilesMethod);
                     result = _sorter.Sort(result);
                     _excelExporter.AddData(structure.Qa.Name, result, _settings);
                 }

@@ -20,14 +20,20 @@ namespace Qa.Core.Compare
             return new TypedValue(Numbers[report.Index].Current, NumberFormat);
         }
 
-        public TypedValue GetChange(FileInformation report)
+        public TypedValue GetPercentChange(FileInformation report)
         {
             var number = Numbers[report.Index];
             if (NumberFormat == NumberFormat.Rate)
             {
-                return new TypedValue(number.AbsoluteChange, NumberFormat.Rate);
+                return new TypedValue(number.AbsChange, NumberFormat.Rate);
             }
-            return new TypedValue(number.Change, NumberFormat.Percent);
+            return new TypedValue(number.PercentChange, NumberFormat.Percent);
+        }
+
+        public TypedValue GetAbsChange(FileInformation report)
+        {
+            var number = Numbers[report.Index];
+            return new TypedValue(number.AbsChange, NumberFormat);
         }
     }
 }

@@ -8,15 +8,13 @@ namespace Qa.Core.Excel
     public class CommonPage: IExportPage
     {
         private readonly CommonPageSettings _settings;
-        private readonly GroupedFieldPrinter _groupedFieldPrinter;
-        private readonly GroupOfNumberFieldPrinter _groupOfNumberFieldPrinter;
+        private readonly FieldPrinterFactory _factory;
         private const int INIT_COLUMN = 2;
 
         public CommonPage()
         {
+            _factory = new FieldPrinterFactory();
             _settings = new CommonPageSettings();
-            _groupedFieldPrinter = new GroupedFieldPrinter();
-            _groupOfNumberFieldPrinter = new GroupOfNumberFieldPrinter();
         }
 
         public CommonPage(CommonPageSettings settings)
@@ -30,13 +28,15 @@ namespace Qa.Core.Excel
             var cursor = new ExcelCursor(sheet);
             new Header().Print(cursor, structureName);
             cursor.Column(INIT_COLUMN).Row(5);
-            
-            _groupOfNumberFieldPrinter.Print(packet.NumberFields.Where(x => x.Calculation != CalculationType.CountUnique), cursor, packet);
-            _groupOfNumberFieldPrinter.Print(packet.NumberFields.Where(x => x.Calculation == CalculationType.CountUnique), cursor, packet);
 
+            var numberFieldPrinter = _factory.CreateNumberPrinter(packet.CompareMethod);
+            numberFieldPrinter.Print(packet.NumberFields.Where(x => x.Calculation != CalculationType.CountUnique), cursor, packet);
+            numberFieldPrinter.Print(packet.NumberFields.Where(x => x.Calculation == CalculationType.CountUnique), cursor, packet);
+
+            var groupedFieldPrinter = _factory.CreateGroupedPrinter(packet.CompareMethod);
             foreach (var field in packet.GroupedFields)
             {
-                _groupedFieldPrinter.Print(field, cursor, packet);
+                groupedFieldPrinter.Print(field, cursor, packet);
             }
 
             sheet.Cells[sheet.Dimension.Address].AutoFitColumns();
@@ -49,9 +49,6 @@ namespace Qa.Core.Excel
             }
 
             sheet.Cells[1,1, sheet.Cells.Rows,sheet.Cells.Columns].AutoFitColumns(3,30);
-
-            //sheet.Cells[sheet.Dimension.Rows + 4, 2].Value = sheet.Cells.Rows;
-            //sheet.Cells[sheet.Dimension.Rows + 5, 2].Value = sheet.Cells.Columns;
         }
     }
 }

@@ -8,8 +8,6 @@ namespace Qa.Core.Parsers
     {
         public List<ParsedFile> Files { get; set; }
 
-        public QaStructure Structure { get; set; }
-
         public string Path { get; set; }
 
         public void Sort()
@@ -17,7 +15,7 @@ namespace Qa.Core.Parsers
             Files = Files.OrderBy(x => x.SplitValue).ToList();
         }
 
-        public void CreateIfAbsent(string splitValue)
+        public void CreateIfAbsent(string splitValue, QaStructure structure)
         {
             if (Files.Any(x => x.SplitValue == splitValue))
             {
@@ -27,7 +25,7 @@ namespace Qa.Core.Parsers
             {
                 SplitValue = splitValue,
                 Path = Path,
-                Fields = Structure.Fields.Select(x => new CalculatedField(x, 0)).ToList()
+                Fields = structure.Fields.Select(x => new CalculatedField(x, 0)).ToList()
             });
             Sort();
         }

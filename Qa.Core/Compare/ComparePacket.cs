@@ -6,6 +6,8 @@ namespace Qa.Core.Compare
 {
     public class ComparePacket
     {
+        public CompareFilesMethod CompareMethod { get; private set; }
+
         public List<FileInformation> Files { get; set; }
 
         public List<NumberField> NumberFields { get; set; }
@@ -14,8 +16,9 @@ namespace Qa.Core.Compare
 
         public string SplitValue { get; set; }
 
-        public ComparePacket(IEnumerable<FileInformation> fileInformations, List<FieldPack> fieldPacks)
+        public ComparePacket(IEnumerable<FileInformation> fileInformations, List<FieldPack> fieldPacks, CompareFilesMethod compareMethod)
         {
+            CompareMethod = compareMethod;
             Files = fileInformations.ToList();
             
             NumberFields = fieldPacks

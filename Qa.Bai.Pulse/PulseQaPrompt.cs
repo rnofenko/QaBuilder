@@ -32,7 +32,7 @@ namespace Qa.Bai.Pulse
                 .Find(_settings.WorkingFolder, structure)
                 .Select(x => new QaFileParser(_settings).Parse(x, structure, "STATE"))
                 .ToList();
-            alignFiles(batches);
+            alignFiles(batches, structure);
 
             if (batches.IsEmpty())
             {
@@ -40,7 +40,7 @@ namespace Qa.Bai.Pulse
             }
             else
             {
-                var result = _comparer.Compare(batches);
+                var result = _comparer.Compare(batches, structure.CompareFilesMethod);
                 _excelExporter.AddData(structure.Name, result.First(x => x.SplitValue == PulseConsts.NATIONAL), _settings);
                 foreach (var packet in result.Where(x => x.SplitValue != PulseConsts.NATIONAL))
                 {
@@ -52,7 +52,7 @@ namespace Qa.Bai.Pulse
             Lo.Wl().Wl("Comparing was finished.", ConsoleColor.Green);
         }
 
-        private void alignFiles(List<ParsedBatch> batches)
+        private void alignFiles(List<ParsedBatch> batches, QaStructure structure)
         {
             foreach (var parsedBatch in batches)
             {
@@ -65,7 +65,7 @@ namespace Qa.Bai.Pulse
                 {
                     foreach (var batch in batches)
                     {
-                        batch.CreateIfAbsent(parsedFile.SplitValue);
+                        batch.CreateIfAbsent(parsedFile.SplitValue, structure);
                     }
                 }
             }

@@ -1,37 +1,44 @@
-﻿using System.Linq;
+using System.Collections.Generic;
+using System.Linq;
 using OfficeOpenXml.Style;
 using Qa.Core.Compare;
 using Qa.Core.Parsers;
 
 namespace Qa.Core.Excel
 {
-    public class GroupedFieldPrinter
+    public class DefaultNumberFieldPrinter: INumberFieldPrinter
     {
         private readonly FileDateFormatter _dateParser;
 
-        public GroupedFieldPrinter()
+        public DefaultNumberFieldPrinter()
         {
             _dateParser = new FileDateFormatter();
         }
-
-        public void Print(GroupedField field, ExcelCursor cursor, ComparePacket packet)
+        
+        public void Print(IEnumerable<NumberField> fields, ExcelCursor cursor, ComparePacket packet)
         {
+            var fieldsList = fields.ToList();
+            if (fieldsList.IsEmpty())
+            {
+                return;
+            }
+
             var startColumn = cursor.Pos.Column;
             var first = packet.Files.First();
 
             cursor.Column(startColumn)
-                .Header(field.Title)
+                .Header("Field")
                 .TopLeftBorderCorner()
                 .MergeDown(2)
                 .Right()
                 .HeaderDown(_dateParser.Format(first.FileName), "Values")
                 .Right();
 
-            foreach (var report in packet.Files.Skip(1))
+            foreach (var file in packet.Files.Skip(1))
             {
                 cursor
                     .TopLeftBorderCorner()
-                    .Header(_dateParser.Format(report.FileName))
+                    .Header(_dateParser.Format(file.FileName))
                     .Merge(2)
                     .Down()
                     .Header("Values", "Change")
@@ -41,20 +48,20 @@ namespace Qa.Core.Excel
 
             cursor.Down();
 
-            foreach (var key in field.Keys)
+            foreach (var field in fieldsList)
             {
                 cursor.Down()
                     .Column(startColumn)
-                    .Print(key, field.Qa.Style)
+                    .Print(field.Title, field.Style)
                     .Right();
 
                 foreach (var file in packet.Files)
                 {
                     cursor
-                        .Print(field.GetCurrent(file, key))
+                        .Print(field.GetCurrent(file))
                         .RightIf(file != first)
-                        .PrintIf(file != first, field.GetChange(file, key), StyleConditions.ChangePercent)
-                        .DrawBorder(ExcelBorderStyle.Thick, key == field.Keys.Last())
+                        .PrintIf(file != first, field.GetPercentChange(file), StyleConditions.ChangePercent)
+                        .DrawBorder(ExcelBorderStyle.Thick, field == fieldsList.Last())
                         .Right();
                 }
             }

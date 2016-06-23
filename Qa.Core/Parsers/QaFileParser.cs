@@ -46,7 +46,6 @@ namespace Qa.Core.Parsers
 
             return new ParsedBatch
             {
-                Structure = structure,
                 Path = filepath,
                 Files = parsers.Select(
                     x => new ParsedFile

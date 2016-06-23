@@ -10,14 +10,14 @@ namespace Qa.Bai.Pulse.Excel
 {
     public class PulseExporter : IExporter
     {
-        private readonly MainPage _page;
+        private readonly PulsePage _page;
         private ExcelPackage _excelPackage;
         private string _path;
         private ExcelWorksheet _sheet;
 
         public PulseExporter()
         {
-            _page = new MainPage();
+            _page = new PulsePage();
         }
 
         public void AddData(string structureName, ComparePacket packet, Settings settings)

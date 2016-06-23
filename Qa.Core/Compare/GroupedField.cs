@@ -29,9 +29,14 @@ namespace Qa.Core.Compare
             return FileValues[file.Index].GetCurrent(key);
         }
 
-        public TypedValue GetChange(FileInformation file, string key)
+        public TypedValue GetPercentChange(FileInformation file, string key)
         {
-            return FileValues[file.Index].GetChange(key);
+            return FileValues[file.Index].GetPercentChange(key);
+        }
+
+        public TypedValue GetAbsChange(FileInformation file, string key)
+        {
+            return FileValues[file.Index].GetAbsChange(key);
         }
 
         public override string ToString()
