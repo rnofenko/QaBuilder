@@ -52,11 +52,11 @@ namespace Qa.Core.Excel
             return new TypedValue(value);
         }
 
-        public double Double()
+        public double? Double()
         {
             if (Value == null)
             {
-                return 0;
+                return null;
             }
             return (double)Value;
         }

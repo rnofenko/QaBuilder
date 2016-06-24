@@ -12,7 +12,12 @@ namespace Qa.Core.Excel
             }
             else
             {
-                var value = Math.Abs(x.Value.Double());
+                var value = x.Value.Double();
+                if (value == null)
+                {
+                    x.Cursor.SetAsDanger(x.Pos);
+                }
+                
                 if (value > 0.35)
                 {
                     x.Cursor.SetAsDanger(x.Pos);

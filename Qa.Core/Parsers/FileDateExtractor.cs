@@ -19,6 +19,11 @@ namespace Qa.Core.Parsers
 
         public DateTime? ExtractMonth(string fileName)
         {
+            if (fileName.IsEmpty())
+            {
+                return null;
+            }
+
             var match = new Regex(@"\d{6}").Match(fileName);
             if (match.Success)
             {

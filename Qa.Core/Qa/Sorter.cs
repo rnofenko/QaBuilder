@@ -22,7 +22,7 @@ namespace Qa.Core.Qa
         {
             field.Keys = field.FileValues
                 .Last().Values
-                .OrderByDescending(x => Math.Abs(x.Count.Current))
+                .OrderByDescending(x => Math.Abs(x.Count.Current ?? -1))
                 .Select(x => x.Key)
                 .ToList();
 

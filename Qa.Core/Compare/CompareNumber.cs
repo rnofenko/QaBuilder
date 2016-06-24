@@ -4,20 +4,20 @@ namespace Qa.Core.Compare
 {
     public class CompareNumber
     {
-        public CompareNumber(double current, double? previous)
+        public CompareNumber(double? current, double? previous)
         {
             Current = current;
-            if (previous != null)
+            Previous = previous;
+            if (previous != null && current != null)
             {
-                Previous = previous.Value;
-                PercentChange = Calculator.ChangeInPercent(current, Previous);
-                AbsChange = Calculator.AbsoluteChange(current, Previous);
+                PercentChange = Calculator.ChangeInPercent(current.Value, Previous);
+                AbsChange = Calculator.AbsoluteChange(current.Value, Previous);
             }
         }
 
         public double? Previous { get; set; }
 
-        public double Current { get; set; }
+        public double? Current { get; set; }
         
         public double? PercentChange { get; set; }
 

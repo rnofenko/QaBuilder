@@ -136,6 +136,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Qa\Invertor.cs" />
+    <Compile Include="Structure\FourMonthsFileDetector.cs" />
     <Compile Include="Structure\QaFileFinder.cs" />
     <Compile Include="Structure\Json\JsonFormatField.cs" />
     <Compile Include="Translates\ITranslator.cs" />

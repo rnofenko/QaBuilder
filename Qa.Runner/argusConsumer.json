@@ -33,6 +33,7 @@
     ],
     "qa": {
       "rowsInHeader": 1,
+      "compareFilesMethod": "fourMonths",
       "delimiter": ",",
       "fileMask": "*.csv",
       "fields": [

@@ -276,11 +276,19 @@ namespace Qa.Core.Excel
             return Money(value, _pos);
         }
 
-        public ExcelCursor Money(double value, Pos pos)
+        public ExcelCursor Money(double? value, Pos pos)
         {
             var cell = getCell(pos);
-            cell.Value = value;
-            cell.Style.Numberformat.Format = "$#,##0;$(#,##0)";
+            if (value == null)
+            {
+                cell.Value = "NA";
+                cell.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            }
+            else
+            {
+                cell.Value = value;
+                cell.Style.Numberformat.Format = "$#,##0;$(#,##0)";
+            }            
             return this;
         }
 
@@ -312,11 +320,19 @@ namespace Qa.Core.Excel
             }
         }
 
-        public ExcelCursor Double(double value, Pos pos)
+        public ExcelCursor Double(double? value, Pos pos)
         {
             var cell = getCell(pos);
-            cell.Value = value;
-            cell.Style.Numberformat.Format = "#,##0.0;-#,##0.0";
+            if (value == null)
+            {
+                cell.Value = "NA";
+                cell.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            }
+            else
+            {
+                cell.Value = value;
+                cell.Style.Numberformat.Format = "#,##0.0;-#,##0.0";
+            }            
             return this;
         }
 
@@ -345,7 +361,7 @@ namespace Qa.Core.Excel
             return this;
         }
 
-        public ExcelCursor Rate(double value, Pos pos)
+        public ExcelCursor Rate(double? value, Pos pos)
         {
             var cell = getCell(pos);
             cell.Value = value;
@@ -389,11 +405,19 @@ namespace Qa.Core.Excel
             return Integer(value, _pos);
         }
 
-        public ExcelCursor Integer(double value, Pos pos)
+        public ExcelCursor Integer(double? value, Pos pos)
         {
             var cell = getCell(pos);
-            cell.Value = value;
-            cell.Style.Numberformat.Format = "#,##0;-#,##0";
+            if (value == null)
+            {
+                cell.Value = "NA";
+                cell.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            }
+            else
+            {
+                cell.Value = value;
+                cell.Style.Numberformat.Format = "#,##0;-#,##0";
+            }            
             return this;
         }
 
