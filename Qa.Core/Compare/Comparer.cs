@@ -21,7 +21,7 @@ namespace Qa.Core.Compare
             for (var i = 0; i < batches.First().Files.Count; i++)
             {
                 var index = i;
-                var files = batches.Select(x => x?.Files[index]).ToList();
+                var files = batches.Select(x => x.Files[index]).ToList();
                 var packet = Compare(files, compareFilesMethod);
                 packet.SplitValue = files.First().SplitValue;
                 packets.Add(packet);
@@ -38,7 +38,7 @@ namespace Qa.Core.Compare
             var fieldPacks = new List<FieldPack>();
             for (var i = 0; i < first.Fields.Count; i++)
             {
-                var fields = files.Select(x => x?.Fields[i]).ToList();
+                var fields = files.Select(x => x.Fields[i]).ToList();
                 fieldPacks.Add(getFieldPack(fields, valueComparer));
             }
 
