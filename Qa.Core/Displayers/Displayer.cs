@@ -131,7 +131,7 @@ namespace Qa.Core.Displayers
                 string fieldName = null;
                 if (fields.Count > i)
                 {
-                    fieldName = fields[i].Name.PadRight(30);
+                    fieldName = fields[i].Name;
                 }
                 string value = null;
                 if (row.Length > i)
@@ -142,6 +142,9 @@ namespace Qa.Core.Displayers
                 {
                     return;
                 }
+
+                fieldName = (fieldName ?? "{NULL}").PadRight(30);
+                value = value ?? "{NULL}";
 
                 i++;
                 Lo.Wl(string.Format("{0}. {1} - {2}", i.ToString().PadLeft(2), fieldName, value));

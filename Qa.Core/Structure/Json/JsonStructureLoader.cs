@@ -70,7 +70,7 @@ namespace Qa.Core.Structure.Json
                 Name = json.Name,
                 SourceFields = structure.Fields,
                 RowsInHeader = json.Qa.RowsInHeader ?? json.RowsInHeader ?? 0,
-                SkipRows = json.Format.SkipRows ?? json.SkipRows ?? 0,
+                SkipRows = json.Qa.SkipRows ?? json.SkipRows ?? 0,
                 FileMask = json.Qa.FileMask ?? "*.csv",
                 Delimiter = json.Qa.Delimiter.IfEmpty(json.Delimiter).IfEmpty(","),
                 Fields = json.Qa.Fields.Select(x => x.Convert(structure.Fields)).ToList(),

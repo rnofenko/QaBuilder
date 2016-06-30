@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using Qa.Core.Parsers.FileReaders;
 using Qa.Core.System;
 

@@ -14,5 +14,7 @@ namespace Qa.Core.Structure.Json
         public string FileMask { get; set; }
 
         public int? RowsInHeader { get; set; }
+
+        public int? SkipRows { get; set; }
     }
 }
