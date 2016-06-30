@@ -5,6 +5,11 @@ namespace Qa.Core.Structure
 {
     public class QaStructure: IStructure
     {
+        public QaStructure()
+        {
+            SourceFields = new List<Field>();
+        }
+
         public string Name { get; set; }
 
         public string Delimiter { get; set; }
@@ -17,7 +22,10 @@ namespace Qa.Core.Structure
 
         public string FileMask { get; set; }
 
-        public int CountOfFieldsInFile { get; set; }
+        public int CountOfSourceFields
+        {
+            get { return SourceFields.Count; }
+        }
 
         public List<QaField> Fields { get; set; }
 

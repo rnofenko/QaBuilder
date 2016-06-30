@@ -42,7 +42,7 @@ namespace Qa.Core.Displayers
             }
         }
 
-        public void DisplayByRows(string filepath, FileStructure structure)
+        public void DisplayWholeRows(string filepath, FileStructure structure)
         {
             using (var reader = FileReaderFactory.Create(filepath, structure.Qa.GetLineParser()))
             {
@@ -112,7 +112,7 @@ namespace Qa.Core.Displayers
                         return;
                     }
                     rowNumber++;
-                    showLine(row, structure.Fields);
+                    showRowByFields(row, structure.Fields);
 
                     Lo.W(rowNumber.ToString(), ConsoleColor.Yellow).Wl(" rows were displayed. Press SPACE to show next row.");
                     if (!toBeContinue())
@@ -123,7 +123,7 @@ namespace Qa.Core.Displayers
             }
         }
 
-        private void showLine(string[] row, IList<Field> fields)
+        private void showRowByFields(string[] row, IList<Field> fields)
         {
             var i = 0;
             while (i < 200)

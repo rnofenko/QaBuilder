@@ -1,6 +1,8 @@
 ﻿[
   {
     "name": "Argus Consumer", /*name of data request*/
+    "rowsInHeader": 1, /*number of header rows. the header goes after skipped rows.*/ 
+    "skipRows": 2, /*number of rows which should be skipped before header begins.*/ 
     "fileFields": [ /*list of all fields in a file*/
       {
         "name": "BAL_EOM", /* this name doesn't have impact on a data. But it's important name for JSON structure. QA field can  reference to this name.*/
@@ -8,7 +10,9 @@
       }
     ],
     "qa": {
-      "compareFilesMethod": "fourMonths",/* Possible values monthByMonth, fourMonths */
+      "compareFilesMethod": "fourMonths", /* Possible values monthByMonth, fourMonths */
+      "rowsInHeader": 1, /*number of header rows. the header goes after skipped rows.*/
+      "skipRows": 2, /*number of rows which should be skipped before header begins.*/
       "fields": [ /*These fields will be displayed in excel.*/
         {
           "title": "Breakdown by product/subproduct type2",
@@ -55,6 +59,10 @@
           }
         }
       ]
+    },
+    "format": {
+      "rowsInHeader": 1, /*number of header rows. the header goes after skipped rows.*/
+      "skipRows": 2 /*number of rows which should be skipped before header begins.*/
     }
   }
 ]

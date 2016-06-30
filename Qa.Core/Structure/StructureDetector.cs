@@ -16,45 +16,6 @@ namespace Qa.Core.Structure
             _fileMaskFilter = new FileMaskFilter();
         }
 
-        public T Detect<T>(string filepath, IEnumerable<T> sourceStructures) where T : IStructure
-        {
-            var structures = new List<T>();
-
-            foreach (var structure in sourceStructures.Where(x=> _fileMaskFilter.IsMatch(x.FileMask,filepath)))
-            {
-                using (var reader = FileReaderFactory.Create(filepath, structure.GetLineParser()))
-                {
-                    reader.Skip(structure.SkipRows + structure.RowsInHeader);
-                    var fields = reader.ParseNextRow();
-                    if (fields.Length == structure.CountOfFieldsInFile)
-                    {
-                        structures.Add(structure);
-                    }
-                    else
-                    {
-                        Lo.Wl("Structure " + structure.Name + " and file " + Path.GetFileName(filepath) + " are incompatible. Fields count = " +
-                              fields.Length + " structure's fields count=" + structure.CountOfFieldsInFile);
-                    }
-                }
-            }
-
-            var filename = Path.GetFileName(filepath);
-            if (!structures.Any())
-            {
-                prefix(filename).Wl(" structure wasn't found", ConsoleColor.Yellow);
-                return default(T);
-            }
-            if (structures.Count > 1)
-            {
-                prefix(filename).Wl(string.Format(" There are {0} corresponding file structures.", structures.Count), ConsoleColor.Red);
-                return default(T);
-            }
-
-            var first = structures.First();
-            prefix(filename).Wl(string.Format("{0}", first.Name), ConsoleColor.Green);
-            return first;
-        }
-
         public bool Match(string filepath, IStructure structure)
         {
             if (!_fileMaskFilter.IsMatch(structure.FileMask, filepath))
@@ -65,10 +26,10 @@ namespace Qa.Core.Structure
             {
                 reader.Skip(structure.SkipRows + structure.RowsInHeader);
                 var fields = reader.ParseNextRow();
-                if (fields.Length != structure.CountOfFieldsInFile)
+                if (fields.Length != structure.CountOfSourceFields)
                 {
-                    Lo.Wl("Structure " + structure.Name + " and file " + Path.GetFileName(filepath) + " are incompatible. Fields count = " +
-                          fields.Length + " structure's fields count=" + structure.CountOfFieldsInFile);
+                    const string template = "Structure {0} and file {1} are incompatible. Fields count =  {2} structure's fields count = {3}";
+                    Lo.Wl(string.Format(template, structure.Name, Path.GetFileName(filepath), fields.Length, structure.CountOfSourceFields));
                     return false;
                 }
             }

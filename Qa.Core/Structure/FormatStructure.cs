@@ -4,13 +4,18 @@ namespace Qa.Core.Structure
 {
     public class FormatStructure : IStructure
     {
+        public FormatStructure()
+        {
+            SourceFields = new List<Field>();
+        }
+
         public string Name { get; set; }
 
         public int RowsInHeader { get; set; }
 
         public string FileMask { get; set; }
 
-        public int CountOfFieldsInFile { get; set; }
+        public int CountOfSourceFields { get { return SourceFields.Count; } }
 
         public int SkipRows { get; set; }
 

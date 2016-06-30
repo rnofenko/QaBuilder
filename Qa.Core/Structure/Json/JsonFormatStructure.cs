@@ -15,5 +15,7 @@ namespace Qa.Core.Structure.Json
         public int? RowsInHeader { get; set; }
 
         public string DestinationDelimiter { get; set; }
+
+        public int? SkipRows { get; set; }
     }
 }

@@ -25,36 +25,38 @@ namespace Qa.Core.Format
 
         public void Start()
         {
-            Lo.Wl(2).Wl("Formatting files");
             showSettings();
+            foreach (var fileStructure in _settings.FileStructures)
+            {
+                format(fileStructure.Format);
+            }
+        }
 
-            var files = _pathFinder.Find(_settings.WorkingFolder, SOURCE_FILE_MASK).ToList();
-            Lo.Wl().Wl(string.Format("Found {0} files:", files.Count));
+        private void format(FormatStructure structure)
+        {
+            var files = _pathFinder.Find(_settings.WorkingFolder, structure.FileMask).ToList();
+            Lo.Wl().Wl(string.Format("Found {0} files for {1}:", files.Count, structure.Name));
 
             var ask = AskFileResult.None;
-            foreach (var filepath in files)
+            foreach (var filepath in files.Where(x => _structureDetector.Match(x, structure)))
             {
-                var detected = _structureDetector.Detect(filepath, _settings.FileStructures.Select(x => x.Format));
-                if (detected != null)
+                var file = new FormattingFile
                 {
-                    var file = new FormattingFile
-                    {
-                        SourcePath = filepath,
-                        FormatStructure = detected,
-                        DestinationPath = Path.Combine(_settings.WorkingFolder, Path.GetFileNameWithoutExtension(filepath) + "." + DESTINATION_FILE_EXTENSION)
-                    };
-                    if (ask != AskFileResult.YesForAll)
-                    {
-                        ask = askFormat(file);
-                    }
-                    if (ask == AskFileResult.Yes || ask == AskFileResult.YesForAll)
-                    {
-                        _formatter.Format(file);
-                    }
-                    else if(ask == AskFileResult.NoForAll)
-                    {
-                        break;
-                    }
+                    SourcePath = filepath,
+                    FormatStructure = structure,
+                    DestinationPath = Path.Combine(_settings.WorkingFolder, Path.GetFileNameWithoutExtension(filepath) + "." + DESTINATION_FILE_EXTENSION)
+                };
+                if (ask != AskFileResult.YesForAll)
+                {
+                    ask = askFormat(file);
+                }
+                if (ask == AskFileResult.Yes || ask == AskFileResult.YesForAll)
+                {
+                    _formatter.Format(file);
+                }
+                else if (ask == AskFileResult.NoForAll)
+                {
+                    break;
                 }
             }
 
@@ -64,7 +66,8 @@ namespace Qa.Core.Format
         
         private void showSettings()
         {
-            Lo.Wl()
+            Lo.Wl(1)
+                .Wl("Formatting files")
                 .Wl("Source File Settings:")
                 .Wl(string.Format("Working folder        = {0}", _settings.WorkingFolder))
                 .Wl(string.Format("File mask             = {0}", SOURCE_FILE_MASK))

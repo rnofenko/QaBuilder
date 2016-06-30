@@ -26,6 +26,11 @@ namespace Qa.Core.Excel
 
         public void Export()
         {
+            if (_excelPackage == null)
+            {
+                return;
+            }
+
             _excelPackage.Save();
             Process.Start(_path);
         }

@@ -33,7 +33,7 @@ namespace Qa.Core.Displayers
                 Lo.Wl()
                     .Wl("Select command:")
                     .Wl("1. Show one column")
-                    .Wl("2. Show All columns")
+                    .Wl("2. Show whole rows")
                     .Wl("3. Show file's rows by fields");
                 
                 var key = Console.ReadKey();
@@ -43,7 +43,7 @@ namespace Qa.Core.Displayers
                 }
                 else if (key.KeyChar == '2')
                 {
-                    showAllColumns(settings);
+                    showWholeRows(settings);
                 }
                 else if (key.KeyChar == '3')
                 {
@@ -59,19 +59,19 @@ namespace Qa.Core.Displayers
         private void splitRowByField(Settings settings)
         {
             var selectedStructure = selectStructure(settings);
-            var filePaths = _pathFinder.Find(settings.WorkingFolder);
-            var fileIndex = _selector.Select(filePaths.Select(Path.GetFileName), "Select file for check");
-            if (fileIndex < 0 || selectedStructure == null)
+            var file = selectAnyFile(settings);
+            if (file == null || selectedStructure == null)
             {
                 return;
             }
-            _displayer.SplitRowsByFields(filePaths[fileIndex], selectedStructure);
+            
+            _displayer.SplitRowsByFields(file, selectedStructure);
         }
 
         private void showOneColumn(Settings settings)
         {
             var selectedStructure = selectStructure(settings);
-            var selectedFile = selectFile(settings, selectedStructure);
+            var selectedFile = selectProjectFile(settings, selectedStructure);
             if (selectedFile == null)
             {
                 return;
@@ -83,18 +83,29 @@ namespace Qa.Core.Displayers
             }
         }
 
-        private void showAllColumns(Settings settings)
+        private void showWholeRows(Settings settings)
         {
             var selectedStructure = selectStructure(settings);
-            var selectedFile = selectFile(settings, selectedStructure);
-            if (selectedFile == null)
+            var selectedFile = selectAnyFile(settings);
+            if (selectedFile == null || selectedStructure == null)
             {
                 return;
             }
-            _displayer.DisplayByRows(selectedFile, selectedStructure);
+            _displayer.DisplayWholeRows(selectedFile, selectedStructure);
         }
 
-        private string selectFile(Settings settings, FileStructure structure)
+        private string selectAnyFile(Settings settings)
+        {
+            var filePaths = _pathFinder.Find(settings.WorkingFolder);
+            var fileIndex = _selector.Select(filePaths.Select(Path.GetFileName), "Select file for check");
+            if (fileIndex < 0)
+            {
+                return null;
+            }
+            return filePaths[fileIndex];
+        }
+
+        private string selectProjectFile(Settings settings, FileStructure structure)
         {
             if (structure == null)
             {

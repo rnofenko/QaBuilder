@@ -36,7 +36,7 @@ namespace Qa.Core.Structure.Json
         {
             if (json.Format == null)
             {
-                return new FormatStructure {Delimiter = CsvParser.DEFAULT_DELIMITER, DestinationDelimiter = CsvParser.DEFAULT_DELIMITER};
+                return new FormatStructure { Delimiter = CsvParser.DEFAULT_DELIMITER, DestinationDelimiter = CsvParser.DEFAULT_DELIMITER};
             }
 
             var delimiter = json.Format.Delimiter.IfEmpty(json.Delimiter).IfEmpty(",");
@@ -49,10 +49,10 @@ namespace Qa.Core.Structure.Json
                 Name = json.Name,
                 SourceFields = structure.Fields,
                 RowsInHeader = json.Format.RowsInHeader ?? json.RowsInHeader ?? 0,
+                SkipRows = json.Format.SkipRows ?? json.SkipRows ?? 0,
                 FileMask = json.Format.FileMask ?? "*.csv",
                 Delimiter = delimiter,
                 TextQualifier = json.Format.TextQualifier ?? "\"",
-                CountOfFieldsInFile = structure.Fields.Count,
                 DestinationDelimiter = json.Format.DestinationDelimiter ?? structure.Qa.Delimiter ?? delimiter
             };
             return format;
@@ -62,7 +62,7 @@ namespace Qa.Core.Structure.Json
         {
             if (json.Qa == null)
             {
-                return new QaStructure {Delimiter = CsvParser.DEFAULT_DELIMITER};
+                return new QaStructure { Delimiter = CsvParser.DEFAULT_DELIMITER};
             }
             
             return new QaStructure
@@ -70,10 +70,10 @@ namespace Qa.Core.Structure.Json
                 Name = json.Name,
                 SourceFields = structure.Fields,
                 RowsInHeader = json.Qa.RowsInHeader ?? json.RowsInHeader ?? 0,
+                SkipRows = json.Format.SkipRows ?? json.SkipRows ?? 0,
                 FileMask = json.Qa.FileMask ?? "*.csv",
                 Delimiter = json.Qa.Delimiter.IfEmpty(json.Delimiter).IfEmpty(","),
                 Fields = json.Qa.Fields.Select(x => x.Convert(structure.Fields)).ToList(),
-                CountOfFieldsInFile = structure.Fields.Count,
                 CompareFilesMethod = json.Qa.CompareFilesMethod == CompareFilesMethod.None ? CompareFilesMethod.MonthByMonth : json.Qa.CompareFilesMethod
             };
         }

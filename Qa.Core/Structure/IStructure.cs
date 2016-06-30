@@ -14,6 +14,6 @@
 
         string FileMask { get; }
 
-        int CountOfFieldsInFile { get; }
+        int CountOfSourceFields { get; }
     }
 }
