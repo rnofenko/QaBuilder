@@ -22,7 +22,7 @@ namespace Qa.Core.Structure
 
             foreach (var structure in sourceStructures.Where(x=> _fileMaskFilter.IsMatch(x.FileMask,filepath)))
             {
-                using (var reader = FileReaderFactory.Create(filepath, structure))
+                using (var reader = FileReaderFactory.Create(filepath, structure.GetLineParser()))
                 {
                     reader.Skip(structure.SkipRows + structure.RowsInHeader);
                     var fields = reader.ParseNextRow();
@@ -61,7 +61,7 @@ namespace Qa.Core.Structure
             {
                 return false;
             }
-            using (var reader = FileReaderFactory.Create(filepath, structure))
+            using (var reader = FileReaderFactory.Create(filepath, structure.GetLineParser()))
             {
                 reader.Skip(structure.SkipRows + structure.RowsInHeader);
                 var fields = reader.ParseNextRow();

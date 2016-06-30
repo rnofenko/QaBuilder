@@ -1,16 +1,14 @@
-﻿using Qa.Core.Structure;
-
-namespace Qa.Core.Parsers.FileReaders
+﻿namespace Qa.Core.Parsers.FileReaders
 {
     public class FileReaderFactory
     {
-        public static IFileReader Create(string path, IStructure structure)
+        public static IFileReader Create(string path, ICsvParser parser)
         {
             if (path.EndsWith(".xls"))
             {
                 return new ExcelFileReader(path);
             }
-            return new TextFileReader(path, structure);
+            return new TextFileReader(path, parser);
         }
     }
 }

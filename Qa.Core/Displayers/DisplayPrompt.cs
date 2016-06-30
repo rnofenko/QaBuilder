@@ -12,50 +12,86 @@ namespace Qa.Core.Displayers
         private readonly QaFileFinder _fileFinder;
         private readonly SelectorPrompt _selector;
         private readonly Displayer _displayer;
+        private readonly PathFinder _pathFinder;
 
         public DisplayPrompt()
         {
             _fileFinder = new QaFileFinder();
             _selector = new SelectorPrompt();
             _displayer = new Displayer();
+            _pathFinder = new PathFinder();
         }
 
         public void Start(Settings settings)
         {
-            Lo.Wl().Wl().Wl(string.Format("..................... Displayer - {0} .........................", settings.Project))
+            Lo.Wl().Wl()
+                .Wl(string.Format("..................... Displayer - {0} .........................", settings.Project))
                 .Wl(string.Format("Current folder is {0}", settings.WorkingFolder));
-            var selectedStructure = selectStructure(settings);
-            var selectedFile = selectFile(settings, selectedStructure);
-            if (selectedFile == null)
-            {
-                return;
-            }
             
             while (true)
             {
                 Lo.Wl()
                     .Wl("Select command:")
                     .Wl("1. Show one column")
-                    .Wl("2. Show All columns");
+                    .Wl("2. Show All columns")
+                    .Wl("3. Show file's rows by fields");
                 
                 var key = Console.ReadKey();
                 if (key.KeyChar == '1')
                 {
-                    var column = _selector.Select(selectedStructure.Fields.Select(x => x.Name), "Select field");
-                    if (column >= 0)
-                    {
-                        _displayer.DisplayColumn(selectedFile, selectedStructure, column);
-                    }
+                    showOneColumn(settings);
                 }
                 else if (key.KeyChar == '2')
                 {
-                    _displayer.DisplayByRows(selectedFile, selectedStructure);
+                    showAllColumns(settings);
+                }
+                else if (key.KeyChar == '3')
+                {
+                    splitRowByField(settings);
                 }
                 else if (key.Key == ConsoleKey.Escape)
                 {
                     break;
                 }
             }
+        }
+
+        private void splitRowByField(Settings settings)
+        {
+            var selectedStructure = selectStructure(settings);
+            var filePaths = _pathFinder.Find(settings.WorkingFolder);
+            var fileIndex = _selector.Select(filePaths.Select(Path.GetFileName), "Select file for check");
+            if (fileIndex < 0 || selectedStructure == null)
+            {
+                return;
+            }
+            _displayer.SplitRowsByFields(filePaths[fileIndex], selectedStructure);
+        }
+
+        private void showOneColumn(Settings settings)
+        {
+            var selectedStructure = selectStructure(settings);
+            var selectedFile = selectFile(settings, selectedStructure);
+            if (selectedFile == null)
+            {
+                return;
+            }
+            var column = _selector.Select(selectedStructure.Fields.Select(x => x.Name), "Select field");
+            if (column >= 0)
+            {
+                _displayer.DisplayColumn(selectedFile, selectedStructure, column);
+            }
+        }
+
+        private void showAllColumns(Settings settings)
+        {
+            var selectedStructure = selectStructure(settings);
+            var selectedFile = selectFile(settings, selectedStructure);
+            if (selectedFile == null)
+            {
+                return;
+            }
+            _displayer.DisplayByRows(selectedFile, selectedStructure);
         }
 
         private string selectFile(Settings settings, FileStructure structure)

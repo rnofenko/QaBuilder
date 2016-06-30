@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Qa.Core.Parsers.FileReaders;
 using Qa.Core.Structure;
 using Qa.Core.System;
@@ -11,11 +12,11 @@ namespace Qa.Core.Displayers
 
         public void DisplayColumn(string filepath, FileStructure structure, int columnIndex)
         {
-            using (var reader = FileReaderFactory.Create(filepath, structure.Qa))
+            using (var reader = FileReaderFactory.Create(filepath, structure.Qa.GetLineParser()))
             {
                 reader.Skip(structure.Qa.RowsInHeader);
-                int rowNumber = 0;
-                int rowNumberInPortion = 0;
+                var rowNumber = 0;
+                var rowNumberInPortion = 0;
                 while (true)
                 {
                     var row = reader.ParseNextRow();
@@ -43,11 +44,11 @@ namespace Qa.Core.Displayers
 
         public void DisplayByRows(string filepath, FileStructure structure)
         {
-            using (var reader = FileReaderFactory.Create(filepath, structure.Qa))
+            using (var reader = FileReaderFactory.Create(filepath, structure.Qa.GetLineParser()))
             {
                 reader.Skip(structure.Qa.RowsInHeader);
-                int rowNumber = 0;
-                int rowNumberInPortion = 0;
+                var rowNumber = 0;
+                var rowNumberInPortion = 0;
                 while (true)
                 {
                     var row = reader.ReadNextRow();
@@ -93,6 +94,57 @@ namespace Qa.Core.Displayers
             finally
             {
                 Lo.Wl();
+            }
+        }
+
+        public void SplitRowsByFields(string filePath, FileStructure structure)
+        {
+            using (var reader = FileReaderFactory.Create(filePath, structure.Qa.GetLineParser()))
+            {
+                var rowNumber = 0;
+                while (true)
+                {
+                    var row = reader.ParseNextRow();
+                    if (row == null)
+                    {
+                        Lo.Wl("End of the file. Press any key to continue...");
+                        Console.ReadKey();
+                        return;
+                    }
+                    rowNumber++;
+                    showLine(row, structure.Fields);
+
+                    Lo.W(rowNumber.ToString(), ConsoleColor.Yellow).Wl(" rows were displayed. Press SPACE to show next row.");
+                    if (!toBeContinue())
+                    {
+                        return;
+                    }
+                }
+            }
+        }
+
+        private void showLine(string[] row, IList<Field> fields)
+        {
+            var i = 0;
+            while (i < 200)
+            {
+                string fieldName = null;
+                if (fields.Count > i)
+                {
+                    fieldName = fields[i].Name.PadRight(30);
+                }
+                string value = null;
+                if (row.Length > i)
+                {
+                    value = row[i];
+                }
+                if (fieldName == null && value == null)
+                {
+                    return;
+                }
+
+                i++;
+                Lo.Wl(string.Format("{0}. {1} - {2}", i.ToString().PadLeft(2), fieldName, value));
             }
         }
     }

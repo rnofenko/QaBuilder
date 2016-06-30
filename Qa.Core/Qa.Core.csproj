@@ -86,6 +86,7 @@
     <Compile Include="Parsers\FileReaders\TextFileReader.cs" />
     <Compile Include="Parsers\Filters\IExpressionFilter.cs" />
     <Compile Include="Parsers\Filters\InExpressionFilter.cs" />
+    <Compile Include="Parsers\ICsvParser.cs" />
     <Compile Include="Parsers\NumberParser.cs" />
     <Compile Include="Parsers\CalcFields\DefaultCalculationFieldFactory.cs" />
     <Compile Include="Parsers\CalcFields\ICalculationFieldFactory.cs" />

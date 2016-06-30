@@ -29,7 +29,7 @@ namespace Qa.Core.Parsers
             var splitByIndex = structure.SourceFields.FindIndex(x => x.Name == splitBy);
 
             var parsers = new Dictionary<string, ValueParser>();
-            using (var reader = FileReaderFactory.Create(filepath, structure))
+            using (var reader = FileReaderFactory.Create(filepath, structure.GetLineParser()))
             {
                 reader.Skip(structure.RowsInHeader);
                 string[] parts;
@@ -68,7 +68,7 @@ namespace Qa.Core.Parsers
             
             using (var valueParser = new ValueParser(structure))
             {
-                using (var reader = FileReaderFactory.Create(filepath, structure))
+                using (var reader = FileReaderFactory.Create(filepath, structure.GetLineParser()))
                 {
                     try
                     {

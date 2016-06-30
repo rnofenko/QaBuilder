@@ -1,19 +1,18 @@
 ﻿using System.IO;
-using Qa.Core.Structure;
 
 namespace Qa.Core.Parsers.FileReaders
 {
     public class TextFileReader: IFileReader
     {
         private StreamReader _stream;
-        private readonly CsvParser _parser;
+        private readonly ICsvParser _parser;
         private readonly string _path;
         private string _lastLine;
 
-        public TextFileReader(string path, IStructure structure)
+        public TextFileReader(string path, ICsvParser parser)
         {
             _path = path;
-            _parser = structure.GetLineParser();
+            _parser = parser;
         }
         
         public void Dispose()

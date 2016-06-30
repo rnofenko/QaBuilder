@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace Qa.Core.Parsers
 {
-    public class CsvParser
+    public class CsvParser : ICsvParser
     {
         public const string DEFAULT_DELIMITER = ",";
 

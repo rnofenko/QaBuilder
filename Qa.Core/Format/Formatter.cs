@@ -11,7 +11,7 @@ namespace Qa.Core.Format
     public class Formatter
     {
         private List<Field> _fields;
-        private CsvParser _csvParser;
+        private ICsvParser _csvParser;
         private string _destinationDelimeter;
         
         public void Format(FormattingFile file)
