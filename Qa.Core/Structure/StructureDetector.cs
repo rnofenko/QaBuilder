@@ -25,7 +25,7 @@ namespace Qa.Core.Structure
                 using (var reader = FileReaderFactory.Create(filepath, structure))
                 {
                     reader.Skip(structure.SkipRows + structure.RowsInHeader);
-                    var fields = reader.ReadRow();
+                    var fields = reader.ParseNextRow();
                     if (fields.Length == structure.CountOfFieldsInFile)
                     {
                         structures.Add(structure);
@@ -64,7 +64,7 @@ namespace Qa.Core.Structure
             using (var reader = FileReaderFactory.Create(filepath, structure))
             {
                 reader.Skip(structure.SkipRows + structure.RowsInHeader);
-                var fields = reader.ReadRow();
+                var fields = reader.ParseNextRow();
                 if (fields.Length != structure.CountOfFieldsInFile)
                 {
                     Lo.Wl("Structure " + structure.Name + " and file " + Path.GetFileName(filepath) + " are incompatible. Fields count = " +

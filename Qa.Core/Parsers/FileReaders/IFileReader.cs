@@ -6,7 +6,9 @@ namespace Qa.Core.Parsers.FileReaders
     {
         void Skip(int lines);
 
-        string[] ReadRow();
+        string[] ParseNextRow();
+
+        string ReadNextRow();
 
         string GetLastLine();
     }

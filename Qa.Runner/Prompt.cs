@@ -1,4 +1,5 @@
 ﻿using System;
+using Qa.Core.Displayers;
 using Qa.Core.Excel;
 using Qa.Core.Format;
 using Qa.Core.Qa;
@@ -28,7 +29,8 @@ namespace Qa.Runner
                     .Wl()
                     .Wl("Select command:")
                     .Wl("1. Format")
-                    .Wl("2. Create QA report");
+                    .Wl("2. Create QA report")
+                    .Wl("3. Show data");
                 var key = Console.ReadKey();
                 Lo.Wl();
                 if (key.KeyChar == '1')
@@ -38,6 +40,10 @@ namespace Qa.Runner
                 else if (key.KeyChar == '2')
                 {
                     new QaPrompt(settings, new Exporter(new CommonPage(new CommonPageSettings {Freeze = false}))).Start();
+                }
+                else if (key.KeyChar == '3')
+                {
+                    new DisplayPrompt().Start(settings);
                 }
                 else if (key.Key == ConsoleKey.Escape)
                 {

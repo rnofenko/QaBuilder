@@ -33,7 +33,7 @@ namespace Qa.Core.Parsers
             {
                 reader.Skip(structure.RowsInHeader);
                 string[] parts;
-                while ((parts = reader.ReadRow()) != null)
+                while ((parts = reader.ParseNextRow()) != null)
                 {
                     var splitValue = parts[splitByIndex];
                     if (!parsers.ContainsKey(splitValue))
@@ -74,7 +74,7 @@ namespace Qa.Core.Parsers
                     {
                         reader.Skip(structure.RowsInHeader);
                         string[] parts;
-                        while ((parts = reader.ReadRow()) != null)
+                        while ((parts = reader.ParseNextRow()) != null)
                         {
                             if (valueParser.RowsCount > _rowsLimit)
                             {

@@ -55,6 +55,8 @@
     <Compile Include="Compare\FourMonthsValueComparer.cs" />
     <Compile Include="Compare\ValueComparerFactory.cs" />
     <Compile Include="Compare\IValueComparer.cs" />
+    <Compile Include="Displayers\Displayer.cs" />
+    <Compile Include="Displayers\DisplayPrompt.cs" />
     <Compile Include="Excel\FieldPrinterFactory.cs" />
     <Compile Include="Excel\FourMonthsGroupedFieldPrinter.cs" />
     <Compile Include="Excel\FourMonthsNumberFieldPrinter.cs" />
@@ -129,6 +131,7 @@
     <Compile Include="Format\FormatPrompt.cs" />
     <Compile Include="Format\Formatter.cs" />
     <Compile Include="Format\FormattingFile.cs" />
+    <Compile Include="Prompts\SelectorPrompt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

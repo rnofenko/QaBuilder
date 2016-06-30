@@ -32,7 +32,7 @@ namespace Qa.Core.Parsers.FileReaders
             _currentRow += lines;
         }
 
-        public string[] ReadRow()
+        public string[] ParseNextRow()
         {
             var parts = new string[_width];
             _currentRow++;
@@ -41,6 +41,11 @@ namespace Qa.Core.Parsers.FileReaders
                 parts[i] = _sheet.Cells[_currentRow, i + 1].Value.ToString();
             }
             return parts;
+        }
+
+        public string ReadNextRow()
+        {
+            throw new global::System.NotImplementedException();
         }
 
         public int GetFieldsCount()

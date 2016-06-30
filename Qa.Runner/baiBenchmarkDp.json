@@ -68,6 +68,7 @@
     ],
     "qa": {
       "delimiter": "|",
+      "fileMask": "*.txt",
       "fields": [
         {
           "field": "HOUSEHOLD_ID",

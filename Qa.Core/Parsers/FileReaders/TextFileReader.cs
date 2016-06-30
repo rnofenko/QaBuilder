@@ -33,7 +33,7 @@ namespace Qa.Core.Parsers.FileReaders
             }
         }
 
-        public string[] ReadRow()
+        public string[] ParseNextRow()
         {
             _lastLine = getReader().ReadLine();
             if (_lastLine == null)
@@ -41,6 +41,12 @@ namespace Qa.Core.Parsers.FileReaders
                 return null;
             }
             return _parser.Parse(_lastLine);
+        }
+
+        public string ReadNextRow()
+        {
+            _lastLine = getReader().ReadLine();
+            return _lastLine;
         }
 
         public string GetLastLine()

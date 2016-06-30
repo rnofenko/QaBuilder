@@ -1,13 +1,19 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using Qa.Core.System;
+using Qa.Core.Prompts;
 
 namespace Qa.Core.Structure
 {
     public class ProjectSelector
     {
+        private readonly SelectorPrompt _selector;
+
+        public ProjectSelector()
+        {
+            _selector = new SelectorPrompt();
+        }
+
         public string Select(string binFolder)
         {
             var files = Directory.GetFiles(binFolder, "*.json").Select(Path.GetFileNameWithoutExtension).ToList();
@@ -16,32 +22,12 @@ namespace Qa.Core.Structure
                 throw new WarningException("There is not any json project files.");
             }
 
-            if (files.Count == 1)
+            var index = _selector.Select(files, "Select project");
+            if (index < 0)
             {
-                return files.First();
+                throw new WarningException("QaBuilder doesn't work without project json file.");
             }
-
-            while (true)
-            {
-                Console.Clear();
-                Lo.Wl(2).Wl("Select project:");
-                for (var i = 0; i < files.Count; i++)
-                {
-                    Lo.Wl(string.Format("{0}. {1}", i + 1, files[i]));
-                }
-                var key = Console.ReadKey();
-                int index;
-                int.TryParse(key.KeyChar.ToString(), out index);
-                index--;
-                if (index >= 0 && index < files.Count)
-                {
-                    return files[index];
-                }
-                if (key.Key == ConsoleKey.Escape)
-                {
-                    throw new WarningException("QaBuilder doesn't work without project json file.");
-                }
-            }
+            return files[index];
         }
     }
 }
