@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Qa.Core.Parsers.FileReaders;
@@ -11,7 +10,6 @@ namespace Qa.Core.Parsers
 {
     public class QaFileParser
     {
-        private static Stopwatch _watch;
         private readonly int _rowsLimit;
 
         public QaFileParser(Settings settings)
@@ -31,7 +29,7 @@ namespace Qa.Core.Parsers
             var parsers = new Dictionary<string, ValueParser>();
             using (var reader = FileReaderFactory.Create(filepath, structure.GetLineParser()))
             {
-                reader.Skip(structure.RowsInHeader);
+                reader.Skip(structure.RowsInHeader + structure.SkipRows);
                 string[] parts;
                 while ((parts = reader.ParseNextRow()) != null)
                 {
@@ -61,10 +59,7 @@ namespace Qa.Core.Parsers
         public ParsedFile Parse(string filepath, QaStructure structure)
         {
             Lo.W("Parse file: ", ConsoleColor.Cyan).Wl(Path.GetFileNameWithoutExtension(filepath), ConsoleColor.Green);
-            if (_watch == null)
-            {
-                _watch = Stopwatch.StartNew();
-            }
+            Lo.Watch.Start();
             
             using (var valueParser = new ValueParser(structure))
             {
@@ -72,7 +67,7 @@ namespace Qa.Core.Parsers
                 {
                     try
                     {
-                        reader.Skip(structure.RowsInHeader);
+                        reader.Skip(structure.RowsInHeader + structure.SkipRows);
                         string[] parts;
                         while ((parts = reader.ParseNextRow()) != null)
                         {
@@ -80,19 +75,7 @@ namespace Qa.Core.Parsers
                             {
                                 break;
                             }
-                            if ((valueParser.RowsCount%20000) == 0)
-                            {
-                                if ((valueParser.RowsCount%1000000) == 0)
-                                {
-                                    Lo.Wl()
-                                        .W(string.Format("Processed {0,2}m Time:{1:mm:ss.fff} ", valueParser.RowsCount/1000000,
-                                            new DateTime().AddMilliseconds(_watch.ElapsedMilliseconds)));
-                                }
-                                else
-                                {
-                                    Lo.W(".");
-                                }
-                            }
+                            Lo.ShowFileProcessingProgress(valueParser.RowsCount);
                             valueParser.Parse(parts);
                         }
                     }

@@ -1,9 +1,34 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Qa.Core.System
 {
     public static class Lo
     {
+        private static readonly Stopwatch _watch = new Stopwatch();
+        public static Stopwatch Watch
+        {
+            get { return _watch; }
+        }
+
+        public static void ShowFileProcessingProgress(int rowNumber)
+        {
+            if (rowNumber%20000 != 0)
+            {
+                return;
+            }
+
+            if (rowNumber%1000000 == 0)
+            {
+                Wl().W(string.Format("Processed {0,2}m Time:{1:mm:ss.fff} ", rowNumber/1000000,
+                    new DateTime().AddMilliseconds(_watch.ElapsedMilliseconds)));
+            }
+            else
+            {
+                W(".");
+            }
+        }
+
         public static Logger W(string message = "")
         {
             return new Logger().W(message);

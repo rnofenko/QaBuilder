@@ -121,14 +121,10 @@ namespace Qa.Core.Editors
                     {
                         var rebuiltRow = rowAction(row);
                         writer.WriteLine(rebuiltRow);
-
-                        if (reader.RowNumber % 500000 == 0)
-                        {
-                            Lo.Wl(string.Format("Processed {0} rows.", reader.RowNumber));
-                        }
+                        Lo.ShowFileProcessingProgress(reader.RowNumber);
                     }
                 }
-                Lo.Wl(string.Format("Processed {0} rows.", reader.RowNumber));
+                Lo.ShowFileProcessingProgress(reader.RowNumber);
             }
         }
 
