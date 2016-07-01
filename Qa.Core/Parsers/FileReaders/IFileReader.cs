@@ -11,5 +11,7 @@ namespace Qa.Core.Parsers.FileReaders
         string ReadNextRow();
 
         string GetLastLine();
+
+        int RowNumber { get; }
     }
 }

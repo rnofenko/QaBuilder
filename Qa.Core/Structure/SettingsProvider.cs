@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using Qa.Core.Parsers;
+using Qa.Core.Selectors;
 using Qa.Core.Structure.Json;
 using Qa.Core.System;
 

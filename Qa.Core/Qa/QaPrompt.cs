@@ -12,7 +12,6 @@ namespace Qa.Core.Qa
 {
     public class QaPrompt
     {
-        private readonly Settings _settings;
         private readonly IExporter _excelExporter;
         private readonly Comparer _comparer;
         private readonly BinCombiner _binCombiner;
@@ -22,9 +21,8 @@ namespace Qa.Core.Qa
         private readonly QaFileFinder _qaFileFinder;
         private readonly FourMonthsFileRebuilder _fourMonthsFileRebuilder;
 
-        public QaPrompt(Settings settings, IExporter exporter)
+        public QaPrompt(IExporter exporter)
         {
-            _settings = settings;
             _qaFileFinder = new QaFileFinder();
             _excelExporter = exporter;
             _comparer = new Comparer();
@@ -35,14 +33,14 @@ namespace Qa.Core.Qa
             _fourMonthsFileRebuilder = new FourMonthsFileRebuilder();
         }
 
-        public void Start()
+        public void Start(Settings settings)
         {
-            foreach (var structure in _settings.FileStructures)
+            foreach (var structure in settings.FileStructures)
             {
-                var qaFiles = _qaFileFinder.Find(_settings.WorkingFolder, structure.Qa);
+                var qaFiles = _qaFileFinder.Find(settings.WorkingFolder, structure.Qa);
 
                 var files = qaFiles
-                    .Select(x => new QaFileParser(_settings).Parse(x, structure.Qa))
+                    .Select(x => new QaFileParser(settings).Parse(x, structure.Qa))
                     .ToList();
 
                 if (files.IsEmpty())
@@ -57,7 +55,7 @@ namespace Qa.Core.Qa
                     var result = _comparer.Compare(files, structure.Qa.CompareFilesMethod);
                     _fourMonthsFileRebuilder.Rebuild(result);
                     result = _sorter.Sort(result);
-                    _excelExporter.AddData(structure.Qa.Name, result, _settings);
+                    _excelExporter.AddData(structure.Qa.Name, result, settings);
                 }
             }
 

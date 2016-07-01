@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using Qa.Core.Prompts;
 
-namespace Qa.Core.Structure
+namespace Qa.Core.Selectors
 {
     public class ProjectSelector
     {

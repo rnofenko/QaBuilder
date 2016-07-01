@@ -57,6 +57,7 @@
     <Compile Include="Compare\IValueComparer.cs" />
     <Compile Include="Displayers\Displayer.cs" />
     <Compile Include="Displayers\DisplayPrompt.cs" />
+    <Compile Include="Editors\EditPrompt.cs" />
     <Compile Include="Excel\FieldPrinterFactory.cs" />
     <Compile Include="Excel\FourMonthsGroupedFieldPrinter.cs" />
     <Compile Include="Excel\FourMonthsNumberFieldPrinter.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Excel\INumberFieldPrinter.cs" />
     <Compile Include="Excel\XlsToCsvConverter.cs" />
     <Compile Include="Extensions\DoubleExtension.cs" />
+    <Compile Include="Selectors\FileSelector.cs" />
     <Compile Include="Format\AskFileResult.cs" />
     <Compile Include="Parsers\CalcFields\CalcAverageField.cs" />
     <Compile Include="Parsers\CalcFields\CalcBaseField.cs" />
@@ -132,7 +134,7 @@
     <Compile Include="Format\FormatPrompt.cs" />
     <Compile Include="Format\Formatter.cs" />
     <Compile Include="Format\FormattingFile.cs" />
-    <Compile Include="Prompts\SelectorPrompt.cs" />
+    <Compile Include="Selectors\SelectorPrompt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -140,6 +142,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Qa\Invertor.cs" />
+    <Compile Include="Selectors\StructureSelector.cs" />
     <Compile Include="Structure\FourMonthsFileDetector.cs" />
     <Compile Include="Structure\QaFileFinder.cs" />
     <Compile Include="Structure\Json\JsonFormatField.cs" />
@@ -168,7 +171,7 @@
     <Compile Include="Structure\Json\JsonQaStructure.cs" />
     <Compile Include="Structure\Json\JsonFileStructure.cs" />
     <Compile Include="Structure\NumberFormat.cs" />
-    <Compile Include="Structure\ProjectSelector.cs" />
+    <Compile Include="Selectors\ProjectSelector.cs" />
     <Compile Include="Structure\QaField.cs" />
     <Compile Include="Structure\QaStructure.cs" />
     <Compile Include="Structure\CalculatedField.cs" />

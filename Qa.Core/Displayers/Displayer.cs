@@ -14,7 +14,7 @@ namespace Qa.Core.Displayers
         {
             using (var reader = FileReaderFactory.Create(filepath, structure.Qa.GetLineParser()))
             {
-                reader.Skip(structure.Qa.RowsInHeader);
+                reader.Skip(structure.Qa.RowsInHeader + structure.Qa.SkipRows);
                 var rowNumber = 0;
                 var rowNumberInPortion = 0;
                 while (true)
@@ -46,7 +46,7 @@ namespace Qa.Core.Displayers
         {
             using (var reader = FileReaderFactory.Create(filepath, structure.Qa.GetLineParser()))
             {
-                reader.Skip(structure.Qa.RowsInHeader);
+                reader.Skip(structure.Qa.RowsInHeader + structure.Qa.SkipRows);
                 var rowNumber = 0;
                 var rowNumberInPortion = 0;
                 while (true)

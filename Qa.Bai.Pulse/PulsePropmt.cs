@@ -30,7 +30,7 @@ namespace Qa.Bai.Pulse
                 var key = Console.ReadKey();
                 if (key.KeyChar == '1')
                 {
-                    new FormatPrompt(settings).Start();
+                    new FormatPrompt().Start(settings);
                 }
                 else if (key.KeyChar == '2')
                 {

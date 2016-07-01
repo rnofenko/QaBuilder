@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Qa.Core.System;
 
-namespace Qa.Core.Prompts
+namespace Qa.Core.Selectors
 {
     public class SelectorPrompt
     {

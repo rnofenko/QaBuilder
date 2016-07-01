@@ -8,7 +8,6 @@ namespace Qa.Core.Parsers.FileReaders
     {
         private readonly ExcelPackage _excel;
         private readonly ExcelWorksheet _sheet;
-        private int _currentRow;
         private readonly int _width;
 
         public ExcelFileReader(string path)
@@ -29,16 +28,16 @@ namespace Qa.Core.Parsers.FileReaders
 
         public void Skip(int lines)
         {
-            _currentRow += lines;
+            RowNumber += lines;
         }
 
         public string[] ParseNextRow()
         {
             var parts = new string[_width];
-            _currentRow++;
+            RowNumber++;
             for (var i = 0; i < _width; i++)
             {
-                parts[i] = _sheet.Cells[_currentRow, i + 1].Value.ToString();
+                parts[i] = _sheet.Cells[RowNumber, i + 1].Value.ToString();
             }
             return parts;
         }
@@ -55,7 +54,9 @@ namespace Qa.Core.Parsers.FileReaders
 
         public string GetLastLine()
         {
-            return "Row number "+ _currentRow;
+            return "Row number "+ RowNumber;
         }
+
+        public int RowNumber { get; private set; }
     }
 }

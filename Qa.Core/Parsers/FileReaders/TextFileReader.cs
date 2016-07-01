@@ -28,6 +28,7 @@ namespace Qa.Core.Parsers.FileReaders
             var reader = getReader();
             for (var i = 0; i < lines; i++)
             {
+                RowNumber++;
                 reader.ReadLine();
             }
         }
@@ -35,6 +36,7 @@ namespace Qa.Core.Parsers.FileReaders
         public string[] ParseNextRow()
         {
             _lastLine = getReader().ReadLine();
+            RowNumber++;
             if (_lastLine == null)
             {
                 return null;
@@ -45,6 +47,7 @@ namespace Qa.Core.Parsers.FileReaders
         public string ReadNextRow()
         {
             _lastLine = getReader().ReadLine();
+            RowNumber++;
             return _lastLine;
         }
 
@@ -52,6 +55,8 @@ namespace Qa.Core.Parsers.FileReaders
         {
             return _lastLine;
         }
+
+        public int RowNumber { get; private set; }
 
         private StreamReader getReader()
         {

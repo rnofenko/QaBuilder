@@ -13,28 +13,26 @@ namespace Qa.Core.Format
         private readonly StructureDetector _structureDetector;
         private readonly Formatter _formatter;
         private readonly PathFinder _pathFinder;
-        private readonly Settings _settings;
 
-        public FormatPrompt(Settings settings)
+        public FormatPrompt()
         {
-            _settings = settings;
             _formatter = new Formatter();
             _structureDetector = new StructureDetector();
             _pathFinder = new PathFinder();
         }
 
-        public void Start()
+        public void Start(Settings settings)
         {
-            showSettings();
-            foreach (var fileStructure in _settings.FileStructures)
+            showSettings(settings);
+            foreach (var fileStructure in settings.FileStructures)
             {
-                format(fileStructure.Format);
+                format(fileStructure.Format, settings);
             }
         }
 
-        private void format(FormatStructure structure)
+        private void format(FormatStructure structure, Settings settings)
         {
-            var files = _pathFinder.Find(_settings.WorkingFolder, structure.FileMask).ToList();
+            var files = _pathFinder.Find(settings.WorkingFolder, structure.FileMask).ToList();
             Lo.Wl().Wl(string.Format("Found {0} files for {1}:", files.Count, structure.Name));
 
             var ask = AskFileResult.None;
@@ -44,7 +42,7 @@ namespace Qa.Core.Format
                 {
                     SourcePath = filepath,
                     FormatStructure = structure,
-                    DestinationPath = Path.Combine(_settings.WorkingFolder, Path.GetFileNameWithoutExtension(filepath) + "." + DESTINATION_FILE_EXTENSION)
+                    DestinationPath = Path.Combine(settings.WorkingFolder, Path.GetFileNameWithoutExtension(filepath) + "." + DESTINATION_FILE_EXTENSION)
                 };
                 if (ask != AskFileResult.YesForAll)
                 {
@@ -64,12 +62,12 @@ namespace Qa.Core.Format
             Console.ReadKey();
         }
         
-        private void showSettings()
+        private void showSettings(Settings settings)
         {
             Lo.Wl(1)
                 .Wl("Formatting files")
                 .Wl("Source File Settings:")
-                .Wl(string.Format("Working folder        = {0}", _settings.WorkingFolder))
+                .Wl(string.Format("Working folder        = {0}", settings.WorkingFolder))
                 .Wl(string.Format("File mask             = {0}", SOURCE_FILE_MASK))
                 .Wl()
                 .Wl("Destination File Settings:")

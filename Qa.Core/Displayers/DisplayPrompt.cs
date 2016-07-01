@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using Qa.Core.Prompts;
+using Qa.Core.Selectors;
 using Qa.Core.Structure;
 using Qa.Core.System;
 
@@ -12,14 +12,16 @@ namespace Qa.Core.Displayers
         private readonly QaFileFinder _fileFinder;
         private readonly SelectorPrompt _selector;
         private readonly Displayer _displayer;
-        private readonly PathFinder _pathFinder;
+        private readonly FileSelector _fileSelector;
+        private readonly StructureSelector _structureSelector;
 
         public DisplayPrompt()
         {
             _fileFinder = new QaFileFinder();
             _selector = new SelectorPrompt();
             _displayer = new Displayer();
-            _pathFinder = new PathFinder();
+            _fileSelector = new FileSelector();
+            _structureSelector = new StructureSelector();
         }
 
         public void Start(Settings settings)
@@ -58,8 +60,8 @@ namespace Qa.Core.Displayers
 
         private void splitRowByField(Settings settings)
         {
-            var selectedStructure = selectStructure(settings);
-            var file = selectAnyFile(settings);
+            var selectedStructure = _structureSelector.Select(settings);
+            var file = _fileSelector.SelectAnyFile(settings.WorkingFolder);
             if (file == null || selectedStructure == null)
             {
                 return;
@@ -70,7 +72,7 @@ namespace Qa.Core.Displayers
 
         private void showOneColumn(Settings settings)
         {
-            var selectedStructure = selectStructure(settings);
+            var selectedStructure = _structureSelector.Select(settings);
             var selectedFile = selectProjectFile(settings, selectedStructure);
             if (selectedFile == null)
             {
@@ -85,24 +87,13 @@ namespace Qa.Core.Displayers
 
         private void showWholeRows(Settings settings)
         {
-            var selectedStructure = selectStructure(settings);
-            var selectedFile = selectAnyFile(settings);
+            var selectedStructure = _structureSelector.Select(settings);
+            var selectedFile = _fileSelector.SelectAnyFile(settings.WorkingFolder);
             if (selectedFile == null || selectedStructure == null)
             {
                 return;
             }
             _displayer.DisplayWholeRows(selectedFile, selectedStructure);
-        }
-
-        private string selectAnyFile(Settings settings)
-        {
-            var filePaths = _pathFinder.Find(settings.WorkingFolder);
-            var fileIndex = _selector.Select(filePaths.Select(Path.GetFileName), "Select file for check");
-            if (fileIndex < 0)
-            {
-                return null;
-            }
-            return filePaths[fileIndex];
         }
 
         private string selectProjectFile(Settings settings, FileStructure structure)
@@ -119,16 +110,6 @@ namespace Qa.Core.Displayers
                 return null;
             }
             return files[index];
-        }
-
-        private FileStructure selectStructure(Settings settings)
-        {
-            var index = _selector.Select(settings.FileStructures.Select(x => x.Qa.Name), "Select structure");
-            if (index < 0)
-            {
-                return null;
-            }
-            return settings.FileStructures[index];
         }
     }
 }
