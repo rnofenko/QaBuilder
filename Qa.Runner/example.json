@@ -16,7 +16,13 @@
       "fields": [ /*These fields will be displayed in excel.*/
         {
           "title": "Breakdown by product/subproduct type2",
-          "calculation": "count",
+          "calculation": "count", /*
+          count           - count of rows, no sense to defint field
+          countUnique     - count unique values of selected field
+          sum             - calculate sum of selected field
+          average         - calculate average of selected field
+          weightedAverage - calculate weighted average of selected field. this calculation always goes with attribute 'weightField'.
+          */
           "groupBy": "Product Type, SubProduct Type",
           "bins": {
             "method": "proportional", /* how to calculate. possible values: proportional, absolute. by default: absolute. */
@@ -47,6 +53,11 @@
           "calculation": "count",
           "groupBy": "State",
           "translateFunction": "USA50States" /*it means, that C# code chnage short form ('NJ') to long form ('New Jersey') and all other values put in 'Other'.*/
+        },
+        {
+          "calculation": "weightedAverage",/*example of weighted average*/
+          "field": "APY",
+          "weightField": "Month End Balance"
         },
         {
           "title": "Breakdown of amount by credit/debit",

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Linq;
-using Qa.Core.Parsers.FileReaders;
 using Qa.Core.Selectors;
 using Qa.Core.Structure;
 using Qa.Core.System;
@@ -12,11 +9,13 @@ namespace Qa.Core.Editors
     {
         private readonly FileSelector _fileSelector;
         private readonly StructureSelector _structureSelector;
+        private readonly Editor _editor;
 
         public EditPrompt()
         {
             _fileSelector = new FileSelector();
             _structureSelector = new StructureSelector();
+            _editor = new Editor();
         }
 
         public void Start(Settings settings)
@@ -75,7 +74,7 @@ namespace Qa.Core.Editors
                 Lo.Wl("Adding new column was canceled.", ConsoleColor.Cyan);
             }
 
-            addColumn(file, structure.Qa, position, defaultValue);
+            _editor.AddColumn(file, structure.Qa, position, defaultValue);
         }
 
         private void deleteColumn(Settings settings)
@@ -102,52 +101,7 @@ namespace Qa.Core.Editors
                 Lo.Wl("Deleting column was canceled.", ConsoleColor.Cyan);
             }
 
-            deleteColumn(file, structure.Qa, position);
-        }
-
-        private void processFile(string sourceFile, IStructure structure, Func<string[],string> rowAction)
-        {
-            using (var reader = FileReaderFactory.Create(sourceFile, structure.GetLineParser()))
-            {
-                using (var writer = new StreamWriter(sourceFile + "." + DateTime.Now.Ticks))
-                {
-                    for (var i = 0; i < structure.SkipRows; i++)
-                    {
-                        writer.WriteLine(reader.ReadNextRow());
-                    }
-
-                    string[] row;
-                    while ((row = reader.ParseNextRow()) != null)
-                    {
-                        var rebuiltRow = rowAction(row);
-                        writer.WriteLine(rebuiltRow);
-                        Lo.ShowFileProcessingProgress(reader.RowNumber);
-                    }
-                }
-                Lo.ShowFileProcessingProgress(reader.RowNumber);
-            }
-        }
-
-        private void addColumn(string sourceFile, IStructure structure, int position, string defaultValue)
-        {
-            processFile(sourceFile, structure, row =>
-            {
-                var pos = position > row.Length ? row.Length : position;
-                var list = row.ToList();
-                list.Insert(pos, defaultValue);
-                return string.Join(structure.Delimiter, list);
-            });
-        }
-
-        private void deleteColumn(string sourceFile, IStructure structure, int position)
-        {
-            processFile(sourceFile, structure, row =>
-            {
-                var pos = position > row.Length ? row.Length : position;
-                var list = row.ToList();
-                list.RemoveAt(pos);
-                return string.Join(structure.Delimiter, list);
-            });
+            _editor.DeleteColumn(file, structure.Qa, position);
         }
     }
 }

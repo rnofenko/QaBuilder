@@ -57,6 +57,7 @@
     <Compile Include="Compare\IValueComparer.cs" />
     <Compile Include="Displayers\Displayer.cs" />
     <Compile Include="Displayers\DisplayPrompt.cs" />
+    <Compile Include="Editors\Editor.cs" />
     <Compile Include="Editors\EditPrompt.cs" />
     <Compile Include="Excel\FieldPrinterFactory.cs" />
     <Compile Include="Excel\FourMonthsGroupedFieldPrinter.cs" />
