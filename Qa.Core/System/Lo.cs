@@ -54,6 +54,16 @@ namespace Qa.Core.System
             return new Logger().Wl(message, color);
         }
 
+        public static Logger Ask(string message)
+        {
+            return new Logger().Ask(message);
+        }
+
+        public static Logger Error(string message)
+        {
+            return new Logger().Error(message);
+        }
+
         public static Logger W(string message, ConsoleColor color)
         {
             return new Logger().W(message, color);

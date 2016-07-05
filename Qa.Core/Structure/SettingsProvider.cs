@@ -16,14 +16,15 @@ namespace Qa.Core.Structure
         public Settings Load()
         {
             var projectName = get("defaultProject");
-            if (!File.Exists(getProjectFilePath(projectName)))
-            {
-                Lo.Wl(string.Format("JSON file for {0} is absent.", projectName), ConsoleColor.Red);
-                projectName = null;
-            }
             if (projectName.IsEmpty())
             {
                 projectName = new ProjectSelector().Select(getBinFolder());
+            }
+            
+            if (!File.Exists(getProjectFilePath(projectName)))
+            {
+                Lo.Error(string.Format("JSON file for project '{0}' is absent.", projectName));
+                return null;
             }
 
             var config = new Settings

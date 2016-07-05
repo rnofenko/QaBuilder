@@ -22,6 +22,18 @@ namespace Qa.Core.System
             return this;
         }
 
+        public Logger Ask(string message)
+        {
+            Wl(message, ConsoleColor.Cyan);
+            return this;
+        }
+
+        public Logger Error(string message)
+        {
+            Wl(message, ConsoleColor.Red);
+            return this;
+        }
+
         public Logger Wl(string message, ConsoleColor color)
         {
             Console.ForegroundColor = color;

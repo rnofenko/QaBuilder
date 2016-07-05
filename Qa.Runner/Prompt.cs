@@ -18,6 +18,11 @@ namespace Qa.Runner
         {
             _settingsProvider = new SettingsProvider();
             var settings = _settingsProvider.Load();
+            if (settings == null)
+            {
+                return;
+            }
+
             if (settings.Project == "argusCd")
             {
                 ServiceLocator.CalculationFieldFactory = new ArgusCdCalculationFieldFactory();

@@ -21,7 +21,7 @@ namespace Qa.Core.Selectors
 
             while (true)
             {
-                Lo.Wl().Wl(title + ":");
+                Lo.Wl().Ask(title + ":");
                 for (var i = 0; i < list.Count; i++)
                 {
                     Lo.Wl(string.Format("{0}. {1}", i + 1, list[i]));
