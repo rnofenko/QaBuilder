@@ -1,6 +1,7 @@
 ﻿[
   {
     "name": "BAI SBB",
+    "fileMask": "*.txt",
     "fileFields": [
       { "name": "ENTERPRISE_ID" },
       { "name": "BUSINESS_ID" },

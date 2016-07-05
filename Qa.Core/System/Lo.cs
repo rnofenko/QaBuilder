@@ -64,6 +64,11 @@ namespace Qa.Core.System
             return new Logger().Error(message);
         }
 
+        public static Logger Warning(string message)
+        {
+            return new Logger().Warning(message);
+        }
+
         public static Logger W(string message, ConsoleColor color)
         {
             return new Logger().W(message, color);

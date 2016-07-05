@@ -50,7 +50,7 @@ namespace Qa.Core.Structure.Json
                 SourceFields = structure.Fields,
                 RowsInHeader = json.Format.RowsInHeader ?? json.RowsInHeader ?? 0,
                 SkipRows = json.Format.SkipRows ?? json.SkipRows ?? 0,
-                FileMask = json.Format.FileMask ?? "*.csv",
+                FileMask = json.Format.FileMask ?? json.FileMask ?? "*.csv",
                 Delimiter = delimiter,
                 TextQualifier = json.Format.TextQualifier ?? "\"",
                 DestinationDelimiter = json.Format.DestinationDelimiter ?? structure.Qa.Delimiter ?? delimiter
@@ -71,7 +71,7 @@ namespace Qa.Core.Structure.Json
                 SourceFields = structure.Fields,
                 RowsInHeader = json.Qa.RowsInHeader ?? json.RowsInHeader ?? 0,
                 SkipRows = json.Qa.SkipRows ?? json.SkipRows ?? 0,
-                FileMask = json.Qa.FileMask ?? "*.csv",
+                FileMask = json.Qa.FileMask ?? json.FileMask ?? "*.csv",
                 Delimiter = json.Qa.Delimiter.IfEmpty(json.Delimiter).IfEmpty(","),
                 Fields = json.Qa.Fields.Select(x => x.Convert(structure.Fields)).ToList(),
                 CompareFilesMethod = json.Qa.CompareFilesMethod == CompareFilesMethod.None ? CompareFilesMethod.MonthByMonth : json.Qa.CompareFilesMethod

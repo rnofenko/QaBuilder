@@ -17,5 +17,7 @@ namespace Qa.Core.Structure.Json
         public JsonQaStructure Qa { get; set; }
 
         public JsonFormatStructure Format { get; set; }
+
+        public string FileMask { get; set; }
     }
 }

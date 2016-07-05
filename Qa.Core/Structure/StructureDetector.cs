@@ -24,10 +24,16 @@ namespace Qa.Core.Structure
             {
                 reader.Skip(structure.SkipRows + structure.RowsInHeader);
                 var fields = reader.ParseNextRow();
+                if (fields.IsEmpty())
+                {
+                    const string template = "Structure {0}. File {1} doesn't have any data.";
+                    Lo.Warning(string.Format(template, Path.GetFileName(filepath), structure.Name));
+                    return false;
+                }
                 if (fields.Length != structure.CountOfSourceFields)
                 {
                     const string template = "Structure {0} and file {1} are incompatible. Fields count =  {2} structure's fields count = {3}";
-                    Lo.Wl(string.Format(template, structure.Name, Path.GetFileName(filepath), fields.Length, structure.CountOfSourceFields));
+                    Lo.Warning(string.Format(template, structure.Name, Path.GetFileName(filepath), fields.Length, structure.CountOfSourceFields));
                     return false;
                 }
             }

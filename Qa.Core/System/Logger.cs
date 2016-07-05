@@ -34,6 +34,24 @@ namespace Qa.Core.System
             return this;
         }
 
+        public Logger Warning(string message)
+        {
+            Wl(message, ConsoleColor.Yellow);
+            return this;
+        }
+
+        public Logger Highlight(string message)
+        {
+            Wl(message, ConsoleColor.Yellow);
+            return this;
+        }
+
+        public Logger Success(string message)
+        {
+            Wl(message, ConsoleColor.Green);
+            return this;
+        }
+
         public Logger Wl(string message, ConsoleColor color)
         {
             Console.ForegroundColor = color;

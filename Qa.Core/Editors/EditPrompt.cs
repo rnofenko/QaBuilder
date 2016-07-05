@@ -57,16 +57,16 @@ namespace Qa.Core.Editors
             int position;
             if (!int.TryParse(positionStr, out position))
             {
-                Lo.Wl("Position can be only number from 0 to 999.", ConsoleColor.Red);
+                Lo.Error("Position can be only number from 0 to 999.");
                 return;
             }
             Lo.Wl().Wl("Input default value:");
             var defaultValue = Console.ReadLine();
 
-            Lo.Wl().W("New column will be added in file ").Wl(file,ConsoleColor.Yellow)
-                .W("for structure ").Wl(structure.Qa.Name,ConsoleColor.Yellow)
-                .W("on position ").Wl(position.ToString(), ConsoleColor.Yellow)
-                .W("with default value ").Wl(defaultValue, ConsoleColor.Yellow)
+            Lo.Wl().W("New column will be added in file ").Highlight(file)
+                .W("for structure ").Highlight(structure.Qa.Name)
+                .W("on position ").Highlight(position.ToString())
+                .W("with default value ").Highlight(defaultValue)
                 .Wl("Press ENTER to start.");
             var key = Console.ReadKey();
             if (key.Key != ConsoleKey.Enter)
@@ -87,13 +87,13 @@ namespace Qa.Core.Editors
             int position;
             if (!int.TryParse(positionStr, out position))
             {
-                Lo.Wl("Position can be only number from 0 to 999.", ConsoleColor.Red);
+                Lo.Error("Position can be only number from 0 to 999.");
                 return;
             }
             
-            Lo.Wl().W("Column will be deleted from file ").Wl(file, ConsoleColor.Yellow)
-                .W("for structure ").Wl(structure.Qa.Name, ConsoleColor.Yellow)
-                .W("on position ").Wl(position.ToString(), ConsoleColor.Yellow)
+            Lo.Wl().W("Column will be deleted from file ").Highlight(file)
+                .W("for structure ").Highlight(structure.Qa.Name)
+                .W("on position ").Highlight(position.ToString())
                 .Wl("Press ENTER to start.");
             var key = Console.ReadKey();
             if (key.Key != ConsoleKey.Enter)

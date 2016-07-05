@@ -45,7 +45,7 @@ namespace Qa.Core.Qa
 
                 if (files.IsEmpty())
                 {
-                    Lo.Wl("No files were detected as QA report for structure=" + structure.Qa.Name, ConsoleColor.Yellow);
+                    Lo.Warning(string.Format("No files were detected as QA report for structure={0}. Mask={1}.", structure.Qa.Name, structure.Qa.FileMask));
                 }
                 else
                 {
@@ -60,7 +60,7 @@ namespace Qa.Core.Qa
             }
 
             _excelExporter.Export();
-            Lo.Wl().Wl("Comparing was finished.", ConsoleColor.Green);
+            Lo.Wl().Success("Comparing was finished.");
         }
     }
 }

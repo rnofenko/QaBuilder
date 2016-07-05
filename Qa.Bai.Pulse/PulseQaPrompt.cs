@@ -55,7 +55,7 @@ namespace Qa.Bai.Pulse
             }
             
             _excelExporter.Export();
-            Lo.Wl().Wl("Comparing was finished.", ConsoleColor.Green);
+            Lo.Wl().Success("Comparing was finished.");
         }
 
         private void alignFiles(List<ParsedBatch> batches, QaStructure structure)

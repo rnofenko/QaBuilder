@@ -58,7 +58,7 @@ namespace Qa.Core.Parsers
 
         public ParsedFile Parse(string filepath, QaStructure structure)
         {
-            Lo.W("Parse file: ", ConsoleColor.Cyan).Wl(Path.GetFileNameWithoutExtension(filepath), ConsoleColor.Green);
+            Lo.W("Parse file: ", ConsoleColor.Cyan).Highlight(Path.GetFileNameWithoutExtension(filepath));
             Lo.Watch.Start();
             
             using (var valueParser = new ValueParser(structure))

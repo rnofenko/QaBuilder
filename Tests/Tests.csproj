@@ -58,7 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FileDateParserTests.cs" />
-    <Compile Include="FileMaskApplierTests.cs" />
+    <Compile Include="FileMaskFilterTests.cs" />
     <Compile Include="LineParserTests.cs" />
     <Compile Include="PerformanceParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
