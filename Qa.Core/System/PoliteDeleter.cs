@@ -18,11 +18,9 @@ namespace Qa.Core.System
             }
             catch (IOException)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Lo.Wl("File {Path.GetFileName(path)} can't be deleted or recreated.");
-                Lo.Wl("Please, close {path} file.");
+                Lo.Error(string.Format("File {0} can't be deleted or recreated.", Path.GetFileName(path)));
+                Lo.Error(string.Format("Please, close {0} file.", path));
                 Lo.Wl("Preass any key to continue.");
-                Console.ResetColor();
                 Console.ReadKey();
                 Delete(path);
             }

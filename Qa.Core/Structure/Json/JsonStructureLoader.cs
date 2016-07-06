@@ -65,7 +65,7 @@ namespace Qa.Core.Structure.Json
                 return new QaStructure { Delimiter = CsvParser.DEFAULT_DELIMITER};
             }
             
-            return new QaStructure
+            var qa = new QaStructure
             {
                 Name = json.Name,
                 SourceFields = structure.Fields,
@@ -76,6 +76,7 @@ namespace Qa.Core.Structure.Json
                 Fields = json.Qa.Fields.Select(x => x.Convert(structure.Fields)).ToList(),
                 CompareFilesMethod = json.Qa.CompareFilesMethod == CompareFilesMethod.None ? CompareFilesMethod.MonthByMonth : json.Qa.CompareFilesMethod
             };
+            return qa;
         }
     }
 }

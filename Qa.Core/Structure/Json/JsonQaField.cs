@@ -63,7 +63,26 @@ namespace Qa.Core.Structure.Json
             {
                 qa.NumberFormat = NumberFormat.Integer;
             }
+            checkBin(qa.Bins);
+
             return qa;
+        }
+
+        private void checkBin(BinSettings bins)
+        {
+            if (bins == null)
+            {
+                return;
+            }
+
+            if (bins.Method == BinMethod.None)
+            {
+                bins.Method = BinMethod.Absolute;
+            }
+            if (bins.Source == BinSource.None)
+            {
+                bins.Source = BinSource.Key;
+            }
         }
 
         private void resolveGroupping(QaField qa, List<Field> fields)

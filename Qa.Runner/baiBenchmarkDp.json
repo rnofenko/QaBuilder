@@ -64,7 +64,8 @@
       { "name": "F_REMOTE_DEPOSIT_CAPTURE" },
       { "name": "F_PERSON-TO-PERSON_PAYMENT" },
       { "name": "F_PRIMARY_CHECKING" },
-      { "name": "NUMBER_OF_TIMES_CD_RENEWED" }
+      { "name": "NUMBER_OF_TIMES_CD_RENEWED" },
+      { "name": "ACH_DEBIT" }
     ],
     "qa": {
       "delimiter": "|",
